@@ -1,13 +1,13 @@
 // ===== Hotspot images mapping =====
 const HOTSPOT_IMAGES = {
-  'cong-tam-quan':   'images/hotspots/cong-tam-quan.png',
-  'san-dinh':        'images/hotspots/san-dinh.png',
-  'tien-dien':       'images/hotspots/tien-dien.png',
-  'chanh-dien':      'images/hotspots/chanh-dien.png',
-  'hau-dien':        'images/hotspots/hau-dien.png',
-  'nha-vo-ca':       'images/hotspots/nha-vo-ca.png',
-  'cot-keo-go':      'images/hotspots/chanh-dien.png',
-  'bo-noc-mai-ngoi': 'images/hotspots/tien-dien.png',
+  'cong-tam-quan':   'images/gallery/gallery-5.jpg',
+  'san-dinh':        'images/gallery/gallery-9.jpg',
+  'tien-dien':       'images/gallery/gallery-7.jpg',
+  'chanh-dien':      'images/gallery/gallery-8.png',
+  'hau-dien':        'images/gallery/gallery-9.jpg',
+  'nha-vo-ca':       'images/gallery/gallery-7.jpg',
+  'cot-keo-go':      'images/gallery/gallery-8.png',
+  'bo-noc-mai-ngoi': 'images/gallery/gallery-6.png',
 };
 
 // ===== Hotspot Modal =====

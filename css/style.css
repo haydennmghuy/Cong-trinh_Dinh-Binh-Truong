@@ -47,7 +47,7 @@ h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); }
 h3 { font-size: clamp(1.2rem, 3vw, 1.6rem); }
 
 /* ===== UTILITY ===== */
-.container { max-width: 1440px; margin: 0 auto; padding: 0 16px; }
+.container { max-width: 1360px; margin: 0 auto; padding: 0 16px; }
 .section-tag {
   display: inline-block;
   font-size: 0.75rem; font-weight: 600;
@@ -93,7 +93,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.6rem); }
 }
 .header-inner {
   display: flex; align-items: center; justify-content: space-between;
-  width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 24px;
+  width: 100%; max-width: 1360px; margin: 0 auto; padding: 0 24px;
 }
 .logo {
   display: flex; align-items: center; gap: 10px;
@@ -141,7 +141,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.6rem); }
 }
 .quick-info-grid {
   display: grid;
-  grid-template-columns: 480px 1fr;
+  grid-template-columns: 520px 1fr;
   gap: 32px;
   align-items: start;
 }
@@ -166,22 +166,23 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.6rem); }
 }
 .info-row {
   display: grid;
-  grid-template-columns: 110px 1fr;
+  grid-template-columns: 130px 1fr;
   gap: 16px;
   padding: 12px 0;
   border-bottom: 1px solid #f0ebe0;
-  align-items: flex-start;
+  align-items: center;
 }
 .info-row:last-child { border-bottom: none; }
 .info-label {
-  font-size: 0.68rem; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase;
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
   color: var(--accent-gold-dark);
-  padding-top: 2px;
+  white-space: nowrap;
 }
 .info-value {
-  font-size: 0.88rem; color: var(--text-primary);
-  line-height: 1.5;
+  font-size: 0.9rem; color: var(--text-primary);
+  line-height: 1.6;
+  word-break: keep-all;
 }
 
 /* Festival mini card */
@@ -330,16 +331,6 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.6rem); }
   line-height: 1.85;
   margin-bottom: 16px;
 }
-.gallery-link {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 0.85rem; font-weight: 600;
-  color: var(--accent-gold-dark);
-  padding: 8px 0;
-  transition: var(--transition);
-}
-.gallery-link:hover { color: var(--accent-gold); }
-.gallery-link svg { stroke: currentColor; }
-
 /* History sidebar */
 .history-sidebar { display: flex; flex-direction: column; gap: 16px; }
 
@@ -431,27 +422,51 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.6rem); }
 }
 .visit-icon { font-size: 1rem; flex-shrink: 0; }
 
-/* Photo Gallery */
+/* Photo Gallery Section */
+.gallery-section {
+  margin-top: 48px;
+  border-top: 1px solid var(--border);
+  padding-top: 40px;
+}
+.gallery-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  text-align: left;
+}
 .photo-gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-top: 32px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
-.photo-gallery img {
-  width: 100%; height: 220px;
-  object-fit: cover;
-  border-radius: var(--radius-sm);
+.gallery-item {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
   border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  aspect-ratio: 4/3;
+  background: var(--bg-card);
   transition: var(--transition);
 }
-.photo-gallery img:hover {
-  transform: scale(1.02);
+.gallery-item:hover {
+  transform: translateY(-4px);
   box-shadow: var(--shadow-md);
 }
-.photo-gallery img:first-child {
-  grid-column: 1 / -1;
-  height: 280px;
+.gallery-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+.gallery-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: #fff; font-size: 0.8rem; font-weight: 600;
+  padding: 20px 12px 10px; text-align: center;
 }
 
 /* ===== HOTSPOT MODAL (Larger card popup) ===== */
@@ -720,7 +735,7 @@ footer {
   #timeline-container::before { left: 90px; }
   .timeline-item { grid-template-columns: 70px 40px 1fr; }
   .timeline-year { font-size: 0.85rem; }
-  .photo-gallery { grid-template-columns: 1fr 1fr; }
+  .photo-gallery { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 640px) {
@@ -732,13 +747,12 @@ footer {
   #timeline-container::before { left: 70px; }
   .timeline-item { grid-template-columns: 52px 32px 1fr; }
   .timeline-year { font-size: 0.75rem; padding-right: 10px; }
-  .container { padding: 0 8px; }
-  .info-row { grid-template-columns: 1fr; gap: 4px; }
-  .photo-gallery { grid-template-columns: 1fr; }
-  .photo-gallery img { height: 180px; }
-  .photo-gallery img:first-child { height: 200px; }
+  .container { padding: 0 12px; }
+  .info-row { grid-template-columns: 105px 1fr; gap: 8px; align-items: flex-start; }
+  .info-label { font-size: 0.65rem; }
+  .info-value { font-size: 0.85rem; }
+  .photo-gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .hotspot-modal-card { width: 95%; max-width: none; border-radius: 16px; }
   .hotspot-modal-header { height: 160px; }
   .header-audio-btn span { display: none; }
-  .lang-tabs { overflow-x: auto; }
 }
