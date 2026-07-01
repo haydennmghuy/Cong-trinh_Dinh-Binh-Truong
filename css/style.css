@@ -113,6 +113,34 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.6rem); }
 .logo-text em { font-style: italic; }
 .logo-sub { font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-body); font-weight: 400; }
 
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: var(--transition);
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.nav-links a:hover {
+  color: var(--accent-gold-dark);
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; width: 0; height: 2px;
+  background: var(--accent-gold);
+  transition: var(--transition);
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+
 .nav-actions { display: flex; align-items: center; gap: 10px; }
 .header-audio-btn {
   display: flex; align-items: center; gap: 6px;
@@ -695,43 +723,18 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.6rem); }
 .festival-card-body p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
 
 /* ===== FOOTER ===== */
-footer {
+.site-footer {
   background: var(--text-primary);
-  color: rgba(255,255,255,0.7);
-  padding: 60px 0 32px;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 40px 0;
+  text-align: center;
+  border-top: 1.5px solid var(--accent-gold);
 }
-.footer-grid {
-  display: grid; grid-template-columns: 2fr 1fr 1fr;
-  gap: 48px; margin-bottom: 48px;
+.site-footer p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 0;
 }
-.footer-brand .logo-text { color: #fff; }
-.footer-brand .logo-sub { color: rgba(255,255,255,0.5); }
-.footer-desc {
-  font-size: 0.875rem; color: rgba(255,255,255,0.6);
-  margin-top: 16px; line-height: 1.7;
-}
-.footer-heading {
-  font-family: var(--font-display);
-  font-size: 1rem; color: #fff; margin-bottom: 16px;
-}
-.footer-link {
-  display: block; font-size: 0.85rem;
-  color: rgba(255,255,255,0.6); margin-bottom: 8px;
-  transition: var(--transition);
-}
-.footer-link:hover { color: var(--accent-gold-light); }
-.footer-address {
-  font-size: 0.85rem; line-height: 1.7;
-  color: rgba(255,255,255,0.6);
-}
-.footer-bottom {
-  padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  display: flex; justify-content: space-between;
-  align-items: center; font-size: 0.8rem;
-  color: rgba(255,255,255,0.4);
-}
-.footer-gold { color: var(--accent-gold-light); }
 
 /* ===== SVG pulse animation (for map, kept for compatibility) ===== */
 @keyframes pulse {
@@ -742,13 +745,13 @@ footer {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 960px) {
+  .nav-links { display: none; }
   .quick-info-grid { grid-template-columns: 1fr; }
   .quick-info-left { order: 2; }
   .quick-info-right { order: 1; }
   .model-3d-wrapper { aspect-ratio: 16/10; }
   .history-grid { grid-template-columns: 1fr; }
   .festival-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
   #timeline-container::before { left: 90px; }
   .timeline-item { grid-template-columns: 70px 40px 1fr; }
   .timeline-year { font-size: 0.85rem; }
@@ -759,8 +762,6 @@ footer {
   .quick-info-grid { gap: 20px; }
   .model-3d-wrapper { aspect-ratio: 4/3; }
   .festival-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
   #timeline-container::before { left: 70px; }
   .timeline-item { grid-template-columns: 52px 32px 1fr; }
   .timeline-year { font-size: 0.75rem; padding-right: 10px; }
