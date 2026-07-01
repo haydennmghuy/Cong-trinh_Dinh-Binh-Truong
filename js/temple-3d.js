@@ -435,6 +435,7 @@ const Temple3D = {
     // 1. Hồ Thuỷ Tạ (Semi-circular pond at the front wall)
     const pondShape = new THREE.Shape();
     pondShape.absarc(0, 0, 3.5, 0, Math.PI, false);
+    pondShape.lineTo(3.5, 0); // Close shape
     const pondGeo = new THREE.ShapeGeometry(pondShape);
     const pond = new THREE.Mesh(pondGeo, this.mat(0x33A0FF, { roughness: 0.1, metalness: 0.8 }));
     pond.rotation.x = -Math.PI / 2;
@@ -444,6 +445,7 @@ const Temple3D = {
     // Pond stone border
     const borderShape = new THREE.Shape();
     borderShape.absarc(0, 0, 3.7, 0, Math.PI, false);
+    borderShape.lineTo(3.7, 0); // Close shape
     const borderExtrude = new THREE.ExtrudeGeometry(borderShape, { depth: 0.25, bevelEnabled: false });
     const border = new THREE.Mesh(borderExtrude, this.mat(C.stoneGray));
     border.rotation.x = -Math.PI / 2;
