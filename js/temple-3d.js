@@ -412,7 +412,7 @@ const Temple3D = {
   buildCourtyard() {
     const C = this.COLORS;
 
-    // 1. Hồ Thuỷ Tạ (Semi-circular pond inside the fence behind Miếu thờ and Bình phong at x=-21.9, z=-1.0)
+    // 1. Hồ Thuỷ Tạ (Semi-circular pond inside the fence behind Miếu thờ and Bình phong at x=-21.9, z=-5.0)
     const pondShape = new THREE.Shape();
     pondShape.absarc(0, 0, 2.5, 0, Math.PI, false);
     pondShape.lineTo(2.5, 0); // Close shape
@@ -420,7 +420,7 @@ const Temple3D = {
     const pond = new THREE.Mesh(pondGeo, this.mat(0x33A0FF, { roughness: 0.1, metalness: 0.8 }));
     pond.rotation.x = -Math.PI / 2;
     pond.rotation.z = -Math.PI / 2; // Flat edge along the left fence (x = -22) curving inwards to the right
-    pond.position.set(-21.9, 0.03, -1.0);
+    pond.position.set(-21.9, 0.03, -5.0);
     this.scene.add(pond);
 
     // Pond stone border
@@ -431,7 +431,7 @@ const Temple3D = {
     const border = new THREE.Mesh(borderExtrude, this.mat(C.stoneGray));
     border.rotation.x = -Math.PI / 2;
     border.rotation.z = -Math.PI / 2;
-    border.position.set(-21.9, 0.03, -1.0);
+    border.position.set(-21.9, 0.03, -5.0);
     this.scene.add(border);
 
     // 2. Sân Khấu Ngoài Trời (Outdoor Stage) - Aligned vertically at x = -13.5, facing East (+x) towards Vo Ca
@@ -709,7 +709,7 @@ const Temple3D = {
       'tien-dien':            { x: 4.5,   y: 4.5, z: -4.0 },
       'chanh-dien':           { x: 9.5,   y: 6.0, z: -4.0 },
       'nha-hoi':              { x: 13.5,  y: 4.5, z: -4.0 },
-      'ho-thuy-ta':           { x: -20.0, y: 1.5, z: -1.0 },
+      'ho-thuy-ta':           { x: -20.0, y: 1.5, z: -5.0 },
       'san-khau-ngoai-troi':  { x: -13.5, y: 3.5, z: -12.5 },
       'bia-tuong-niem':       { x: -13.5, y: 2.2, z: -7.5 },
       'bia-di-tich':          { x: -4.0,  y: 3.2, z: 6.0 },
