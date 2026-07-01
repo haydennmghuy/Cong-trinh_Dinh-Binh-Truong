@@ -81,16 +81,16 @@ var MAP_DATA = {
       x: 50, y: 16,
       color: "#6B8CAE",
       vi: {
-        name: "Hậu Điện",
-        short: "Nhà hậu",
-        desc: "Hậu Điện nằm phía sau cùng, thờ các vị thần phụ và tổ tiên của làng. Không gian yên tĩnh, trang nghiêm với các tấm hoành phi ghi chép công đức của các bậc tiền nhân đã đóng góp xây dựng đình.",
+        name: "Hậu Điện (Nhà Khách)",
+        short: "Nhà hậu / Nhà khách",
+        desc: "Hậu Điện (còn gọi là Nhà Khách) nằm phía sau cùng, thờ các vị thần phụ, tổ tiên của làng và là nơi tiếp khách của ban quý tế đình. Không gian yên tĩnh, trang nghiêm với các tấm hoành phi ghi chép công đức của các bậc tiền nhân đã đóng góp xây dựng đình.",
         details: "• Bàn thờ Tiền Hiền - Hậu Hiền: Nơi tưởng niệm các vị khai phá đất đai lập làng Bình Trường.\n• Kiến trúc: Thiết kế dạng nhà dột mái xếp tầng tạo sự thông thoáng và kín đáo linh thiêng.\n• Kỷ vật: Lưu giữ các bức hương án gỗ trắc và bộ binh khí thờ bằng đồng từ cuối thế kỷ 19.",
         audio: "audio/vi/hau-dien.mp3"
       },
       en: {
-        name: "Rear Hall",
-        short: "Back shrine",
-        desc: "The Rear Hall at the back of the complex houses secondary deities and village ancestors. The quiet, solemn space features horizontal boards recording the contributions of community members who helped build and maintain the temple.",
+        name: "Rear Hall (Guest House)",
+        short: "Back shrine / Guest house",
+        desc: "The Rear Hall (also functioning as the Guest House) at the back of the complex houses secondary deities and village ancestors, and serves as a reception hall for visitors. The quiet, solemn space features horizontal boards recording the contributions of community members who helped build and maintain the temple.",
         details: "• Ancestral Altars: Dedicated to the founding pioneers who established Binh Truong village.\n• Architecture: Tiered roof structure designed for natural ventilation and solemn privacy.\n• Relics: Preserves rosewood incense tables and 19th-century ceremonial bronze weaponry.",
         audio: "audio/en/rear-hall.mp3"
       }

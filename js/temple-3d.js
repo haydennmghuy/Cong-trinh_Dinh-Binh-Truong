@@ -242,7 +242,7 @@ const Temple3D = {
 
     // === GROUND ===
     // Main ground plane (large area around temple)
-    const groundGeo = new THREE.PlaneGeometry(100, 100);
+    const groundGeo = new THREE.PlaneGeometry(120, 120);
     const groundMat = this.mat(C.groundDark, { roughness: 0.9 });
     const ground = new THREE.Mesh(groundGeo, groundMat);
     ground.rotation.x = -Math.PI / 2;
@@ -251,7 +251,7 @@ const Temple3D = {
     this.scene.add(ground);
 
     // Courtyard paving (within the compound)
-    const courtGeo = new THREE.PlaneGeometry(28, 32);
+    const courtGeo = new THREE.PlaneGeometry(30, 32);
     const courtMat = this.mat(C.groundPave, { roughness: 0.85 });
     const court = new THREE.Mesh(courtGeo, courtMat);
     court.rotation.x = -Math.PI / 2;
@@ -262,8 +262,11 @@ const Temple3D = {
     // === SURROUNDING WALL / FENCE ===
     this.buildFence();
 
-    // === CỔNG TAM QUAN (Main Gate) ===
+    // === CỔNG TAM QUAN (Main Gate on left wall) ===
     this.buildGate();
+
+    // === CỔNG NHỎ (Small Gate on left wall) ===
+    this.buildSmallGate();
 
     // === SÂN ĐÌNH (Courtyard features) ===
     this.buildCourtyard();
@@ -274,13 +277,13 @@ const Temple3D = {
     // === CHÁNH ĐIỆN (Main Shrine Hall) ===
     this.buildChanhDien();
 
-    // === HẬU ĐIỆN (Rear Hall) ===
+    // === HẬU ĐIỆN (Rear Hall / Nhà khách) ===
     this.buildHauDien();
 
     // === NHÀ VÕ CA (Opera Stage) ===
     this.buildVoCa();
 
-    // === CỘT KÈO GỖ area (structural woodwork display) ===
+    // === CỘT KÈO GỖ (Exposed structural woodwork display inside Chánh Điện) ===
     this.buildCotKeo();
 
     // === ROOF DECORATIONS ===
@@ -297,35 +300,37 @@ const Temple3D = {
     const C = this.COLORS;
     const fenceH = 1.2;
     const pillarH = 1.6;
-    const compound = { xMin: -15, xMax: 15, zMin: -16, zMax: 16 };
     
     // Fence walls (low yellow walls)
     const wallThick = 0.3;
     
-    // Front wall (with gap for gate) - left portion
-    this.scene.add(this.createBox(8, fenceH, wallThick, C.fenceYellow, -11, fenceH/2, 16));
-    // Front wall - right portion
-    this.scene.add(this.createBox(8, fenceH, wallThick, C.fenceYellow, 11, fenceH/2, 16));
+    // Front wall (solid, with pond and shrines in front)
+    this.scene.add(this.createBox(30, fenceH, wallThick, C.fenceYellow, 0, fenceH/2, 16));
     
     // Back wall
     this.scene.add(this.createBox(30, fenceH, wallThick, C.fenceYellow, 0, fenceH/2, -16));
     
-    // Left wall
-    this.scene.add(this.createBox(wallThick, fenceH, 32, C.fenceYellow, -15, fenceH/2, 0));
-    
-    // Right wall
+    // Right wall (solid, behind the main halls)
     this.scene.add(this.createBox(wallThick, fenceH, 32, C.fenceYellow, 15, fenceH/2, 0));
+    
+    // Left wall (has Cổng Tam Quan at z=9.5..14.5 and Cổng Nhỏ at z=-11.5..-8.5)
+    // Wall 1: Front corner to Cổng Tam Quan
+    this.scene.add(this.createBox(wallThick, fenceH, 1.5, C.fenceYellow, -15, fenceH/2, 15.25));
+    // Wall 2: Between Cổng Tam Quan and Cổng Nhỏ
+    this.scene.add(this.createBox(wallThick, fenceH, 18, C.fenceYellow, -15, fenceH/2, 0.5));
+    // Wall 3: Between Cổng Nhỏ and Back corner
+    this.scene.add(this.createBox(wallThick, fenceH, 4.5, C.fenceYellow, -15, fenceH/2, -13.75));
 
     // Fence pillars at corners and intervals
     const pillarPositions = [
       // Front
-      [-15, 16], [-11, 16], [-7, 16], [7, 16], [11, 16], [15, 16],
+      [-15, 16], [-7.5, 16], [0, 16], [7.5, 16], [15, 16],
       // Back
-      [-15, -16], [-10, -16], [-5, -16], [0, -16], [5, -16], [10, -16], [15, -16],
-      // Left
-      [-15, 12], [-15, 8], [-15, 4], [-15, 0], [-15, -4], [-15, -8], [-15, -12],
+      [-15, -16], [-7.5, -16], [0, -16], [7.5, -16], [15, -16],
+      // Left wall pillars near gates
+      [-15, 14.5], [-15, 9.5], [-15, -8.5], [-15, -11.5],
       // Right
-      [15, 12], [15, 8], [15, 4], [15, 0], [15, -4], [15, -8], [15, -12],
+      [15, 8], [15, 0], [15, -8]
     ];
     
     pillarPositions.forEach(([x, z]) => {
@@ -336,129 +341,230 @@ const Temple3D = {
       this.scene.add(cap);
     });
 
-    // Metal fence bars between pillars (simplified as thin lines)
-    // Front fence bars - left section
-    for (let x = -14.5; x <= -7.5; x += 0.5) {
-      const bar = this.createBox(0.05, 0.9, 0.05, C.fenceBars, x, 0.65, 16, { metalness: 0.5 });
-      this.scene.add(bar);
+    // Decorative metal fence bars (simplified as thin lines)
+    // Between pillars along the walls
+    // Front wall left section
+    for (let x = -14; x <= -8; x += 0.6) {
+      this.scene.add(this.createBox(0.05, 0.9, 0.05, C.fenceBars, x, 0.65, 16, { metalness: 0.5 }));
     }
-    // Front fence bars - right section
-    for (let x = 7.5; x <= 14.5; x += 0.5) {
-      const bar = this.createBox(0.05, 0.9, 0.05, C.fenceBars, x, 0.65, 16, { metalness: 0.5 });
-      this.scene.add(bar);
+    // Front wall right section
+    for (let x = 8; x <= 14; x += 0.6) {
+      this.scene.add(this.createBox(0.05, 0.9, 0.05, C.fenceBars, x, 0.65, 16, { metalness: 0.5 }));
     }
-    // Horizontal rail
-    this.scene.add(this.createBox(7, 0.08, 0.08, C.fenceBars, -11, 1.1, 16, { metalness: 0.5 }));
-    this.scene.add(this.createBox(7, 0.08, 0.08, C.fenceBars, 11, 1.1, 16, { metalness: 0.5 }));
   },
 
   buildGate() {
     const C = this.COLORS;
+    const group = new THREE.Group();
+    group.position.set(-14.5, 0, 12);
+    group.rotation.y = Math.PI / 2; // Rotate 90 deg to face courtyard (+X)
     
     // Main gate structure
-    const gateW = 10;
-    const gateD = 2.5;
-    const gateH = 4;
-    const gateZ = 14;
+    const gateW = 5;
+    const gateD = 1.8;
+    const gateH = 3.5;
 
     // Gate walls (yellow) - left pillar
-    this.scene.add(this.createBox(2, gateH, gateD, C.wallYellow, -4, gateH/2, gateZ));
+    group.add(this.createBox(1.5, gateH, gateD, C.wallYellow, -2, gateH/2, 0));
     // Gate walls - right pillar
-    this.scene.add(this.createBox(2, gateH, gateD, C.wallYellow, 4, gateH/2, gateZ));
+    group.add(this.createBox(1.5, gateH, gateD, C.wallYellow, 2, gateH/2, 0));
     // Gate walls - center left divider
-    this.scene.add(this.createBox(0.8, gateH, gateD, C.wallYellow, -1.5, gateH/2, gateZ));
+    group.add(this.createBox(0.6, gateH, gateD, C.wallYellow, -0.7, gateH/2, 0));
     // Gate walls - center right divider
-    this.scene.add(this.createBox(0.8, gateH, gateD, C.wallYellow, 1.5, gateH/2, gateZ));
+    group.add(this.createBox(0.6, gateH, gateD, C.wallYellow, 0.7, gateH/2, 0));
 
     // Upper wall connecting (above arches)
-    this.scene.add(this.createBox(gateW + 1, 1.5, gateD, C.wallYellow, 0, gateH + 0.75, gateZ));
+    group.add(this.createBox(gateW + 0.6, 1.2, gateD, C.wallYellow, 0, gateH + 0.6, 0));
 
-    // Arch tops (semi-circular openings) - simplified as dark openings
+    // Arch tops (semi-circular openings)
     // Center arch (larger)
-    this.scene.add(this.createBox(2.2, 3.5, gateD + 0.1, C.woodBrown, 0, 1.75, gateZ, { roughness: 0.9 }));
+    group.add(this.createBox(1.4, 3, gateD + 0.1, C.woodBrown, 0, 1.5, 0, { roughness: 0.9 }));
     // Left arch
-    this.scene.add(this.createBox(1.5, 3, gateD + 0.1, C.woodBrown, -3, 1.5, gateZ, { roughness: 0.9 }));
+    group.add(this.createBox(1.0, 2.5, gateD + 0.1, C.woodBrown, -1.35, 1.25, 0, { roughness: 0.9 }));
     // Right arch
-    this.scene.add(this.createBox(1.5, 3, gateD + 0.1, C.woodBrown, 3, 1.5, gateZ, { roughness: 0.9 }));
+    group.add(this.createBox(1.0, 2.5, gateD + 0.1, C.woodBrown, 1.35, 1.25, 0, { roughness: 0.9 }));
 
     // Gate roof
-    const gateRoof = this.createRoof(gateW + 2, gateD + 1, 2.5, 1.0, C.roofBrown, 0, gateH + 1.5, gateZ);
-    this.scene.add(gateRoof);
+    const gateRoof = this.createRoof(gateW + 1.2, gateD + 0.8, 1.8, 0.6, C.roofBrown, 0, gateH + 0.8, 0);
+    group.add(gateRoof);
 
     // Gate decorative top piece (stepped pagoda-like crown)
-    this.scene.add(this.createBox(3, 0.8, 1.5, C.wallYellow, 0, gateH + 4.2, gateZ));
-    const crownRoof = this.createRoof(3.5, 1.8, 1.2, 0.5, C.roofDark, 0, gateH + 5, gateZ);
-    this.scene.add(crownRoof);
+    group.add(this.createBox(2.2, 0.6, 1.2, C.wallYellow, 0, gateH + 2.4, 0));
+    const crownRoof = this.createRoof(2.6, 1.4, 1.0, 0.4, C.roofDark, 0, gateH + 2.8, 0);
+    group.add(crownRoof);
 
     // Gold ridge ornament on top
-    this.scene.add(this.createBox(0.2, 0.8, 0.2, C.goldAccent, 0, gateH + 6.5, gateZ, { metalness: 0.5 }));
+    group.add(this.createBox(0.15, 0.6, 0.15, C.goldAccent, 0, gateH + 4.0, 0, { metalness: 0.5 }));
 
-    // Chinese characters plaque (simplified as a gold rectangle)
-    this.scene.add(this.createBox(4, 0.8, 0.1, C.goldAccent, 0, gateH + 0.4, gateZ + gateD/2 + 0.1, { metalness: 0.3 }));
+    // Plaque above main arch
+    group.add(this.createBox(2.0, 0.5, 0.1, C.goldAccent, 0, gateH + 0.3, gateD/2 + 0.05, { metalness: 0.3 }));
+
+    this.scene.add(group);
+  },
+
+  buildSmallGate() {
+    const C = this.COLORS;
+    const group = new THREE.Group();
+    group.position.set(-14.5, 0, -10);
+    group.rotation.y = Math.PI / 2; // Rotate 90 deg to face courtyard (+X)
+
+    const gateH = 2.8;
+    const gateW = 2.4;
+    const gateD = 1.2;
+
+    // Two side pillars
+    group.add(this.createBox(0.6, gateH, gateD, C.wallYellow, -0.9, gateH/2, 0));
+    group.add(this.createBox(0.6, gateH, gateD, C.wallYellow, 0.9, gateH/2, 0));
+    
+    // Arch opening/door
+    group.add(this.createBox(1.2, 2.2, gateD - 0.2, C.woodBrown, 0, 1.1, 0, { roughness: 0.9 }));
+    
+    // Header wall
+    group.add(this.createBox(gateW, 0.6, gateD, C.wallYellow, 0, gateH - 0.3, 0));
+    
+    // Small roof
+    const roof = this.createRoof(gateW + 0.6, gateD + 0.4, 0.8, 0.3, C.roofRed, 0, gateH - 0.1, 0);
+    group.add(roof);
+
+    this.scene.add(group);
   },
 
   buildCourtyard() {
     const C = this.COLORS;
 
-    // Pathway from gate to front hall
-    const pathGeo = new THREE.PlaneGeometry(3, 10);
+    // 1. Hồ Thuỷ Tạ (Semi-circular pond at the front wall)
+    const pondShape = new THREE.Shape();
+    pondShape.absarc(0, 0, 3.5, 0, Math.PI, false);
+    const pondGeo = new THREE.ShapeGeometry(pondShape);
+    const pond = new THREE.Mesh(pondGeo, this.mat(0x33A0FF, { roughness: 0.1, metalness: 0.8 }));
+    pond.rotation.x = -Math.PI / 2;
+    pond.position.set(0, 0.03, 16);
+    this.scene.add(pond);
+
+    // Pond stone border
+    const borderShape = new THREE.Shape();
+    borderShape.absarc(0, 0, 3.7, 0, Math.PI, false);
+    const borderExtrude = new THREE.ExtrudeGeometry(borderShape, { depth: 0.25, bevelEnabled: false });
+    const border = new THREE.Mesh(borderExtrude, this.mat(C.stoneGray));
+    border.rotation.x = -Math.PI / 2;
+    border.position.set(0, 0.03, 16);
+    this.scene.add(border);
+
+    // 2. Bình Phong (Screen wall facing Cổng Tam Quan)
+    this.scene.add(this.createBox(3, 1.8, 0.25, C.wallYellow, -4, 0.9, 12));
+    this.scene.add(this.createBox(3.4, 0.15, 0.5, C.stoneGray, -4, 0.075, 12)); // base
+    const bpRoof = this.createRoof(3.2, 0.4, 0.4, 0.1, C.roofRed, -4, 1.8, 12);
+    this.scene.add(bpRoof);
+
+    // 3. Miếu Thờ 1 & 2 along the front wall
+    [[-8, 14], [-1, 14]].forEach(([mx, mz]) => {
+      // Base
+      this.scene.add(this.createBox(1.0, 0.2, 1.0, C.stoneGray, mx, 0.1, mz));
+      // Shrine
+      this.scene.add(this.createBox(0.8, 1.2, 0.8, C.wallYellow, mx, 0.7, mz));
+      // Roof
+      const sRoof = this.createRoof(1.0, 1.0, 0.5, 0.1, C.roofRed, mx, 1.3, mz);
+      this.scene.add(sRoof);
+    });
+
+    // 4. Bia Tưởng Niệm (Memorial Stele)
+    this.scene.add(this.createBox(1.0, 0.2, 0.8, C.stoneGray, 2, 0.1, 14));
+    this.scene.add(this.createBox(0.6, 1.4, 0.2, C.stoneGray, 2, 0.8, 14));
+    this.scene.add(this.createBox(0.4, 0.8, 0.22, C.goldAccent, 2, 0.8, 14, { metalness: 0.3 }));
+
+    // 5. Giếng Nước (Water Well)
+    const wellRing = this.createCylinder(0.8, 0.8, 0.8, C.stoneGray, 9, 0.4, 14, 12);
+    this.scene.add(wellRing);
+    const wellWater = this.createCylinder(0.7, 0.7, 0.7, 0x103040, 9, 0.35, 14, 12);
+    this.scene.add(wellWater);
+    this.scene.add(this.createBox(0.08, 1.6, 0.08, C.woodBrown, 8.3, 0.8, 14));
+    this.scene.add(this.createBox(0.08, 1.6, 0.08, C.woodBrown, 9.7, 0.8, 14));
+    const wellRoof = this.createRoof(1.6, 0.8, 0.4, 0.1, C.roofRed, 9, 1.6, 14);
+    this.scene.add(wellRoof);
+
+    // 6. Bia Di Tích Kiến Trúc Nghệ Thuật (Historic Stele in the yard)
+    const base = this.createCylinder(1.3, 1.3, 0.2, C.stoneGray, -6, 0.1, 2, 16);
+    this.scene.add(base);
+    const stele = this.createBox(0.8, 1.8, 0.3, C.stoneGray, -6, 1.0, 2);
+    this.scene.add(stele);
+    const steleRoof = this.createRoof(1.2, 0.6, 0.4, 0.1, C.roofBrown, -6, 1.9, 2);
+    this.scene.add(steleRoof);
+
+    // Pathway from main gate area towards main temple
+    const pathGeo = new THREE.PlaneGeometry(20, 4);
     const pathMat = this.mat(0xC0A888, { roughness: 0.9 });
     const path = new THREE.Mesh(pathGeo, pathMat);
     path.rotation.x = -Math.PI / 2;
-    path.position.set(0, 0.02, 8);
+    path.position.set(-2, 0.02, 3);
     this.scene.add(path);
 
-    // Potted plants (small cylinders)
-    [[-3, 10], [3, 10], [-5, 6], [5, 6]].forEach(([x, z]) => {
-      // Pot
-      const pot = this.createCylinder(0.3, 0.25, 0.5, 0xA06030, x, 0.25, z);
-      this.scene.add(pot);
-      // Plant
-      const plant = this.createCylinder(0.4, 0.3, 0.6, C.greenTree, x, 0.8, z, 8);
-      this.scene.add(plant);
-    });
-
-    // Stone lantern poles
-    [[-6, 8], [6, 8]].forEach(([x, z]) => {
-      const pole = this.createCylinder(0.08, 0.08, 2.5, C.stoneGray, x, 1.25, z);
+    // Stone lanterns in front of the main temple entrance
+    [[-1, 6], [-1, 1]].forEach(([x, z]) => {
+      const pole = this.createCylinder(0.08, 0.08, 2.0, C.stoneGray, x, 1.0, z);
       this.scene.add(pole);
-      // Lantern globe
       const globe = new THREE.Mesh(
-        new THREE.SphereGeometry(0.25, 12, 12),
+        new THREE.SphereGeometry(0.2, 12, 12),
         this.mat(C.white, { roughness: 0.3, emissive: 0xFFFFCC, emissiveIntensity: 0.2 })
       );
-      globe.position.set(x, 2.6, z);
+      globe.position.set(x, 2.1, z);
       this.scene.add(globe);
     });
   },
 
-  buildTienDien() {
+  buildVoCa() {
     const C = this.COLORS;
-    const x = 0, z = 3, w = 10, d = 5, h = 3.5;
+    // Opera stage - at the front of the right connected block
+    const x = 6, z = 9, w = 8, d = 6, h = 3.5;
 
-    // Foundation/platform
-    this.scene.add(this.createBox(w + 1, 0.4, d + 1, C.stoneGray, x, 0.2, z));
+    // Foundation
+    this.scene.add(this.createBox(w + 0.5, 0.4, d + 0.5, C.stoneGray, x, 0.2, z));
 
-    // Walls
-    // Back wall
-    this.scene.add(this.createBox(w, h, 0.25, C.wallYellow, x, h/2 + 0.4, z - d/2));
-    // Left wall
-    this.scene.add(this.createBox(0.25, h, d, C.wallYellow, x - w/2, h/2 + 0.4, z));
-    // Right wall
-    this.scene.add(this.createBox(0.25, h, d, C.wallYellow, x + w/2, h/2 + 0.4, z));
-    // Front wall (partial - with opening)
-    this.scene.add(this.createBox(3, h, 0.25, C.wallYellow, x - 3.5, h/2 + 0.4, z + d/2));
-    this.scene.add(this.createBox(3, h, 0.25, C.wallYellow, x + 3.5, h/2 + 0.4, z + d/2));
+    // Open structure (partially open on 3 sides)
+    this.scene.add(this.createBox(w, h * 0.4, 0.2, C.wallYellow, x, h/2 + 0.4 + h * 0.3, z - d/2));
 
     // Red columns
     const colPositions = [
-      [-4, z - 1.5], [-4, z + 1.5],
-      [0, z - 1.5], [0, z + 1.5],
-      [4, z - 1.5], [4, z + 1.5],
+      [x - w/2 + 0.3, z - d/2 + 0.3],
+      [x + w/2 - 0.3, z - d/2 + 0.3],
+      [x - w/2 + 0.3, z + d/2 - 0.3],
+      [x + w/2 - 0.3, z + d/2 - 0.3],
+      [x - w/2 + 0.3, z],
+      [x + w/2 - 0.3, z]
+    ];
+    colPositions.forEach(([cx, cz]) => {
+      this.scene.add(this.createCylinder(0.18, 0.2, h, C.columnRed, cx, h/2 + 0.4, cz));
+      this.scene.add(this.createBox(0.45, 0.15, 0.45, C.stoneGray, cx, 0.475, cz));
+    });
+
+    // Roof
+    const roof = this.createRoof(w, d, 2.2, 1.0, C.roofBrown, x, h + 0.4, z);
+    this.scene.add(roof);
+  },
+
+  buildTienDien() {
+    const C = this.COLORS;
+    // Second hall section
+    const x = 6, z = 3.5, w = 10, d = 5, h = 3.5;
+
+    // Foundation
+    this.scene.add(this.createBox(w + 0.8, 0.4, d + 0.8, C.stoneGray, x, 0.2, z));
+
+    // Walls
+    this.scene.add(this.createBox(w, h, 0.25, C.wallYellow, x, h/2 + 0.4, z - d/2));
+    this.scene.add(this.createBox(0.25, h, d, C.wallYellow, x - w/2, h/2 + 0.4, z));
+    this.scene.add(this.createBox(0.25, h, d, C.wallYellow, x + w/2, h/2 + 0.4, z));
+    // Front wall (facing Võ Ca) - has opening in the middle
+    this.scene.add(this.createBox(3, h, 0.25, C.wallYellow, x - 3.5, h/2 + 0.4, z + d/2));
+    this.scene.add(this.createBox(3, h, 0.25, C.wallYellow, x + 3.5, h/2 + 0.4, z + d/2));
+
+    // Red Columns
+    const colPositions = [
+      [x - 3.5, z - 1.5], [x - 3.5, z + 1.5],
+      [x, z - 1.5], [x, z + 1.5],
+      [x + 3.5, z - 1.5], [x + 3.5, z + 1.5],
     ];
     colPositions.forEach(([cx, cz]) => {
       this.scene.add(this.createCylinder(0.2, 0.22, h, C.columnRed, cx, h/2 + 0.4, cz));
-      // Column base
       this.scene.add(this.createBox(0.5, 0.15, 0.5, C.stoneGray, cx, 0.475, cz));
     });
 
@@ -469,177 +575,116 @@ const Temple3D = {
 
   buildChanhDien() {
     const C = this.COLORS;
-    const x = 0, z = -4, w = 12, d = 7, h = 5;
+    // Third hall section (Main sanctuary, slightly wider and taller)
+    const x = 6, z = -2.5, w = 12, d = 7, h = 5;
 
-    // Foundation/platform (higher than others)
-    this.scene.add(this.createBox(w + 1.5, 0.6, d + 1.5, C.stoneGray, x, 0.3, z));
+    // Foundation
+    this.scene.add(this.createBox(w + 1.2, 0.6, d + 1.2, C.stoneGray, x, 0.3, z));
 
     // Walls
     this.scene.add(this.createBox(w, h, 0.3, C.wallYellow, x, h/2 + 0.6, z - d/2));
     this.scene.add(this.createBox(0.3, h, d, C.wallYellow, x - w/2, h/2 + 0.6, z));
     this.scene.add(this.createBox(0.3, h, d, C.wallYellow, x + w/2, h/2 + 0.6, z));
-    // Front wall with large opening
     this.scene.add(this.createBox(3, h, 0.3, C.wallYellow, x - 4.5, h/2 + 0.6, z + d/2));
     this.scene.add(this.createBox(3, h, 0.3, C.wallYellow, x + 4.5, h/2 + 0.6, z + d/2));
-    // Upper front wall
     this.scene.add(this.createBox(6, 1.5, 0.3, C.wallYellow, x, h - 0.15, z + d/2));
 
-    // Red columns (more columns for the main hall)
+    // Red pillars inside Chánh Điện
     const colPositions = [
-      [-5, z - 2], [-5, z + 2],
-      [-2.5, z - 2], [-2.5, z + 2],
-      [0, z - 2], [0, z + 2],
-      [2.5, z - 2], [2.5, z + 2],
-      [5, z - 2], [5, z + 2],
+      [x - 4.5, z - 2], [x - 4.5, z + 2],
+      [x - 2.25, z - 2], [x - 2.25, z + 2],
+      [x, z - 2], [x, z + 2],
+      [x + 2.25, z - 2], [x + 2.25, z + 2],
+      [x + 4.5, z - 2], [x + 4.5, z + 2]
     ];
     colPositions.forEach(([cx, cz]) => {
       this.scene.add(this.createCylinder(0.25, 0.27, h, C.columnRed, cx, h/2 + 0.6, cz));
       this.scene.add(this.createBox(0.6, 0.2, 0.6, C.stoneGray, cx, 0.7, cz));
     });
 
-    // Main altar (visible through front opening)
+    // Altar
     this.scene.add(this.createBox(4, 2, 1.5, C.woodBrown, x, 1.6, z - 1.5));
-    // Gold altar top decoration
     this.scene.add(this.createBox(4.2, 0.15, 1.7, C.goldAccent, x, 2.7, z - 1.5, { metalness: 0.4 }));
 
-    // Roof (larger, higher)
+    // Roof
     const roof = this.createRoof(w, d, 3.5, 1.5, C.roofBrown, x, h + 0.6, z);
     this.scene.add(roof);
   },
 
   buildHauDien() {
     const C = this.COLORS;
-    const x = 0, z = -11, w = 10, d = 4, h = 3;
+    // Fourth hall section (Nhà Khách at the bottom of the connected halls)
+    const x = 6, z = -8.5, w = 10, d = 5, h = 3.5;
 
     // Foundation
-    this.scene.add(this.createBox(w + 0.8, 0.3, d + 0.8, C.stoneGray, x, 0.15, z));
+    this.scene.add(this.createBox(w + 0.8, 0.4, d + 0.8, C.stoneGray, x, 0.2, z));
 
-    // Walls (enclosed)
-    this.scene.add(this.createBox(w, h, 0.25, C.wallYellow, x, h/2 + 0.3, z - d/2));
-    this.scene.add(this.createBox(w, h, 0.25, C.wallYellow, x, h/2 + 0.3, z + d/2));
-    this.scene.add(this.createBox(0.25, h, d, C.wallYellow, x - w/2, h/2 + 0.3, z));
-    this.scene.add(this.createBox(0.25, h, d, C.wallYellow, x + w/2, h/2 + 0.3, z));
+    // Walls
+    this.scene.add(this.createBox(w, h, 0.25, C.wallYellow, x, h/2 + 0.4, z - d/2));
+    this.scene.add(this.createBox(w, h, 0.25, C.wallYellow, x, h/2 + 0.4, z + d/2));
+    this.scene.add(this.createBox(0.25, h, d, C.wallYellow, x - w/2, h/2 + 0.4, z));
+    this.scene.add(this.createBox(0.25, h, d, C.wallYellow, x + w/2, h/2 + 0.4, z));
 
-    // Door opening in front wall
-    this.scene.add(this.createBox(2, 2.5, 0.3, C.woodBrown, x, 1.25 + 0.3, z + d/2, { roughness: 0.9 }));
+    // Doorway
+    this.scene.add(this.createBox(2, 2.5, 0.3, C.woodBrown, x, 1.25 + 0.4, z + d/2, { roughness: 0.9 }));
 
     // Columns
-    [[-4, z], [4, z]].forEach(([cx, cz]) => {
-      this.scene.add(this.createCylinder(0.18, 0.2, h, C.columnRed, cx, h/2 + 0.3, cz));
+    [[x - 3.5, z], [x + 3.5, z]].forEach(([cx, cz]) => {
+      this.scene.add(this.createCylinder(0.18, 0.2, h, C.columnRed, cx, h/2 + 0.4, cz));
     });
 
     // Roof
-    const roof = this.createRoof(w, d, 2, 1.0, C.roofRed, x, h + 0.3, z);
-    this.scene.add(roof);
-  },
-
-  buildVoCa() {
-    const C = this.COLORS;
-    // Opera stage - on the left side, open structure
-    const x = -10, z = -1, w = 6, d = 6, h = 3.5;
-
-    // Foundation/stage platform
-    this.scene.add(this.createBox(w + 0.5, 0.5, d + 0.5, C.stoneGray, x, 0.25, z));
-
-    // Open structure - just columns and roof, partial back wall
-    this.scene.add(this.createBox(w, h * 0.4, 0.2, C.wallYellow, x, h/2 + 0.5 + h * 0.3, z - d/2));
-
-    // Red columns at corners and middle
-    const colPositions = [
-      [x - w/2 + 0.3, z - d/2 + 0.3],
-      [x + w/2 - 0.3, z - d/2 + 0.3],
-      [x - w/2 + 0.3, z + d/2 - 0.3],
-      [x + w/2 - 0.3, z + d/2 - 0.3],
-      [x, z - d/2 + 0.3],
-      [x, z + d/2 - 0.3],
-    ];
-    colPositions.forEach(([cx, cz]) => {
-      this.scene.add(this.createCylinder(0.18, 0.2, h, C.columnRed, cx, h/2 + 0.5, cz));
-      this.scene.add(this.createBox(0.45, 0.15, 0.45, C.stoneGray, cx, 0.575, cz));
-    });
-
-    // Roof
-    const roof = this.createRoof(w, d, 2.5, 1.2, C.roofBrown, x, h + 0.5, z);
+    const roof = this.createRoof(w, d, 2.2, 1.0, C.roofRed, x, h + 0.4, z);
     this.scene.add(roof);
   },
 
   buildCotKeo() {
     const C = this.COLORS;
-    // Wooden column display area - on the right side
-    const x = 10, z = -1, w = 6, d = 5, h = 3;
-
-    // Foundation
-    this.scene.add(this.createBox(w + 0.5, 0.3, d + 0.5, C.stoneGray, x, 0.15, z));
-
-    // Partial walls
-    this.scene.add(this.createBox(0.2, h, d, C.wallYellow, x - w/2, h/2 + 0.3, z));
-    this.scene.add(this.createBox(w, h * 0.3, 0.2, C.wallYellow, x, h * 0.85 + 0.3, z - d/2));
-
-    // Exposed wooden columns and beams (the highlight)
-    const colPositions = [
-      [x - 2, z - 1.5], [x - 2, z + 1.5],
-      [x, z - 1.5], [x, z + 1.5],
-      [x + 2, z - 1.5], [x + 2, z + 1.5],
-    ];
-    colPositions.forEach(([cx, cz]) => {
-      this.scene.add(this.createCylinder(0.2, 0.22, h, C.woodBrown, cx, h/2 + 0.3, cz, 8));
-      this.scene.add(this.createBox(0.5, 0.15, 0.5, C.stoneGray, cx, 0.375, cz));
-    });
-
+    // Exposd wooden beam system built inside Chánh Điện to show structural details
+    const x = 6, z = -2.5;
+    
     // Horizontal beams connecting columns (kèo)
-    for (let cz of [z - 1.5, z + 1.5]) {
-      this.scene.add(this.createBox(4.5, 0.2, 0.15, C.woodLight, x, h + 0.1, cz));
+    for (let cz of [z - 2, z + 2]) {
+      this.scene.add(this.createBox(11.5, 0.25, 0.2, C.woodLight, x, 5.0, cz));
     }
     // Cross beams
-    for (let cx of [x - 2, x, x + 2]) {
-      this.scene.add(this.createBox(0.15, 0.2, 3.5, C.woodLight, cx, h + 0.1, z));
+    for (let cx of [x - 4.5, x - 2.25, x, x + 2.25, x + 4.5]) {
+      this.scene.add(this.createBox(0.2, 0.25, 4.0, C.woodLight, cx, 5.0, z));
     }
-
-    // Roof
-    const roof = this.createRoof(w, d, 2, 1.0, C.roofRed, x, h + 0.3, z);
-    this.scene.add(roof);
   },
 
   addRoofDecorations() {
     const C = this.COLORS;
 
-    // Dragon ornaments on main hall roof ridge
-    // Left dragon
+    // Dragon ornaments on main hall roof ridge (Chánh Điện is at x=6, z=-2.5, height is 5 + 0.6 = 5.6, ridge is 3.5 higher = 9.1)
     const dragonGeo = new THREE.ConeGeometry(0.3, 1.2, 6);
     const dragonMat = this.mat(C.goldAccent, { metalness: 0.5 });
     
-    [[-3, 9, -4], [3, 9, -4]].forEach(([x, y, z]) => {
+    [[3, 9.1, -2.5], [9, 9.1, -2.5]].forEach(([x, y, z]) => {
       const dragon = new THREE.Mesh(dragonGeo, dragonMat);
       dragon.position.set(x, y, z);
-      dragon.rotation.z = x < 0 ? 0.4 : -0.4;
+      dragon.rotation.z = x < 6 ? 0.4 : -0.4;
       this.scene.add(dragon);
-    });
-
-    // Ridge decorative balls on gate
-    const ballGeo = new THREE.SphereGeometry(0.2, 8, 8);
-    [[0, 8.5, 14], [-2, 8, 14], [2, 8, 14]].forEach(([x, y, z]) => {
-      const ball = new THREE.Mesh(ballGeo, dragonMat);
-      ball.position.set(x, y, z);
-      this.scene.add(ball);
     });
   },
 
   addTrees() {
     const C = this.COLORS;
     
-    // Small trees - proportional to buildings, NOT covering architecture
+    // Proportional trees in remaining yard areas to make the yard look natural
     const treePositions = [
-      { x: -12, z: 8, scale: 0.7 },    // Front left corner
-      { x: 12, z: 8, scale: 0.6 },     // Front right corner
-      { x: -12, z: -12, scale: 0.5 },   // Back left
-      { x: 12, z: -12, scale: 0.5 },    // Back right
+      { x: -12, z: 6, scale: 0.7 },
+      { x: -12, z: -4, scale: 0.6 },
+      { x: -12, z: -14, scale: 0.55 },
+      { x: 0, z: -14, scale: 0.65 },
+      { x: 12, z: -14, scale: 0.6 }
     ];
 
     treePositions.forEach(({ x, z, scale }) => {
       // Trunk
       const trunk = this.createCylinder(0.15 * scale, 0.2 * scale, 2.5 * scale, 0x5A4A2A, x, 1.25 * scale, z);
       this.scene.add(trunk);
-      // Canopy (sphere, small and proportional)
+      // Canopy
       const canopyGeo = new THREE.SphereGeometry(1.5 * scale, 8, 8);
       const canopyMat = this.mat(C.greenTree, { roughness: 0.85 });
       const canopy = new THREE.Mesh(canopyGeo, canopyMat);
@@ -651,29 +696,24 @@ const Temple3D = {
 
   addMonuments() {
     const C = this.COLORS;
-    
-    // Stone stele/monument in courtyard
-    this.scene.add(this.createBox(0.6, 1.8, 0.3, C.stoneGray, -4, 0.9, 8));
-    this.scene.add(this.createBox(0.8, 0.15, 0.5, C.stoneGray, -4, 0.075, 8)); // base
-
-    // Incense urn
-    this.scene.add(this.createCylinder(0.4, 0.3, 0.8, 0x8B6940, 0, 0.4, 6, 8));
+    // Incense urn in front of Tiền Điện entrance
+    this.scene.add(this.createCylinder(0.4, 0.3, 0.8, 0x8B6940, 2.0, 0.4, 5.5, 8));
   },
 
   // ============ HOTSPOTS ============
   createHotspots() {
     if (typeof MAP_DATA === 'undefined') return;
 
-    // 3D positions for each area hotspot
+    // 3D positions updated to match new layout positions
     const hotspotPositions = {
-      'cong-tam-quan':   { x: 0, y: 6, z: 14 },
-      'san-dinh':        { x: 0, y: 2, z: 8 },
-      'tien-dien':       { x: 0, y: 5, z: 3 },
-      'chanh-dien':      { x: 0, y: 7, z: -4 },
-      'hau-dien':        { x: 0, y: 5, z: -11 },
-      'nha-vo-ca':       { x: -10, y: 5, z: -1 },
-      'cot-keo-go':      { x: 10, y: 5, z: -1 },
-      'bo-noc-mai-ngoi': { x: 0, y: 10, z: -4 },
+      'cong-tam-quan':   { x: -12.5, y: 5.0, z: 12.0 },
+      'san-dinh':        { x: -3.0, y: 1.5, z: 2.0 },
+      'tien-dien':       { x: 6.0, y: 4.5, z: 3.5 },
+      'chanh-dien':      { x: 6.0, y: 5.5, z: -2.5 },
+      'hau-dien':        { x: 6.0, y: 4.5, z: -8.5 },
+      'nha-vo-ca':       { x: 6.0, y: 4.5, z: 9.0 },
+      'cot-keo-go':      { x: 7.5, y: 4.5, z: 0.5 },
+      'bo-noc-mai-ngoi': { x: 6.0, y: 8.5, z: -2.5 },
     };
 
     // Create 3D marker meshes for raycasting
