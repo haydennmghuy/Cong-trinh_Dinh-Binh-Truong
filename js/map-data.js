@@ -19,25 +19,7 @@ var MAP_DATA = {
         audio: "audio/en/main-gate.mp3"
       }
     },
-    {
-      id: "cong-nho",
-      x: 65, y: 75,
-      color: "#8B9E6C",
-      vi: {
-        name: "Cổng Nhỏ",
-        short: "Cổng phụ",
-        desc: "Cổng Nhỏ là lối đi phụ nằm bên phải cổng chính, được Ban Quý tế và người dân sử dụng cho việc đi lại hàng ngày. Cổng có kiến trúc đơn giản, trang nhã với mái lợp ngói đỏ tươi.",
-        details: "• Kết cấu: Trụ vuông đối xứng đơn giản nâng đỡ hệ mái ngói đỏ.\n• Chức năng: Đảm bảo giao thông thuận tiện và thông thoáng cho đình vào các ngày thường.",
-        audio: "audio/vi/cong-nho.mp3"
-      },
-      en: {
-        name: "Small Gate",
-        short: "Side entrance",
-        desc: "The Small Gate is the secondary entrance on the right, used by the Temple Committee and locals for daily access. It has a simple, elegant design with a bright red-tiled roof.",
-        details: "• Structure: Simple symmetrical square pillars supporting a red tile roof.\n• Function: Provides convenient access and ventilation for daily operations.",
-        audio: "audio/en/small-gate.mp3"
-      }
-    },
+
     {
       id: "nha-vo-ca",
       x: 35, y: 40,

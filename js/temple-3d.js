@@ -251,11 +251,11 @@ const Temple3D = {
     this.scene.add(ground);
 
     // Courtyard paving (within the compound)
-    const courtGeo = new THREE.PlaneGeometry(37, 32);
+    const courtGeo = new THREE.PlaneGeometry(44, 32);
     const courtMat = this.mat(C.groundPave, { roughness: 0.85 });
     const court = new THREE.Mesh(courtGeo, courtMat);
     court.rotation.x = -Math.PI / 2;
-    court.position.set(3.5, 0.01, 0);
+    court.position.set(0, 0.01, 0);
     court.receiveShadow = true;
     this.scene.add(court);
 
@@ -307,8 +307,8 @@ const Temple3D = {
     this.scene.add(this.createBox(12.3, fenceH, wallThick, C.fenceYellow, -1.85, fenceH/2, 16.0));
     this.scene.add(this.createBox(15.3, fenceH, wallThick, C.fenceYellow, 14.35, fenceH/2, 16.0));
     
-    // Back wall segment (starts from x = -19 to x = 22)
-    this.scene.add(this.createBox(41.0, fenceH, wallThick, C.fenceYellow, 1.5, fenceH/2, -16.0));
+    // Back wall segment (starts from x = -22 to x = 22)
+    this.scene.add(this.createBox(44.0, fenceH, wallThick, C.fenceYellow, 0.0, fenceH/2, -16.0));
     
     // Right wall segment (solid, x = 22)
     this.scene.add(this.createBox(wallThick, fenceH, 32.0, C.fenceYellow, 22.0, fenceH/2, 0.0));
@@ -316,20 +316,20 @@ const Temple3D = {
     // Left wall segment 1 (lower vertical at x = -15, from z = 16 to z = 4)
     this.scene.add(this.createBox(wallThick, fenceH, 12.0, C.fenceYellow, -15.0, fenceH/2, 10.0));
 
-    // Left wall segment 2 (upper vertical at x = -19, from z = -2 to z = -16)
-    this.scene.add(this.createBox(wallThick, fenceH, 14.0, C.fenceYellow, -19.0, fenceH/2, -9.0));
+    // Left wall segment 2 (upper vertical at x = -22, from z = -2 to z = -16)
+    this.scene.add(this.createBox(wallThick, fenceH, 14.0, C.fenceYellow, -22.0, fenceH/2, -9.0));
 
-    // Left wall diagonal connection segment (from x=-15,z=4 to x=-19,z=-2)
-    const diagWall = this.createBox(wallThick, fenceH, 7.2, C.fenceYellow, -17.0, fenceH/2, 1.0);
-    diagWall.rotation.y = Math.atan2(4, 6);
+    // Left wall diagonal connection segment (from x=-15,z=4 to x=-22,z=-2)
+    const diagWall = this.createBox(wallThick, fenceH, 9.22, C.fenceYellow, -18.5, fenceH/2, 1.0);
+    diagWall.rotation.y = Math.atan2(7, 6);
     this.scene.add(diagWall);
 
     // Pillars at corners, joints, and gate edges
     const pillarPositions = [
       [-15, 16], [-13, 16], [-8, 16], [4.3, 16], [6.7, 16], [22, 16], // Front wall
       [22, 8], [22, 0], [22, -8], [22, -16],                         // Right wall
-      [-15, 10], [-15, 4], [-19, -2], [-19, -9],                      // Left wall
-      [-19, -16], [-9, -16], [1.5, -16], [12, -16]                    // Back wall
+      [-15, 10], [-15, 4], [-22, -2], [-22, -9],                      // Left wall
+      [-22, -16], [-11, -16], [0, -16], [11, -16]                     // Back wall
     ];
 
     pillarPositions.forEach(([x, z]) => {
@@ -412,15 +412,15 @@ const Temple3D = {
   buildCourtyard() {
     const C = this.COLORS;
 
-    // 1. Hồ Thuỷ Tạ (Semi-circular pond inside the fence behind Miếu thờ and Bình phong at x=-18.9, z=-1.0)
+    // 1. Hồ Thuỷ Tạ (Semi-circular pond inside the fence behind Miếu thờ and Bình phong at x=-21.9, z=-1.0)
     const pondShape = new THREE.Shape();
     pondShape.absarc(0, 0, 2.5, 0, Math.PI, false);
     pondShape.lineTo(2.5, 0); // Close shape
     const pondGeo = new THREE.ShapeGeometry(pondShape);
     const pond = new THREE.Mesh(pondGeo, this.mat(0x33A0FF, { roughness: 0.1, metalness: 0.8 }));
     pond.rotation.x = -Math.PI / 2;
-    pond.rotation.z = -Math.PI / 2; // Flat edge along the left fence (x = -19) curving inwards to the right
-    pond.position.set(-18.9, 0.03, -1.0);
+    pond.rotation.z = -Math.PI / 2; // Flat edge along the left fence (x = -22) curving inwards to the right
+    pond.position.set(-21.9, 0.03, -1.0);
     this.scene.add(pond);
 
     // Pond stone border
@@ -431,7 +431,7 @@ const Temple3D = {
     const border = new THREE.Mesh(borderExtrude, this.mat(C.stoneGray));
     border.rotation.x = -Math.PI / 2;
     border.rotation.z = -Math.PI / 2;
-    border.position.set(-18.9, 0.03, -1.0);
+    border.position.set(-21.9, 0.03, -1.0);
     this.scene.add(border);
 
     // 2. Sân Khấu Ngoài Trời (Outdoor Stage) - Aligned vertically at x = -13.5, facing East (+x) towards Vo Ca
@@ -705,12 +705,11 @@ const Temple3D = {
     // 3D positions matching the new courtyard layout
     const hotspotPositions = {
       'cong-tam-quan':        { x: -10.5, y: 5.0, z: 16.0 },
-      'cong-nho':             { x: 5.5,   y: 4.0, z: 16.0 },
       'nha-vo-ca':            { x: -0.5,  y: 4.5, z: -4.0 },
       'tien-dien':            { x: 4.5,   y: 4.5, z: -4.0 },
       'chanh-dien':           { x: 9.5,   y: 6.0, z: -4.0 },
       'nha-hoi':              { x: 13.5,  y: 4.5, z: -4.0 },
-      'ho-thuy-ta':           { x: -16.5, y: 1.5, z: -1.0 },
+      'ho-thuy-ta':           { x: -20.0, y: 1.5, z: -1.0 },
       'san-khau-ngoai-troi':  { x: -13.5, y: 3.5, z: -12.5 },
       'bia-tuong-niem':       { x: -13.5, y: 2.2, z: -7.5 },
       'bia-di-tich':          { x: -4.0,  y: 3.2, z: 6.0 },
