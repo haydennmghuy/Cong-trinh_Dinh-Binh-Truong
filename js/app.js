@@ -1,16 +1,16 @@
 const HOTSPOT_IMAGES = {
-  'cong-tam-quan':        ['images/real/cong_tam_quan_real.png', 'images/gallery/gallery-5.jpg'],
-  'nha-vo-ca':            ['images/real/outside_real.png', 'images/gallery/gallery-7.jpg'],
-  'tien-dien':            ['images/real/outside_real.png', 'images/gallery/gallery-7.jpg'],
-  'chanh-dien':           ['images/real/inside_real.png', 'images/gallery/gallery-8.png'],
-  'nha-hoi':              ['images/real/outside_real.png', 'images/gallery/gallery-9.jpg'],
-  'ho-thuy-ta':           ['images/real/outside_real.png', 'images/gallery/gallery-9.jpg'],
-  'san-khau-ngoai-troi':  ['images/real/outside_real.png', 'images/gallery/gallery-7.jpg'],
-  'bia-tuong-niem':       ['images/real/bia_tuong_niem_real.jpg', 'images/gallery/gallery-5.jpg'],
-  'bia-di-tich':          ['images/real/cong_tam_quan_real.png', 'images/gallery/gallery-5.jpg'],
-  'mieu-tho-1':           ['images/real/mieu_tho_real.jpg', 'images/gallery/gallery-6.png'],
-  'binh-phong':           ['images/real/binh_phong_real.jpg', 'images/gallery/gallery-6.png'],
-  'mieu-tho-2':           ['images/real/mieu_tho_real.jpg', 'images/gallery/gallery-6.png'],
+  'cong-tam-quan':        ['images/real/cong_tam_quan_real.png'],
+  'nha-vo-ca':            [],
+  'tien-dien':            [],
+  'chanh-dien':           ['images/real/inside_real.png'],
+  'nha-hoi':              [],
+  'ho-thuy-ta':           [],
+  'san-khau-ngoai-troi':  [],
+  'bia-tuong-niem':       ['images/real/bia_tuong_niem_real.jpg'],
+  'bia-di-tich':          [],
+  'mieu-tho-1':           ['images/real/mieu_tho_real.jpg'],
+  'binh-phong':           ['images/real/binh_phong_real.jpg'],
+  'mieu-tho-2':           ['images/real/mieu_tho_real.jpg'],
 };
 
 // ===== Hotspot Modal =====
@@ -44,10 +44,28 @@ const HotspotModal = {
     const data = this.currentArea[lang];
     if (!data) return;
 
-    // Set main image (Avatar)
-    const imgs = HOTSPOT_IMAGES[this.currentArea.id] || ['images/gallery/gallery-5.jpg'];
-    document.getElementById('hotspot-modal-img').src = imgs[0];
-    document.getElementById('hotspot-modal-img').alt = data.name;
+    // Set main image (Avatar) or show placeholder
+    const imgs = HOTSPOT_IMAGES[this.currentArea.id] || [];
+    const mainImgEl = document.getElementById('hotspot-modal-img');
+    const placeholderEl = document.getElementById('hotspot-modal-img-placeholder');
+
+    if (imgs.length > 0) {
+      if (mainImgEl) {
+        mainImgEl.src = imgs[0];
+        mainImgEl.alt = data.name;
+        mainImgEl.classList.remove('hidden');
+      }
+      if (placeholderEl) {
+        placeholderEl.classList.add('hidden');
+      }
+    } else {
+      if (mainImgEl) {
+        mainImgEl.classList.add('hidden');
+      }
+      if (placeholderEl) {
+        placeholderEl.classList.remove('hidden');
+      }
+    }
 
     // Set text contents
     document.getElementById('hotspot-modal-title').textContent = data.name;
@@ -59,14 +77,23 @@ const HotspotModal = {
       detailBox.textContent = data.details || (lang === 'vi' ? 'Chưa có chi tiết kiến trúc bổ sung.' : 'No additional architectural details available.');
     }
 
-    // Set architectural images grid
+    // Set architectural images grid or show placeholder
     const imgGrid = document.getElementById('hotspot-modal-images-grid');
     if (imgGrid) {
-      imgGrid.innerHTML = imgs.map((src, idx) => `
-        <div class="hotspot-grid-img-wrap">
-          <img src="${src}" alt="${data.name} ${idx + 1}" loading="lazy" />
-        </div>
-      `).join('');
+      if (imgs.length > 0) {
+        imgGrid.innerHTML = imgs.map((src, idx) => `
+          <div class="hotspot-grid-img-wrap">
+            <img src="${src}" alt="${data.name} ${idx + 1}" loading="lazy" />
+          </div>
+        `).join('');
+      } else {
+        imgGrid.innerHTML = `
+          <div class="grid-placeholder-box">
+            <span class="placeholder-icon">📸</span>
+            <span class="placeholder-text">${lang === 'vi' ? 'Cần thêm ảnh' : 'Needs photo'}</span>
+          </div>
+        `;
+      }
     }
   },
 
