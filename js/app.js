@@ -1,44 +1,31 @@
 const HOTSPOT_IMAGES = {
-  'cong-tam-quan':        'images/real/cong_tam_quan_real.png',
-  'nha-vo-ca':            'images/real/outside_real.png',
-  'tien-dien':            'images/real/outside_real.png',
-  'chanh-dien':           'images/real/inside_real.png',
-  'nha-hoi':              'images/real/outside_real.png',
-  'ho-thuy-ta':           'images/real/outside_real.png',
-  'san-khau-ngoai-troi':  'images/real/outside_real.png',
-  'bia-tuong-niem':       'images/real/bia_tuong_niem_real.jpg',
-  'bia-di-tich':          'images/real/cong_tam_quan_real.png',
-  'mieu-tho-1':           'images/real/mieu_tho_real.jpg',
-  'binh-phong':           'images/real/binh_phong_real.jpg',
-  'mieu-tho-2':           'images/real/mieu_tho_real.jpg',
+  'cong-tam-quan':        ['images/real/cong_tam_quan_real.png', 'images/gallery/gallery-5.jpg'],
+  'nha-vo-ca':            ['images/real/outside_real.png', 'images/gallery/gallery-7.jpg'],
+  'tien-dien':            ['images/real/outside_real.png', 'images/gallery/gallery-7.jpg'],
+  'chanh-dien':           ['images/real/inside_real.png', 'images/gallery/gallery-8.png'],
+  'nha-hoi':              ['images/real/outside_real.png', 'images/gallery/gallery-9.jpg'],
+  'ho-thuy-ta':           ['images/real/outside_real.png', 'images/gallery/gallery-9.jpg'],
+  'san-khau-ngoai-troi':  ['images/real/outside_real.png', 'images/gallery/gallery-7.jpg'],
+  'bia-tuong-niem':       ['images/real/bia_tuong_niem_real.jpg', 'images/gallery/gallery-5.jpg'],
+  'bia-di-tich':          ['images/real/cong_tam_quan_real.png', 'images/gallery/gallery-5.jpg'],
+  'mieu-tho-1':           ['images/real/mieu_tho_real.jpg', 'images/gallery/gallery-6.png'],
+  'binh-phong':           ['images/real/binh_phong_real.jpg', 'images/gallery/gallery-6.png'],
+  'mieu-tho-2':           ['images/real/mieu_tho_real.jpg', 'images/gallery/gallery-6.png'],
 };
 
 // ===== Hotspot Modal =====
 const HotspotModal = {
   currentArea: null,
   modalEl: null,
-  audioEl: null,
-  isPlaying: false,
 
   init() {
     this.modalEl = document.getElementById('hotspot-modal');
-    this.audioEl = document.getElementById('hotspot-audio');
     if (!this.modalEl) return;
 
     // Close handlers
     document.getElementById('hotspot-modal-close')?.addEventListener('click', () => this.close());
     this.modalEl.querySelector('.hotspot-modal-overlay')?.addEventListener('click', () => this.close());
     document.addEventListener('keydown', e => { if (e.key === 'Escape') this.close(); });
-
-    // Audio play
-    document.getElementById('hotspot-audio-play')?.addEventListener('click', () => {
-      this.toggleAudio();
-    });
-
-    // Detail expand button handler
-    document.getElementById('hotspot-detail-btn')?.addEventListener('click', () => {
-      this.toggleDetail();
-    });
 
     // Listen to global language changes
     document.addEventListener('langchange', () => {
@@ -57,44 +44,35 @@ const HotspotModal = {
     const data = this.currentArea[lang];
     if (!data) return;
 
-    // Set image
-    const imgSrc = HOTSPOT_IMAGES[this.currentArea.id] || 'images/gallery/gallery-5.jpg';
-    document.getElementById('hotspot-modal-img').src = imgSrc;
+    // Set main image (Avatar)
+    const imgs = HOTSPOT_IMAGES[this.currentArea.id] || ['images/gallery/gallery-5.jpg'];
+    document.getElementById('hotspot-modal-img').src = imgs[0];
     document.getElementById('hotspot-modal-img').alt = data.name;
 
-    // Set content
+    // Set text contents
     document.getElementById('hotspot-modal-title').textContent = data.name;
     document.getElementById('hotspot-modal-desc').textContent = data.desc;
-    document.getElementById('hotspot-audio-name').textContent = 'Audio Guide: ' + data.name;
-    document.getElementById('hotspot-audio-dur').textContent = lang === 'vi' ? 'Thời lượng: 02:18' : 'Duration: 02:18';
 
-    // Set architectural detail content
+    // Set architectural detail content (directly visible)
     const detailBox = document.getElementById('hotspot-modal-detail-box');
     if (detailBox) {
       detailBox.textContent = data.details || (lang === 'vi' ? 'Chưa có chi tiết kiến trúc bổ sung.' : 'No additional architectural details available.');
     }
 
-    // Set audio source
-    if (this.audioEl) {
-      this.audioEl.src = data.audio || '';
-    }
-  },
-
-  toggleDetail() {
-    const detailBox = document.getElementById('hotspot-modal-detail-box');
-    if (detailBox) {
-      detailBox.classList.toggle('hidden');
+    // Set architectural images grid
+    const imgGrid = document.getElementById('hotspot-modal-images-grid');
+    if (imgGrid) {
+      imgGrid.innerHTML = imgs.map((src, idx) => `
+        <div class="hotspot-grid-img-wrap">
+          <img src="${src}" alt="${data.name} ${idx + 1}" loading="lazy" />
+        </div>
+      `).join('');
     }
   },
 
   open(area) {
     if (!this.modalEl || !area) return;
     this.currentArea = area;
-
-    // Hide detail box by default when opening
-    const detailBox = document.getElementById('hotspot-modal-detail-box');
-    if (detailBox) detailBox.classList.add('hidden');
-
     this.updateContent();
 
     // Show modal
@@ -106,48 +84,6 @@ const HotspotModal = {
     if (!this.modalEl) return;
     this.modalEl.classList.remove('open');
     document.body.style.overflow = '';
-
-    // Stop audio
-    if (this.audioEl) {
-      this.audioEl.pause();
-      this.audioEl.currentTime = 0;
-    }
-    this.isPlaying = false;
-    const playBtn = document.getElementById('hotspot-audio-play');
-    if (playBtn) playBtn.textContent = '▶';
-  },
-
-  toggleAudio() {
-    if (!this.audioEl) return;
-    const playBtn = document.getElementById('hotspot-audio-play');
-
-    if (this.isPlaying) {
-      this.audioEl.pause();
-      this.isPlaying = false;
-      if (playBtn) playBtn.textContent = '▶';
-    } else {
-      this.audioEl.play().catch(() => {
-        // No audio file — simulate
-        this.simulateAudio();
-      });
-      this.isPlaying = true;
-      if (playBtn) playBtn.textContent = '⏸';
-    }
-  },
-
-  simulateAudio() {
-    let t = 0;
-    const dur = 45;
-    const playBtn = document.getElementById('hotspot-audio-play');
-    const interval = setInterval(() => {
-      t++;
-      if (t >= dur || !this.isPlaying || !this.modalEl.classList.contains('open')) {
-        clearInterval(interval);
-        this.isPlaying = false;
-        if (playBtn) playBtn.textContent = '▶';
-        return;
-      }
-    }, 1000);
   }
 };
 
