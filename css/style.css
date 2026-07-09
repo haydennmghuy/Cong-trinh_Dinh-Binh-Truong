@@ -267,25 +267,25 @@ h3 {
 
 .hero-copy h1 {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3.2vw, 2.4rem);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.15;
   margin-bottom: 0.8rem;
   letter-spacing: 0.02em;
-  white-space: nowrap;
-  color: var(--wood);
 }
 
-.hero-title-main {
+.hero-title-line1 {
   display: block;
+  font-size: clamp(1.3rem, 2.8vw, 2rem);
   white-space: nowrap;
+  color: var(--ink);
 }
 
-.hero-title-sub {
+.hero-title-line2 {
   display: block;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
   color: var(--wood);
-  font-size: 1.12em;
-  margin-top: 0.45rem;
+  margin-top: 0.2rem;
+  white-space: nowrap;
 }
 
 .hero-copy .subtitle {
@@ -346,32 +346,39 @@ h3 {
   padding: 6rem 0;
 }
 
-.model3d-inner--reflow {
-  max-width: 1180px;
+/* --- 3-Column Layout --- */
+.model3d-three-col {
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 1.5rem;
   display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
-  gap: 2.5rem;
+  grid-template-columns: 0.55fr 1.2fr 0.65fr;
+  gap: 2rem;
   align-items: start;
 }
 
-.model3d-viewer-col {
-  width: 100%;
+.model3d-title-col {
+  padding-top: 0.5rem;
 }
-
-.model3d-info-col h2 {
+.model3d-title-col h2 {
   color: var(--forest-dark);
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-family: var(--font-display);
   letter-spacing: 0.03em;
   margin-bottom: 1rem;
 }
-.model3d-info-col p {
+.model3d-title-col p {
   color: var(--ink-soft);
   font-size: 0.95rem;
   line-height: 1.75;
-  margin-bottom: 20px;
+}
+
+.model3d-viewer-col {
+  width: 100%;
+}
+
+.model3d-info-col {
+  padding-top: 0.5rem;
 }
 
 .model3d-copy h2 {
@@ -1459,7 +1466,7 @@ h3 {
   .hero-inner,
   .narration-inner,
   .model3d-inner,
-  .model3d-inner--reflow {
+  .model3d-three-col {
     grid-template-columns: 1fr;
   }
   .hero-media { order: -1; background: #E8D8CC; }
@@ -1507,7 +1514,7 @@ h3 {
   .hero-inner,
   .narration-inner,
   .model3d-inner,
-  .model3d-inner--reflow,
+  .model3d-three-col,
   .timeline-section > .section-heading,
   .timeline-section > .timeline,
   .values,
@@ -1568,12 +1575,15 @@ h3 {
   }
 
   .hero-copy h1 {
-    font-size: clamp(1.2rem, 5vw, 1.8rem);
-    white-space: normal;
     line-height: 1.25;
     margin-bottom: 0.7rem;
   }
-  .hero-title-main {
+  .hero-title-line1 {
+    font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+    white-space: normal;
+  }
+  .hero-title-line2 {
+    font-size: clamp(1.4rem, 5.5vw, 1.8rem);
     white-space: normal;
   }
   .hero-copy .subtitle {
@@ -1605,7 +1615,7 @@ h3 {
     padding: 3.5rem 1rem;
   }
   .model3d-inner,
-  .model3d-inner--reflow {
+  .model3d-three-col {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
@@ -1613,6 +1623,12 @@ h3 {
     order: -1;
     aspect-ratio: 1 / 1;
     max-height: none;
+  }
+  .model3d-title-col {
+    order: -1;
+  }
+  .model3d-viewer-col {
+    order: 0;
   }
   .model3d-info-col {
     order: 1;
