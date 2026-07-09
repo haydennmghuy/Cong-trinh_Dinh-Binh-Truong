@@ -15,7 +15,7 @@ var TRANSLATIONS = {
       subtitle: "Mốc son văn hóa - Lưu giữ sắc phong vua Tự Đức",
       lead: "Được khởi dựng từ đầu thế kỷ 19, ngôi đình đã đồng hành cùng lịch sử thăng trầm của vùng đất Gia Định xưa. Đây là nơi tôn kính Thành Hoàng Bổn Cảnh, lưu giữ sắc phong quý giá triều đình Tự Đức ban tặng năm 1852 và từng che chở cho các cán bộ liên lạc cách mạng trong hai cuộc kháng chiến.",
       cta: "Khám phá bản đồ",
-      secondary: "Đọc câu chuyện",
+      secondary: "Nghe thuyết minh",
       desc: "Khám phá di tích kiến trúc nghệ thuật hơn 200 năm tuổi — nơi giao thoa giữa tín ngưỡng dân gian và các câu chuyện văn hóa truyền thống của vùng đất Phương Nam.",
       cta_map: "Khám Phá Bản Đồ",
       cta_ar: "Xem Mô Hỏi 3D AR"
@@ -70,6 +70,7 @@ var TRANSLATIONS = {
     next_area: "Khu vực tiếp theo →",
     loading_3d: "Đang tải mô hình 3D...",
     ar_not_supported: "Thiết bị không hỗ trợ AR.",
+    audio_guide_label: "BẢN THUYẾT MINH ÂM THANH",
 
     // Phước Thành layout compatible additions
     model3d: {
@@ -78,7 +79,8 @@ var TRANSLATIONS = {
     },
     narration: {
       title: "CÂU CHUYỆN DI TÍCH",
-      body: "<p>Đình Bình Trường là một trong những ngôi đình cổ tiêu biểu của vùng đất Nam Bộ. Trải qua hơn hai thế kỷ, ngôi đình vẫn giữ được nét cổ kính trang nghiêm của kiến trúc xưa.</p><p>Hệ cột kèo gỗ lim chắc chắn kết hợp cùng những mảng trạm khắc rồng phượng tỉ mỉ thể hiện bàn tay tài hoa của các nghệ nhân xưa. Đình thờ Thành Hoàng Bổn Cảnh - vị thần bảo hộ bờ cõi, đất đai sông ngòi giúp nhân dân an cư lạc nghiệp.</p><p>Không chỉ mang giá trị tâm linh và thẩm mỹ sâu sắc, Đình Bình Trường còn ghi dấu lịch sử cách mạng hào hùng của nhân dân địa phương. Trong thời kỳ kháng chiến cứu nước, ngôi đình đã được trưng dụng làm cơ sở hoạt động bí mật, trạm chuyển thư và tiếp tế quân nhu an toàn giữa lòng địch.</p>"
+      body: "<p>Đình Bình Trường là một trong những ngôi đình cổ tiêu biểu của vùng đất Nam Bộ. Trải qua hơn hai thế kỷ, ngôi đình vẫn giữ được nét cổ kính trang nghiêm của kiến trúc xưa.</p><p>Hệ cột kèo gỗ lim chắc chắn kết hợp cùng những mảng trạm khắc rồng phượng tỉ mỉ thể hiện bàn tay tài hoa của các nghệ nhân xưa. Đình thờ Thành Hoàng Bổn Cảnh - vị thần bảo hộ bờ cõi, đất đai sông ngòi giúp nhân dân an cư lạc nghiệp.</p><p>Không chỉ mang giá trị tâm linh và thẩm mỹ sâu sắc, Đình Bình Trường còn ghi dấu lịch sử cách mạng hào hùng của nhân dân địa phương. Trong thời kỳ kháng chiến cứu nước, ngôi đình đã được trưng dụng làm cơ sở hoạt động bí mật, trạm chuyển thư và tiếp tế quân nhu an toàn giữa lòng địch.</p>",
+      button: "Bắt đầu nghe"
     },
     timeline: {
       heading: "LỊCH SỬ HÌNH THÀNH"
@@ -134,7 +136,7 @@ var TRANSLATIONS = {
       subtitle: "A cultural landmark - Preserving Emperor Tu Duc's royal seal",
       lead: "Established in the early 19th century, this communal house has witnessed the historical and cultural ups and downs of old Gia Dinh. It worships the Guardian Spirit, preserves the precious imperial seal of Emperor Tu Duc from 1852, and shielded revolutionary cadres in past resistance struggles.",
       cta: "Explore map",
-      secondary: "Read stories",
+      secondary: "Listen to Narration",
       desc: "Explore a 200-year-old architectural masterpiece — where folk beliefs and cultural stories of the Southern region converge.",
       cta_map: "Explore the Map",
       cta_ar: "View 3D AR Model"
@@ -189,6 +191,7 @@ var TRANSLATIONS = {
     next_area: "Next area →",
     loading_3d: "Loading 3D model...",
     ar_not_supported: "Your device does not support AR.",
+    audio_guide_label: "AUDIO GUIDE NARRATION",
 
     // Phước Thành layout compatible additions
     model3d: {
@@ -197,7 +200,8 @@ var TRANSLATIONS = {
     },
     narration: {
       title: "SITE NARRATION",
-      body: "<p>Binh Truong Communal House is a prominent historic communal house of the Southern Vietnamese plains. Spanning over two centuries, it preserves the majestic and ancient character of ancient architecture.</p><p>Solid wooden pillars combined with detailed dragon and phoenix carvings showcase the craftsmanship of historical builders. The house pays homage to the local Guardian Spirit, who protects borders and waterways, ensuring security and prosperity for the community.</p><p>Beyond its aesthetic and religious values, the house marks the heroic war resistance of the local populace. During the independence wars, it was used as a secret liaison post, coordinating safe communication and supply lines behind enemy lines.</p>"
+      body: "<p>Binh Truong Communal House is a prominent historic communal house of the Southern Vietnamese plains. Spanning over two centuries, it preserves the majestic and ancient character of ancient architecture.</p><p>Solid wooden pillars combined with detailed dragon and phoenix carvings showcase the craftsmanship of historical builders. The house pays homage to the local Guardian Spirit, who protects borders and waterways, ensuring security and prosperity for the community.</p><p>Beyond its aesthetic and religious values, the house marks the heroic war resistance of the local populace. During the independence wars, it was used as a secret liaison post, coordinating safe communication and supply lines behind enemy lines.</p>",
+      button: "Start listening"
     },
     timeline: {
       heading: "FORMATION HISTORY"
