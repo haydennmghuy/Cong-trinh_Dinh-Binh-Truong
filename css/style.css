@@ -282,7 +282,7 @@ h3 {
 .hero-copy {
   position: relative;
   z-index: 2;
-  max-width: 620px;
+  max-width: 480px;
   padding: 5rem 2rem 5rem 3.5rem;
   min-height: inherit;
   display: flex;
