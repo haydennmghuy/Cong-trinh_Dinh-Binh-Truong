@@ -238,7 +238,7 @@ h3 {
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: min(88vh, 820px);
+  min-height: min(65vh, 580px); /* Moderate, compact height as requested */
   background-color: #1C100B;
   color: #FFFFFF;
 }
