@@ -257,16 +257,16 @@ h3 {
   height: 100%;
   z-index: 1; /* Renders on top of the right image to fade over it */
   overflow: hidden;
-  /* Smooth mask transition to blend left image into the right image */
-  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 72%, rgba(0, 0, 0, 0) 100%);
-  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 72%, rgba(0, 0, 0, 0) 100%);
+  /* Smooth mask transition to blend left image into the right image, starting late to keep actor solid */
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 100%);
 }
 
 .hero-voca-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left center; /* Matches the screenshot exactly */
+  object-position: 38% center; /* Centers the actors and flags to align perfectly next to the pink column */
 }
 
 .hero-left-bg::before {
