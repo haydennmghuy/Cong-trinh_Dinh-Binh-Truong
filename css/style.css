@@ -257,9 +257,9 @@ h3 {
   height: 100%;
   z-index: 1; /* Renders on top of the right image to fade over it */
   overflow: hidden;
-  /* Smooth mask transition to blend left image into the right image, starting late to keep actor solid */
-  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 100%);
-  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 100%);
+  /* Smooth mask transition to blend left image into the right image using curved multi-stop fade */
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.85) 75%, rgba(0, 0, 0, 0.3) 92%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.85) 75%, rgba(0, 0, 0, 0.3) 92%, rgba(0, 0, 0, 0) 100%);
 }
 
 .hero-voca-photo {
