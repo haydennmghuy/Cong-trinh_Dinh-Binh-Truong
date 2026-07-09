@@ -251,7 +251,7 @@ h3 {
   padding: 0;
   min-height: inherit;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 0.9fr 1.1fr; /* Shift division to the left to give image more space */
   align-items: stretch;
 }
 
@@ -326,9 +326,9 @@ h3 {
   position: absolute;
   top: 0;
   left: 0;
-  width: 50%;
+  width: 35%; /* Narrower gradient to keep the gate fully visible and clear of the fade */
   height: 100%;
-  background: linear-gradient(to right, #E8D8CC 0%, rgba(232, 216, 204, 0.85) 30%, rgba(232, 216, 204, 0.4) 65%, rgba(232, 216, 204, 0) 100%);
+  background: linear-gradient(to right, #E8D8CC 0%, rgba(232, 216, 204, 0.8) 35%, rgba(232, 216, 204, 0.3) 70%, rgba(232, 216, 204, 0) 100%);
   z-index: 2;
   pointer-events: none;
 }
