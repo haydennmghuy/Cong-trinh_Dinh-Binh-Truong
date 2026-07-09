@@ -239,30 +239,54 @@ h3 {
   position: relative;
   overflow: hidden;
   min-height: min(88vh, 820px);
-  background: #E8D8CC; /* Warm pink-cream matching the gate walls */
+  background: #F5EDE5;
   color: #2C1810;
 }
 
 .hero-inner {
   position: relative;
-  z-index: 1;
-  max-width: none;
-  margin: 0;
-  padding: 0;
   min-height: inherit;
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr; /* Shift division to the left to give image more space */
-  align-items: stretch;
 }
 
-.hero-copy {
+/* Image fills the entire hero as background */
+.hero-media {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-width: none;
-  padding: 6rem 3rem 6rem max(1.5rem, calc((100vw - 1180px) / 2));
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 65% center;
+}
+
+/* Very light wash on the left half so text is readable */
+.hero-media::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(245, 237, 229, 0.92) 0%, rgba(245, 237, 229, 0.8) 40%, rgba(245, 237, 229, 0.45) 70%, rgba(245, 237, 229, 0) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Text overlaid on the left, flush to the edge */
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+  padding: 5rem 2rem 5rem 2.5rem;
+  min-height: inherit;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  z-index: 2;
 }
 
 .hero-copy h1 {
@@ -277,13 +301,13 @@ h3 {
   display: block;
   font-size: clamp(1.3rem, 2.8vw, 2rem);
   white-space: nowrap;
-  color: #8B3A3A; /* Light maroon/red */
+  color: #8B3A3A;
 }
 
 .hero-title-line2 {
   display: block;
   font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-  color: #A04040; /* Slightly brighter maroon-red */
+  color: #A04040;
   margin-top: 0.2rem;
   white-space: nowrap;
 }
@@ -297,47 +321,20 @@ h3 {
   font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   font-weight: 500;
   margin-bottom: 1.6rem;
-  color: #B06060; /* Warm light red */
+  color: #B06060;
 }
 
 .hero-copy .lead {
   font-size: 1rem;
   line-height: 1.8;
-  margin-bottom: 2.2rem;
+  margin-bottom: 0;
   max-width: 54ch;
-  color: #5A3535; /* Muted dark red-brown */
+  color: #5A3535;
 }
 
 .hero-actions {
   display: flex;
   gap: 1rem;
-}
-
-.hero-media {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background: #E8D8CC;
-}
-
-.hero-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-}
-
-/* Gradient on the LEFT side of the image — fading image into the background on the left edge */
-.hero-media::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 40%;
-  height: 100%;
-  background: linear-gradient(to right, #E8D8CC 0%, rgba(232, 216, 204, 0.85) 30%, rgba(232, 216, 204, 0.4) 65%, rgba(232, 216, 204, 0) 100%);
-  z-index: 2;
-  pointer-events: none;
 }
 
 /* =====================================================================
@@ -1474,7 +1471,7 @@ h3 {
   .model3d-three-col {
     grid-template-columns: 1fr;
   }
-  .hero-media { order: -1; background: #E8D8CC; }
+  .hero-media { order: -1; background: #F5EDE5; }
   .hero-photo {
     width: 100%;
     margin-left: 0;
@@ -1482,7 +1479,7 @@ h3 {
   }
   .hero-media::before {
     width: 100%;
-    background: linear-gradient(to top, #E8D8CC 0%, rgba(232, 216, 204, 0.45) 50%, rgba(232, 216, 204, 0) 100%);
+    background: linear-gradient(to top, #F5EDE5 0%, rgba(245, 237, 229, 0.45) 50%, rgba(245, 237, 229, 0) 100%);
   }
 
   .model3d-viewer-wrap { order: -1; position: relative; top: 0; }
@@ -1538,12 +1535,13 @@ h3 {
     min-height: auto !important;
   }
   .hero-media {
+    position: relative !important;
     order: -1;
     width: 100%;
     height: 45vw;
     min-height: 200px;
     max-height: 300px;
-    background: #E8D8CC !important;
+    background: #F5EDE5 !important;
   }
   .hero-photo {
     width: 100% !important;
@@ -1552,10 +1550,13 @@ h3 {
   }
   .hero-media::before {
     width: 100%;
-    background: linear-gradient(to top, #E8D8CC 0%, rgba(232, 216, 204, 0.45) 50%, rgba(232, 216, 204, 0) 100%) !important;
+    background: linear-gradient(to top, #F5EDE5 0%, rgba(245, 237, 229, 0.45) 50%, rgba(245, 237, 229, 0) 100%) !important;
   }
   .hero-copy {
+    position: relative !important;
+    max-width: none !important;
     padding: 2rem 1.2rem 3rem !important;
+    background: #F5EDE5 !important;
   }
   .hero-copy .lead {
     text-align: left !important;
