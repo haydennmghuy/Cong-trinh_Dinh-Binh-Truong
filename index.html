@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css?v=1.0.7" />
+  <link rel="stylesheet" href="css/style.css?v=1.0.8" />
 
   <!-- Three.js import map -->
   <script type="importmap">
@@ -42,7 +42,8 @@
       <a href="#mo-hinh-3d" data-i18n="nav.map">Bản Đồ 3D</a>
       <a href="#thuyet-minh" data-i18n="nav.about">Giới Thiệu</a>
       <a href="#lich-su" data-i18n="nav.timeline">Dòng Lịch Sử</a>
-      <a href="#gia-tri" data-i18n="nav.festival">Giá Trị</a>
+      <a href="#gia-tri" data-i18n="nav.values">Giá Trị</a>
+      <a href="#le-hoi" data-i18n="nav.festival">Lễ Hội</a>
     </nav>
     <div class="header-actions">
       <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language">EN</button>
@@ -79,7 +80,7 @@
   <section id="mo-hinh-3d" class="model3d-section">
     <div class="model3d-inner">
       <div class="model3d-copy">
-        <h2 data-i18n="model3d.title">MÔ HÌNH TƯƠNG TÁC 3D</h2>
+        <h2 data-i18n="model3d.title">BẢN ĐỒ 3D</h2>
         <p data-i18n="model3d.body">Khám phá khuôn viên di tích Đình Bình Trường qua mô hình 3D tương tác. Sử dụng các điểm nổi bật hoặc xoay mô hình để tìm hiểu thông tin kiến trúc chi tiết từng khu vực.</p>
         
         <!-- Metadata cards inside copy column for high compactness -->
@@ -164,7 +165,10 @@
   <section id="thuyet-minh" class="narration">
     <div class="narration-inner">
       <div class="narration-media">
-        <img src="images/gallery/gallery-8.png" alt="Chánh Điện Đình Bình Trường" class="narration-photo" />
+        <div class="placeholder-image-box">
+          <span class="placeholder-icon">📸</span>
+          <span class="placeholder-text" data-i18n="need_photo_label">Cần thêm ảnh</span>
+        </div>
       </div>
       <div class="narration-copy">
         <h2 data-i18n="narration.title">CÂU CHUYỆN DI TÍCH</h2>
@@ -173,6 +177,18 @@
           <p>Hệ cột kèo gỗ lim chắc chắn kết hợp cùng những mảng trạm khắc rồng phượng tỉ mỉ thể hiện bàn tay tài hoa của các nghệ nhân xưa. Đình thờ Thành Hoàng Bổn Cảnh - vị thần bảo hộ bờ cõi, đất đai sông ngòi giúp nhân dân an cư lạc nghiệp.</p>
           <p>Không chỉ mang giá trị tâm linh và thẩm mỹ sâu sắc, Đình Bình Trường còn ghi dấu lịch sử cách mạng hào hùng của nhân dân địa phương. Trong thời kỳ kháng chiến cứu nước, ngôi đình đã được trưng dụng làm cơ sở hoạt động bí mật, trạm chuyển thư và tiếp tế quân nhu an toàn giữa lòng địch.</p>
         </div>
+
+        <!-- Audio Player Block -->
+        <div class="audio-player" role="group" aria-label="Trình phát âm thanh thuyết minh">
+          <button id="audio-toggle" class="audio-play" type="button" aria-label="Play narration audio">▶</button>
+          <span id="audio-current-time" class="audio-time">00:00</span>
+          <div class="audio-track">
+            <div id="audio-progress" class="audio-progress"></div>
+            <span id="audio-knob" class="audio-knob"></span>
+          </div>
+          <span id="audio-duration" class="audio-time">00:00</span>
+        </div>
+        <button id="audio-trigger" class="btn btn-bronze" type="button" data-i18n="narration.button">Bắt đầu nghe</button>
       </div>
     </div>
   </section>
@@ -242,6 +258,30 @@
   </section>
 
   <!-- ============================================================
+       SECTION 5B - LỄ HỘI KỲ YÊN (FESTIVAL)
+       ============================================================ -->
+  <section id="le-hoi" class="festival-section-wrap">
+    <div class="container">
+      <div class="festival-inner">
+        <div class="festival-copy">
+          <span class="section-tag" data-i18n="nav.festival">Lễ Hội</span>
+          <h2 class="section-title" data-i18n="festival_title">LỄ HỘI KỲ YÊN — NÉT ĐẸP TÂM LINH</h2>
+          <div class="gold-divider"></div>
+          <p class="lead" data-i18n="festival_desc">
+            Hằng năm vào rằm tháng Giêng (ngày 15-17 âm lịch), Đình Bình Trường long trọng tổ chức đại lễ Kỳ Yên để tạ ơn Thành hoàng và cầu mong mưa thuận gió hòa, quốc thái dân an. Đây là dịp hội tụ đông đảo người dân với các nghi thức cúng tế cổ truyền độc đáo, biểu diễn hát bội tế thần và các trò chơi dân gian đặc sắc.
+          </p>
+        </div>
+        <div class="festival-media">
+          <div class="placeholder-image-box">
+            <span class="placeholder-icon">📸</span>
+            <span class="placeholder-text" data-i18n="need_photo_label">Cần thêm ảnh</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
        SECTION 6 - HÌNH ẢNH DI TÍCH
        ============================================================ -->
   <section id="gallery" class="gallery-section-wrap">
@@ -253,10 +293,34 @@
         <div class="gold-divider"></div>
       </div>
       <div class="photo-gallery">
-        <div class="gallery-item"><img src="images/gallery/gallery-5.jpg" alt="Cổng Tam Quan Đình Bình Trường" loading="lazy" /><span class="gallery-caption">Cổng Tam Quan</span></div>
-        <div class="gallery-item"><img src="images/gallery/gallery-8.png" alt="Chánh Điện Đình Bình Trường" loading="lazy" /><span class="gallery-caption">Chánh Điện Cổ Kính</span></div>
-        <div class="gallery-item"><img src="images/gallery/gallery-7.jpg" alt="Nhà Võ Ca &amp; Tiền Điện" loading="lazy" /><span class="gallery-caption">Nhà Võ Ca &amp; Tiền Điện</span></div>
-        <div class="gallery-item"><img src="images/gallery/gallery-6.png" alt="Kiến trúc mái ngói &amp; Cột gỗ" loading="lazy" /><span class="gallery-caption">Kiến Trúc Mái Ngói &amp; Cột Gỗ</span></div>
+        <div class="gallery-item">
+          <div class="placeholder-image-box">
+            <span class="placeholder-icon">📸</span>
+            <span class="placeholder-text" data-i18n="need_photo_label">Cần thêm ảnh</span>
+          </div>
+          <span class="gallery-caption">Cổng Tam Quan</span>
+        </div>
+        <div class="gallery-item">
+          <div class="placeholder-image-box">
+            <span class="placeholder-icon">📸</span>
+            <span class="placeholder-text" data-i18n="need_photo_label">Cần thêm ảnh</span>
+          </div>
+          <span class="gallery-caption">Chánh Điện Cổ Kính</span>
+        </div>
+        <div class="gallery-item">
+          <div class="placeholder-image-box">
+            <span class="placeholder-icon">📸</span>
+            <span class="placeholder-text" data-i18n="need_photo_label">Cần thêm ảnh</span>
+          </div>
+          <span class="gallery-caption">Nhà Võ Ca &amp; Tiền Điện</span>
+        </div>
+        <div class="gallery-item">
+          <div class="placeholder-image-box">
+            <span class="placeholder-icon">📸</span>
+            <span class="placeholder-text" data-i18n="need_photo_label">Cần thêm ảnh</span>
+          </div>
+          <span class="gallery-caption">Kiến Trúc Mái Ngói &amp; Cột Gỗ</span>
+        </div>
       </div>
     </div>
   </section>
@@ -280,7 +344,8 @@
         <li><a href="#mo-hinh-3d" data-i18n="nav.map">Bản Đồ 3D</a></li>
         <li><a href="#thuyet-minh" data-i18n="nav.about">Giới Thiệu</a></li>
         <li><a href="#lich-su" data-i18n="nav.timeline">Dòng Lịch Sử</a></li>
-        <li><a href="#gia-tri" data-i18n="nav.festival">Giá Trị</a></li>
+        <li><a href="#gia-tri" data-i18n="nav.values">Giá Trị</a></li>
+        <li><a href="#le-hoi" data-i18n="nav.festival">Lễ Hội</a></li>
       </ul>
     </div>
 
@@ -381,11 +446,11 @@
 <!-- ============================================================
      SCRIPTS
      ============================================================ -->
-<script src="js/translations.js?v=1.0.7"></script>
-<script src="js/map-data.js?v=1.0.7"></script>
-<script src="js/i18n.js?v=1.0.7"></script>
-<script src="js/app.js?v=1.0.7"></script>
-<script type="module" src="js/temple-3d.js?v=1.0.7"></script>
+<script src="js/translations.js?v=1.0.8"></script>
+<script src="js/map-data.js?v=1.0.8"></script>
+<script src="js/i18n.js?v=1.0.8"></script>
+<script src="js/app.js?v=1.0.8"></script>
+<script type="module" src="js/temple-3d.js?v=1.0.8"></script>
 
 </body>
 </html>

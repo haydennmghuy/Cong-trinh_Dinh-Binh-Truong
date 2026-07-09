@@ -1709,3 +1709,68 @@ h3 {
     gap: 10px;
   }
 }
+
+/* =====================================================================
+   ADDITIONAL STYLES — PLACEHOLDERS & FESTIVAL
+   ===================================================================== */
+.placeholder-image-box {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  background: rgba(78, 38, 22, 0.02);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--wood);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  padding: 2rem;
+  text-align: center;
+}
+.placeholder-image-box .placeholder-icon {
+  font-size: 2rem;
+  opacity: 0.7;
+}
+.placeholder-image-box .placeholder-text {
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.festival-section-wrap {
+  background: var(--smoke);
+  color: var(--ink);
+  position: relative;
+  padding: 6rem 0;
+  border-top: 1px solid var(--border);
+}
+.festival-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+.festival-copy {
+  display: flex;
+  flex-direction: column;
+}
+.festival-media {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .festival-inner {
+    grid-template-columns: 1fr;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .festival-media {
+    order: -1;
+  }
+}
