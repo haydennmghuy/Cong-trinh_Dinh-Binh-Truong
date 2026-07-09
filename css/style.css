@@ -262,7 +262,7 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 74% center; /* Keep gate beautifully on the right half */
+  object-position: right center; /* Keep gate beautifully on the right half */
 }
 
 /* Dark gradient overlay on the left to make white text readable */
