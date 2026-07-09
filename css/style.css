@@ -256,7 +256,7 @@ h3 {
   width: 58%;
   height: 100%;
   z-index: 1;
-  box-shadow: -15px 0 35px rgba(44, 24, 16, 0.12); /* Cast elegant drop shadow to the left */
+  box-shadow: -25px 0 50px rgba(28, 16, 10, 0.22); /* Cast elegant drop shadow to the left */
 }
 
 .hero-photo {
