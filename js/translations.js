@@ -12,7 +12,7 @@ var TRANSLATIONS = {
     },
     hero: {
       eyebrow: "Di tích lịch sử văn hóa - Quận 7, TP.HCM",
-      title: '<span class="hero-title-main">Di tích lịch sử</span><span class="hero-title-sub">Đình Bình Trường</span>',
+      title: 'Di tích lịch sử Đình Bình Trường',
       subtitle: "Mốc son văn hóa - Lưu giữ sắc phong vua Tự Đức",
       lead: "Được khởi dựng từ đầu thế kỷ 19, ngôi đình đã đồng hành cùng lịch sử thăng trầm của vùng đất Gia Định xưa. Đây là nơi tôn kính Thành Hoàng Bổn Cảnh, lưu giữ sắc phong quý giá triều đình Tự Đức ban tặng năm 1852 và từng che chở cho các cán bộ liên lạc cách mạng trong hai cuộc kháng chiến.",
       cta: "Khám phá bản đồ",
@@ -135,7 +135,7 @@ var TRANSLATIONS = {
     },
     hero: {
       eyebrow: "Historical & Cultural Relic - District 7, HCMC",
-      title: '<span class="hero-title-main">Communal House</span><span class="hero-title-sub">Binh Truong</span>',
+      title: 'Binh Truong Communal House',
       subtitle: "A cultural landmark - Preserving Emperor Tu Duc's royal seal",
       lead: "Established in the early 19th century, this communal house has witnessed the historical and cultural ups and downs of old Gia Dinh. It worships the Guardian Spirit, preserves the precious imperial seal of Emperor Tu Duc from 1852, and shielded revolutionary cadres in past resistance struggles.",
       cta: "Explore map",

@@ -267,11 +267,13 @@ h3 {
 
 .hero-copy h1 {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5.2vw, 3.5rem);
+  font-size: clamp(1.5rem, 3.2vw, 2.4rem);
   font-weight: 700;
-  line-height: 1.12;
+  line-height: 1.2;
   margin-bottom: 0.8rem;
   letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: var(--wood);
 }
 
 .hero-title-main {
@@ -344,14 +346,32 @@ h3 {
   padding: 6rem 0;
 }
 
-.model3d-inner {
+.model3d-inner--reflow {
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 1.5rem;
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 3.5rem;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 2.5rem;
   align-items: start;
+}
+
+.model3d-viewer-col {
+  width: 100%;
+}
+
+.model3d-info-col h2 {
+  color: var(--forest-dark);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+  margin-bottom: 1rem;
+}
+.model3d-info-col p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 20px;
 }
 
 .model3d-copy h2 {
@@ -1438,7 +1458,8 @@ h3 {
 
   .hero-inner,
   .narration-inner,
-  .model3d-inner {
+  .model3d-inner,
+  .model3d-inner--reflow {
     grid-template-columns: 1fr;
   }
   .hero-media { order: -1; background: #E8D8CC; }
@@ -1486,6 +1507,7 @@ h3 {
   .hero-inner,
   .narration-inner,
   .model3d-inner,
+  .model3d-inner--reflow,
   .timeline-section > .section-heading,
   .timeline-section > .timeline,
   .values,
@@ -1546,7 +1568,8 @@ h3 {
   }
 
   .hero-copy h1 {
-    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
+    white-space: normal;
     line-height: 1.25;
     margin-bottom: 0.7rem;
   }
@@ -1581,7 +1604,8 @@ h3 {
   .model3d-section {
     padding: 3.5rem 1rem;
   }
-  .model3d-inner {
+  .model3d-inner,
+  .model3d-inner--reflow {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
@@ -1589,6 +1613,9 @@ h3 {
     order: -1;
     aspect-ratio: 1 / 1;
     max-height: none;
+  }
+  .model3d-info-col {
+    order: 1;
   }
 
   .narration-inner {
