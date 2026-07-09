@@ -248,32 +248,62 @@ h3 {
   min-height: inherit;
 }
 
-/* Image container covers the whole hero background */
-.hero-media {
+/* Left Background: Nhà Võ Ca */
+.hero-left-bg {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  top: 0;
+  left: 0;
+  width: 45%;
   height: 100%;
   z-index: 0;
-  box-shadow: none; /* No shadow needed as it's full-width */
+  overflow: hidden;
+}
+
+.hero-voca-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+}
+
+.hero-left-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(20, 10, 5, 0.95) 0%, rgba(20, 10, 5, 0.85) 60%, rgba(20, 10, 5, 0.5) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Right Background: Cổng Đình */
+.hero-media {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%;
+  height: 100%;
+  z-index: 0;
 }
 
 .hero-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: right center; /* Keep gate beautifully on the right half */
+  object-position: center center; /* Keep full gate centered, no zoom cropping */
 }
 
-/* Dark gradient overlay on the left to make white text readable */
+/* Dark gradient overlay on the left edge of the gate photo to blend seamlessly */
 .hero-media::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  width: 65%; /* Covers left side where text sits */
+  width: 35%; /* Smooth blend boundary */
   height: 100%;
-  background: linear-gradient(to right, rgba(20, 10, 5, 0.9) 0%, rgba(20, 10, 5, 0.72) 40%, rgba(20, 10, 5, 0.3) 75%, rgba(20, 10, 5, 0) 100%);
+  background: linear-gradient(to right, rgba(20, 10, 5, 0.5) 0%, rgba(20, 10, 5, 0) 100%);
   z-index: 1;
   pointer-events: none;
 }
@@ -282,7 +312,7 @@ h3 {
 .hero-copy {
   position: relative;
   z-index: 2;
-  max-width: 480px;
+  max-width: 580px; /* Wider text container, aligns with Nhà Võ Ca column */
   padding: 5rem 2rem 5rem 3.5rem;
   min-height: inherit;
   display: flex;
@@ -292,7 +322,7 @@ h3 {
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3vw, 2.5rem); /* Smaller font size to keep inside the dark wash */
+  font-size: clamp(2rem, 4vw, 3.2rem); /* Large elegant white serif title */
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 0.8rem;
@@ -1529,6 +1559,9 @@ h3 {
     flex-direction: column !important;
     padding: 0 !important;
     min-height: auto !important;
+  }
+  .hero-left-bg {
+    display: none !important;
   }
   .hero-media {
     position: relative !important;
