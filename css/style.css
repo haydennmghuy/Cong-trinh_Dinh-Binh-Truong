@@ -266,7 +266,7 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left bottom; /* Aligns to bottom to show the musicians and full stage, not just ceiling */
+  object-position: left center; /* Centered alignment to match the screenshot layout precisely */
 }
 
 .hero-left-bg::before {
@@ -295,7 +295,7 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 8%; /* Shift down to show top roof ornaments fully */
+  object-position: center center; /* Default vertical centering to match reference screenshot */
 }
 
 /* Dark gradient overlay on the left edge of the gate photo to blend seamlessly */
