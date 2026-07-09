@@ -237,14 +237,4 @@ var TRANSLATIONS = {
       copyright: "Digital Red Site Digitalization Project - Binh Truong Communal House<br>Carried out by the Digital Skills Enhancement Team<br>Student Economic Volunteer Campaign 2026"
     }
   }
-};estival — Community Gathering",
-    festival_desc: "Every year in the 11th lunar month, Binh Truong Communal House holds the Ky Yen Festival praying for community prosperity — a gathering of traditional opera, lion dance, and Southern Vietnamese rituals.",
-    footer_contact: "Contact & Location",
-    footer_address: "334/9 Binh Loi, Ward 13, Binh Thanh District, Ho Chi Minh City",
-    footer_credits: "Digital preservation project for Binh Truong Communal House — preserving architectural, historical and cultural values for future generations.",
-    close: "Close",
-    next_area: "Next area →",
-    loading_3d: "Loading 3D model...",
-    ar_not_supported: "Your device does not support AR."
-  }
 };

@@ -239,7 +239,7 @@ h3 {
   position: relative;
   overflow: hidden;
   min-height: min(88vh, 820px);
-  background: #ECE7DC; /* Light warm cream matching the photo sky */
+  background: #E8D8CC; /* Warm pink-cream matching the gate walls */
   color: #2C1810;
 }
 
@@ -251,7 +251,7 @@ h3 {
   padding: 0;
   min-height: inherit;
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr; /* Shift division to the right */
+  grid-template-columns: 1.1fr 0.9fr;
   align-items: stretch;
 }
 
@@ -311,15 +311,14 @@ h3 {
   position: relative;
   width: 100%;
   overflow: hidden;
-  background: #ECE7DC; /* Match background */
+  background: #E8D8CC;
 }
 
 .hero-photo {
-  width: 85%; /* Make photo occupy 85% of width to push content to the right */
-  margin-left: 15%; /* Push photo to the right */
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left center; /* Keep left edge of photo (the gate) visible at the start */
+  object-position: center center;
 }
 
 .hero-media::before {
@@ -327,9 +326,9 @@ h3 {
   position: absolute;
   top: 0;
   left: 0;
-  width: 45%; /* Wide transition gradient for smooth blending */
+  width: 50%;
   height: 100%;
-  background: linear-gradient(to right, #ECE7DC 0%, rgba(236, 231, 220, 0.8) 35%, rgba(236, 231, 220, 0.3) 70%, rgba(236, 231, 220, 0) 100%);
+  background: linear-gradient(to right, #E8D8CC 0%, rgba(232, 216, 204, 0.85) 30%, rgba(232, 216, 204, 0.4) 65%, rgba(232, 216, 204, 0) 100%);
   z-index: 2;
   pointer-events: none;
 }
@@ -1278,7 +1277,7 @@ h3 {
   .model3d-inner {
     grid-template-columns: 1fr;
   }
-  .hero-media { order: -1; background: #ECE7DC; }
+  .hero-media { order: -1; background: #E8D8CC; }
   .hero-photo {
     width: 100%;
     margin-left: 0;
@@ -1286,7 +1285,7 @@ h3 {
   }
   .hero-media::before {
     width: 100%;
-    background: linear-gradient(to top, #ECE7DC 0%, rgba(236, 231, 220, 0.45) 50%, rgba(236, 231, 220, 0) 100%);
+    background: linear-gradient(to top, #E8D8CC 0%, rgba(232, 216, 204, 0.45) 50%, rgba(232, 216, 204, 0) 100%);
   }
 
   .model3d-viewer-wrap { order: -1; position: relative; top: 0; }
@@ -1346,7 +1345,7 @@ h3 {
     height: 45vw;
     min-height: 200px;
     max-height: 300px;
-    background: #ECE7DC !important;
+    background: #E8D8CC !important;
   }
   .hero-photo {
     width: 100% !important;
@@ -1355,7 +1354,7 @@ h3 {
   }
   .hero-media::before {
     width: 100%;
-    background: linear-gradient(to top, #ECE7DC 0%, rgba(236, 231, 220, 0.45) 50%, rgba(236, 231, 220, 0) 100%) !important;
+    background: linear-gradient(to top, #E8D8CC 0%, rgba(232, 216, 204, 0.45) 50%, rgba(232, 216, 204, 0) 100%) !important;
   }
   .hero-copy {
     padding: 2rem 1.2rem 3rem !important;
