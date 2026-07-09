@@ -248,12 +248,11 @@ h3 {
   min-height: inherit;
 }
 
-/* Image container occupies only the right side of the hero */
+/* Image container covers the whole hero background */
 .hero-media {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 58%;
+  inset: 0;
+  width: 100%;
   height: 100%;
   z-index: 0;
 }
@@ -262,18 +261,18 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left center;
+  object-position: 82% center; /* Position the gate in the right half */
 }
 
-/* Very light wash on the left edge of the image to blend it with the background */
+/* Gradient overlay starting from the left edge, fading to the right */
 .hero-media::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  width: 35%;
+  width: 62%; /* Covers the text column area */
   height: 100%;
-  background: linear-gradient(to right, #F5EDE5 0%, rgba(245, 237, 229, 0.85) 30%, rgba(245, 237, 229, 0) 100%);
+  background: linear-gradient(to right, #F5EDE5 15%, rgba(245, 237, 229, 0.9) 45%, rgba(245, 237, 229, 0) 100%);
   z-index: 1;
   pointer-events: none;
 }
