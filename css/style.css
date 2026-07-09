@@ -266,7 +266,7 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left bottom; /* Align to bottom to show columns and floor base of the building */
+  object-position: left center; /* Matches the screenshot exactly */
 }
 
 .hero-left-bg::before {
