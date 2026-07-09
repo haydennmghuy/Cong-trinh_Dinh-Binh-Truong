@@ -238,14 +238,16 @@ h3 {
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: min(88vh, 820px);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 901 / 661; /* Matches the exact aspect ratio of the combined banner image to show it fully without crop */
   background-color: #1C100B;
   color: #FFFFFF;
 }
 
 .hero-inner {
   position: relative;
-  min-height: inherit;
+  height: 100%;
 }
 
 /* Full-Width Background: Combined Stage & Gate */
@@ -1526,6 +1528,7 @@ h3 {
 
   .hero {
     min-height: auto !important;
+    aspect-ratio: auto !important;
   }
   .hero-inner {
     display: flex !important;
