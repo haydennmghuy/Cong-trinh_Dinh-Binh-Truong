@@ -286,7 +286,7 @@ h3 {
   position: absolute;
   top: 0;
   right: 0;
-  width: 55%;
+  width: 65%; /* Wider width to overlap underneath the left image's fade mask region */
   height: 100%;
   z-index: 0;
 }
