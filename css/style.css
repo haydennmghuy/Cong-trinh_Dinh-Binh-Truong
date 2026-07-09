@@ -248,11 +248,12 @@ h3 {
   min-height: inherit;
 }
 
-/* Image fills the entire hero as background */
+/* Image container occupies only the right side of the hero */
 .hero-media {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  top: 0;
+  right: 0;
+  width: 58%;
   height: 100%;
   z-index: 0;
 }
@@ -261,18 +262,18 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 65% center;
+  object-position: left center;
 }
 
-/* Very light wash on the left half so text is readable */
+/* Very light wash on the left edge of the image to blend it with the background */
 .hero-media::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  width: 55%;
+  width: 35%;
   height: 100%;
-  background: linear-gradient(to right, rgba(245, 237, 229, 0.92) 0%, rgba(245, 237, 229, 0.8) 40%, rgba(245, 237, 229, 0.45) 70%, rgba(245, 237, 229, 0) 100%);
+  background: linear-gradient(to right, #F5EDE5 0%, rgba(245, 237, 229, 0.85) 30%, rgba(245, 237, 229, 0) 100%);
   z-index: 1;
   pointer-events: none;
 }
@@ -281,7 +282,7 @@ h3 {
 .hero-copy {
   position: relative;
   z-index: 2;
-  max-width: 520px;
+  max-width: 550px;
   padding: 5rem 2rem 5rem 2.5rem;
   min-height: inherit;
   display: flex;
@@ -1536,8 +1537,10 @@ h3 {
   }
   .hero-media {
     position: relative !important;
+    top: auto !important;
+    right: auto !important;
     order: -1;
-    width: 100%;
+    width: 100% !important;
     height: 45vw;
     min-height: 200px;
     max-height: 300px;
