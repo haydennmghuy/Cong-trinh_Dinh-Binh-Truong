@@ -239,7 +239,7 @@ h3 {
   position: relative;
   overflow: hidden;
   min-height: min(88vh, 820px);
-  background: #F5EDE5;
+  background: #EFEFEA;
   color: #2C1810;
 }
 
@@ -273,7 +273,7 @@ h3 {
   left: 0;
   width: 45%; /* Smooth blend width */
   height: 100%;
-  background: linear-gradient(to right, #F5EDE5 0%, rgba(245, 237, 229, 0.85) 30%, rgba(245, 237, 229, 0) 100%);
+  background: linear-gradient(to right, #EFEFEA 0%, rgba(239, 239, 234, 0.85) 30%, rgba(239, 239, 234, 0) 100%);
   z-index: 1;
   pointer-events: none;
 }
@@ -1472,7 +1472,7 @@ h3 {
   .model3d-three-col {
     grid-template-columns: 1fr;
   }
-  .hero-media { order: -1; background: #F5EDE5; }
+  .hero-media { order: -1; background: #EFEFEA; }
   .hero-photo {
     width: 100%;
     margin-left: 0;
@@ -1480,7 +1480,7 @@ h3 {
   }
   .hero-media::before {
     width: 100%;
-    background: linear-gradient(to top, #F5EDE5 0%, rgba(245, 237, 229, 0.45) 50%, rgba(245, 237, 229, 0) 100%);
+    background: linear-gradient(to top, #EFEFEA 0%, rgba(239, 239, 234, 0.45) 50%, rgba(239, 239, 234, 0) 100%);
   }
 
   .model3d-viewer-wrap { order: -1; position: relative; top: 0; }
@@ -1544,7 +1544,7 @@ h3 {
     height: 45vw;
     min-height: 200px;
     max-height: 300px;
-    background: #F5EDE5 !important;
+    background: #EFEFEA !important;
   }
   .hero-photo {
     width: 100% !important;
@@ -1553,13 +1553,13 @@ h3 {
   }
   .hero-media::before {
     width: 100%;
-    background: linear-gradient(to top, #F5EDE5 0%, rgba(245, 237, 229, 0.45) 50%, rgba(245, 237, 229, 0) 100%) !important;
+    background: linear-gradient(to top, #EFEFEA 0%, rgba(239, 239, 234, 0.45) 50%, rgba(239, 239, 234, 0) 100%) !important;
   }
   .hero-copy {
     position: relative !important;
     max-width: none !important;
     padding: 2rem 1.2rem 3rem !important;
-    background: #F5EDE5 !important;
+    background: #EFEFEA !important;
   }
   .hero-copy .lead {
     text-align: left !important;
