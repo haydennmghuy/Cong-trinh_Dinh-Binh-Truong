@@ -292,7 +292,7 @@ h3 {
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4.2vw, 3.2rem);
+  font-size: clamp(1.6rem, 3vw, 2.5rem); /* Smaller font size to keep inside the dark wash */
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 0.8rem;
