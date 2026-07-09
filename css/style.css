@@ -248,22 +248,25 @@ h3 {
   min-height: inherit;
 }
 
-/* Left Background: Nhà Võ Ca (slanted view) */
+/* Left Background: Nhà Võ Ca (musicians) */
 .hero-left-bg {
   position: absolute;
   top: 0;
   left: 0;
-  width: 45%;
+  width: 55%; /* Overlaps with the right column to enable fading */
   height: 100%;
-  z-index: 0;
+  z-index: 1; /* Renders on top of the right image to fade over it */
   overflow: hidden;
+  /* Smooth mask transition to blend left image into the right image */
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 72%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 72%, rgba(0, 0, 0, 0) 100%);
 }
 
 .hero-voca-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left bottom; /* Aligns to bottom to show columns and floor, not just roof */
+  object-position: left bottom; /* Aligns to bottom to show the musicians and full stage, not just ceiling */
 }
 
 .hero-left-bg::before {
@@ -285,7 +288,7 @@ h3 {
   right: 0;
   width: 55%;
   height: 100%;
-  z-index: 0;
+  z-index: 0; /* Sits behind the fade edge of the left image */
 }
 
 .hero-photo {
@@ -293,19 +296,6 @@ h3 {
   height: 100%;
   object-fit: cover;
   object-position: center 8%; /* Shift down to show top roof ornaments fully */
-}
-
-/* Dark gradient overlay on the left edge of the gate photo to blend seamlessly */
-.hero-media::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 35%; /* Smooth blend boundary */
-  height: 100%;
-  background: linear-gradient(to right, rgba(20, 10, 5, 0.5) 0%, rgba(20, 10, 5, 0) 100%);
-  z-index: 1;
-  pointer-events: none;
 }
 
 /* Text overlaid on the left, flush to the edge */
