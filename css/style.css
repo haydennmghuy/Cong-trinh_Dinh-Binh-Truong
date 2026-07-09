@@ -239,7 +239,7 @@ h3 {
   position: relative;
   overflow: hidden;
   min-height: min(88vh, 820px);
-  background: #EAE5D9; /* Light sepia base */
+  background: #ECE7DC; /* Light warm cream matching the photo sky */
   color: #2C1810;
 }
 
@@ -251,7 +251,7 @@ h3 {
   padding: 0;
   min-height: inherit;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.15fr 0.85fr; /* Shift division to the right */
   align-items: stretch;
 }
 
@@ -311,12 +311,15 @@ h3 {
   position: relative;
   width: 100%;
   overflow: hidden;
+  background: #ECE7DC; /* Match background */
 }
 
 .hero-photo {
-  width: 100%;
+  width: 85%; /* Make photo occupy 85% of width to push content to the right */
+  margin-left: 15%; /* Push photo to the right */
   height: 100%;
   object-fit: cover;
+  object-position: left center; /* Keep left edge of photo (the gate) visible at the start */
 }
 
 .hero-media::before {
@@ -324,10 +327,11 @@ h3 {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100px;
+  width: 45%; /* Wide transition gradient for smooth blending */
   height: 100%;
-  background: linear-gradient(to right, #EAE5D9 0%, transparent 100%);
+  background: linear-gradient(to right, #ECE7DC 0%, rgba(236, 231, 220, 0.8) 35%, rgba(236, 231, 220, 0.3) 70%, rgba(236, 231, 220, 0) 100%);
   z-index: 2;
+  pointer-events: none;
 }
 
 /* =====================================================================
@@ -1274,7 +1278,16 @@ h3 {
   .model3d-inner {
     grid-template-columns: 1fr;
   }
-  .hero-media { order: -1; }
+  .hero-media { order: -1; background: #ECE7DC; }
+  .hero-photo {
+    width: 100%;
+    margin-left: 0;
+    object-position: center;
+  }
+  .hero-media::before {
+    width: 100%;
+    background: linear-gradient(to top, #ECE7DC 0%, rgba(236, 231, 220, 0.45) 50%, rgba(236, 231, 220, 0) 100%);
+  }
 
   .model3d-viewer-wrap { order: -1; position: relative; top: 0; }
 
@@ -1333,10 +1346,16 @@ h3 {
     height: 45vw;
     min-height: 200px;
     max-height: 300px;
+    background: #ECE7DC !important;
+  }
+  .hero-photo {
+    width: 100% !important;
+    margin-left: 0 !important;
+    object-position: center !important;
   }
   .hero-media::before {
     width: 100%;
-    background: linear-gradient(to top, #EAE5D9 0%, rgba(234, 229, 217, 0.4) 50%, rgba(234, 229, 217, 0) 100%) !important;
+    background: linear-gradient(to top, #ECE7DC 0%, rgba(236, 231, 220, 0.45) 50%, rgba(236, 231, 220, 0) 100%) !important;
   }
   .hero-copy {
     padding: 2rem 1.2rem 3rem !important;
