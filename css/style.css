@@ -292,7 +292,7 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center; /* Keep full gate centered, no zoom cropping */
+  object-position: center 8%; /* Shift down to show the top roof ornaments fully */
 }
 
 /* Dark gradient overlay on the left edge of the gate photo to blend seamlessly */
