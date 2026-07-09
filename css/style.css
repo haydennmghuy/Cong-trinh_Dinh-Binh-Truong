@@ -239,44 +239,14 @@ h3 {
   position: relative;
   overflow: hidden;
   height: 550px; /* Moderate and perfectly balanced height on desktop */
-  background-color: #1C100B;
+  background: linear-gradient(to right, rgba(28, 16, 11, 0.8) 0%, rgba(28, 16, 11, 0.45) 35%, rgba(28, 16, 11, 0) 70%),
+              url('../images/hero_combined.jpg?v=1.7.2') no-repeat center 18% / cover;
   color: #FFFFFF;
 }
 
 .hero-inner {
   position: relative;
   height: 100%;
-}
-
-/* Full-Width Background: Combined Stage & Gate */
-.hero-media {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  background: #1C100B; /* Matches the dark background of the left photo edge */
-}
-
-.hero-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 18%; /* Perfectly keeps the roofs and top details fully visible while cropping the bottom */
-}
-
-/* Subtle dark gradient overlay on the left to ensure high readability of hero text over the stage photo */
-.hero-media::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, rgba(28, 16, 11, 0.8) 0%, rgba(28, 16, 11, 0.45) 35%, rgba(28, 16, 11, 0) 70%);
-  z-index: 1;
-  pointer-events: none;
 }
 
 
@@ -1525,43 +1495,24 @@ h3 {
   }
 
   .hero {
-    min-height: auto !important;
-    aspect-ratio: auto !important;
+    min-height: 480px !important;
     height: auto !important;
+    background: linear-gradient(to top, rgba(28, 16, 11, 0.95) 0%, rgba(28, 16, 11, 0.7) 100%),
+                url('../images/hero_combined.jpg?v=1.7.2') no-repeat center center / cover !important;
+    display: flex !important;
+    align-items: center !important;
   }
   .hero-inner {
-    display: flex !important;
-    flex-direction: column !important;
-    padding: 0 !important;
-    min-height: auto !important;
-  }
-  .hero-media {
     position: relative !important;
-    top: auto !important;
-    right: auto !important;
-    order: -1;
     width: 100% !important;
-    height: 45vw;
-    min-height: 200px;
-    max-height: 300px;
-    background: #1C100B !important;
-    box-shadow: none !important;
-  }
-  .hero-photo {
-    width: 100% !important;
-    margin-left: 0 !important;
-    object-position: center !important;
-    object-fit: cover !important;
-  }
-  .hero-media::before {
-    width: 100%;
-    background: linear-gradient(to top, #1C100B 0%, rgba(28, 16, 11, 0.45) 50%, rgba(28, 16, 11, 0) 100%) !important;
+    min-height: auto !important;
+    padding: 3rem 1.5rem !important;
   }
   .hero-copy {
     position: relative !important;
     max-width: none !important;
-    padding: 2rem 1.2rem 3rem !important;
-    background: #1C100B !important;
+    padding: 0 !important;
+    background: transparent !important;
   }
   .hero-title {
     font-size: clamp(1.5rem, 5vw, 2.2rem) !important;
