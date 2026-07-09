@@ -239,8 +239,8 @@ h3 {
   position: relative;
   overflow: hidden;
   min-height: min(88vh, 820px);
-  background: #FAF5E6;
-  color: #2C1810;
+  background: #1C100B; /* Dark background to match dark overlay */
+  color: #FFFFFF;
 }
 
 .hero-inner {
@@ -248,33 +248,32 @@ h3 {
   min-height: inherit;
 }
 
-/* Image container occupies only the right side of the hero */
+/* Image container covers the whole hero background */
 .hero-media {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 58%;
+  inset: 0;
+  width: 100%;
   height: 100%;
-  z-index: 1;
-  box-shadow: -25px 0 50px rgba(28, 16, 10, 0.22); /* Cast elegant drop shadow to the left */
+  z-index: 0;
+  box-shadow: none; /* No shadow needed as it's full-width */
 }
 
 .hero-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: 74% center; /* Keep gate beautifully on the right half */
 }
 
-/* Disable gradient blend overlay on desktop as requested */
+/* Dark gradient overlay on the left to make white text readable */
 .hero-media::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  width: 45%;
+  width: 65%; /* Covers left side where text sits */
   height: 100%;
-  background: none;
+  background: linear-gradient(to right, rgba(20, 10, 5, 0.9) 0%, rgba(20, 10, 5, 0.72) 40%, rgba(20, 10, 5, 0.3) 75%, rgba(20, 10, 5, 0) 100%);
   z-index: 1;
   pointer-events: none;
 }
@@ -283,60 +282,91 @@ h3 {
 .hero-copy {
   position: relative;
   z-index: 2;
-  max-width: 550px;
-  padding: 5rem 2rem 5rem 2.5rem;
+  max-width: 620px;
+  padding: 5rem 2rem 5rem 3.5rem;
   min-height: inherit;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.hero-copy h1 {
+.hero-title {
   font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.1;
   margin-bottom: 0.8rem;
   letter-spacing: 0.02em;
-}
-
-.hero-title-line1 {
-  display: block;
-  font-size: clamp(1.3rem, 2.8vw, 2rem);
-  white-space: nowrap;
-  color: #8B3A3A;
-}
-
-.hero-title-line2 {
-  display: block;
-  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-  color: #A04040;
-  margin-top: 0.2rem;
-  white-space: nowrap;
+  color: #FFFFFF;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 }
 
 .hero-copy .eyebrow {
-  color: #9E5050;
+  color: #C9A84C; /* Gold color */
+  font-size: 0.82rem;
+  letter-spacing: 0.15em;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
 }
 
 .hero-copy .subtitle {
-  font-family: var(--font-heading);
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-  font-weight: 500;
-  margin-bottom: 1.6rem;
-  color: #B06060;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+  font-weight: 400;
+  margin-bottom: 1.8rem;
+  color: #C9A84C; /* Gold color */
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
 
 .hero-copy .lead {
-  font-size: 1rem;
+  font-size: 0.98rem;
   line-height: 1.8;
-  margin-bottom: 0;
-  max-width: 54ch;
-  color: #5A3535;
+  margin-bottom: 2.2rem;
+  max-width: 52ch;
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 }
 
 .hero-actions {
   display: flex;
   gap: 1rem;
+}
+
+/* Custom premium buttons matching reference screenshot styling */
+.hero-actions .btn-primary {
+  background: rgba(78, 38, 22, 0.5); /* Semi-transparent warm brown */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.hero-actions .btn-primary:hover {
+  background: rgba(78, 38, 22, 0.95);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.hero-actions .btn-outline {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.hero-actions .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  transform: translateY(-2px);
 }
 
 /* =====================================================================
@@ -1545,7 +1575,7 @@ h3 {
     height: 45vw;
     min-height: 200px;
     max-height: 300px;
-    background: #FAF5E6 !important;
+    background: #1C100B !important;
     box-shadow: none !important;
   }
   .hero-photo {
@@ -1555,13 +1585,19 @@ h3 {
   }
   .hero-media::before {
     width: 100%;
-    background: linear-gradient(to top, #FAF5E6 0%, rgba(250, 245, 230, 0.45) 50%, rgba(250, 245, 230, 0) 100%) !important;
+    background: linear-gradient(to top, #1C100B 0%, rgba(28, 16, 11, 0.45) 50%, rgba(28, 16, 11, 0) 100%) !important;
   }
   .hero-copy {
     position: relative !important;
     max-width: none !important;
     padding: 2rem 1.2rem 3rem !important;
-    background: #FAF5E6 !important;
+    background: #1C100B !important;
+  }
+  .hero-title {
+    font-size: clamp(1.5rem, 5vw, 2.2rem) !important;
+    line-height: 1.2;
+    margin-bottom: 0.7rem;
+    white-space: normal;
   }
   .hero-copy .lead {
     text-align: left !important;
@@ -1585,16 +1621,10 @@ h3 {
     font-size: 0.72rem;
   }
 
-  .hero-copy h1 {
-    line-height: 1.25;
+  .hero-title {
+    font-size: clamp(1.5rem, 5vw, 2.2rem) !important;
+    line-height: 1.2;
     margin-bottom: 0.7rem;
-  }
-  .hero-title-line1 {
-    font-size: clamp(1.1rem, 4.5vw, 1.5rem);
-    white-space: normal;
-  }
-  .hero-title-line2 {
-    font-size: clamp(1.4rem, 5.5vw, 1.8rem);
     white-space: normal;
   }
   .hero-copy .subtitle {

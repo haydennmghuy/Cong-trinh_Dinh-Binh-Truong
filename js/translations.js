@@ -11,11 +11,11 @@ var TRANSLATIONS = {
       contact: "Liên Hệ"
     },
     hero: {
-      eyebrow: "Di tích lịch sử văn hóa - Quận 7, TP.HCM",
-      title: '<span class="hero-title-line1">Di tích lịch sử</span><span class="hero-title-line2">Đình Bình Trường</span>',
+      eyebrow: "DI TÍCH LỊCH SỬ CẤP THÀNH PHỐ",
+      title: 'ĐÌNH BÌNH TRƯỜNG',
       subtitle: "Mốc son văn hóa - Lưu giữ sắc phong vua Tự Đức",
       lead: "Được khởi dựng từ đầu thế kỷ 19, ngôi đình đã đồng hành cùng lịch sử thăng trầm của vùng đất Gia Định xưa. Đây là nơi tôn kính Thành Hoàng Bổn Cảnh, lưu giữ sắc phong quý giá triều đình Tự Đức ban tặng năm 1852 và từng che chở cho các cán bộ liên lạc cách mạng trong hai cuộc kháng chiến.",
-      cta: "Khám phá bản đồ",
+      cta: "Khám phá ngay",
       secondary: "Nghe thuyết minh",
       desc: "Khám phá di tích kiến trúc nghệ thuật hơn 200 năm tuổi — nơi giao thoa giữa tín ngưỡng dân gian và các câu chuyện văn hóa truyền thống của vùng đất Phương Nam.",
       cta_map: "Khám Phá Bản Đồ",
@@ -134,11 +134,11 @@ var TRANSLATIONS = {
       contact: "Contact"
     },
     hero: {
-      eyebrow: "Historical & Cultural Relic - District 7, HCMC",
-      title: '<span class="hero-title-line1">Communal House</span><span class="hero-title-line2">Binh Truong</span>',
+      eyebrow: "CITY-LEVEL HISTORICAL RELIC",
+      title: 'BINH TRUONG COMMUNAL HOUSE',
       subtitle: "A cultural landmark - Preserving Emperor Tu Duc's royal seal",
       lead: "Established in the early 19th century, this communal house has witnessed the historical and cultural ups and downs of old Gia Dinh. It worships the Guardian Spirit, preserves the precious imperial seal of Emperor Tu Duc from 1852, and shielded revolutionary cadres in past resistance struggles.",
-      cta: "Explore map",
+      cta: "Explore now",
       secondary: "Listen to Narration",
       desc: "Explore a 200-year-old architectural masterpiece — where folk beliefs and cultural stories of the Southern region converge.",
       cta_map: "Explore the Map",
