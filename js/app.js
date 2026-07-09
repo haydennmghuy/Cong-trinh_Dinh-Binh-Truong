@@ -124,15 +124,25 @@ const Timeline = {
     const container = document.getElementById('timeline-container');
     if (!container) return;
     const lang = i18n.current;
-    container.innerHTML = MAP_DATA.timeline.map((item, i) => `
-      <div class="timeline-item" style="animation-delay:${i*0.1}s">
-        <div class="timeline-year">${item.year}</div>
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <p>${item[lang]}</p>
-        </div>
-      </div>
-    `).join('');
+    container.innerHTML = `
+      <div class="timeline-spine" aria-hidden="true"></div>
+      ${MAP_DATA.timeline.map((item, i) => {
+        const sideClass = i % 2 === 0 ? 'is-left' : 'is-right';
+        const langData = item[lang] || {};
+        return `
+          <article class="timeline-item ${sideClass}" style="animation-delay:${i*0.1}s">
+            <div class="timeline-media">
+              <img src="${item.image}" alt="${langData.title || ''}" class="timeline-photo" loading="lazy" />
+            </div>
+            <div class="timeline-content">
+              <span class="timeline-year">${item.year}</span>
+              <h3>${langData.title || ''}</h3>
+              <p>${langData.body || ''}</p>
+            </div>
+          </article>
+        `;
+      }).join('')}
+    `;
     const items = container.querySelectorAll('.timeline-item');
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });

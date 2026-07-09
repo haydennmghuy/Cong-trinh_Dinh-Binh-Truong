@@ -231,11 +231,77 @@ var MAP_DATA = {
     }
   ],
   timeline: [
-    { year: "~1808", vi: "Xây dựng Đình Bình Trường", en: "Binh Truong Communal House is established" },
-    { year: "1818", vi: "Ghi nhận trong Gia Định Thành Thông Chí của Trịnh Hoài Đức", en: "Documented in Gia Dinh Thanh Thong Chi by Trinh Hoai Duc" },
-    { year: "1852", vi: "Vua Tự Đức ban sắc phong Thần Thành Hoàng Bổn Cảnh", en: "Emperor Tu Duc grants an official seal to the Guardian Spirit" },
-    { year: "1945–1954", vi: "Đình là 'hộp thư bí mật' của kháng chiến chống Pháp", en: "Temple serves as a secret communication post in the anti-French resistance" },
-    { year: "1955–1975", vi: "Tiếp tục vai trò liên lạc bí mật chống Mỹ", en: "Continues role as a secret liaison point in the anti-American resistance" },
-    { year: "2005", vi: "Xếp hạng Di tích Kiến trúc Nghệ thuật cấp TP.HCM", en: "Classified as Ho Chi Minh City-level Architectural and Artistic Heritage Site" }
+    {
+      year: "~1808",
+      image: "images/gallery/gallery-7.jpg",
+      vi: {
+        title: "Khởi dựng Đình Bình Trường",
+        body: "Đình Bình Trường được xây dựng bằng vật liệu gỗ quý, lợp ngói âm dương đất nung truyền thống làm nơi thờ cúng Thành Hoàng Bổn Cảnh và sinh hoạt văn hóa của cư dân Nam Bộ."
+      },
+      en: {
+        title: "Construction of the Communal House",
+        body: "Binh Truong Communal House was constructed with precious wood and traditional clay yin-yang roof tiles, serving as a shrine for the local Guardian Spirit and a communal gathering space."
+      }
+    },
+    {
+      year: "1818",
+      image: "images/gallery/gallery-10.png",
+      vi: {
+        title: "Ghi nhận trong sử sách",
+        body: "Đình được chính thức chép lại trong bộ sử 'Gia Định Thành Thông Chí' do học giả Trịnh Hoài Đức biên soạn, khẳng định vị trí lịch sử và vai trò tâm linh từ thời khẩn hoang."
+      },
+      en: {
+        title: "Historical Record",
+        body: "The site was formally recorded in the famous book 'Gia Dinh Thanh Thong Chi' by scholar Trinh Hoai Duc, certifying its ancient roots and spiritual status since early colonization."
+      }
+    },
+    {
+      year: "1852",
+      image: "images/gallery/gallery-8.png",
+      vi: {
+        title: "Nhận sắc phong Tự Đức",
+        body: "Vua Tự Đức triều Nguyễn ban sắc phong thần 'Thành Hoàng Bổn Cảnh', công nhận đình thuộc hệ thống thờ tự chính thống của quốc gia và khẳng định địa vị linh thiêng."
+      },
+      en: {
+        title: "Royal Decree of Emperor Tu Duc",
+        body: "Emperor Tu Duc of the Nguyen Dynasty officially granted a royal decree declaring the deity of the communal house as the Guardian Spirit, securing its imperial status."
+      }
+    },
+    {
+      year: "1945–1954",
+      image: "images/gallery/gallery-1.png",
+      vi: {
+        title: "Hộp thư liên lạc bí mật",
+        body: "Trong kháng chiến chống Pháp, đình là 'hộp thư bí mật' chuyển giao tin tức, công văn mật, và là nơi dừng chân an toàn của các cán bộ hoạt động bí mật vùng Sài Gòn."
+      },
+      en: {
+        title: "Underground Communication Post",
+        body: "During the anti-French war, the communal house served as a secret liaison post and a safe shelter for intelligence agents and cadres operating in the Saigon region."
+      }
+    },
+    {
+      year: "1955–1975",
+      image: "images/gallery/gallery-2.png",
+      vi: {
+        title: "Liên lạc kháng chiến chống Mỹ",
+        body: "Đình tiếp tục duy trì vai trò trạm liên lạc liên quận, tiếp tế lương thực, nhu yếu phẩm cho các lực lượng bán vũ trang hoạt động trong lòng địch tại Gia Định."
+      },
+      en: {
+        title: "Resistance Support in the US War",
+        body: "The site continued to support local resistance efforts by serving as a hidden supply and contact depot for semi-armed forces operating behind enemy lines."
+      }
+    },
+    {
+      year: "2005",
+      image: "images/gallery/gallery-5.jpg",
+      vi: {
+        title: "Xếp hạng Di tích Cấp Thành phố",
+        body: "UBND TP.HCM chính thức công nhận Đình Bình Trường là Di tích Kiến trúc Nghệ thuật cấp Thành phố, bước ngoặt bảo tồn lâu dài các giá trị lịch sử độc đáo."
+      },
+      en: {
+        title: "Designation as City Heritage Site",
+        body: "The HCMC People's Committee officially classified Binh Truong Communal House as a City-level Heritage Site, ensuring the legal and physical preservation of its assets."
+      }
+    }
   ]
 };
