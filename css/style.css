@@ -238,9 +238,7 @@ h3 {
 .hero {
   position: relative;
   overflow: hidden;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 901 / 495; /* Exactly 1.82 ratio to display exactly the top 3/4 of the photo, cropping only the bottom 1/4 */
+  height: 550px; /* Moderate and perfectly balanced height on desktop */
   background-color: #1C100B;
   color: #FFFFFF;
 }
@@ -264,8 +262,8 @@ h3 {
 .hero-photo {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Fills the entire header container width and height */
-  object-position: center top; /* Preserves the roofs and top details, cropping only the bottom */
+  object-fit: cover;
+  object-position: center 18%; /* Perfectly keeps the roofs and top details fully visible while cropping the bottom */
 }
 
 /* Subtle dark gradient overlay on the left to ensure high readability of hero text over the stage photo */
@@ -1529,6 +1527,7 @@ h3 {
   .hero {
     min-height: auto !important;
     aspect-ratio: auto !important;
+    height: auto !important;
   }
   .hero-inner {
     display: flex !important;
