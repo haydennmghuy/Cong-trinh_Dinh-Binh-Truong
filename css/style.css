@@ -298,6 +298,19 @@ h3 {
   object-position: center 8%; /* Shift down to show top roof ornaments fully */
 }
 
+/* Dark gradient overlay on the left edge of the gate photo to blend seamlessly */
+.hero-media::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35%; /* Smooth blend boundary */
+  height: 100%;
+  background: linear-gradient(to right, rgba(20, 10, 5, 0.8) 0%, rgba(20, 10, 5, 0) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
 /* Text overlaid on the left, flush to the edge */
 .hero-copy {
   position: relative;
