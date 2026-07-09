@@ -262,8 +262,8 @@ h3 {
 .hero-photo {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Shows the full image without cropping or zooming */
-  object-position: right center; /* Aligns to the right side of the screen */
+  object-fit: cover; /* Cover the entire container fully */
+  object-position: center center; /* Centered background */
 }
 
 /* Subtle dark gradient overlay on the left to ensure high readability of hero text over the stage photo */
