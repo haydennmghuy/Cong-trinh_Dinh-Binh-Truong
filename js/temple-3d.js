@@ -784,7 +784,7 @@ const Temple3D = {
       'mieu-ho':              { x: -16.5, y: 2.0,  z: -1.0 },
       'mieu-ba-ngu-hanh':     { x: -13.5, y: 2.5,  z: -3.0 },
       'cot-co':               { x: -7.0,  y: 4.5,  z: 0.5 },
-      'nha-tho-bac-ho':       { x: 13.5,  y: 3.8,  z: -9.5 },
+      'nha-tho-bac-ho':       { x: 9.5,   y: 3.8,  z: -12.5 },
     };
 
     // Create 3D marker meshes for raycasting
@@ -994,7 +994,7 @@ const Temple3D = {
 
   buildNhaThoBacHo() {
     const C = this.COLORS;
-    const x = 13.5, z = -9.5, w = 3.5, d = 3.5, h = 3.0; // Compact size to fit the backyard next to Tiền Điện
+    const x = 9.5, z = -12.5, w = 3.5, d = 3.5, h = 3.0; // Aligned along column z = -12.5 next to Chánh Điện
     
     // Foundation
     this.scene.add(this.createBox(w + 0.4, 0.3, d + 0.4, C.stoneGray, x, 0.15, z));
@@ -1016,8 +1016,8 @@ const Temple3D = {
   buildNhaBepVaWC() {
     const C = this.COLORS;
     
-    // 1. Nhà bếp (Kitchen) at x = 13.5, z = -13.0
-    const kx = 13.5, kz = -13.0, kw = 4.0, kd = 2.5, kh = 2.4;
+    // 1. Nhà bếp (Kitchen) at x = 13.5, z = -12.5 (aligned with column z = -12.5 next to Tiền Điện)
+    const kx = 13.5, kz = -12.5, kw = 4.0, kd = 2.5, kh = 2.4;
     // Foundation
     this.scene.add(this.createBox(kw + 0.2, 0.2, kd + 0.2, C.stoneGray, kx, 0.1, kz));
     // Walls (grayish brick wall)
@@ -1031,8 +1031,8 @@ const Temple3D = {
     const kRoof = this.createRoof(kw, kd, 1.0, 0.3, C.roofRed, kx, kh + 0.1, kz);
     this.scene.add(kRoof);
 
-    // 2. WC (Toilet) at x = 13.5, z = -16.0
-    const wcx = 13.5, wcz = -16.0, wcw = 2.0, wcd = 2.0, wch = 2.2;
+    // 2. WC (Toilet) at x = 16.5, z = -12.5 (aligned in the far corner along column z = -12.5)
+    const wcx = 16.5, wcz = -12.5, wcw = 2.0, wcd = 2.0, wch = 2.2;
     // Foundation
     this.scene.add(this.createBox(wcw + 0.2, 0.15, wcd + 0.2, C.stoneGray, wcx, 0.075, wcz));
     // Walls
