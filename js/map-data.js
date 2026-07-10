@@ -19,7 +19,25 @@ var MAP_DATA = {
         audio: "audio/en/main-gate.mp3"
       }
     },
-
+    {
+      id: "cong-nho",
+      x: 35, y: 90,
+      color: "#8B8682",
+      vi: {
+        name: "Cổng Nhỏ",
+        short: "Lối vào phụ",
+        desc: "Cổng nhỏ nằm ở góc phía Nam di tích, đóng vai trò lối đi phụ thuận tiện cho người dân ra vào chăm nom đình, đồng thời là lối thoát hiểm và giao thông nội bộ.",
+        details: "• Kết cấu: Trụ bê tông đơn giản, cửa sắt sơn tĩnh điện màu vàng cát.\n• Vị trí: Góc sân dưới bên trái gần khu vực đặt bia di tích cấp Thành phố.",
+        audio: "audio/vi/cong-nho.mp3"
+      },
+      en: {
+        name: "Small Gate",
+        short: "Secondary entrance",
+        desc: "A secondary gate situated in the southern corner of the heritage site. It serves as a convenient access point for local caretakers and internal logistics.",
+        details: "• Structure: Simple concrete pillars with a sand-yellow painted iron gate.\n• Location: Lower-left courtyard corner near the city heritage stele.",
+        audio: "audio/en/small-gate.mp3"
+      }
+    },
     {
       id: "nha-vo-ca",
       x: 35, y: 40,
@@ -40,22 +58,22 @@ var MAP_DATA = {
       }
     },
     {
-      id: "tien-dien",
+      id: "vo-qui",
       x: 45, y: 40,
-      color: "#B85C4C",
+      color: "#D4824C",
       vi: {
-        name: "Tiền Điện",
-        short: "Nhà tiền",
-        desc: "Tiền Điện là gian nhà phía trước, nơi đặt bàn thờ Môn Thần (thần cửa) và các vị thần hộ vệ. Kiến trúc sử dụng hệ thống cột kèo gỗ theo lối 'tứ trụ' điển hình, với các họa tiết chạm khắc tinh xảo về tứ linh.",
-        details: "• Bộ khung: Khung gỗ 4 cột chính (Tứ trụ) đường kính 35cm chịu lực cho toàn bộ mái trước.\n• Nghệ thuật chạm: Hoa văn rồng uốn lượn uốn quanh kèo xà ngang.",
-        audio: "audio/vi/tien-dien.mp3"
+        name: "Nhà Võ Qui",
+        short: "Nhà trung điện",
+        desc: "Nhà Võ Qui là gian trung điện kết nối giữa sân khấu Võ Ca phía trước và Điện thờ chính (Chánh Điện) uy nghiêm phía sau. Đây là nơi chuẩn bị các nghi thức cúng tế và là không gian đệm tâm linh quan trọng.",
+        details: "• Kết cấu: Nối liền giữa Võ Ca và Chánh Điện, khung cột gỗ lim vững chãi.\n• Chức năng: Nơi ban tế tự tề tựu chuẩn bị y phục, phẩm vật trước khi tiến hành đại lễ cúng Thần.",
+        audio: "audio/vi/vo-qui.mp3"
       },
       en: {
-        name: "Front Hall",
-        short: "Entrance hall",
-        desc: "The Front Hall houses altars for the Door God (Mon Than) and protective deities. The architecture features a traditional 'four-pillar' wooden beam system with detailed carvings of sacred beasts.",
-        details: "• Framework: 4 main structural columns (35cm diameter) supporting front roof weight.\n• Carving: Eaves and crossbeams engraved with traditional dragon and floral motifs.",
-        audio: "audio/en/front-hall.mp3"
+        name: "Vo Qui Hall",
+        short: "Transition hall",
+        desc: "The Vo Qui Hall is the transitional chamber connecting the front Võ Ca performance stage and the sacred Main Shrine (Chánh Điện). It is used for ritual preparations and serves as an important spiritual buffer.",
+        details: "• Structure: Joins the opera stage and main hall, constructed with durable ironwood pillars.\n• Function: Assembly room for the temple committee to organize offerings and ceremony garments.",
+        audio: "audio/en/vo-qui.mp3"
       }
     },
     {
@@ -78,22 +96,22 @@ var MAP_DATA = {
       }
     },
     {
-      id: "nha-hoi",
+      id: "tien-dien",
       x: 65, y: 40,
-      color: "#6B8CAE",
+      color: "#B85C4C",
       vi: {
-        name: "Nhà Hội (Nhà Khách)",
-        short: "Nơi tiếp khách",
-        desc: "Nhà Hội là không gian cuối cùng trong dãy nhà chính, dùng làm nơi tiếp đón khách quý, hội họp và chuẩn bị lễ vật của Ban Quý tế đình.",
-        details: "• Nội thất: Đặt các bộ trường kỷ gỗ cổ xưa, bài trí tranh chữ Hán treo tường trang nghiêm.\n• Công năng: Nơi họp bàn công việc hương khói, lễ tế hàng năm của hội đồng hương chức.",
-        audio: "audio/vi/nha-hoi.mp3"
+        name: "Tiền Điện",
+        short: "Nhà tiền",
+        desc: "Tiền Điện là gian nhà đặt tại cuối cùng của dãy nhà chính (theo bản vẽ bố trí nội bộ của di tích), là nơi bái tế, chuẩn bị lễ vật và dâng hương của nhân dân trước khi hành lễ chính thức.",
+        details: "• Kết cấu: Mái lợp ngói âm dương, các kèo gỗ chạm khắc rồng mây.\n• Chức năng: Nơi dâng hương, trưng bày lễ vật cúng Thành Hoàng Bổn Cảnh.",
+        audio: "audio/vi/tien-dien.mp3"
       },
       en: {
-        name: "Assembly Hall",
-        short: "Meeting hall",
-        desc: "The Assembly Hall is the final chamber in the main block, serving as a reception area for guests, meeting room, and preparation space for the Temple Committee.",
-        details: "• Interior: Furnished with antique wooden armchairs and calligraphic wall scrolls.\n• Function: Administrative meeting space for scheduling annual community festivals.",
-        audio: "audio/en/rear-hall.mp3"
+        name: "Front Hall",
+        short: "Antechamber",
+        desc: "The Front Hall is positioned at the end of the main block (according to this heritage layout), serving as a space for public worship, preparation, and offering incense.",
+        details: "• Structure: Traditional yin-yang tiled roof with dragon and cloud wood carvings.\n• Function: Gathering area for visitors to light incense and present offerings to the deities.",
+        audio: "audio/en/front-hall.mp3"
       }
     },
     {
@@ -120,7 +138,7 @@ var MAP_DATA = {
       x: 35, y: 20,
       color: "#9B7BAE",
       vi: {
-        name: "Sân Khấu Ngoài Trời",
+        name: "Sân Khấu",
         short: "Sân khấu phụ",
         desc: "Sân khấu ngoài trời nằm cạnh bia tưởng niệm, là nơi tổ chức các sự kiện văn nghệ cộng đồng, biểu diễn ca nhạc dân gian ngoài trời cho nhân dân trong vùng.",
         details: "• Kết cấu: Bục bê tông lát gạch tàu đỏ, có mái che che nắng mưa.\n• Hoạt động: Tổ chức đờn ca tài tử, múa thiếu nhi dịp Tết Trung Thu và lễ hội làng.",
@@ -140,7 +158,7 @@ var MAP_DATA = {
       color: "#C9A84C",
       vi: {
         name: "Bia Tưởng Niệm",
-        short: "Bia ghi danh",
+        short: "Bia tưởng niệm liệt sĩ",
         desc: "Bia tưởng niệm ghi danh các anh hùng liệt sĩ đã hy sinh xương máu cho sự nghiệp giải phóng dân tộc của quê hương Bình Trường.",
         details: "• Chất liệu: Bằng đá hoa cương đen nguyên tấm chạm khắc chữ vàng nhũ.\n• Ý nghĩa: Thể hiện truyền thống 'Uống nước nhớ nguồn' của người dân địa phương.",
         audio: "audio/vi/bia-tuong-niem.mp3"
@@ -158,8 +176,8 @@ var MAP_DATA = {
       x: 40, y: 55,
       color: "#B85C4C",
       vi: {
-        name: "Bia Di Tích Nghệ Thuật",
-        short: "Bia công nhận di tích",
+        name: "Bia Di Tích Cấp TP",
+        short: "Bia ghi nhận di tích",
         desc: "Bia đá khắc Quyết định công nhận Đình Bình Trường là Di tích Kiến trúc Nghệ thuật cấp Thành phố vào năm 2005, khẳng định giá trị lịch sử lâu đời của đình.",
         details: "• Cấu trúc: Bia đá sa thạch đặt trên bệ đỡ tròn vững chắc, có mái che ngói nhỏ phía trên.\n• Nội dung: Trích lục quyết định của Ủy ban Nhân dân TP.HCM xếp hạng di tích lịch sử cấp thành phố.",
         audio: "audio/vi/bia-di-tich.mp3"
@@ -173,60 +191,117 @@ var MAP_DATA = {
       }
     },
     {
-      id: "mieu-tho-1",
+      id: "mieu-bach-ma",
       x: 25, y: 30,
       color: "#8B6914",
       vi: {
-        name: "Miếu Thờ (1)",
-        short: "Miếu thần tả",
-        desc: "Ngôi miếu nhỏ nằm ở hành lang bên trái đình thờ cúng linh thần bản xứ, cầu mong mưa thuận gió hòa cho đồng ruộng quanh đình.",
-        details: "• Kiến trúc: Nhà miếu dạng tháp nhỏ xây gạch vàng, lợp mái ngói đao đỏ cổ kính.",
-        audio: "audio/vi/mieu-1.mp3"
+        name: "Miếu Bạch Mã",
+        short: "Thần Bạch Mã",
+        desc: "Miếu thờ thần Bạch Mã (ngựa trắng), vị thần bảo hộ bờ cõi và là linh vật hộ vệ trung thành của thần Thành Hoàng, mang ý nghĩa cầu mong sự trung dũng, cát tường và thịnh vượng.",
+        details: "• Kết cấu: Miếu xây gạch, mái ngói đỏ đắp tượng bạch mã phục chầu uy nghiêm.\n• Vị trí: Nằm đầu tiên bên trái trong dãy miếu thờ phụ phía sau hồ bán nguyệt.",
+        audio: "audio/vi/mieu-bach-ma.mp3"
       },
       en: {
-        name: "Shrine (1)",
-        short: "Left shrine",
-        desc: "A small shrine situated on the left walkway dedicated to local deities, praying for favorable weather and prosperous harvests.",
-        details: "• Structure: Miniature yellow brick tower capped with a curved red clay tile roof.",
-        audio: "audio/en/shrine-1.mp3"
+        name: "Bach Ma Shrine",
+        short: "White Horse Shrine",
+        desc: "A shrine dedicated to the White Horse deity (Bach Ma), a loyal guardian of the tutelary god, symbolizing loyalty, security, and prosperity for the community.",
+        details: "• Structure: Brick masonry shrine with a red-tiled roof, featuring a statue of a white horse.\n• Location: The first shrine on the left in the rear row near the pond.",
+        audio: "audio/en/bach-ma-shrine.mp3"
       }
     },
     {
-      id: "binh-phong",
-      x: 25, y: 40,
-      color: "#C9A84C",
-      vi: {
-        name: "Bình Phong",
-        short: "Bích chắn gió",
-        desc: "Bình phong là bức tường chắn trước sân đình giúp ngăn cản chướng khí, bảo vệ sinh khí tịnh yên cho nơi thờ tự bên trong đình.",
-        details: "• Cấu trúc: Bức bình phong gạch vững chắc, đắp nổi linh thú và bờ ngói đỏ che phía trên.",
-        audio: "audio/vi/binh-phong.mp3"
-      },
-      en: {
-        name: "Screen Wall",
-        short: "Feng shui screen",
-        desc: "The Screen Wall (Bình Phong) stands in the courtyard to block negative feng shui currents and shield the sacred inner worship halls from bad winds.",
-        details: "• Structure: Solid brick wall adorned with bas-relief beasts and finished with a mini red tile roof.",
-        audio: "audio/en/screen-wall.mp3"
-      }
-    },
-    {
-      id: "mieu-tho-2",
-      x: 25, y: 50,
+      id: "ban-than-nong",
+      x: 25, y: 35,
       color: "#8B6914",
       vi: {
-        name: "Miếu Thờ (2)",
-        short: "Miếu thần hữu",
-        desc: "Ngôi miếu nhỏ thứ hai dọc hành lang trái, thờ linh thần bảo hộ bờ cõi, giữ bình yên cho nhân dân sinh sống trong làng.",
-        details: "• Kiến trúc: Trụ tháp đá hoa cương đắp ngói, đặt bát hương gốm sứ cúng bái tôn nghiêm.",
-        audio: "audio/vi/mieu-2.mp3"
+        name: "Bàn Thần Nông",
+        short: "Thờ Thần Nông",
+        desc: "Bàn thờ Thần Nông (Vua Thần Nông - người dạy dân nghề nông) để cầu nguyện mùa màng tươi tốt, mưa thuận gió hòa, đời sống ấm no cho bà con làm nông nghiệp quanh vùng.",
+        details: "• Kiến trúc: Bệ thờ đá lộ thiên tôn nghiêm, đặt bát hương gốm và bài vị Thần Nông.\n• Vị trí: Đứng thứ hai từ trái sang trong hàng miếu thờ lộ thiên.",
+        audio: "audio/vi/ban-than-nong.mp3"
       },
       en: {
-        name: "Shrine (2)",
-        short: "Right shrine",
-        desc: "The second small shrine along the left walkway, dedicated to guardian spirits who protect the borders and ensure security for Binh Truong villagers.",
-        details: "• Structure: Granite tower base with a red tile crest and an incense burner setup.",
-        audio: "audio/en/shrine-2.mp3"
+        name: "Shennong Altar",
+        short: "Altar of agriculture",
+        desc: "An open-air altar dedicated to Shennong (the Deity of Agriculture), where locals pray for favorable weather, bountiful crops, and prosperity.",
+        details: "• Structure: Open stone altar pedestal decorated with traditional incense burner.\n• Location: The second installation from the left in the outdoor shrine line.",
+        audio: "audio/en/shennong-altar.mp3"
+      }
+    },
+    {
+      id: "mieu-ho",
+      x: 25, y: 40,
+      color: "#8B6914",
+      vi: {
+        name: "Miếu Hổ Thần",
+        short: "Thần Hổ Sơn Lâm",
+        desc: "Miếu thờ Hổ Thần (Chúa Sơn Lâm), biểu tượng của sức mạnh tự nhiên trấn giữ tà khí, bảo vệ sự bình an thanh tịnh cho toàn bộ khuôn viên tôn nghiêm của đình.",
+        details: "• Kết cấu: Am thờ nhỏ ẩn sau dãy miếu thờ chính, đắp nổi hình hổ sơn lâm oai phong.\n• Ý nghĩa: Trấn át tà ma, bảo vệ ngôi đình khỏi những chướng khí xấu.",
+        audio: "audio/vi/mieu-ho.mp3"
+      },
+      en: {
+        name: "Tiger God Shrine",
+        short: "Lord of the Forest",
+        desc: "A small shrine dedicated to the Tiger God (Chua Son Lam), representing natural strength to ward off negative spirits and preserve peace in the temple compound.",
+        details: "• Structure: Miniature stone alcove containing a painted Tiger relief.\n• Meaning: Acts as a spiritual shield guarding the temple borders.",
+        audio: "audio/en/tiger-shrine.mp3"
+      }
+    },
+    {
+      id: "mieu-ba-ngu-hanh",
+      x: 25, y: 45,
+      color: "#8B6914",
+      vi: {
+        name: "Miếu Bà Ngũ Hành",
+        short: "Năm vị nữ thần",
+        desc: "Miếu thờ Bà Ngũ Hành tượng trưng cho Kim, Mộc, Thủy, Hỏa, Thổ. Các Mẹ Ngũ Hành cai quản các yếu tố sinh hoạt và sản xuất nông nghiệp của cư dân địa phương.",
+        details: "• Kiến trúc: Miếu thờ gạch đỏ, bên trong thờ 5 bài vị của năm vị nữ thần ngũ hành.\n• Vị trí: Đứng thứ tư từ trái sang trong dãy thờ phụ cạnh hồ thủy tạ.",
+        audio: "audio/vi/mieu-ngu-hanh.mp3"
+      },
+      en: {
+        name: "Five Elements Shrine",
+        short: "Five Goddesses Shrine",
+        desc: "Dedicated to the Five Goddesses of the Elements (Metal, Wood, Water, Fire, Earth) who oversee production, health, and daily life in Southern culture.",
+        details: "• Structure: Traditional red-brick shrine housing five symbolic tablets of the goddesses.\n• Location: The fourth shrine from the left in the courtyard row.",
+        audio: "audio/en/elements-shrine.mp3"
+      }
+    },
+    {
+      id: "cot-co",
+      x: 35, y: 55,
+      color: "#DA251D",
+      vi: {
+        name: "Cột Cờ Tổ Quốc",
+        short: "Cột cờ quốc gia",
+        desc: "Cột cờ Việt Nam uy nghiêm đứng giữa sân đình, đại diện cho lòng yêu nước, chủ quyền quốc gia và niềm tự hào dân tộc của nhân dân vùng đất Bình Trường lịch sử.",
+        details: "• Kết cấu: Trụ cờ thép cao 6m sơn bạc chống rỉ, đế trụ 2 cấp xây gạch lát đá xám vững chãi.\n• Nghi lễ: Nơi treo cờ Tổ quốc trong các ngày lễ lớn và lễ hội Kỳ Yên hàng năm.",
+        audio: "audio/vi/cot-co.mp3"
+      },
+      en: {
+        name: "National Flagpole",
+        short: "Vietnam Flagpole",
+        desc: "The national flagpole stands tall in the center of the temple courtyard, representing patriotism, national sovereignty, and community pride.",
+        details: "• Structure: 6m rust-proof silver steel pole anchored on a double-tiered stone pedestal.\n• Rituals: Carries the national flag during major holidays and the annual Ky Yen festival.",
+        audio: "audio/en/flagpole.mp3"
+      }
+    },
+    {
+      id: "nha-tho-bac-ho",
+      x: 75, y: 90,
+      color: "#DA251D",
+      vi: {
+        name: "Nhà Thờ Bác Hồ",
+        short: "Điện thờ Bác Hồ",
+        desc: "Nhà thờ Bác Hồ là công trình trang trọng được xây dựng trong khuôn viên đình, thể hiện lòng biết ơn vô hạn của nhân dân địa phương đối với Chủ tịch Hồ Chí Minh vĩ đại.",
+        details: "• Kết cấu: Ngôi nhà nhỏ 1 gian mái ngói đỏ, sơn vàng trang nghiêm, đặt bàn thờ và chân dung Bác Hồ.\n• Vị trí: Nằm ở góc sân phía Đông Nam (phía dưới bên phải bản vẽ).",
+        audio: "audio/vi/nha-tho-bac-ho.mp3"
+      },
+      en: {
+        name: "Uncle Ho Temple",
+        short: "Ho Chi Minh Shrine",
+        desc: "A solemn shrine dedicated to President Ho Chi Minh, built within the temple grounds to express the local community's deep gratitude to the national leader.",
+        details: "• Structure: Single-chamber yellow house with a red tiled roof, containing an altar and portrait of Uncle Ho.\n• Location: Situated in the southeast courtyard corner.",
+        audio: "audio/en/uncle-ho-temple.mp3"
       }
     }
   ],

@@ -294,6 +294,10 @@ const Temple3D = {
 
     // === Stone monument ===
     this.addMonuments();
+
+    // === Flagpole & Uncle Ho Temple ===
+    this.buildFlagpole();
+    this.buildNhaThoBacHo();
   },
 
   buildFence() {
@@ -551,6 +555,13 @@ const Temple3D = {
     const sRoof2 = this.createRoof(1.4, 1.4, 0.6, 0.1, C.roofRed, m2x, 1.4, m2z);
     this.scene.add(sRoof2);
 
+    // 6B. Miếu Hổ (Tiger Shrine) - Small brick shrine behind the row
+    const mhx = -16.5, mhz = -1.0;
+    this.scene.add(this.createBox(0.8, 0.2, 0.8, C.stoneGray, mhx, 0.1, mhz));
+    this.scene.add(this.createBox(0.6, 0.8, 0.6, C.wallYellow, mhx, 0.5, mhz));
+    const mhRoof = this.createRoof(0.9, 0.9, 0.4, 0.1, C.roofRed, mhx, 0.9, mhz);
+    this.scene.add(mhRoof);
+
     // 7. Bia Di Tích Kiến Trúc Nghệ Thuật (Stepped granite stele matching the photo, facing Back/-z)
     const bx = -4.0, bz = 6.0;
     // Granite base/pedestal
@@ -750,20 +761,24 @@ const Temple3D = {
   createHotspots() {
     if (typeof MAP_DATA === 'undefined') return;
 
-    // 3D positions matching the new courtyard layout
+    // 3D positions matching the user's drawing layout
     const hotspotPositions = {
-      'cong-tam-quan':        { x: -10.5, y: 5.0, z: 16.0 },
-      'nha-vo-ca':            { x: -0.5,  y: 4.5, z: -4.0 },
-      'tien-dien':            { x: 4.5,   y: 4.5, z: -4.0 },
-      'chanh-dien':           { x: 9.5,   y: 6.0, z: -4.0 },
-      'nha-hoi':              { x: 13.5,  y: 4.5, z: -4.0 },
-      'ho-thuy-ta':           { x: -20.0, y: 1.5, z: -5.0 },
-      'san-khau-ngoai-troi':  { x: -13.5, y: 3.5, z: -12.5 },
-      'bia-tuong-niem':       { x: -13.5, y: 2.2, z: -7.5 },
-      'bia-di-tich':          { x: -4.0,  y: 3.2, z: 6.0 },
-      'mieu-tho-1':           { x: -13.5, y: 2.5, z: -3.0 },
-      'binh-phong':           { x: -13.5, y: 3.0, z: 1.5 },
-      'mieu-tho-2':           { x: -13.5, y: 2.5, z: 6.0 },
+      'cong-tam-quan':        { x: -10.5, y: 5.0,  z: 16.0 },
+      'cong-nho':             { x: 5.5,   y: 3.5,  z: 16.0 },
+      'nha-vo-ca':            { x: -0.5,  y: 4.5,  z: -4.0 },
+      'vo-qui':               { x: 4.5,   y: 4.5,  z: -4.0 },
+      'chanh-dien':           { x: 9.5,   y: 6.0,  z: -4.0 },
+      'tien-dien':            { x: 13.5,  y: 4.5,  z: -4.0 },
+      'ho-thuy-ta':           { x: -20.0, y: 1.5,  z: -5.0 },
+      'san-khau-ngoai-troi':  { x: -13.5, y: 3.5,  z: -12.5 },
+      'bia-tuong-niem':       { x: -13.5, y: 2.2,  z: -7.5 },
+      'bia-di-tich':          { x: -4.0,  y: 3.2,  z: 6.0 },
+      'mieu-bach-ma':         { x: -13.5, y: 2.5,  z: 6.0 },
+      'ban-than-nong':        { x: -13.5, y: 2.2,  z: 1.5 },
+      'mieu-ho':              { x: -16.5, y: 2.0,  z: -1.0 },
+      'mieu-ba-ngu-hanh':     { x: -13.5, y: 2.5,  z: -3.0 },
+      'cot-co':               { x: -7.0,  y: 4.5,  z: 0.5 },
+      'nha-tho-bac-ho':       { x: 13.5,  y: 3.8,  z: 13.0 },
     };
 
     // Create 3D marker meshes for raycasting
@@ -939,6 +954,57 @@ const Temple3D = {
         labels[i].style.top = y + 'px';
       }
     });
+  },
+
+  buildFlagpole() {
+    const C = this.COLORS;
+    const group = new THREE.Group();
+    group.position.set(-7.0, 0, 0.5); // Center yard position
+
+    // Base
+    group.add(this.createCylinder(0.5, 0.6, 0.4, C.stoneGray, 0, 0.2, 0, 8));
+    group.add(this.createCylinder(0.3, 0.4, 0.3, C.stoneGray, 0, 0.55, 0, 8));
+
+    // Pole
+    group.add(this.createCylinder(0.06, 0.06, 6.0, 0xDDDDDD, 0, 3.0, 0, 8));
+
+    // Vietnam Flag
+    const flagGeo = new THREE.BoxGeometry(1.2, 0.8, 0.02);
+    const flagMat = new THREE.MeshBasicMaterial({ color: 0xDA251D }); // Red
+    const flag = new THREE.Mesh(flagGeo, flagMat);
+    flag.position.set(0.6, 5.6, 0);
+    group.add(flag);
+
+    // Yellow star in the center
+    const starGeo = new THREE.ConeGeometry(0.18, 0.04, 5);
+    const starMat = new THREE.MeshBasicMaterial({ color: 0xFFFF00 }); // Yellow
+    const star = new THREE.Mesh(starGeo, starMat);
+    star.rotation.x = Math.PI / 2;
+    star.position.set(0.6, 5.6, 0.02);
+    group.add(star);
+
+    this.scene.add(group);
+  },
+
+  buildNhaThoBacHo() {
+    const C = this.COLORS;
+    const x = 13.5, z = 13.0, w = 4, d = 4, h = 3.2;
+    
+    // Foundation
+    this.scene.add(this.createBox(w + 0.4, 0.3, d + 0.4, C.stoneGray, x, 0.15, z));
+    
+    // Walls
+    this.scene.add(this.createBox(w, h, 0.15, C.wallYellow, x, h/2 + 0.3, z - d/2));
+    this.scene.add(this.createBox(w, h, 0.15, C.wallYellow, x, h/2 + 0.3, z + d/2));
+    this.scene.add(this.createBox(0.15, h, d, C.wallYellow, x - w/2, h/2 + 0.3, z));
+    this.scene.add(this.createBox(0.15, h, d, C.wallYellow, x + w/2, h/2 + 0.3, z));
+    
+    // Doorway
+    this.scene.add(this.createBox(1.5, 2.2, 0.2, C.woodBrown, x, 1.1 + 0.3, z + d/2));
+    
+    // Roof
+    const roof = this.createRoof(w, d, 1.8, 0.5, C.roofRed, x, h + 0.3, z);
+    this.scene.add(roof);
   },
 
   destroy() {

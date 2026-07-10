@@ -1,16 +1,20 @@
 const HOTSPOT_IMAGES = {
   'cong-tam-quan':        ['images/real/cong_tam_quan_real.png'],
+  'cong-nho':             [],
   'nha-vo-ca':            [],
-  'tien-dien':            [],
+  'vo-qui':               [],
   'chanh-dien':           ['images/real/inside_real.png'],
-  'nha-hoi':              [],
+  'tien-dien':            [],
   'ho-thuy-ta':           [],
   'san-khau-ngoai-troi':  [],
   'bia-tuong-niem':       ['images/real/bia_tuong_niem_real.jpg'],
   'bia-di-tich':          [],
-  'mieu-tho-1':           ['images/real/mieu_tho_real.jpg'],
-  'binh-phong':           ['images/real/binh_phong_real.jpg'],
-  'mieu-tho-2':           ['images/real/mieu_tho_real.jpg'],
+  'mieu-bach-ma':         ['images/real/mieu_tho_real.jpg'],
+  'ban-than-nong':        ['images/real/binh_phong_real.jpg'],
+  'mieu-ho':              [],
+  'mieu-ba-ngu-hanh':     ['images/real/mieu_tho_real.jpg'],
+  'cot-co':               [],
+  'nha-tho-bac-ho':       [],
 };
 
 // ===== Hotspot Modal =====
