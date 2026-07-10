@@ -2,7 +2,7 @@ var MAP_DATA = {
   areas: [
     {
       id: "cong-tam-quan",
-      x: 35, y: 75,
+      x: 22, y: 80,
       color: "#C9A84C",
       vi: {
         name: "Cổng Tam Quan",
@@ -21,7 +21,7 @@ var MAP_DATA = {
     },
     {
       id: "cong-nho",
-      x: 65, y: 75,
+      x: 50, y: 80,
       color: "#8B8682",
       vi: {
         name: "Cổng Nhỏ",
@@ -40,7 +40,7 @@ var MAP_DATA = {
     },
     {
       id: "nha-vo-ca",
-      x: 35, y: 40,
+      x: 50, y: 30,
       color: "#9B7BAE",
       vi: {
         name: "Nhà Võ Ca",
@@ -59,7 +59,7 @@ var MAP_DATA = {
     },
     {
       id: "vo-qui",
-      x: 45, y: 40,
+      x: 50, y: 42,
       color: "#D4824C",
       vi: {
         name: "Nhà Võ Qui",
@@ -78,7 +78,7 @@ var MAP_DATA = {
     },
     {
       id: "chanh-dien",
-      x: 55, y: 40,
+      x: 50, y: 55,
       color: "#C9A84C",
       vi: {
         name: "Chánh Điện",
@@ -97,7 +97,7 @@ var MAP_DATA = {
     },
     {
       id: "tien-dien",
-      x: 65, y: 40,
+      x: 50, y: 68,
       color: "#B85C4C",
       vi: {
         name: "Tiền Điện",
@@ -135,7 +135,7 @@ var MAP_DATA = {
     },
     {
       id: "san-khau-ngoai-troi",
-      x: 38, y: 25,
+      x: 65, y: 30,
       color: "#9B7BAE",
       vi: {
         name: "Sân Khấu",
@@ -173,7 +173,7 @@ var MAP_DATA = {
     },
     {
       id: "bia-di-tich",
-      x: 50, y: 60,
+      x: 36, y: 65,
       color: "#B85C4C",
       vi: {
         name: "Bia Di Tích Cấp TP",
@@ -268,7 +268,7 @@ var MAP_DATA = {
     },
     {
       id: "cot-co",
-      x: 30, y: 45,
+      x: 36, y: 38,
       color: "#DA251D",
       vi: {
         name: "Cột Cờ Tổ Quốc",
@@ -287,7 +287,7 @@ var MAP_DATA = {
     },
     {
       id: "nha-tho-bac-ho",
-      x: 68, y: 25,
+      x: 78, y: 15,
       color: "#DA251D",
       vi: {
         name: "Nhà Thờ Bác Hồ",

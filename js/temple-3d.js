@@ -271,6 +271,15 @@ const Temple3D = {
     // === SÂN ĐÌNH (Courtyard features) ===
     this.buildCourtyard();
 
+    // === Create main hall group ===
+    this.mainHall = new THREE.Group();
+    
+    // Temporarily redirect scene.add to mainHall.add
+    const originalSceneAdd = this.scene.add;
+    this.scene.add = (...args) => {
+      this.mainHall.add(...args);
+    };
+
     // === TIỀN ĐIỆN (Front Hall) ===
     this.buildTienDien();
 
@@ -289,11 +298,19 @@ const Temple3D = {
     // === ROOF DECORATIONS ===
     this.addRoofDecorations();
 
-    // === Small trees (proportional, not too big) ===
-    this.addTrees();
-
     // === Stone monument ===
     this.addMonuments();
+
+    // Restore original scene.add
+    this.scene.add = originalSceneAdd;
+
+    // Rotate and position the main hall group to run along Z-axis vertically
+    this.mainHall.rotation.y = -Math.PI / 2;
+    this.mainHall.position.set(0.5, 0, 0);
+    this.scene.add(this.mainHall);
+
+    // === Small trees (proportional, not too big) ===
+    this.addTrees();
 
     // === Flagpole, Uncle Ho Temple, Kitchen & WC ===
     this.buildFlagpole();
@@ -487,16 +504,16 @@ const Temple3D = {
     border.position.set(-21.9, 0.03, -14.0);
     this.scene.add(border);
 
-    // 2. Sân Khấu Ngoài Trời (Outdoor Stage) - Aligned vertically at x = -0.5, facing East (+x) towards Vo Ca
+    // 2. Sân Khấu Ngoài Trời (Outdoor Stage) - Aligned vertically at x = 11.5, facing West (-x) towards Vo Ca
     // Stage base
-    this.scene.add(this.createBox(3.0, 0.4, 4.0, C.stoneGray, -0.5, 0.2, -12.5));
-    // Stage back wall on the left side (x = -1.9)
-    this.scene.add(this.createBox(0.15, 2.0, 4.0, C.columnRed, -1.9, 1.4, -12.5));
-    // Front corner columns (at x = 0.9)
-    this.scene.add(this.createBox(0.15, 2.0, 0.15, C.columnRed, 0.9, 1.4, -14.4));
-    this.scene.add(this.createBox(0.15, 2.0, 0.15, C.columnRed, 0.9, 1.4, -10.6));
+    this.scene.add(this.createBox(3.0, 0.4, 4.0, C.stoneGray, 11.5, 0.2, -2.0));
+    // Stage back wall on the right side (x = 12.9)
+    this.scene.add(this.createBox(0.15, 2.0, 4.0, C.columnRed, 12.9, 1.4, -2.0));
+    // Front corner columns (at x = 10.1)
+    this.scene.add(this.createBox(0.15, 2.0, 0.15, C.columnRed, 10.1, 1.4, -3.9));
+    this.scene.add(this.createBox(0.15, 2.0, 0.15, C.columnRed, 10.1, 1.4, -0.1));
     // Stage roof
-    const stageRoof = this.createRoof(3.4, 4.4, 0.6, 0.2, C.roofRed, -0.5, 2.4, -12.5);
+    const stageRoof = this.createRoof(3.4, 4.4, 0.6, 0.2, C.roofRed, 11.5, 2.4, -2.0);
     this.scene.add(stageRoof);
 
     // 3. Bia Tưởng Niệm (Memorial Stele) - Aligned vertically at x = -13.5
@@ -994,7 +1011,7 @@ const Temple3D = {
 
   buildNhaThoBacHo() {
     const C = this.COLORS;
-    const x = 13.5, z = -12.5, w = 3.5, d = 3.5, h = 3.0; // Aligned along column z = -12.5 next to Tiền Điện (top-right of the yard)
+    const x = 11.5, z = -12.5, w = 3.5, d = 3.5, h = 3.0; // Aligned along column z = -12.5 next to Tiền Điện (top-right of the yard)
     
     // Foundation
     this.scene.add(this.createBox(w + 0.4, 0.3, d + 0.4, C.stoneGray, x, 0.15, z));
@@ -1016,8 +1033,8 @@ const Temple3D = {
   buildNhaBepVaWC() {
     const C = this.COLORS;
     
-    // 1. Nhà bếp (Kitchen) at x = 13.5, z = 12.0 (aligned with column z = 12.0 next to Tiền Điện and Cổng Nhỏ)
-    const kx = 13.5, kz = 12.0, kw = 4.0, kd = 2.5, kh = 2.4;
+    // 1. Nhà bếp (Kitchen) at x = 11.5, z = 12.0 (aligned with column z = 12.0 next to Tiền Điện and Cổng Nhỏ)
+    const kx = 11.5, kz = 12.0, kw = 4.0, kd = 2.5, kh = 2.4;
     // Foundation
     this.scene.add(this.createBox(kw + 0.2, 0.2, kd + 0.2, C.stoneGray, kx, 0.1, kz));
     // Walls (grayish brick wall)
@@ -1031,8 +1048,8 @@ const Temple3D = {
     const kRoof = this.createRoof(kw, kd, 1.0, 0.3, C.roofRed, kx, kh + 0.1, kz);
     this.scene.add(kRoof);
 
-    // 2. WC (Toilet) at x = 16.5, z = 12.0 (aligned in the far bottom-right corner along column z = 12.0)
-    const wcx = 16.5, wcz = 12.0, wcw = 2.0, wcd = 2.0, wch = 2.2;
+    // 2. WC (Toilet) at x = 11.5, z = 15.0 (aligned in the far bottom-right corner along column x = 11.5)
+    const wcx = 11.5, wcz = 15.0, wcw = 2.0, wcd = 2.0, wch = 2.2;
     // Foundation
     this.scene.add(this.createBox(wcw + 0.2, 0.15, wcd + 0.2, C.stoneGray, wcx, 0.075, wcz));
     // Walls
