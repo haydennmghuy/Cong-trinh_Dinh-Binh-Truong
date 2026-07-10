@@ -295,9 +295,10 @@ const Temple3D = {
     // === Stone monument ===
     this.addMonuments();
 
-    // === Flagpole & Uncle Ho Temple ===
+    // === Flagpole, Uncle Ho Temple, Kitchen & WC ===
     this.buildFlagpole();
     this.buildNhaThoBacHo();
+    this.buildNhaBepVaWC();
   },
 
   buildFence() {
@@ -783,7 +784,7 @@ const Temple3D = {
       'mieu-ho':              { x: -16.5, y: 2.0,  z: -1.0 },
       'mieu-ba-ngu-hanh':     { x: -13.5, y: 2.5,  z: -3.0 },
       'cot-co':               { x: -7.0,  y: 4.5,  z: 0.5 },
-      'nha-tho-bac-ho':       { x: 13.5,  y: 3.8,  z: 13.0 },
+      'nha-tho-bac-ho':       { x: 13.5,  y: 3.8,  z: -9.5 },
     };
 
     // Create 3D marker meshes for raycasting
@@ -993,7 +994,7 @@ const Temple3D = {
 
   buildNhaThoBacHo() {
     const C = this.COLORS;
-    const x = 13.5, z = 13.0, w = 4, d = 4, h = 3.2;
+    const x = 13.5, z = -9.5, w = 3.5, d = 3.5, h = 3.0; // Compact size to fit the backyard next to Tiền Điện
     
     // Foundation
     this.scene.add(this.createBox(w + 0.4, 0.3, d + 0.4, C.stoneGray, x, 0.15, z));
@@ -1004,12 +1005,43 @@ const Temple3D = {
     this.scene.add(this.createBox(0.15, h, d, C.wallYellow, x - w/2, h/2 + 0.3, z));
     this.scene.add(this.createBox(0.15, h, d, C.wallYellow, x + w/2, h/2 + 0.3, z));
     
-    // Doorway
-    this.scene.add(this.createBox(1.5, 2.2, 0.2, C.woodBrown, x, 1.1 + 0.3, z + d/2));
+    // Doorway (facing the courtyard on the left -x side)
+    this.scene.add(this.createBox(0.2, 2.0, 1.2, C.woodBrown, x - w/2, 1.0 + 0.3, z));
     
     // Roof
-    const roof = this.createRoof(w, d, 1.8, 0.5, C.roofRed, x, h + 0.3, z);
+    const roof = this.createRoof(w, d, 1.5, 0.4, C.roofRed, x, h + 0.3, z);
     this.scene.add(roof);
+  },
+
+  buildNhaBepVaWC() {
+    const C = this.COLORS;
+    
+    // 1. Nhà bếp (Kitchen) at x = 13.5, z = -13.0
+    const kx = 13.5, kz = -13.0, kw = 4.0, kd = 2.5, kh = 2.4;
+    // Foundation
+    this.scene.add(this.createBox(kw + 0.2, 0.2, kd + 0.2, C.stoneGray, kx, 0.1, kz));
+    // Walls (grayish brick wall)
+    this.scene.add(this.createBox(kw, kh, 0.15, 0xB0A896, kx, kh/2 + 0.1, kz - kd/2));
+    this.scene.add(this.createBox(kw, kh, 0.15, 0xB0A896, kx, kh/2 + 0.1, kz + kd/2));
+    this.scene.add(this.createBox(0.15, kh, kd, 0xB0A896, kx - kw/2, kh/2 + 0.1, kz));
+    this.scene.add(this.createBox(0.15, kh, kd, 0xB0A896, kx + kw/2, kh/2 + 0.1, kz));
+    // Door
+    this.scene.add(this.createBox(0.2, 1.8, 1.0, C.woodBrown, kx - kw/2, 0.9 + 0.1, kz));
+    // Roof
+    const kRoof = this.createRoof(kw, kd, 1.0, 0.3, C.roofRed, kx, kh + 0.1, kz);
+    this.scene.add(kRoof);
+
+    // 2. WC (Toilet) at x = 13.5, z = -16.0
+    const wcx = 13.5, wcz = -16.0, wcw = 2.0, wcd = 2.0, wch = 2.2;
+    // Foundation
+    this.scene.add(this.createBox(wcw + 0.2, 0.15, wcd + 0.2, C.stoneGray, wcx, 0.075, wcz));
+    // Walls
+    this.scene.add(this.createBox(wcw, wch, 0.1, 0xCCCCCC, wcx, wch/2 + 0.075, wcz - wcd/2));
+    this.scene.add(this.createBox(wcw, wch, 0.1, 0xCCCCCC, wcx, wch/2 + 0.075, wcz + wcd/2));
+    this.scene.add(this.createBox(0.1, wch, wcd, 0xCCCCCC, wcx - wcw/2, wch/2 + 0.075, wcz));
+    this.scene.add(this.createBox(0.1, wch, wcd, 0xCCCCCC, wcx + wcw/2, wch/2 + 0.075, wcz));
+    // Roof (simple flat slab)
+    this.scene.add(this.createBox(wcw + 0.2, 0.1, wcd + 0.2, C.stoneGray, wcx, wch + 0.075, wcz));
   },
 
   destroy() {
