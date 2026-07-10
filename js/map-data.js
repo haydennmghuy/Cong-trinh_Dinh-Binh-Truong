@@ -21,7 +21,7 @@ var MAP_DATA = {
     },
     {
       id: "cong-nho",
-      x: 35, y: 90,
+      x: 65, y: 75,
       color: "#8B8682",
       vi: {
         name: "Cổng Nhỏ",
@@ -116,7 +116,7 @@ var MAP_DATA = {
     },
     {
       id: "ho-thuy-ta",
-      x: 18, y: 25,
+      x: 18, y: 15,
       color: "#33A0FF",
       vi: {
         name: "Hồ Thủy Tạ",
@@ -135,7 +135,7 @@ var MAP_DATA = {
     },
     {
       id: "san-khau-ngoai-troi",
-      x: 35, y: 20,
+      x: 38, y: 25,
       color: "#9B7BAE",
       vi: {
         name: "Sân Khấu",
@@ -154,7 +154,7 @@ var MAP_DATA = {
     },
     {
       id: "bia-tuong-niem",
-      x: 25, y: 20,
+      x: 22, y: 55,
       color: "#C9A84C",
       vi: {
         name: "Bia Tưởng Niệm",
@@ -173,7 +173,7 @@ var MAP_DATA = {
     },
     {
       id: "bia-di-tich",
-      x: 40, y: 55,
+      x: 50, y: 60,
       color: "#B85C4C",
       vi: {
         name: "Bia Di Tích Cấp TP",
@@ -192,7 +192,7 @@ var MAP_DATA = {
     },
     {
       id: "mieu-bach-ma",
-      x: 25, y: 30,
+      x: 22, y: 25,
       color: "#8B6914",
       vi: {
         name: "Miếu thờ Bạch Mã",
@@ -211,7 +211,7 @@ var MAP_DATA = {
     },
     {
       id: "ban-than-nong",
-      x: 25, y: 35,
+      x: 22, y: 35,
       color: "#8B6914",
       vi: {
         name: "Bàn thờ Thần Nông",
@@ -230,7 +230,7 @@ var MAP_DATA = {
     },
     {
       id: "mieu-ho",
-      x: 25, y: 40,
+      x: 30, y: 30,
       color: "#8B6914",
       vi: {
         name: "Miếu thờ Thần Hổ",
@@ -249,7 +249,7 @@ var MAP_DATA = {
     },
     {
       id: "mieu-ba-ngu-hanh",
-      x: 25, y: 45,
+      x: 22, y: 45,
       color: "#8B6914",
       vi: {
         name: "Miếu thờ Bà Ngũ Hành",
@@ -268,7 +268,7 @@ var MAP_DATA = {
     },
     {
       id: "cot-co",
-      x: 35, y: 55,
+      x: 30, y: 45,
       color: "#DA251D",
       vi: {
         name: "Cột Cờ Tổ Quốc",
@@ -287,7 +287,7 @@ var MAP_DATA = {
     },
     {
       id: "nha-tho-bac-ho",
-      x: 75, y: 90,
+      x: 68, y: 25,
       color: "#DA251D",
       vi: {
         name: "Nhà Thờ Bác Hồ",
