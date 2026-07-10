@@ -303,6 +303,44 @@ var MAP_DATA = {
         details: "• Structure: Single-chamber yellow house with a red tiled roof, containing an altar and portrait of Uncle Ho.\n• Location: Situated in the southeast courtyard corner.",
         audio: "audio/en/uncle-ho-temple.mp3"
       }
+    },
+    {
+      id: "nha-bep",
+      x: 75, y: 50,
+      color: "#8B8682",
+      vi: {
+        name: "Nhà Bếp",
+        short: "Khu nhà bếp",
+        desc: "Gian nhà bếp truyền thống được xây dựng bên cạnh Tiền Điện để phục vụ công tác chuẩn bị phẩm vật cúng tế, hậu cần trong các kỳ lễ hội lớn của đình.",
+        details: "• Kiến trúc: Nhà một gian đơn sơ, lợp ngói đỏ.\n• Vai trò: Phục vụ nấu nướng các món ăn dâng cúng thần và phục vụ ban tế tự.",
+        audio: "audio/vi/nha-bep.mp3"
+      },
+      en: {
+        name: "Kitchen",
+        short: "Temple kitchen",
+        desc: "The traditional kitchen area built next to the Front Hall to prepare food offerings and logistics during major festivals.",
+        details: "• Structure: Simple single-room brick building with red tiled roof.\n• Function: Used for cooking ritual offerings and catering for the committee.",
+        audio: "audio/en/kitchen.mp3"
+      }
+    },
+    {
+      id: "wc",
+      x: 83, y: 50,
+      color: "#8B8682",
+      vi: {
+        name: "Khu Vệ Sinh (WC)",
+        short: "Nhà vệ sinh",
+        desc: "Khu vực vệ sinh công cộng được bố trí ở góc cuối bên phải khuôn viên đình để phục vụ khách thập phương và người dân đến viếng lễ.",
+        details: "• Tiện ích: Đầy đủ trang thiết bị cơ bản, sạch sẽ và kín đáo.\n• Vị trí: Góc khuất cuối sân đình đảm bảo mỹ quan cho di tích.",
+        audio: "audio/vi/wc.mp3"
+      },
+      en: {
+        name: "Restroom (WC)",
+        short: "Toilets",
+        desc: "Public restroom facilities located in the far right corner to serve pilgrims and local visitors attending ceremonies.",
+        details: "• Facilities: Fully equipped with basic amenities, kept clean and discreet.\n• Position: Placed in a quiet corner to preserve the scenic beauty.",
+        audio: "audio/en/restroom.mp3"
+      }
     }
   ],
   timeline: [

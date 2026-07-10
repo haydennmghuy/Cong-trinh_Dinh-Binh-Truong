@@ -15,6 +15,8 @@ const HOTSPOT_IMAGES = {
   'mieu-ba-ngu-hanh':     ['images/real/mieu_tho_real.jpg'],
   'cot-co':               [],
   'nha-tho-bac-ho':       [],
+  'nha-bep':              [],
+  'wc':                   [],
 };
 
 // ===== Hotspot Modal =====
