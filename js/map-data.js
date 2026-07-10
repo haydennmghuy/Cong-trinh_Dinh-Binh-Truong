@@ -195,7 +195,7 @@ var MAP_DATA = {
       x: 25, y: 30,
       color: "#8B6914",
       vi: {
-        name: "Miếu Bạch Mã",
+        name: "Miếu thờ Bạch Mã",
         short: "Thần Bạch Mã",
         desc: "Miếu thờ thần Bạch Mã (ngựa trắng), vị thần bảo hộ bờ cõi và là linh vật hộ vệ trung thành của thần Thành Hoàng, mang ý nghĩa cầu mong sự trung dũng, cát tường và thịnh vượng.",
         details: "• Kết cấu: Miếu xây gạch, mái ngói đỏ đắp tượng bạch mã phục chầu uy nghiêm.\n• Vị trí: Nằm đầu tiên bên trái trong dãy miếu thờ phụ phía sau hồ bán nguyệt.",
@@ -214,7 +214,7 @@ var MAP_DATA = {
       x: 25, y: 35,
       color: "#8B6914",
       vi: {
-        name: "Bàn Thần Nông",
+        name: "Bàn thờ Thần Nông",
         short: "Thờ Thần Nông",
         desc: "Bàn thờ Thần Nông (Vua Thần Nông - người dạy dân nghề nông) để cầu nguyện mùa màng tươi tốt, mưa thuận gió hòa, đời sống ấm no cho bà con làm nông nghiệp quanh vùng.",
         details: "• Kiến trúc: Bệ thờ đá lộ thiên tôn nghiêm, đặt bát hương gốm và bài vị Thần Nông.\n• Vị trí: Đứng thứ hai từ trái sang trong hàng miếu thờ lộ thiên.",
@@ -233,7 +233,7 @@ var MAP_DATA = {
       x: 25, y: 40,
       color: "#8B6914",
       vi: {
-        name: "Miếu Hổ Thần",
+        name: "Miếu thờ Thần Hổ",
         short: "Thần Hổ Sơn Lâm",
         desc: "Miếu thờ Hổ Thần (Chúa Sơn Lâm), biểu tượng của sức mạnh tự nhiên trấn giữ tà khí, bảo vệ sự bình an thanh tịnh cho toàn bộ khuôn viên tôn nghiêm của đình.",
         details: "• Kết cấu: Am thờ nhỏ ẩn sau dãy miếu thờ chính, đắp nổi hình hổ sơn lâm oai phong.\n• Ý nghĩa: Trấn át tà ma, bảo vệ ngôi đình khỏi những chướng khí xấu.",
@@ -252,7 +252,7 @@ var MAP_DATA = {
       x: 25, y: 45,
       color: "#8B6914",
       vi: {
-        name: "Miếu Bà Ngũ Hành",
+        name: "Miếu thờ Bà Ngũ Hành",
         short: "Năm vị nữ thần",
         desc: "Miếu thờ Bà Ngũ Hành tượng trưng cho Kim, Mộc, Thủy, Hỏa, Thổ. Các Mẹ Ngũ Hành cai quản các yếu tố sinh hoạt và sản xuất nông nghiệp của cư dân địa phương.",
         details: "• Kiến trúc: Miếu thờ gạch đỏ, bên trong thờ 5 bài vị của năm vị nữ thần ngũ hành.\n• Vị trí: Đứng thứ tư từ trái sang trong dãy thờ phụ cạnh hồ thủy tạ.",

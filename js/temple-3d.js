@@ -555,11 +555,16 @@ const Temple3D = {
     const sRoof2 = this.createRoof(1.4, 1.4, 0.6, 0.1, C.roofRed, m2x, 1.4, m2z);
     this.scene.add(sRoof2);
 
-    // 6B. Miếu Hổ (Tiger Shrine) - Small brick shrine behind the row
+    // 6B. Miếu thờ Thần Hổ (Tiger Shrine) - Identical structure to other shrines, behind the row
     const mhx = -16.5, mhz = -1.0;
-    this.scene.add(this.createBox(0.8, 0.2, 0.8, C.stoneGray, mhx, 0.1, mhz));
-    this.scene.add(this.createBox(0.6, 0.8, 0.6, C.wallYellow, mhx, 0.5, mhz));
-    const mhRoof = this.createRoof(0.9, 0.9, 0.4, 0.1, C.roofRed, mhx, 0.9, mhz);
+    this.scene.add(this.createBox(1.2, 0.2, 1.2, C.stoneGray, mhx, 0.1, mhz));
+    this.scene.add(this.createBox(1.0, 1.3, 1.0, C.wallYellow, mhx, 0.75, mhz));
+    // Red columns on front face (+x side)
+    this.scene.add(this.createBox(0.1, 1.3, 0.15, C.columnRed, mhx + 0.51, 0.75, mhz - 0.35));
+    this.scene.add(this.createBox(0.1, 1.3, 0.15, C.columnRed, mhx + 0.51, 0.75, mhz + 0.35));
+    // White doorway outline
+    this.scene.add(this.createBox(0.05, 0.9, 0.5, 0xFFFFFF, mhx + 0.51, 0.55, mhz));
+    const mhRoof = this.createRoof(1.4, 1.4, 0.6, 0.1, C.roofRed, mhx, 1.4, mhz);
     this.scene.add(mhRoof);
 
     // 7. Bia Di Tích Kiến Trúc Nghệ Thuật (Stepped granite stele matching the photo, facing Back/-z)
