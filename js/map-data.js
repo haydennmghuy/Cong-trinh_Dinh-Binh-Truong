@@ -40,7 +40,7 @@ var MAP_DATA = {
     },
     {
       id: "nha-vo-ca",
-      x: 38, y: 50,
+      x: 35, y: 50,
       color: "#9B7BAE",
       vi: {
         name: "Nhà Võ Ca",
@@ -59,7 +59,7 @@ var MAP_DATA = {
     },
     {
       id: "vo-qui",
-      x: 44, y: 50,
+      x: 41, y: 50,
       color: "#D4824C",
       vi: {
         name: "Nhà Võ Qui",
@@ -78,7 +78,7 @@ var MAP_DATA = {
     },
     {
       id: "chanh-dien",
-      x: 51, y: 50,
+      x: 48, y: 50,
       color: "#C9A84C",
       vi: {
         name: "Chánh Điện",
@@ -97,7 +97,7 @@ var MAP_DATA = {
     },
     {
       id: "tien-dien",
-      x: 58, y: 50,
+      x: 55, y: 50,
       color: "#B85C4C",
       vi: {
         name: "Tiền Điện",
@@ -135,7 +135,7 @@ var MAP_DATA = {
     },
     {
       id: "san-khau-ngoai-troi",
-      x: 38, y: 35,
+      x: 35, y: 35,
       color: "#9B7BAE",
       vi: {
         name: "Sân Khấu",
@@ -173,7 +173,7 @@ var MAP_DATA = {
     },
     {
       id: "bia-di-tich",
-      x: 30, y: 68,
+      x: 27, y: 68,
       color: "#B85C4C",
       vi: {
         name: "Bia Di Tích Cấp TP",
