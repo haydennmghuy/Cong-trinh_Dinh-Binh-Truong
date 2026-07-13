@@ -251,7 +251,8 @@ const Temple3D = {
               'Mieu_Bach_Ma': { width: 1.6 },
               'Bia_ghi_nhan_di_tich': { height: 2.4 },
               'Cot_co_Viet_Nam': { height: 6.4 },
-              'Toa_nha_bep_va_toa_WC': { width: 9.0 }
+              'Toa_nha_bep_va_toa_WC': { width: 9.0 },
+              'Nha_tho_Bac_Ho': { width: 5.0 }
             };
             
             const target = targets[modelName];
