@@ -370,7 +370,7 @@ var MAP_DATA = {
     },
     {
       year: "1852",
-      image: "images/gallery/gallery-8.png",
+      image: "images/gallery/gallery-8_new.png",
       vi: {
         title: "Nhận sắc phong Tự Đức",
         body: "Vua Tự Đức triều Nguyễn ban sắc phong thần 'Thành Hoàng Bổn Cảnh', công nhận đình thuộc hệ thống thờ tự chính thống của quốc gia và khẳng định địa vị linh thiêng."
