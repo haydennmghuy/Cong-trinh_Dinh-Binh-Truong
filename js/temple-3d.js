@@ -472,30 +472,21 @@ const Temple3D = {
     this.addMonuments();
     this.addTrees();
 
-    // === PRIORITY-BASED GLB LOADING ===
-    // P0: Core structures visible from default camera - load immediately
+    // === LOAD ALL GLB MODELS IMMEDIATELY IN PARALLEL ===
     this.loadGLBModel('models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, Math.PI, 1.0);
     this.loadGLBModel('models/Cong_Tam_Quan.glb', -24.0, 0, 5.5, 0, 1.0);
-
-    // P1: Important secondary structures - load after 1 second
-    setTimeout(() => {
-      this.loadGLBModel('models/Ho_Thuy_Ta.glb', -26.5, 0, -13.0, Math.PI / 2, 1.0);
-      this.loadGLBModel('models/Cot_co_Viet_Nam.glb', -9.0, 0, -10.0, 0, 1.0);
-      this.loadGLBModel('models/Nha_tho_Bac_Ho.glb', 18.5, 0, -27.5, -Math.PI / 2, 1.0);
-      this.loadGLBModel('models/Cong_nho_ben_phai.glb', 14.0, 0, 5.5, 0, 1.0);
-    }, 1000);
-
-    // P2: Remaining structures - load after 3 seconds
-    setTimeout(() => {
-      this.loadGLBModel('models/San_khau.glb', -4.5, 0, -19.5, 0, 1.0);
-      this.loadGLBModel('models/Bia_ghi_cong.glb', -15.0, 0, -20.0, Math.PI / 2, 1.0);
-      this.loadGLBModel('models/Mieu_Ba_Ngu_Hanh.glb', -15.0, 0, -15.0, Math.PI / 2, 1.0);
-      this.loadGLBModel('models/Ban_Than_Nong.glb', -15.0, 0, -10.0, Math.PI / 2, 1.0);
-      this.loadGLBModel('models/Mieu_Bach_Ma.glb', -15.0, 0, -5.0, Math.PI / 2, 1.0);
-      this.loadGLBModel('models/Mieu_tho_Than_Ho.glb', -21.5, 0, -10.0, -Math.PI / 2, 1.0);
-      this.loadGLBModel('models/Bia_ghi_nhan_di_tich.glb', -9.0, 0, -1.0, 0, 1.0);
-      this.loadGLBModel('models/Toa_nha_bep_va_toa_WC.glb', 25.5, 0, -21.0, -Math.PI / 2, 1.0);
-    }, 3000);
+    this.loadGLBModel('models/Ho_Thuy_Ta.glb', -26.5, 0, -13.0, Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Cot_co_Viet_Nam.glb', -9.0, 0, -10.0, 0, 1.0);
+    this.loadGLBModel('models/Nha_tho_Bac_Ho.glb', 18.5, 0, -27.5, -Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Cong_nho_ben_phai.glb', 14.0, 0, 5.5, 0, 1.0);
+    this.loadGLBModel('models/San_khau.glb', -4.5, 0, -19.5, 0, 1.0);
+    this.loadGLBModel('models/Bia_ghi_cong.glb', -15.0, 0, -20.0, Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Mieu_Ba_Ngu_Hanh.glb', -15.0, 0, -15.0, Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Ban_Than_Nong.glb', -15.0, 0, -10.0, Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Mieu_Bach_Ma.glb', -15.0, 0, -5.0, Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Mieu_tho_Than_Ho.glb', -21.5, 0, -10.0, -Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Bia_ghi_nhan_di_tich.glb', -9.0, 0, -1.0, 0, 1.0);
+    this.loadGLBModel('models/Toa_nha_bep_va_toa_WC.glb', 25.5, 0, -21.0, -Math.PI / 2, 1.0);
   },
 
   buildFence() {
@@ -891,29 +882,9 @@ const Temple3D = {
 // Expose globally for access from regular scripts
 window.Temple3D = Temple3D;
 
-// Lazy-init: only load 3D when the section scrolls into view
-function lazyInit3D() {
-  const section = document.getElementById('mo-hinh-3d');
-  if (!section) return;
-
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          observer.disconnect();
-          Temple3D.init('temple-3d-container');
-        }
-      });
-    }, { rootMargin: '200px' }); // Start loading 200px before visible
-    observer.observe(section);
-  } else {
-    // Fallback: load after 2 seconds
-    setTimeout(() => Temple3D.init('temple-3d-container'), 2000);
-  }
-}
-
+// Initialize 3D immediately on page load
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', lazyInit3D);
+  document.addEventListener('DOMContentLoaded', () => Temple3D.init('temple-3d-container'));
 } else {
-  lazyInit3D();
+  Temple3D.init('temple-3d-container');
 }
