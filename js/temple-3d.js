@@ -253,7 +253,8 @@ const Temple3D = {
               'Bia_ghi_nhan_di_tich': { height: 2.4 },
               'Cot_co_Viet_Nam': { height: 6.4 },
               'Toa_nha_bep_va_toa_WC': { width: 9.0 },
-              'Nha_tho_Bac_Ho': { width: 7.5 }
+              'Nha_tho_Bac_Ho': { width: 7.5 },
+              'Vo_Ca_Vo_Qui_Chanh_Dien': { width: 17.0 }
             };
             
             const target = targets[modelName];
@@ -436,6 +437,9 @@ const Temple3D = {
     // === SÂN ĐÌNH (Courtyard features) ===
     this.buildCourtyard();
 
+    // === MAIN TEMPLE (Võ Ca, Võ Qui, Chánh Điện GLB Model) ===
+    this.loadGLBModel('models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, 0, 1.0);
+
     // === TIỀN ĐIỆN (Front Hall) ===
     this.buildTienDien();
 
@@ -582,90 +586,15 @@ const Temple3D = {
   },
 
   buildVoCa() {
-    const C = this.COLORS;
-    // Opera stage - leftmost section of the horizontally connected block
-    const x = -4.5, z = -10.0, w = 5.0, d = 5.0, h = 3.5;
-
-    // Foundation
-    this.scene.add(this.createBox(w + 0.4, 0.4, d + 0.4, C.stoneGray, x, 0.2, z));
-
-    // Columns
-    const colPositions = [
-      [x - w/2 + 0.3, z - d/2 + 0.3],
-      [x + w/2 - 0.3, z - d/2 + 0.3],
-      [x - w/2 + 0.3, z + d/2 - 0.3],
-      [x + w/2 - 0.3, z + d/2 - 0.3],
-    ];
-    colPositions.forEach(([cx, cz]) => {
-      this.scene.add(this.createCylinder(0.18, 0.2, h, C.columnRed, cx, h/2 + 0.4, cz));
-      this.scene.add(this.createBox(0.45, 0.15, 0.45, C.stoneGray, cx, 0.475, cz));
-    });
-
-    // Roof
-    const roof = this.createRoof(w, d, 2.2, 0.8, C.roofBrown, x, h + 0.4, z);
-    this.scene.add(roof);
+    // Replaced by GLB model 'Vo_Ca_Vo_Qui_Chanh_Dien.glb'
   },
 
   buildTienDien() {
-    const C = this.COLORS;
-    // Second section (Võ Qui)
-    const x = 0.5, z = -10.0, w = 5.0, d = 5.0, h = 3.5;
-
-    // Foundation
-    this.scene.add(this.createBox(w + 0.4, 0.4, d + 0.4, C.stoneGray, x, 0.2, z));
-
-    // Walls
-    this.scene.add(this.createBox(w, h, 0.2, C.wallYellow, x, h/2 + 0.4, z - d/2));
-    this.scene.add(this.createBox(w, h, 0.2, C.wallYellow, x, h/2 + 0.4, z + d/2));
-
-    // Columns
-    const colPositions = [
-      [x - w/2 + 0.3, z - d/2 + 0.3],
-      [x + w/2 - 0.3, z - d/2 + 0.3],
-      [x - w/2 + 0.3, z + d/2 - 0.3],
-      [x + w/2 - 0.3, z + d/2 - 0.3],
-    ];
-    colPositions.forEach(([cx, cz]) => {
-      this.scene.add(this.createCylinder(0.2, 0.22, h, C.columnRed, cx, h/2 + 0.4, cz));
-      this.scene.add(this.createBox(0.5, 0.15, 0.5, C.stoneGray, cx, 0.475, cz));
-    });
-
-    // Roof
-    const roof = this.createRoof(w, d, 2.5, 0.8, C.roofRed, x, h + 0.4, z);
-    this.scene.add(roof);
+    // Replaced by GLB model 'Vo_Ca_Vo_Qui_Chanh_Dien.glb'
   },
 
   buildChanhDien() {
-    const C = this.COLORS;
-    // Third section (Chánh Điện, taller and deeper)
-    const x = 6.5, z = -10.0, w = 7.0, d = 5.0, h = 4.5;
-
-    // Foundation
-    this.scene.add(this.createBox(w + 0.6, 0.6, d + 0.6, C.stoneGray, x, 0.3, z));
-
-    // Walls
-    this.scene.add(this.createBox(w, h, 0.25, C.wallYellow, x, h/2 + 0.6, z - d/2));
-    this.scene.add(this.createBox(w, h, 0.25, C.wallYellow, x, h/2 + 0.6, z + d/2));
-    this.scene.add(this.createBox(0.25, h, d, C.wallYellow, x + w/2, h/2 + 0.6, z));
-
-    // Red pillars
-    const colPositions = [
-      [x - w/2 + 0.4, z - d/2 + 0.5], [x - w/2 + 0.4, z + d/2 - 0.5],
-      [x, z - d/2 + 0.5], [x, z + d/2 - 0.5],
-      [x + w/2 - 0.4, z - d/2 + 0.5], [x + w/2 - 0.4, z + d/2 - 0.5],
-    ];
-    colPositions.forEach(([cx, cz]) => {
-      this.scene.add(this.createCylinder(0.25, 0.27, h, C.columnRed, cx, h/2 + 0.6, cz));
-      this.scene.add(this.createBox(0.6, 0.2, 0.6, C.stoneGray, cx, 0.7, cz));
-    });
-
-    // Altar
-    this.scene.add(this.createBox(2.0, 1.8, 1.2, C.woodBrown, x, 1.4, z));
-    this.scene.add(this.createBox(2.2, 0.15, 1.4, C.goldAccent, x, 2.3, z, { metalness: 0.4 }));
-
-    // Roof
-    const roof = this.createRoof(w, d, 2.5, 0.8, C.roofBrown, x, h + 0.6, z);
-    this.scene.add(roof);
+    // Replaced by GLB model 'Vo_Ca_Vo_Qui_Chanh_Dien.glb'
   },
 
   buildHauDien() {
@@ -692,30 +621,11 @@ const Temple3D = {
   },
 
   buildCotKeo() {
-    const C = this.COLORS;
-    const x = 6.5, z = -10.0;
-    // Exposed wooden beam system inside Chánh Điện
-    for (let cz of [z - 2.0, z + 2.0]) {
-      this.scene.add(this.createBox(6.5, 0.25, 0.2, C.woodLight, x, 4.5, cz));
-    }
-    for (let cx of [x - 2.5, x, x + 2.5]) {
-      this.scene.add(this.createBox(0.2, 0.25, 4.5, C.woodLight, cx, 4.5, z));
-    }
+    // Replaced by GLB model 'Vo_Ca_Vo_Qui_Chanh_Dien.glb'
   },
 
   addRoofDecorations() {
-    const C = this.COLORS;
-
-    // Dragon ornaments on main hall roof ridge ends (Chánh Điện is at x=2.0, z=-4.0, ridge height is 7.6)
-    const dragonGeo = new THREE.ConeGeometry(0.3, 1.2, 6);
-    const dragonMat = this.mat(C.goldAccent, { metalness: 0.5 });
-    
-    [[3.0, 7.6, -10.0], [10.0, 7.6, -10.0]].forEach(([x, y, z]) => {
-      const dragon = new THREE.Mesh(dragonGeo, dragonMat);
-      dragon.position.set(x, y, z);
-      dragon.rotation.z = x > 2.0 ? -0.4 : 0.4;
-      this.scene.add(dragon);
-    });
+    // Replaced by GLB model 'Vo_Ca_Vo_Qui_Chanh_Dien.glb'
   },
 
   addTrees() {
