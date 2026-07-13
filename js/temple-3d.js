@@ -312,8 +312,8 @@ const Temple3D = {
     this.scene.add(this.createBox(34.0, fenceH, wallThick, C.fenceYellow, -4.5, fenceH/2, 5.5));
     this.scene.add(this.createBox(14.5, fenceH, wallThick, C.fenceYellow, 22.75, fenceH/2, 5.5));
     
-    // Back wall segment left part: from x = -20 to x = 18.5
-    this.scene.add(this.createBox(38.5, fenceH, wallThick, C.fenceYellow, -0.75, fenceH/2, -25.0));
+    // Back wall segment left part: from x = -30 to x = 18.5
+    this.scene.add(this.createBox(48.5, fenceH, wallThick, C.fenceYellow, -5.75, fenceH/2, -25.0));
     // Back wall segment right part: from x = 23.5 to x = 30
     this.scene.add(this.createBox(6.5, fenceH, wallThick, C.fenceYellow, 26.75, fenceH/2, -25.0));
     
@@ -333,18 +333,13 @@ const Temple3D = {
     botDiagWall.rotation.y = Math.atan2(3.5, 6.0);
     this.scene.add(botDiagWall);
 
-    // Left wall segment main vertical: x = -30.0, from z = -6.5 to z = -15.0 (depth 8.5)
-    this.scene.add(this.createBox(wallThick, fenceH, 8.5, C.fenceYellow, -30.0, fenceH/2, -10.75));
-
-    // Left wall segment top-left diagonal: connecting (x = -30.0, z = -15.0) to (x = -20.0, z = -25.0)
-    const topDiagWall = this.createBox(wallThick, fenceH, 14.14, C.fenceYellow, -25.0, fenceH/2, -20.0);
-    topDiagWall.rotation.y = -Math.PI / 4;
-    this.scene.add(topDiagWall);
+    // Left wall segment main vertical: x = -30.0, from z = -6.5 to z = -25.0 (depth 18.5) (no top-left diagonal cut)
+    this.scene.add(this.createBox(wallThick, fenceH, 18.5, C.fenceYellow, -30.0, fenceH/2, -15.75));
 
     // Pillars at corners, joints, and gate edges
     const pillarPositions = [
       [-26.5, 5.5], [-21.5, 5.5], [12.5, 5.5], [15.5, 5.5], [30, 5.5],           // Front wall
-      [-26.5, -0.5], [-30, -6.5], [-30, -15], [-20, -25], [30, -25],              // Corner joints
+      [-26.5, -0.5], [-30, -6.5], [-30, -15], [-30, -25], [30, -25],              // Corner joints
       [18.5, -25], [23.5, -25], [18.5, -29], [23.5, -29],                        // Uncle Ho recess joints
       [30, -15], [30, -5], [30, 5],                                              // Right wall joints
       [-10, -25], [0, -25], [10, -25]                                             // Back wall joints
@@ -375,8 +370,8 @@ const Temple3D = {
       this.scene.add(this.createBox(0.05, 0.9, 0.05, C.fenceBars, 30.0, 0.65, z, { metalness: 0.5 }));
     }
 
-    // Fence bars along left wall (x = -30, only on the main vertical segment z = -15.0 to z = -6.5)
-    for (let z = -14.5; z <= -7.0; z += 0.6) {
+    // Fence bars along left wall (x = -30, on the main vertical segment z = -25.0 to z = -6.5)
+    for (let z = -24.5; z <= -7.0; z += 0.6) {
       this.scene.add(this.createBox(0.05, 0.9, 0.05, C.fenceBars, -30.0, 0.65, z, { metalness: 0.5 }));
     }
   },
