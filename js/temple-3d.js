@@ -547,7 +547,7 @@ const Temple3D = {
     const C = this.COLORS;
 
     // 1. Hồ Thuỷ Tạ (Semi-circular pond on the left wall x=-30.0, curving to the right) - GLB
-    this.loadGLBModel('models/Ho_Thuy_Ta.glb', -23.0, 0, -13.0, Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Ho_Thuy_Ta.glb', -26.5, 0, -13.0, Math.PI / 2, 1.0);
 
     // 2. Sân Khấu Ngoài Trời (Outdoor Stage) - GLB
     this.loadGLBModel('models/San_khau.glb', -4.5, 0, -19.5, 0, 1.0);
@@ -766,7 +766,7 @@ const Temple3D = {
       'vo-qui':               { x: 0.5,   y: 4.5,  z: -10.0 },
       'chanh-dien':           { x: 6.5,   y: 6.0,  z: -10.0 },
       'tien-dien':            { x: 13.0,  y: 4.5,  z: -10.0 },
-      'ho-thuy-ta':           { x: -23.0, y: 1.5,  z: -13.0 },
+      'ho-thuy-ta':           { x: -26.5, y: 1.5,  z: -13.0 },
       'san-khau-ngoai-troi':  { x: -4.5,  y: 3.5,  z: -19.5 },
       'bia-tuong-niem':       { x: -15.0, y: 2.2,  z: -20.0 },
       'bia-di-tich':          { x: -9.0,  y: 3.2,  z: -1.0 },
@@ -1015,7 +1015,7 @@ const Temple3D = {
       'vo-qui':               { cam: { x: 0.5,   y: 6.0,  z: -2.0 },   lookAt: { x: 0.5,   y: 2.0,  z: -10.0 } },
       'chanh-dien':           { cam: { x: 6.5,   y: 7.5,  z: -2.0 },   lookAt: { x: 6.5,   y: 2.5,  z: -10.0 } },
       'tien-dien':            { cam: { x: 13.0,  y: 6.0,  z: -2.0 },   lookAt: { x: 13.0,  y: 2.0,  z: -10.0 } },
-      'ho-thuy-ta':           { cam: { x: -16.5, y: 5.0,  z: -13.0 },  lookAt: { x: -23.0, y: 1.0,  z: -13.0 } },
+      'ho-thuy-ta':           { cam: { x: -20.0, y: 5.0,  z: -13.0 },  lookAt: { x: -26.5, y: 1.0,  z: -13.0 } },
       'san-khau-ngoai-troi':  { cam: { x: -4.5,  y: 5.0,  z: -13.0 },  lookAt: { x: -4.5,  y: 1.5,  z: -19.5 } },
       'bia-tuong-niem':       { cam: { x: -9.5,  y: 4.5,  z: -20.0 },  lookAt: { x: -15.0, y: 1.5,  z: -20.0 } },
       'bia-di-tich':          { cam: { x: -9.0,  y: 4.5,  z: 5.0 },   lookAt: { x: -9.0,  y: 1.5,  z: -1.0 } },
