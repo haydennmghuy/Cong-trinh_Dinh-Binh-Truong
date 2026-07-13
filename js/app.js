@@ -248,13 +248,16 @@ const Timeline = {
       ${MAP_DATA.timeline.map((item, i) => {
         const sideClass = i % 2 === 0 ? 'is-left' : 'is-right';
         const langData = item[lang] || {};
+        const mediaHtml = item.image ? 
+          `<img src="${item.image}" alt="${langData.title || ''}" />` : 
+          `<div class="placeholder-image-box">
+            <span class="placeholder-icon">📸</span>
+            <span class="placeholder-text">${lang === 'vi' ? 'Cần thêm ảnh' : 'Need photo'}</span>
+          </div>`;
         return `
           <article class="timeline-item ${sideClass}" style="animation-delay:${i*0.1}s">
             <div class="timeline-media">
-              <div class="placeholder-image-box">
-                <span class="placeholder-icon">📸</span>
-                <span class="placeholder-text">${lang === 'vi' ? 'Cần thêm ảnh' : 'Need photo'}</span>
-              </div>
+              ${mediaHtml}
             </div>
             <div class="timeline-content">
               <span class="timeline-year">${item.year}</span>
