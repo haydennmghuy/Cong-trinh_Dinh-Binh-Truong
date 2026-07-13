@@ -254,7 +254,7 @@ const Temple3D = {
               'Cot_co_Viet_Nam': { height: 6.4 },
               'Toa_nha_bep_va_toa_WC': { width: 9.0 },
               'Nha_tho_Bac_Ho': { width: 7.5 },
-              'Vo_Ca_Vo_Qui_Chanh_Dien': { width: 17.0 }
+              'Vo_Ca_Vo_Qui_Chanh_Dien': { depth: 17.0 }
             };
             
             const target = targets[modelName];
@@ -438,7 +438,8 @@ const Temple3D = {
     this.buildCourtyard();
 
     // === MAIN TEMPLE (Võ Ca, Võ Qui, Chánh Điện GLB Model) ===
-    this.loadGLBModel('models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, 0, 1.0);
+    // Front face oriented toward Hồ Thủy Tạ (negative-x direction)
+    this.loadGLBModel('models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, Math.PI / 2, 1.0);
 
     // === TIỀN ĐIỆN (Front Hall) ===
     this.buildTienDien();
