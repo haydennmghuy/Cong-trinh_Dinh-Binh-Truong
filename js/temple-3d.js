@@ -459,21 +459,14 @@ const Temple3D = {
     // === SURROUNDING WALL / FENCE (procedural - instant) ===
     this.buildFence();
 
-    // === Empty placeholder functions (replaced by GLB) ===
-    this.buildTienDien();
-    this.buildChanhDien();
-    this.buildVoCa();
-    this.buildCotKeo();
-    this.addRoofDecorations();
-
     // === Procedural elements (instant) ===
     this.buildCourtyard();
-    this.buildHauDien();
     this.addMonuments();
     this.addTrees();
 
     // === LOAD ALL GLB MODELS IMMEDIATELY IN PARALLEL ===
     this.loadGLBModel('models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, Math.PI, 1.0);
+    this.loadGLBModel('models/Tien_Dien.glb', 11.5, 0, -10.0, Math.PI, 1.0);
     this.loadGLBModel('models/Cong_Tam_Quan.glb', -24.0, 0, 5.5, 0, 1.0);
     this.loadGLBModel('models/Ho_Thuy_Ta.glb', -26.5, 0, -13.0, Math.PI / 2, 1.0);
     this.loadGLBModel('models/Cot_co_Viet_Nam.glb', -9.0, 0, -10.0, 0, 1.0);
@@ -570,25 +563,6 @@ const Temple3D = {
     this.scene.add(path);
   },
 
-  buildVoCa() {
-    // Replaced by GLB model 'Vo_Ca_Vo_Qui_Chanh_Dien.glb'
-  },
-
-  buildTienDien() {
-    this.loadGLBModel('models/Tien_Dien.glb', 11.5, 0, -10.0, Math.PI, 1.0);
-  },
-
-  buildHauDien() {
-    // Replaced by GLB model 'Tien_Dien.glb'
-  },
-
-  buildCotKeo() {
-    // Replaced by GLB model 'Vo_Ca_Vo_Qui_Chanh_Dien.glb'
-  },
-
-  addRoofDecorations() {
-    // Replaced by GLB model 'Vo_Ca_Vo_Qui_Chanh_Dien.glb'
-  },
 
   addTrees() {
     const C = this.COLORS;
