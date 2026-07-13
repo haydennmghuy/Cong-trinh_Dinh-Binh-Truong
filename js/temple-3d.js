@@ -171,6 +171,90 @@ const Temple3D = {
         const modelName = path.split('/').pop().replace('.glb', '');
         window.loadedModels[modelName] = model;
         
+        // Auto-scale and ground alignment based on geometry bounding box
+        setTimeout(() => {
+          const box = new THREE.Box3();
+          let hasMesh = false;
+          model.traverse((node) => {
+            if (node.isMesh) {
+              node.geometry.computeBoundingBox();
+              const tempBox = node.geometry.boundingBox.clone();
+              node.updateWorldMatrix(true, true);
+              tempBox.applyMatrix4(node.matrixWorld);
+              if (!hasMesh) {
+                box.copy(tempBox);
+                hasMesh = true;
+              } else {
+                box.union(tempBox);
+              }
+            }
+          });
+          
+          if (hasMesh) {
+            const size = new THREE.Vector3();
+            box.getSize(size);
+            
+            // Target dimensions of the original procedural shapes
+            const targets = {
+              'Cong_Tam_Quan': { width: 7.2 },
+              'Cong_nho_ben_phai': { width: 3.0 },
+              'Ho_Thuy_Ta': { width: 9.4 },
+              'San_khau': { width: 3.4 },
+              'Bia_ghi_cong': { height: 2.3 },
+              'Mieu_Ba_Ngu_Hanh': { width: 1.6 },
+              'Ban_Than_Nong': { depth: 3.2 },
+              'Mieu_Bach_Ma': { width: 1.6 },
+              'Bia_ghi_nhan_di_tich': { height: 2.4 },
+              'Cot_co_Viet_Nam': { height: 6.4 },
+              'Toa_nha_bep_va_toa_WC': { width: 9.0 }
+            };
+            
+            const target = targets[modelName];
+            if (target) {
+              let currentSize = 1;
+              let targetSize = 1;
+              if (target.width) {
+                currentSize = size.x;
+                targetSize = target.width;
+              } else if (target.height) {
+                currentSize = size.y;
+                targetSize = target.height;
+              } else if (target.depth) {
+                currentSize = size.z;
+                targetSize = target.depth;
+              }
+              
+              if (currentSize > 0) {
+                const S = (targetSize / currentSize) * scale;
+                model.scale.set(S, S, S);
+                
+                // Recompute box after scaling to align bottom to y = 0
+                const box2 = new THREE.Box3();
+                let hasMesh2 = false;
+                model.traverse((node) => {
+                  if (node.isMesh) {
+                    node.geometry.computeBoundingBox();
+                    const tempBox = node.geometry.boundingBox.clone();
+                    node.updateWorldMatrix(true, true);
+                    tempBox.applyMatrix4(node.matrixWorld);
+                    if (!hasMesh2) {
+                      box2.copy(tempBox);
+                      hasMesh2 = true;
+                    } else {
+                      box2.union(tempBox);
+                    }
+                  }
+                });
+                
+                const bottomY = box2.min.y - model.position.y;
+                model.position.y = -bottomY;
+                
+                console.log(`[AUTO-SCALE] Rescaled ${modelName} to scale ${S.toFixed(4)} and grounded at position.y = ${model.position.y.toFixed(4)}`);
+              }
+            }
+          }
+        }, 200);
+        
         if (onLoaded) onLoaded(model);
       },
       undefined,
