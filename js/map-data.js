@@ -346,7 +346,7 @@ var MAP_DATA = {
   timeline: [
     {
       year: "~1808",
-      image: "images/gallery/gallery-7.jpg",
+      image: "images/gallery/gallery-7_new.jpg",
       vi: {
         title: "Khởi dựng Đình Bình Trường",
         body: "Đình Bình Trường được xây dựng bằng vật liệu gỗ quý, lợp ngói âm dương đất nung truyền thống làm nơi thờ cúng Thành Hoàng Bổn Cảnh và sinh hoạt văn hóa của cư dân Nam Bộ."
