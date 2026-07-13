@@ -312,10 +312,10 @@ const Temple3D = {
     this.scene.add(this.createBox(34.0, fenceH, wallThick, C.fenceYellow, -4.5, fenceH/2, 5.5));
     this.scene.add(this.createBox(14.5, fenceH, wallThick, C.fenceYellow, 22.75, fenceH/2, 5.5));
     
-    // Back wall segment left part: from x = -30 to x = 14.9
-    this.scene.add(this.createBox(44.9, fenceH, wallThick, C.fenceYellow, -7.55, fenceH/2, -25.0));
-    // Back wall segment right part: from x = 19.9 to x = 30
-    this.scene.add(this.createBox(10.1, fenceH, wallThick, C.fenceYellow, 24.95, fenceH/2, -25.0));
+    // Back wall segment left part: from x = -30 to x = 15.7
+    this.scene.add(this.createBox(45.7, fenceH, wallThick, C.fenceYellow, -7.15, fenceH/2, -25.0));
+    // Back wall segment right part: from x = 20.7 to x = 30
+    this.scene.add(this.createBox(9.3, fenceH, wallThick, C.fenceYellow, 25.35, fenceH/2, -25.0));
     
     // Note: Removed protruding fence recess walls around Uncle Ho Temple (xóa hàng rào lồi ra bao quanh nhà Bác)
     
@@ -337,7 +337,7 @@ const Temple3D = {
     const pillarPositions = [
       [-26.5, 5.5], [-21.5, 5.5], [12.5, 5.5], [15.5, 5.5], [30, 5.5],           // Front wall
       [-26.5, -0.5], [-30, -6.5], [-30, -15], [-30, -25], [30, -25],              // Corner joints
-      [14.9, -25], [19.9, -25],                                                   // Uncle Ho recess joints
+      [15.7, -25], [20.7, -25],                                                   // Uncle Ho recess joints
       [30, -15], [30, -5], [30, 5],                                              // Right wall joints
       [-10, -25], [0, -25], [10, -25]                                             // Back wall joints
     ];
@@ -771,9 +771,9 @@ const Temple3D = {
       'mieu-ho':              { x: -23.5, y: 2.5,  z: -10.0 },
       'mieu-ba-ngu-hanh':     { x: -18.5, y: 2.5,  z: -15.0 },
       'cot-co':               { x: -13.5, y: 4.5,  z: -10.0 },
-      'nha-tho-bac-ho':       { x: 17.4,  y: 3.8,  z: -27.5 },
-      'nha-bep':              { x: 22.9,  y: 3.0,  z: -22.5 },
-      'wc':                   { x: 27.9,  y: 3.0,  z: -22.5 },
+      'nha-tho-bac-ho':       { x: 18.2,  y: 3.8,  z: -27.5 },
+      'nha-bep':              { x: 22.9,  y: 3.0,  z: -22.0 },
+      'wc':                   { x: 27.9,  y: 3.0,  z: -22.0 },
     };
 
     // Create 3D marker meshes for raycasting
@@ -983,7 +983,7 @@ const Temple3D = {
 
   buildNhaThoBacHo() {
     const C = this.COLORS;
-    const x = 17.4, z = -27.5, w = 5.0, d = 5.0, h = 3.0; // Aligned in the top-right yard corner
+    const x = 18.2, z = -27.5, w = 5.0, d = 5.0, h = 3.0; // Aligned in the top-right yard corner
     
     // Foundation
     this.scene.add(this.createBox(w + 0.4, 0.3, d + 0.4, C.stoneGray, x, 0.15, z));
@@ -1013,7 +1013,7 @@ const Temple3D = {
     const C = this.COLORS;
     
     // 1. Nhà bếp (Kitchen) - aligned against the back fence (z = -25.0) at x = 22.9
-    const kx = 22.9, kz = -22.5, kw = 4.0, kd = 5.0, kh = 2.6;
+    const kx = 22.9, kz = -22.0, kw = 4.0, kd = 6.0, kh = 2.6;
     // Foundation
     this.scene.add(this.createBox(kw + 0.2, 0.2, kd + 0.2, C.stoneGray, kx, 0.1, kz));
     // Walls (grayish brick wall)
@@ -1035,7 +1035,7 @@ const Temple3D = {
     this.scene.add(kRoof);
 
     // 2. WC (Toilet) - identical in structure to Kitchen, at x = 27.9
-    const wcx = 27.9, wcz = -22.5, wcw = 4.0, wcd = 5.0, wch = 2.6;
+    const wcx = 27.9, wcz = -22.0, wcw = 4.0, wcd = 6.0, wch = 2.6;
     // Foundation
     this.scene.add(this.createBox(wcw + 0.2, 0.2, wcd + 0.2, C.stoneGray, wcx, 0.1, wcz));
     // Walls (grayish brick wall - identical to Kitchen)
