@@ -976,31 +976,7 @@ const Temple3D = {
   },
 
   buildNhaThoBacHo() {
-    const C = this.COLORS;
-    const x = 18.5, z = -27.5, w = 5.0, d = 5.0, h = 3.0; // Aligned flush to the kitchen left edge
-    
-    // Foundation
-    this.scene.add(this.createBox(w + 0.4, 0.3, d + 0.4, C.stoneGray, x, 0.15, z));
-    
-    // Walls
-    // Back wall (solid, at z - d/2)
-    this.scene.add(this.createBox(w, h, 0.15, C.wallYellow, x, h/2 + 0.3, z - d/2));
-    // Left wall (solid, at x - w/2)
-    this.scene.add(this.createBox(0.15, h, d, C.wallYellow, x - w/2, h/2 + 0.3, z));
-    // Right wall (solid, at x + w/2)
-    this.scene.add(this.createBox(0.15, h, d, C.wallYellow, x + w/2, h/2 + 0.3, z));
-    
-    // Front wall facing courtyard (at z + d/2 = -25.0) - split for door
-    this.scene.add(this.createBox(1.9, h, 0.15, C.wallYellow, x - 1.55, h/2 + 0.3, z + d/2));
-    this.scene.add(this.createBox(1.9, h, 0.15, C.wallYellow, x + 1.55, h/2 + 0.3, z + d/2));
-    this.scene.add(this.createBox(1.2, 1.0, 0.15, C.wallYellow, x, 2.5 + 0.3, z + d/2));
-    
-    // Doorway (facing the courtyard on the front +z side)
-    this.scene.add(this.createBox(1.2, 2.0, 0.2, C.woodBrown, x, 1.0 + 0.3, z + d/2));
-    
-    // Roof
-    const roof = this.createRoof(w, d, 1.5, 0.4, C.roofRed, x, h + 0.3, z);
-    this.scene.add(roof);
+    this.loadGLBModel('models/Nha_tho_Bac_Ho.glb', 18.5, 0, -27.5, 0, 1.0);
   },
 
   buildNhaBepVaWC() {
