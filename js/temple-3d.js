@@ -20,7 +20,7 @@ const Temple3D = {
   transitionTargetCam: null,
   transitionTargetLookAt: null,
   // Loading progress tracking
-  totalModels: 14,
+  totalModels: 15,
   loadedModels_count: 0,
   _gltfLoader: null,
 
@@ -282,7 +282,8 @@ const Temple3D = {
               'Cot_co_Viet_Nam': { height: 6.4 },
               'Toa_nha_bep_va_toa_WC': { width: 9.0 },
               'Nha_tho_Bac_Ho': { width: 7.5 },
-              'Vo_Ca_Vo_Qui_Chanh_Dien': { width: 17.0 }
+              'Vo_Ca_Vo_Qui_Chanh_Dien': { width: 17.0 },
+              'Tien_Dien': { height: 8.45 }
             };
             
             const target = targets[modelName];
@@ -583,34 +584,11 @@ const Temple3D = {
   },
 
   buildTienDien() {
-    // Replaced by GLB model 'Vo_Ca_Vo_Qui_Chanh_Dien.glb'
-  },
-
-  buildChanhDien() {
-    // Replaced by GLB model 'Vo_Ca_Vo_Qui_Chanh_Dien.glb'
+    this.loadGLBModel('models/Tien_Dien.glb', 11.5, 0, -10.0, Math.PI, 1.0);
   },
 
   buildHauDien() {
-    const C = this.COLORS;
-    // Fourth section (Nhà Khách / Hậu Điện)
-    const x = 13.0, z = -10.0, w = 6.0, d = 5.0, h = 3.5;
-
-    // Foundation
-    this.scene.add(this.createBox(w + 0.4, 0.4, d + 0.4, C.stoneGray, x, 0.2, z));
-
-    // Walls
-    this.scene.add(this.createBox(w, h, 0.2, C.wallYellow, x, h/2 + 0.4, z - d/2));
-    this.scene.add(this.createBox(w, h, 0.2, C.wallYellow, x, h/2 + 0.4, z + d/2));
-    this.scene.add(this.createBox(0.2, h, d, C.wallYellow, x + w/2, h/2 + 0.4, z));
-
-    // Columns
-    [[x - w/2 + 0.3, z], [x + w/2 - 0.3, z]].forEach(([cx, cz]) => {
-      this.scene.add(this.createCylinder(0.18, 0.2, h, C.columnRed, cx, h/2 + 0.4, cz));
-    });
-
-    // Roof
-    const roof = this.createRoof(w, d, 2.2, 0.6, C.roofRed, x, h + 0.4, z);
-    this.scene.add(roof);
+    // Replaced by GLB model 'Tien_Dien.glb'
   },
 
   buildCotKeo() {
