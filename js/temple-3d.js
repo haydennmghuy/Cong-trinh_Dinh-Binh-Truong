@@ -317,10 +317,7 @@ const Temple3D = {
     // Back wall segment right part: from x = 23.5 to x = 30
     this.scene.add(this.createBox(6.5, fenceH, wallThick, C.fenceYellow, 26.75, fenceH/2, -25.0));
     
-    // Recess walls around Uncle Ho Temple (x = 18.5 to 23.5, z = -25.0 to -30.0)
-    this.scene.add(this.createBox(wallThick, fenceH, 5.0, C.fenceYellow, 18.5, fenceH/2, -27.5));
-    this.scene.add(this.createBox(wallThick, fenceH, 5.0, C.fenceYellow, 23.5, fenceH/2, -27.5));
-    this.scene.add(this.createBox(5.0, fenceH, wallThick, C.fenceYellow, 21.0, fenceH/2, -30.0));
+    // Note: Removed protruding fence recess walls around Uncle Ho Temple (xóa hàng rào lồi ra bao quanh nhà Bác)
     
     // Right wall segment (solid, x = 30)
     this.scene.add(this.createBox(wallThick, fenceH, 30.5, C.fenceYellow, 30.0, fenceH/2, -9.75));
@@ -340,7 +337,7 @@ const Temple3D = {
     const pillarPositions = [
       [-26.5, 5.5], [-21.5, 5.5], [12.5, 5.5], [15.5, 5.5], [30, 5.5],           // Front wall
       [-26.5, -0.5], [-30, -6.5], [-30, -15], [-30, -25], [30, -25],              // Corner joints
-      [18.5, -25], [23.5, -25], [18.5, -30], [23.5, -30],                        // Uncle Ho recess joints
+      [18.5, -25], [23.5, -25],                                                   // Uncle Ho recess joints
       [30, -15], [30, -5], [30, 5],                                              // Right wall joints
       [-10, -25], [0, -25], [10, -25]                                             // Back wall joints
     ];
