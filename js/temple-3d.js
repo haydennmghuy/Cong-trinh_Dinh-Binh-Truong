@@ -168,6 +168,20 @@ const Temple3D = {
           if (node.isMesh) {
             node.castShadow = true;
             node.receiveShadow = true;
+            
+            // Hide fence attachments inside Cong_nho_ben_phai GLB
+            if (modelName === 'Cong_nho_ben_phai') {
+              const nameLower = node.name.toLowerCase();
+              if (
+                nameLower.includes('hang') || 
+                nameLower.includes('rao') || 
+                nameLower.includes('wall') || 
+                nameLower.includes('fence') || 
+                nameLower.includes('tuong')
+              ) {
+                node.visible = false;
+              }
+            }
           }
         });
         
@@ -204,10 +218,10 @@ const Temple3D = {
             // Target dimensions of the original procedural shapes
             const targets = {
               'Cong_Tam_Quan': { width: 7.2 },
-              'Cong_nho_ben_phai': { width: 3.0 },
+              'Cong_nho_ben_phai': { width: 4.0 },
               'Ho_Thuy_Ta': { width: 6.5 },
               'San_khau': { width: 3.4 },
-              'Bia_ghi_cong': { height: 2.3 },
+              'Bia_ghi_cong': { height: 3.2 },
               'Mieu_Ba_Ngu_Hanh': { width: 1.6 },
               'Ban_Than_Nong': { depth: 3.2 },
               'Mieu_Bach_Ma': { width: 1.6 },
@@ -437,8 +451,8 @@ const Temple3D = {
     this.scene.add(this.createBox(34.0, fenceH, wallThick, C.fenceYellow, -4.5, fenceH/2, 5.5));
     this.scene.add(this.createBox(14.5, fenceH, wallThick, C.fenceYellow, 22.75, fenceH/2, 5.5));
     
-    // Back wall segment left part: from x = -30 to x = 16.5
-    this.scene.add(this.createBox(46.5, fenceH, wallThick, C.fenceYellow, -6.75, fenceH/2, -25.0));
+    // Back wall segment left part: from x = -30 to x = 16.0
+    this.scene.add(this.createBox(46.0, fenceH, wallThick, C.fenceYellow, -7.0, fenceH/2, -25.0));
     // Back wall segment right part: from x = 21.0 to x = 30
     this.scene.add(this.createBox(9.0, fenceH, wallThick, C.fenceYellow, 25.5, fenceH/2, -25.0));
     
@@ -462,7 +476,6 @@ const Temple3D = {
     const pillarPositions = [
       [30, 5.5],                                                                  // Front wall end
       [-26.5, -0.5], [-30, -6.5], [-30, -15], [-30, -25], [30, -25],              // Corner joints
-      [16.5, -25], [21.0, -25],                                                   // Uncle Ho recess joints
       [30, -15], [30, -5], [30, 5],                                              // Right wall joints
       [-10, -25], [0, -25], [10, -25]                                             // Back wall joints
     ];
@@ -738,9 +751,9 @@ const Temple3D = {
       'mieu-ho':              { x: -23.5, y: 2.5,  z: -10.0 },
       'mieu-ba-ngu-hanh':     { x: -17.0, y: 2.5,  z: -15.0 },
       'cot-co':               { x: -9.0,  y: 4.5,  z: -10.0 },
-      'nha-tho-bac-ho':       { x: 19.0,  y: 3.8,  z: -27.5 },
-      'nha-bep':              { x: 23.0,  y: 3.0,  z: -22.0 },
-      'wc':                   { x: 28.0,  y: 3.0,  z: -22.0 },
+      'nha-tho-bac-ho':       { x: 18.5,  y: 3.8,  z: -27.5 },
+      'nha-bep':              { x: 23.0,  y: 3.0,  z: -21.0 },
+      'wc':                   { x: 28.0,  y: 3.0,  z: -21.0 },
     };
 
     // Create 3D marker meshes for raycasting
@@ -940,7 +953,7 @@ const Temple3D = {
 
   buildNhaThoBacHo() {
     const C = this.COLORS;
-    const x = 19.0, z = -27.5, w = 5.0, d = 5.0, h = 3.0; // Aligned in the top-right yard corner
+    const x = 18.5, z = -27.5, w = 5.0, d = 5.0, h = 3.0; // Aligned flush to the kitchen left edge
     
     // Foundation
     this.scene.add(this.createBox(w + 0.4, 0.3, d + 0.4, C.stoneGray, x, 0.15, z));
@@ -967,7 +980,7 @@ const Temple3D = {
   },
 
   buildNhaBepVaWC() {
-    this.loadGLBModel('models/Toa_nha_bep_va_toa_WC.glb', 25.5, 0, -22.0, -Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Toa_nha_bep_va_toa_WC.glb', 25.5, 0, -21.0, -Math.PI / 2, 1.0);
   },
 
   focusOnArea(areaId) {
@@ -987,9 +1000,9 @@ const Temple3D = {
       'mieu-ho':              { cam: { x: -18.0, y: 5.0,  z: -10.0 },  lookAt: { x: -23.5, y: 1.5,  z: -10.0 } },
       'mieu-ba-ngu-hanh':     { cam: { x: -11.5, y: 5.0,  z: -15.0 },  lookAt: { x: -17.0, y: 1.5,  z: -15.0 } },
       'cot-co':               { cam: { x: -9.0,  y: 6.0,  z: -3.0 },   lookAt: { x: -9.0,  y: 2.0,  z: -10.0 } },
-      'nha-tho-bac-ho':       { cam: { x: 19.0,  y: 5.5,  z: -21.0 },  lookAt: { x: 19.0,  y: 1.5,  z: -27.5 } },
-      'nha-bep':              { cam: { x: 17.0,  y: 5.0,  z: -22.0 },  lookAt: { x: 23.0,  y: 1.5,  z: -22.0 } },
-      'wc':                   { cam: { x: 22.0,  y: 5.0,  z: -22.0 },  lookAt: { x: 28.0,  y: 1.5,  z: -22.0 } }
+      'nha-tho-bac-ho':       { cam: { x: 18.5,  y: 5.5,  z: -21.0 },  lookAt: { x: 18.5,  y: 1.5,  z: -27.5 } },
+      'nha-bep':              { cam: { x: 17.0,  y: 5.0,  z: -21.0 },  lookAt: { x: 23.0,  y: 1.5,  z: -21.0 } },
+      'wc':                   { cam: { x: 22.0,  y: 5.0,  z: -21.0 },  lookAt: { x: 28.0,  y: 1.5,  z: -21.0 } }
     };
 
     const cfg = focusPositions[areaId];
