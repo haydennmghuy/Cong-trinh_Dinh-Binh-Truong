@@ -772,8 +772,8 @@ const Temple3D = {
       'mieu-ba-ngu-hanh':     { x: -18.5, y: 2.5,  z: -15.0 },
       'cot-co':               { x: -13.5, y: 4.5,  z: -10.0 },
       'nha-tho-bac-ho':       { x: 15.0,  y: 3.8,  z: -27.5 },
-      'nha-bep':              { x: 22.5,  y: 3.0,  z: -23.0 },
-      'wc':                   { x: 27.0,  y: 2.5,  z: -23.5 },
+      'nha-bep':              { x: 23.9,  y: 3.0,  z: -23.0 },
+      'wc':                   { x: 28.4,  y: 2.5,  z: -23.5 },
     };
 
     // Create 3D marker meshes for raycasting
@@ -1012,8 +1012,8 @@ const Temple3D = {
   buildNhaBepVaWC() {
     const C = this.COLORS;
     
-    // 1. Nhà bếp (Kitchen) - aligned against the back fence (z = -25.0) at x = 22.5
-    const kx = 22.5, kz = -23.0, kw = 4.0, kd = 4.0, kh = 2.6;
+    // 1. Nhà bếp (Kitchen) - aligned against the back fence (z = -25.0) at x = 23.9
+    const kx = 23.9, kz = -23.0, kw = 4.0, kd = 4.0, kh = 2.6;
     // Foundation
     this.scene.add(this.createBox(kw + 0.2, 0.2, kd + 0.2, C.stoneGray, kx, 0.1, kz));
     // Walls (grayish brick wall)
@@ -1034,8 +1034,8 @@ const Temple3D = {
     const kRoof = this.createRoof(kw, kd, 1.2, 0.3, C.roofRed, kx, kh + 0.1, kz);
     this.scene.add(kRoof);
 
-    // 2. WC (Toilet) - aligned against the back fence (z = -25.0) at x = 27.0
-    const wcx = 27.0, wcz = -23.5, wcw = 3.0, wcd = 3.0, wch = 2.4;
+    // 2. WC (Toilet) - aligned against the back fence (z = -25.0) at x = 28.4 (touching right fence)
+    const wcx = 28.4, wcz = -23.5, wcw = 3.0, wcd = 3.0, wch = 2.4;
     // Foundation
     this.scene.add(this.createBox(wcw + 0.2, 0.15, wcd + 0.2, C.stoneGray, wcx, 0.075, wcz));
     // Walls (light gray tiles)
