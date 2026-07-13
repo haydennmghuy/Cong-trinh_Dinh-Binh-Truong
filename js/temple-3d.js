@@ -164,6 +164,8 @@ const Temple3D = {
         model.rotation.y = rotY;
         model.scale.set(scale, scale, scale);
         
+        const modelName = path.split('/').pop().replace('.glb', '');
+        
         model.traverse((node) => {
           if (node.isMesh) {
             node.castShadow = true;
@@ -171,15 +173,38 @@ const Temple3D = {
             
             // Hide fence attachments inside Cong_nho_ben_phai GLB
             if (modelName === 'Cong_nho_ben_phai') {
-              const nameLower = node.name.toLowerCase();
-              if (
-                nameLower.includes('hang') || 
-                nameLower.includes('rao') || 
-                nameLower.includes('wall') || 
-                nameLower.includes('fence') || 
-                nameLower.includes('tuong')
-              ) {
-                node.visible = false;
+              if (node.name && typeof node.name === 'string') {
+                const nameLower = node.name.toLowerCase();
+                if (
+                  nameLower.includes('hang') || 
+                  nameLower.includes('rao') || 
+                  nameLower.includes('wall') || 
+                  nameLower.includes('fence') || 
+                  nameLower.includes('tuong')
+                ) {
+                  node.visible = false;
+                }
+              }
+            }
+
+            // Hide excess ground/foundation attachments inside Toa_nha_bep_va_toa_WC GLB
+            if (modelName === 'Toa_nha_bep_va_toa_WC') {
+              if (node.name && typeof node.name === 'string') {
+                const nameLower = node.name.toLowerCase();
+                if (
+                  nameLower.includes('ground') || 
+                  nameLower.includes('floor') || 
+                  nameLower.includes('pave') || 
+                  nameLower.includes('dat') || 
+                  nameLower.includes('nen') || 
+                  nameLower.includes('base') || 
+                  nameLower.includes('plane') || 
+                  nameLower.includes('san') || 
+                  nameLower.includes('foundation') ||
+                  nameLower.includes('slab')
+                ) {
+                  node.visible = false;
+                }
               }
             }
           }
@@ -189,7 +214,6 @@ const Temple3D = {
         
         // Expose to window for easy debugging/positioning
         if (!window.loadedModels) window.loadedModels = {};
-        const modelName = path.split('/').pop().replace('.glb', '');
         window.loadedModels[modelName] = model;
         
         // Auto-scale and ground alignment based on geometry bounding box
