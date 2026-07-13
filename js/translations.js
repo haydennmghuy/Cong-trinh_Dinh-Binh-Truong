@@ -28,7 +28,7 @@ var TRANSLATIONS = {
       rank_val: "TP.HCM"
     },
     quick_info_title: "THÔNG TIN NHANH",
-    info_location: "Quận 7, TP. Hồ Chí Minh",
+    info_location: "Huyện Bình Chánh, TP. Hồ Chí Minh",
     info_type_label: "LOẠI HÌNH",
     info_type: "Di tích kiến trúc nghệ thuật cấp Thành phố",
     info_year_label: "NĂM XÂY",
@@ -37,11 +37,11 @@ var TRANSLATIONS = {
     info_atmosphere_label: "KHÔNG GIAN",
     info_atmosphere: "Cổ kính, trang nghiêm, đậm nét văn hóa truyền thống Nam Bộ.",
     festival_label: "Lễ Hội",
-    festival_mini_text: "Lễ Kỳ Yên 15 – 17 tháng Giêng",
+    festival_mini_text: "Lễ Lễ Kỳ Yên 16 – 17 tháng Giêng",
     drag_hint: "KÉO ĐỂ XOAY MÔ HÌNH 3D",
     history_title: "Câu chuyện",
-    history_body: "Đình Bình Trường tọa lạc tại phường Bình Thuận, Quận 7, TP.HCM, là một trong những cơ sở tín ngưỡng dân gian tiêu biểu của cư dân vùng đất phương Nam. Được xây dựng từ đầu thế kỷ 19, ngôi đình đã chứng kiến bao thăng trầm lịch sử của vùng Sài Gòn – Gia Định.",
-    history_body2: "Về mặt kiến trúc, ngôi đình mang đậm phong cách kiến trúc gỗ truyền thống với những nét trạm khắc rồng phượng tinh xảo trên hệ thống rường, cột, kèo... Nơi đây lưu giữ nhiều câu chuyện văn hóa lý thú, gắn liền với tín ngưỡng thờ Thành hoàng bổn cảnh của người dân qua nhiều thế hệ.",
+    history_body: "Đình Bình Trường tọa lạc tại xã Bình Chánh, huyện Bình Chánh, TP.HCM, là một trong những cơ sở tín ngưỡng dân gian tiêu biểu của cư dân vùng đất phương Nam. Có thể đoán thời gian đình Bình Trường hình thành và phát triển khoảng 200 năm.",
+    history_body2: "Trong hai cuộc kháng chiến chống Pháp và chống Mỹ, Đình Bình Trường là địa điểm liên lạc, hộp thư nhận tin tức của cách mạng. Tháng 8 năm 1948, chi bộ Đảng xã Bình Chánh chính thức được thành lập và đã chỉ đạo cuộc đột kích tiêu biểu nhân dịp đình cúng lễ Cầu Bông.",
     logo_title: "Đình Bình Trường",
     gallery_tag: "HÌNH ẢNH DI TÍCH",
     gallery_link: "Hình ảnh di tích",
@@ -53,7 +53,7 @@ var TRANSLATIONS = {
     detail_architecture: "CHI TIẾT KIẾN TRÚC",
     section_about: "Giới thiệu",
     about_title: "Kiến trúc cổ kính",
-    about_body: "Đình Bình Trường được xây dựng vào khoảng thế kỷ 19, là di tích kiến trúc nghệ thuật cấp Thành phố, lưu giữ sắc phong vua Tự Đức ban tặng năm 1852.",
+    about_body: "Đến nay chưa có tài liệu ghi rõ năm xây dựng chính thức, nhưng có thể đoán đình được hình thành và phát triển khoảng 200 năm (từ khi có thôn Bình Trường năm 1818).",
     section_map: "Bản đồ di tích",
     map_title: "Bản Đồ 3D",
     map_desc: "Tương tác với bản đồ 3D để khám phá chi tiết kiến trúc từng khu vực trong khuôn viên đình.",
@@ -65,7 +65,7 @@ var TRANSLATIONS = {
     festival_title: "LỄ HỘI KỲ YÊN — NÉT ĐẸP TÂM LINH",
     festival_desc: "Hằng năm vào rằm tháng Giêng (ngày 15-17 âm lịch), Đình Bình Trường long trọng tổ chức đại lễ Kỳ Yên để tạ ơn Thành hoàng và cầu mong mưa thuận gió hòa, quốc thái dân an. Đây là dịp hội tụ đông đảo người dân với các nghi thức cúng tế cổ truyền độc đáo, biểu diễn hát bội tế thần và các trò chơi dân gian đặc sắc.",
     footer_contact: "Liên Hệ & Vị Trí",
-    footer_address: "334/9 Bình Lợi, Phường 13, Quận Bình Thạnh, TP.HCM",
+    footer_address: "Ấp 1, Xã Bình Chánh, Huyện Bình Chánh, TP.HCM",
     footer_credits: "Dự án số hóa di tích Đình Bình Trường — nhằm bảo tồn và phát huy giá trị kiến trúc, lịch sử và văn hóa cho các thế hệ tương lai.",
     close: "Đóng",
     next_area: "Khu vực tiếp theo →",
@@ -81,7 +81,7 @@ var TRANSLATIONS = {
     },
     narration: {
       title: "CÂU CHUYỆN DI TÍCH",
-      body: "<p>Đình Bình Trường là một trong những ngôi đình cổ tiêu biểu của vùng đất Nam Bộ. Trải qua hơn hai thế kỷ, ngôi đình vẫn giữ được nét cổ kính trang nghiêm của kiến trúc xưa.</p><p>Hệ cột kèo gỗ lim chắc chắn kết hợp cùng những mảng trạm khắc rồng phượng tỉ mỉ thể hiện bàn tay tài hoa của các nghệ nhân xưa. Đình thờ Thành Hoàng Bổn Cảnh - vị thần bảo hộ bờ cõi, đất đai sông ngòi giúp nhân dân an cư lạc nghiệp.</p><p>Không chỉ mang giá trị tâm linh và thẩm mỹ sâu sắc, Đình Bình Trường còn ghi dấu lịch sử cách mạng hào hùng của nhân dân địa phương. Trong thời kỳ kháng chiến cứu nước, ngôi đình đã được trưng dụng làm cơ sở hoạt động bí mật, trạm chuyển thư và tiếp tế quân nhu an toàn giữa lòng địch.</p>",
+      body: "<p>Đình Bình Trường là di tích kiến trúc nghệ thuật cấp Thành phố tại huyện Bình Chánh. Trong 2 cuộc kháng chiến chống Pháp và chống Mỹ, Đình Bình Trường là địa điểm liên lạc, hộp thư nhận tin tức của cách mạng. Tháng 8 năm 1948, chi bộ Đảng xã Bình Chánh chính thức được thành lập, đồng chí Nguyễn Chánh Thôn - Bí thư Chi bộ xã Bình Chánh đã chỉ đạo cuộc đột kích nhân dịp đình Bình Trường cúng lễ Cầu Bông.</p><p>Về kiến trúc, chính điện đình theo kiểu tứ trụ, lối vào dạng cửa vòm; toàn bộ hệ thống cột hiên theo kiểu trụ vuông, đầu cột trang trí hoa văn vòng cuốn xoắn ốc. Nơi đây gìn giữ nhiều hiện vật quý gắn với các nghề truyền thống chạm khắc gỗ, đúc đồng và sắc phong triều đình Tự Đức ban tặng năm 1852.</p><p>Hàng năm, đình tổ chức các lễ cúng dân gian truyền thống như lễ Cầu Bông, lễ cúng Thần Nông, và đại lễ Kỳ Yên được tổ chức long trọng vào ngày 16 và 17 tháng Giêng Âm lịch với các nghi thức cúng tế cổ truyền và biểu diễn hát bội tại Võ ca.</p>",
       button: "Bắt đầu nghe"
     },
     timeline: {
@@ -96,27 +96,27 @@ var TRANSLATIONS = {
       stat4: "Xếp hạng di tích cấp Thành phố",
       card1: {
         title: "Ý nghĩa lịch sử",
-        body: "Từng là cơ sở bí mật hoạt động cách mạng của các chiến sĩ nội đô Sài Gòn trong suốt hai cuộc kháng chiến chống Pháp và chống Mỹ."
+        body: "Là địa điểm liên lạc, hộp thư nhận tin tức của cách mạng, gắn với hoạt động đột kích năm 1948 do Bí thư Chi bộ Nguyễn Chánh Thôn chỉ đạo."
       },
       card2: {
-        title: "Giá trị kiến trúc",
-        body: "Kiến trúc đình cổ Nam Bộ nguyên bản với cột gỗ lớn chịu lực, vì kèo chạm rồng phượng và mái lợp ngói âm dương đất nung."
+        title: "Mỹ thuật kiến trúc",
+        body: "Chính điện kiểu tứ trụ, lối vào dạng cửa vòm, toàn bộ hệ cột hiên kiểu trụ vuông và đầu cột trang trí hoa văn vòng cuốn xoắn ốc."
       },
       card3: {
-        title: "Đời sống tâm linh",
-        body: "Nơi thờ cúng Thành Hoàng và bảo lưu nguyên vẹn Sắc phong quý do Hoàng đế Tự Đức ban ban tặng vào năm Tự Đức thứ 5 (1852)."
+        title: "Hiện vật quý báu",
+        body: "Lưu giữ sắc phong vua Tự Đức ban tặng năm 1852 cùng các hiện vật chạm khắc gỗ tinh vi, lư đồng cổ và tượng rồng lân bằng gốm sứ."
       },
       card4: {
         title: "Lễ hội Kỳ Yên",
-        body: "Nét văn hóa tín ngưỡng độc đáo tổ chức vào rằm tháng Giêng hằng năm, quy tụ nghệ thuật hát bội tế thần và múa lân truyền thống."
+        body: "Tổ chức long trọng ngày 16-17 tháng Giêng để cầu quốc thái dân an, kết hợp hát bội truyền thống biểu diễn tại Võ ca."
       }
     },
     footer: {
-      about: "Dự án số hóa địa chỉ đỏ Di tích lịch sử Đình Bình Trường tọa lạc tại Quận 7, TP.HCM nhằm bảo tồn và phổ biến các giá trị văn hóa, kiến trúc truyền thống đến thế hệ trẻ.",
+      about: "Dự án số hóa địa chỉ đỏ Di tích kiến trúc nghệ thuật Đình Bình Trường tọa lạc tại Huyện Bình Chánh, TP.HCM nhằm bảo tồn và phổ biến các giá trị văn hóa, kiến trúc truyền thống.",
       explore: "Khám phá",
       info: "Thông tin",
       addressLabel: "Địa chỉ:",
-      address: "Đường Trần Xuân Soạn, Phường Bình Thuận, Quận 7, TP.HCM",
+      address: "Ấp 1, Xã Bình Chánh, Huyện Bình Chánh, TP.HCM",
       map: "Bản đồ di tích",
       copyrightMarquee: "Công trình số hóa địa chỉ đỏ Di tích lịch sử Đình Bình Trường - Thực hiện bởi Đội hình Chuyên Nâng cao Kỹ năng số - Chiến dịch Tình nguyện Sinh viên Kinh tế 2026 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       copyright: "Công trình số hóa địa chỉ đỏ Di tích lịch sử Đình Bình Trường<br>Thực hiện bởi Đội hình Chuyên Nâng cao Kỹ năng số<br>Chiến dịch Tình nguyện Sinh viên Kinh tế 2026"
@@ -151,7 +151,7 @@ var TRANSLATIONS = {
       rank_val: "Ho Chi Minh City"
     },
     quick_info_title: "QUICK INFO",
-    info_location: "District 7, Ho Chi Minh City",
+    info_location: "Binh Chanh District, Ho Chi Minh City",
     info_type_label: "TYPE",
     info_type: "City-level Architectural and Artistic Heritage Site",
     info_year_label: "BUILT",
@@ -160,11 +160,11 @@ var TRANSLATIONS = {
     info_atmosphere_label: "ATMOSPHERE",
     info_atmosphere: "Ancient, sacred, deeply imbued with traditional Southern Vietnamese culture.",
     festival_label: "Festival",
-    festival_mini_text: "Ky Yen Festival, 15-17 January (Lunar)",
+    festival_mini_text: "Ky Yen Festival, 16-17 January (Lunar)",
     drag_hint: "DRAG TO ROTATE 3D MODEL",
-    history_title: "Stories & Tales",
-    history_body: "Binh Truong Communal House is located in Binh Thuan Ward, District 7, Ho Chi Minh City. Built in the early 19th century, it has witnessed the historical and cultural ups and downs of the Saigon – Gia Dinh region.",
-    history_body2: "Architecturally, it carries the distinctive features of traditional Southern Vietnamese wooden construction with fine dragon and phoenix carvings. It is rich in stories of local culture, folklore and community beliefs.",
+    history_title: "History",
+    history_body: "Binh Truong Communal House is located in Binh Chanh Commune, Binh Chanh District, Ho Chi Minh City. It is estimated that Binh Truong Communal House has a history of formation and development of about 200 years.",
+    history_body2: "During the French and American resistance wars, Binh Truong Communal House was a crucial liaison post and secret mailbox for the revolution. In August 1948, the local Party branch organized a historic raid during the Cau Bong ceremony.",
     logo_title: "Binh Truong Communal House",
     gallery_tag: "RELIC IMAGES",
     gallery_link: "Relic Images",
@@ -176,7 +176,7 @@ var TRANSLATIONS = {
     detail_architecture: "ARCHITECTURAL DETAILS",
     section_about: "About",
     about_title: "Heritage Architecture",
-    about_body: "Binh Truong Communal House is located in Binh Thanh District, Ho Chi Minh City — built around 1808 and documented in the Gia Dinh Thanh Thong Chi in 1818.",
+    about_body: "Although the exact construction year is undocumented, the communal house is estimated to have formed and developed for about 200 years, tracing back to the establishment of Binh Truong village in 1818.",
     section_map: "Interactive Map",
     map_title: "Explore the Grounds",
     map_desc: "Click on each area on the map or the 3D model to view detailed architectural information.",
@@ -188,7 +188,7 @@ var TRANSLATIONS = {
     festival_title: "KY YEN FESTIVAL — SPIRITUAL BEAUTY",
     festival_desc: "Every year during the full moon of the first lunar month (15th-17th days), Binh Truong Communal House solemnly hosts the Ky Yen Festival to thank the tutelary god and pray for good weather, peace, and prosperity for the country. This is a gathering place for many people with unique traditional ritual worship, classical opera performances, and folk games.",
     footer_contact: "Contact & Location",
-    footer_address: "334/9 Binh Loi, Ward 13, Binh Thanh District, Ho Chi Minh City",
+    footer_address: "Hamlet 1, Binh Chanh Commune, Binh Chanh District, Ho Chi Minh City",
     footer_credits: "Digital preservation project for Binh Truong Communal House — preserving architectural, historical and cultural values for future generations.",
     close: "Close",
     next_area: "Next area →",
@@ -203,7 +203,7 @@ var TRANSLATIONS = {
     },
     narration: {
       title: "SITE NARRATION",
-      body: "<p>Binh Truong Communal House is a prominent historic communal house of the Southern Vietnamese plains. Spanning over two centuries, it preserves the majestic and ancient character of ancient architecture.</p><p>Solid wooden pillars combined with detailed dragon and phoenix carvings showcase the craftsmanship of historical builders. The house pays homage to the local Guardian Spirit, who protects borders and waterways, ensuring security and prosperity for the community.</p><p>Beyond its aesthetic and religious values, the house marks the heroic war resistance of the local populace. During the independence wars, it was used as a secret liaison post, coordinating safe communication and supply lines behind enemy lines.</p>",
+      body: "<p>Binh Truong Communal House is a Ho Chi Minh City-level artistic architectural relic in Binh Chanh District. During the anti-French and anti-American wars, it served as a liaison post and secret mailbox for the revolution. In August 1948, under the direction of Party Secretary Nguyen Chanh Thon, a historic raid was organized during the Cau Bong ceremony.</p><p>Architecturally, the main sanctuary features a four-pillar style with arched entrances and square veranda columns decorated with spiral scroll patterns. It preserves valuable artifacts representing traditional Vietnamese crafts, wood carvings, cast bronze censers, and the 1852 royal seal.</p><p>Every year, the communal house hosts traditional ceremonies like Cau Bong, Than Nong, and the grand Ky Yen Festival on the 16th and 17th of the first Lunar month, featuring sacred ritual worship and classical opera (Hat Boi) at Vo Ca stage.</p>",
       button: "Start listening"
     },
     timeline: {
@@ -218,27 +218,27 @@ var TRANSLATIONS = {
       stat4: "City-level heritage grade",
       card1: {
         title: "Historical Significance",
-        body: "Served as a secure liaison base and secret mailbox for underground operations during anti-French and anti-American wars."
+        body: "Served as a crucial liaison post and secret mailbox for the revolution, linked to the historic 1948 raid directed by Secretary Nguyen Chanh Thon."
       },
       card2: {
-        title: "Architectural Value",
-        body: "Authentic Southern temple layout with heavy load-bearing wooden pillars, interlocking beams, and clay yin-yang tiles."
+        title: "Architectural Art",
+        body: "Four-pillar sanctuary with arched entrances and square veranda columns decorated with spiral scroll patterns."
       },
       card3: {
-        title: "Spiritual Life",
-        body: "Dedicated to the local Guardian Spirit, preserving an original royal seal granted by Emperor Tu Duc in 1852."
+        title: "Precious Artifacts",
+        body: "Preserves the 1852 royal seal granted by Emperor Tu Duc, fine wood carvings, antique bronze censers, and ceramic dragons."
       },
       card4: {
         title: "Ky Yen Festival",
-        body: "Held annually in the 1st lunar month, gathering villagers for traditional sacrifices, classical opera, and lion dances."
+        body: "Solemnly celebrated on Jan 16-17 Lunar, featuring classical Hat Boi performances at Vo Ca stage to pray for peace."
       }
     },
     footer: {
-      about: "The Binh Truong digital red site project aims to preserve and promote cultural and architectural values to the youth and wider public.",
+      about: "The Binh Truong digital red site project in Binh Chanh District, HCMC aims to preserve and promote cultural and architectural values.",
       explore: "Explore",
       info: "Information",
       addressLabel: "Address:",
-      address: "Tran Xuan Soan Street, Binh Thuan Ward, District 7, Ho Chi Minh City",
+      address: "Hamlet 1, Binh Chanh Commune, Binh Chanh District, Ho Chi Minh City",
       map: "Interactive Map",
       copyrightMarquee: "Digital Red Site Digitalization Project - Binh Truong Communal House - Carried out by the Digital Skills Enhancement Team - Student Economic Volunteer Campaign 2026 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       copyright: "Digital Red Site Digitalization Project - Binh Truong Communal House<br>Carried out by the Digital Skills Enhancement Team<br>Student Economic Volunteer Campaign 2026"
