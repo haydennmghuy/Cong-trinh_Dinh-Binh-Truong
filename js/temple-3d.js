@@ -576,11 +576,11 @@ const Temple3D = {
     this.scene.add(this.createBox(0.8, 0.15, 0.4, 0xC89E88, bx, 2.275, bz));
 
     // Pathway from Cổng Tam Quan to the main temple courtyard
-    const pathGeo = new THREE.PlaneGeometry(4, 16);
+    const pathGeo = new THREE.PlaneGeometry(4, 12);
     const pathMat = this.mat(0xC0A888, { roughness: 0.9 });
     const path = new THREE.Mesh(pathGeo, pathMat);
     path.rotation.x = -Math.PI / 2;
-    path.position.set(-24.0, 0.02, -2.0);
+    path.position.set(-24.0, 0.02, -0.5);
     this.scene.add(path);
   },
 
