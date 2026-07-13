@@ -171,15 +171,6 @@ const Temple3D = {
 
   updateLoadingProgress() {
     this.loadedModels_count++;
-    const pct = Math.round((this.loadedModels_count / this.totalModels) * 100);
-    const bar = document.getElementById('model-loading-bar');
-    const txt = document.getElementById('model-loading-text');
-    const wrap = document.getElementById('model-loading-overlay');
-    if (bar) bar.style.width = pct + '%';
-    if (txt) txt.textContent = `Đang tải mô hình 3D... ${pct}%`;
-    if (pct >= 100 && wrap) {
-      setTimeout(() => { wrap.style.opacity = '0'; setTimeout(() => wrap.remove(), 500); }, 600);
-    }
   },
 
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
@@ -283,7 +274,7 @@ const Temple3D = {
               'Toa_nha_bep_va_toa_WC': { width: 9.0 },
               'Nha_tho_Bac_Ho': { width: 7.5 },
               'Vo_Ca_Vo_Qui_Chanh_Dien': { width: 17.0 },
-              'Tien_Dien': { height: 8.45 }
+              'Tien_Dien': { height: 4.5 }
             };
             
             const target = targets[modelName];
