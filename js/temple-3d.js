@@ -165,6 +165,12 @@ const Temple3D = {
         });
         
         this.scene.add(model);
+        
+        // Expose to window for easy debugging/positioning
+        if (!window.loadedModels) window.loadedModels = {};
+        const modelName = path.split('/').pop().replace('.glb', '');
+        window.loadedModels[modelName] = model;
+        
         if (onLoaded) onLoaded(model);
       },
       undefined,
