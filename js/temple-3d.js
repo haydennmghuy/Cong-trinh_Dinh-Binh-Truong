@@ -317,10 +317,10 @@ const Temple3D = {
     // Back wall segment right part: from x = 23.5 to x = 30
     this.scene.add(this.createBox(6.5, fenceH, wallThick, C.fenceYellow, 26.75, fenceH/2, -25.0));
     
-    // Recess walls around Uncle Ho Temple (x = 18.5 to 23.5, z = -25.0 to -29.0)
-    this.scene.add(this.createBox(wallThick, fenceH, 4.0, C.fenceYellow, 18.5, fenceH/2, -27.0));
-    this.scene.add(this.createBox(wallThick, fenceH, 4.0, C.fenceYellow, 23.5, fenceH/2, -27.0));
-    this.scene.add(this.createBox(5.0, fenceH, wallThick, C.fenceYellow, 21.0, fenceH/2, -29.0));
+    // Recess walls around Uncle Ho Temple (x = 18.5 to 23.5, z = -25.0 to -30.0)
+    this.scene.add(this.createBox(wallThick, fenceH, 5.0, C.fenceYellow, 18.5, fenceH/2, -27.5));
+    this.scene.add(this.createBox(wallThick, fenceH, 5.0, C.fenceYellow, 23.5, fenceH/2, -27.5));
+    this.scene.add(this.createBox(5.0, fenceH, wallThick, C.fenceYellow, 21.0, fenceH/2, -30.0));
     
     // Right wall segment (solid, x = 30)
     this.scene.add(this.createBox(wallThick, fenceH, 30.5, C.fenceYellow, 30.0, fenceH/2, -9.75));
@@ -340,7 +340,7 @@ const Temple3D = {
     const pillarPositions = [
       [-26.5, 5.5], [-21.5, 5.5], [12.5, 5.5], [15.5, 5.5], [30, 5.5],           // Front wall
       [-26.5, -0.5], [-30, -6.5], [-30, -15], [-30, -25], [30, -25],              // Corner joints
-      [18.5, -25], [23.5, -25], [18.5, -29], [23.5, -29],                        // Uncle Ho recess joints
+      [18.5, -25], [23.5, -25], [18.5, -30], [23.5, -30],                        // Uncle Ho recess joints
       [30, -15], [30, -5], [30, 5],                                              // Right wall joints
       [-10, -25], [0, -25], [10, -25]                                             // Back wall joints
     ];
@@ -775,7 +775,7 @@ const Temple3D = {
       'mieu-ho':              { x: -23.5, y: 2.5,  z: -10.0 },
       'mieu-ba-ngu-hanh':     { x: -18.5, y: 2.5,  z: -15.0 },
       'cot-co':               { x: -13.5, y: 4.5,  z: -10.0 },
-      'nha-tho-bac-ho':       { x: 21.0,  y: 3.8,  z: -26.5 },
+      'nha-tho-bac-ho':       { x: 21.0,  y: 3.8,  z: -27.5 },
       'nha-bep':              { x: 27.5,  y: 3.0,  z: -21.25 },
       'wc':                   { x: 27.5,  y: 2.5,  z: -14.75 },
     };
@@ -987,19 +987,26 @@ const Temple3D = {
 
   buildNhaThoBacHo() {
     const C = this.COLORS;
-    const x = 21.0, z = -26.5, w = 5.0, d = 5.0, h = 3.0; // Aligned in the top-right yard corner
+    const x = 21.0, z = -27.5, w = 5.0, d = 5.0, h = 3.0; // Aligned in the top-right yard corner
     
     // Foundation
     this.scene.add(this.createBox(w + 0.4, 0.3, d + 0.4, C.stoneGray, x, 0.15, z));
     
     // Walls
+    // Back wall (solid, at z - d/2)
     this.scene.add(this.createBox(w, h, 0.15, C.wallYellow, x, h/2 + 0.3, z - d/2));
-    this.scene.add(this.createBox(w, h, 0.15, C.wallYellow, x, h/2 + 0.3, z + d/2));
+    // Left wall (solid, at x - w/2)
     this.scene.add(this.createBox(0.15, h, d, C.wallYellow, x - w/2, h/2 + 0.3, z));
+    // Right wall (solid, at x + w/2)
     this.scene.add(this.createBox(0.15, h, d, C.wallYellow, x + w/2, h/2 + 0.3, z));
     
-    // Doorway (facing the courtyard on the left -x side)
-    this.scene.add(this.createBox(0.2, 2.0, 1.2, C.woodBrown, x - w/2, 1.0 + 0.3, z));
+    // Front wall facing courtyard (at z + d/2 = -25.0) - split for door
+    this.scene.add(this.createBox(1.9, h, 0.15, C.wallYellow, x - 1.55, h/2 + 0.3, z + d/2));
+    this.scene.add(this.createBox(1.9, h, 0.15, C.wallYellow, x + 1.55, h/2 + 0.3, z + d/2));
+    this.scene.add(this.createBox(1.2, 1.0, 0.15, C.wallYellow, x, 2.5 + 0.3, z + d/2));
+    
+    // Doorway (facing the courtyard on the front +z side)
+    this.scene.add(this.createBox(1.2, 2.0, 0.2, C.woodBrown, x, 1.0 + 0.3, z + d/2));
     
     // Roof
     const roof = this.createRoof(w, d, 1.5, 0.4, C.roofRed, x, h + 0.3, z);
