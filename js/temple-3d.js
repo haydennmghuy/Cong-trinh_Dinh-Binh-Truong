@@ -249,6 +249,7 @@ const Temple3D = {
               'Mieu_Ba_Ngu_Hanh': { width: 1.6 },
               'Ban_Than_Nong': { depth: 3.2 },
               'Mieu_Bach_Ma': { width: 1.6 },
+              'Mieu_tho_Than_Ho': { width: 1.6 },
               'Bia_ghi_nhan_di_tich': { height: 2.4 },
               'Cot_co_Viet_Nam': { height: 6.4 },
               'Toa_nha_bep_va_toa_WC': { width: 9.0 },
@@ -565,17 +566,8 @@ const Temple3D = {
     // 6. Miếu thờ Bạch Mã - GLB
     this.loadGLBModel('models/Mieu_Bach_Ma.glb', -15.0, 0, -5.0, Math.PI / 2, 1.0);
 
-    // 6B. Miếu thờ Thần Hổ - Column 1, Row 3 (behind Bàn thờ Thần Nông): x = -21.5, z = -10.0 (Procedural, keep as is)
-    const mhx = -21.5, mhz = -10.0;
-    this.scene.add(this.createBox(1.2, 0.2, 1.2, C.stoneGray, mhx, 0.1, mhz));
-    this.scene.add(this.createBox(1.0, 1.3, 1.0, C.wallYellow, mhx, 0.75, mhz));
-    // Red columns on front face (+x side)
-    this.scene.add(this.createBox(0.1, 1.3, 0.15, C.columnRed, mhx + 0.51, 0.75, mhz - 0.35));
-    this.scene.add(this.createBox(0.1, 1.3, 0.15, C.columnRed, mhx + 0.51, 0.75, mhz + 0.35));
-    // White doorway outline
-    this.scene.add(this.createBox(0.05, 0.9, 0.5, 0xFFFFFF, mhx + 0.51, 0.55, mhz));
-    const mhRoof = this.createRoof(1.4, 1.4, 0.6, 0.1, C.roofRed, mhx, 1.4, mhz);
-    this.scene.add(mhRoof);
+    // 6B. Miếu thờ Thần Hổ - GLB (faces West towards Hồ Thuỷ Tạ)
+    this.loadGLBModel('models/Mieu_tho_Than_Ho.glb', -21.5, 0, -10.0, -Math.PI / 2, 1.0);
 
     // 7. Bia Di Tích Kiến Trúc Nghệ Thuật - GLB
     this.loadGLBModel('models/Bia_ghi_nhan_di_tich.glb', -9.0, 0, -1.0, 0, 1.0);
