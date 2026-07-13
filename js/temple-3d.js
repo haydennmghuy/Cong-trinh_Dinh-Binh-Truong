@@ -14,6 +14,8 @@ const Temple3D = {
   overlayContainer: null,
   animationId: null,
   isInitialized: false,
+  transitionTargetCam: null,
+  transitionTargetLookAt: null,
 
   // Colors from real photos
   COLORS: {
@@ -74,11 +76,16 @@ const Temple3D = {
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.08;
     this.controls.maxPolarAngle = Math.PI / 2.1;
-    this.controls.minDistance = 15;
+    this.controls.minDistance = 2;
     this.controls.maxDistance = 80;
     this.controls.target.set(0, 1, -8);
     this.controls.autoRotate = false;
     this.controls.autoRotateSpeed = 0.5;
+
+    this.controls.addEventListener('start', () => {
+      this.transitionTargetCam = null;
+      this.transitionTargetLookAt = null;
+    });
 
     // Lighting
     this.addLighting();
@@ -503,22 +510,22 @@ const Temple3D = {
     const C = this.COLORS;
 
     // 1. Hồ Thuỷ Tạ (Semi-circular pond on the left wall x=-30.0, curving to the right) - GLB
-    this.loadGLBModel('models/Ho_Thuy_Ta.glb', -29.9, 0, -13.0, 0, 1.0);
+    this.loadGLBModel('models/Ho_Thuy_Ta.glb', -29.9, 0, -13.0, Math.PI / 2, 1.0);
 
     // 2. Sân Khấu Ngoài Trời (Outdoor Stage) - GLB
     this.loadGLBModel('models/San_khau.glb', -4.5, 0, -19.5, 0, 1.0);
 
     // 3. Bia Tưởng Niệm (Memorial Stele) - GLB
-    this.loadGLBModel('models/Bia_ghi_cong.glb', -18.5, 0, -20.0, 0, 1.0);
+    this.loadGLBModel('models/Bia_ghi_cong.glb', -18.5, 0, -20.0, Math.PI / 2, 1.0);
 
     // 4. Miếu thờ Bà Ngũ Hành - GLB
-    this.loadGLBModel('models/Mieu_Ba_Ngu_Hanh.glb', -18.5, 0, -15.0, 0, 1.0);
+    this.loadGLBModel('models/Mieu_Ba_Ngu_Hanh.glb', -18.5, 0, -15.0, Math.PI / 2, 1.0);
 
     // 5. Bàn thờ Thần Nông - GLB
-    this.loadGLBModel('models/Ban_Than_Nong.glb', -18.5, 0, -10.0, 0, 1.0);
+    this.loadGLBModel('models/Ban_Than_Nong.glb', -18.5, 0, -10.0, Math.PI / 2, 1.0);
 
     // 6. Miếu thờ Bạch Mã - GLB
-    this.loadGLBModel('models/Mieu_Bach_Ma.glb', -18.5, 0, -5.0, 0, 1.0);
+    this.loadGLBModel('models/Mieu_Bach_Ma.glb', -18.5, 0, -5.0, Math.PI / 2, 1.0);
 
     // 6B. Miếu thờ Thần Hổ - Column 1, Row 3 (behind Bàn thờ Thần Nông): x = -23.5, z = -10.0 (Procedural, keep as is)
     const mhx = -23.5, mhz = -10.0;
@@ -858,7 +865,23 @@ const Temple3D = {
     // Update HTML overlay labels
     this.updateHotspotLabels();
 
-    this.controls.update();
+    // Smooth camera transition if active
+    if (this.transitionTargetCam && this.transitionTargetLookAt) {
+      this.camera.position.lerp(this.transitionTargetCam, 0.05);
+      this.controls.target.lerp(this.transitionTargetLookAt, 0.05);
+      this.controls.update();
+
+      if (this.camera.position.distanceTo(this.transitionTargetCam) < 0.05 &&
+          this.controls.target.distanceTo(this.transitionTargetLookAt) < 0.05) {
+        this.camera.position.copy(this.transitionTargetCam);
+        this.controls.target.copy(this.transitionTargetLookAt);
+        this.controls.update();
+        this.transitionTargetCam = null;
+        this.transitionTargetLookAt = null;
+      }
+    } else {
+      this.controls.update();
+    }
     this.renderer.render(this.scene, this.camera);
   },
 
@@ -944,7 +967,41 @@ const Temple3D = {
   },
 
   buildNhaBepVaWC() {
-    this.loadGLBModel('models/Toa_nha_bep_va_toa_WC.glb', 25.5, 0, -22.0, 0, 1.0);
+    this.loadGLBModel('models/Toa_nha_bep_va_toa_WC.glb', 25.5, 0, -22.0, -Math.PI / 2, 1.0);
+  },
+
+  focusOnArea(areaId) {
+    const focusPositions = {
+      'cong-tam-quan':        { cam: { x: -24.0, y: 7.0,  z: 14.0 },  lookAt: { x: -24.0, y: 2.0,  z: 5.5 } },
+      'cong-nho':             { cam: { x: 14.0,  y: 5.0,  z: 13.0 },  lookAt: { x: 14.0,  y: 1.5,  z: 5.5 } },
+      'nha-vo-ca':            { cam: { x: -4.5,  y: 6.0,  z: -2.0 },   lookAt: { x: -4.5,  y: 2.0,  z: -10.0 } },
+      'vo-qui':               { cam: { x: 0.5,   y: 6.0,  z: -2.0 },   lookAt: { x: 0.5,   y: 2.0,  z: -10.0 } },
+      'chanh-dien':           { cam: { x: 6.5,   y: 7.5,  z: -2.0 },   lookAt: { x: 6.5,   y: 2.5,  z: -10.0 } },
+      'tien-dien':            { cam: { x: 13.0,  y: 6.0,  z: -2.0 },   lookAt: { x: 13.0,  y: 2.0,  z: -10.0 } },
+      'ho-thuy-ta':           { cam: { x: -23.0, y: 5.0,  z: -13.0 },  lookAt: { x: -29.9, y: 1.0,  z: -13.0 } },
+      'san-khau-ngoai-troi':  { cam: { x: -4.5,  y: 5.0,  z: -13.0 },  lookAt: { x: -4.5,  y: 1.5,  z: -19.5 } },
+      'bia-tuong-niem':       { cam: { x: -13.0, y: 4.5,  z: -20.0 },  lookAt: { x: -18.5, y: 1.5,  z: -20.0 } },
+      'bia-di-tich':          { cam: { x: -9.0,  y: 4.5,  z: 5.0 },   lookAt: { x: -9.0,  y: 1.5,  z: -1.0 } },
+      'mieu-bach-ma':         { cam: { x: -13.0, y: 5.0,  z: -5.0 },   lookAt: { x: -18.5, y: 1.5,  z: -5.0 } },
+      'ban-than-nong':        { cam: { x: -13.0, y: 5.0,  z: -10.0 },  lookAt: { x: -18.5, y: 1.5,  z: -10.0 } },
+      'mieu-ho':              { cam: { x: -18.0, y: 5.0,  z: -10.0 },  lookAt: { x: -23.5, y: 1.5,  z: -10.0 } },
+      'mieu-ba-ngu-hanh':     { cam: { x: -13.0, y: 5.0,  z: -15.0 },  lookAt: { x: -18.5, y: 1.5,  z: -15.0 } },
+      'cot-co':               { cam: { x: -9.0,  y: 6.0,  z: -3.0 },   lookAt: { x: -9.0,  y: 2.0,  z: -10.0 } },
+      'nha-tho-bac-ho':       { cam: { x: 19.0,  y: 5.5,  z: -21.0 },  lookAt: { x: 19.0,  y: 1.5,  z: -27.5 } },
+      'nha-bep':              { cam: { x: 17.0,  y: 5.0,  z: -22.0 },  lookAt: { x: 23.0,  y: 1.5,  z: -22.0 } },
+      'wc':                   { cam: { x: 22.0,  y: 5.0,  z: -22.0 },  lookAt: { x: 28.0,  y: 1.5,  z: -22.0 } }
+    };
+
+    const cfg = focusPositions[areaId];
+    if (cfg) {
+      this.transitionTargetCam = new THREE.Vector3(cfg.cam.x, cfg.cam.y, cfg.cam.z);
+      this.transitionTargetLookAt = new THREE.Vector3(cfg.lookAt.x, cfg.lookAt.y, cfg.lookAt.z);
+    }
+  },
+
+  resetCamera() {
+    this.transitionTargetLookAt = new THREE.Vector3(0, 1, -8);
+    this.transitionTargetCam = new THREE.Vector3(0, 32, 28);
   },
 
   destroy() {

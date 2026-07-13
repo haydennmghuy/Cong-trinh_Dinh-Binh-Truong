@@ -207,6 +207,11 @@ const HotspotModal = {
     // Show modal
     this.modalEl.classList.add('open');
     document.body.style.overflow = 'hidden';
+
+    // Focus camera on the corresponding 3D spot
+    if (window.Temple3D && typeof window.Temple3D.focusOnArea === 'function') {
+      window.Temple3D.focusOnArea(area.id);
+    }
   },
 
   close() {
@@ -220,6 +225,11 @@ const HotspotModal = {
     this.isPlaying = false;
     const btn = document.getElementById('hotspot-audio-play-btn');
     if (btn) btn.textContent = '▶';
+
+    // Reset camera focus to main view
+    if (window.Temple3D && typeof window.Temple3D.resetCamera === 'function') {
+      window.Temple3D.resetCamera();
+    }
   }
 };
 
