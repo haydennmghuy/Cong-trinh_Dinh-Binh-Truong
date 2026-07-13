@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 const Temple3D = {
   scene: null,
@@ -144,6 +145,33 @@ const Temple3D = {
     // Hemisphere light
     const hemi = new THREE.HemisphereLight(0x87CEEB, 0x8B7B60, 0.3);
     this.scene.add(hemi);
+  },
+
+  loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
+    const loader = new GLTFLoader();
+    loader.load(
+      path,
+      (gltf) => {
+        const model = gltf.scene;
+        model.position.set(x, y, z);
+        model.rotation.y = rotY;
+        model.scale.set(scale, scale, scale);
+        
+        model.traverse((node) => {
+          if (node.isMesh) {
+            node.castShadow = true;
+            node.receiveShadow = true;
+          }
+        });
+        
+        this.scene.add(model);
+        if (onLoaded) onLoaded(model);
+      },
+      undefined,
+      (error) => {
+        console.error('Error loading GLB model:', path, error);
+      }
+    );
   },
 
   // ============ MATERIAL HELPERS ============
@@ -374,184 +402,35 @@ const Temple3D = {
   },
 
   buildGate() {
-    const C = this.COLORS;
-    const group = new THREE.Group();
-    group.position.set(-24.0, 0, 5.5);
-    
-    // Main gate structure (facing front-back, no rotation)
-    const gateW = 5;
-    const gateD = 1.8;
-    const gateH = 3.5;
-    const roofColor = 0x7E3D30; // Terracotta clay color matching the photo
-
-    // Gate walls (yellow)
-    group.add(this.createBox(1.5, gateH, gateD, C.wallYellow, -2, gateH/2, 0));
-    group.add(this.createBox(1.5, gateH, gateD, C.wallYellow, 2, gateH/2, 0));
-    group.add(this.createBox(0.6, gateH, gateD, C.wallYellow, -0.7, gateH/2, 0));
-    group.add(this.createBox(0.6, gateH, gateD, C.wallYellow, 0.7, gateH/2, 0));
-
-    // Upper wall connecting (above arches)
-    group.add(this.createBox(gateW + 0.6, 1.2, gateD, C.wallYellow, 0, gateH + 0.6, 0));
-
-    // Arch openings
-    group.add(this.createBox(1.4, 3, gateD + 0.1, 0x3E2A24, 0, 1.5, 0, { roughness: 0.9 }));
-    group.add(this.createBox(1.0, 2.5, gateD + 0.1, 0x3E2A24, -1.35, 1.25, 0, { roughness: 0.9 }));
-    group.add(this.createBox(1.0, 2.5, gateD + 0.1, 0x3E2A24, 1.35, 1.25, 0, { roughness: 0.9 }));
-
-    // Bronze-colored iron gates inside arches
-    group.add(this.createBox(1.3, 1.8, 0.05, 0x8B7D6B, 0, 0.9, 0, { metalness: 0.6, roughness: 0.4 }));
-    group.add(this.createBox(0.9, 1.5, 0.05, 0x8B7D6B, -1.35, 0.75, 0, { metalness: 0.6, roughness: 0.4 }));
-    group.add(this.createBox(0.9, 1.5, 0.05, 0x8B7D6B, 1.35, 0.75, 0, { metalness: 0.6, roughness: 0.4 }));
-
-    // Gate roof
-    const gateRoof = this.createRoof(gateW + 1.2, gateD + 0.8, 1.8, 0.6, roofColor, 0, gateH + 0.8, 0);
-    group.add(gateRoof);
-
-    // Gate decorative top piece
-    group.add(this.createBox(2.2, 0.6, 1.2, C.wallYellow, 0, gateH + 2.4, 0));
-    const crownRoof = this.createRoof(2.6, 1.4, 1.0, 0.4, roofColor, 0, gateH + 2.8, 0);
-    group.add(crownRoof);
-
-    // White decorative horns with red tips on the central roof corners
-    const cy = gateH + 3.4;
-    group.add(this.createCylinder(0.12, 0.12, 0.3, 0xFFFFFF, -1.3, cy, 0.7, 8));
-    group.add(this.createCylinder(0.12, 0.12, 0.3, 0xFFFFFF, 1.3, cy, 0.7, 8));
-    group.add(this.createCylinder(0.12, 0.12, 0.3, 0xFFFFFF, -1.3, cy, -0.7, 8));
-    group.add(this.createCylinder(0.12, 0.12, 0.3, 0xFFFFFF, 1.3, cy, -0.7, 8));
-
-    group.add(this.createBox(0.18, 0.18, 0.18, 0xAA0000, -1.3, cy + 0.2, 0.7));
-    group.add(this.createBox(0.18, 0.18, 0.18, 0xAA0000, 1.3, cy + 0.2, 0.7));
-    group.add(this.createBox(0.18, 0.18, 0.18, 0xAA0000, -1.3, cy + 0.2, -0.7));
-    group.add(this.createBox(0.18, 0.18, 0.18, 0xAA0000, 1.3, cy + 0.2, -0.7));
-
-    // Gold ridge ornament
-    group.add(this.createBox(0.15, 0.6, 0.15, C.goldAccent, 0, gateH + 4.0, 0, { metalness: 0.5 }));
-
-    // Plaque / sign board
-    group.add(this.createBox(1.9, 0.6, 0.08, 0x7A3B2E, 0, gateH + 0.35, gateD/2 + 0.01)); // border
-    group.add(this.createBox(1.8, 0.5, 0.12, 0xD7CCC8, 0, gateH + 0.35, gateD/2 + 0.02)); // background
-    group.add(this.createBox(0.15, 0.2, 0.02, 0x222222, -0.4, gateH + 0.35, gateD/2 + 0.09)); // Char 1
-    group.add(this.createBox(0.15, 0.2, 0.02, 0x222222, 0, gateH + 0.35, gateD/2 + 0.09)); // Char 2
-    group.add(this.createBox(0.15, 0.2, 0.02, 0x222222, 0.4, gateH + 0.35, gateD/2 + 0.09)); // Char 3
-
-    this.scene.add(group);
+    this.loadGLBModel('models/Cong_Tam_Quan.glb', -24.0, 0, 5.5, 0, 1.0);
   },
 
   buildSmallGate() {
-    const C = this.COLORS;
-    const group = new THREE.Group();
-    group.position.set(14.0, 0, 5.5);
-
-    const gateH = 2.8;
-    const gateW = 2.4;
-    const gateD = 1.2;
-
-    group.add(this.createBox(0.6, gateH, gateD, C.wallYellow, -0.9, gateH/2, 0));
-    group.add(this.createBox(0.6, gateH, gateD, C.wallYellow, 0.9, gateH/2, 0));
-    group.add(this.createBox(1.2, 2.2, gateD - 0.2, C.woodBrown, 0, 1.1, 0, { roughness: 0.9 }));
-    group.add(this.createBox(gateW, 0.6, gateD, C.wallYellow, 0, gateH - 0.3, 0));
-    
-    const roof = this.createRoof(gateW + 0.6, gateD + 0.4, 0.8, 0.3, C.roofRed, 0, gateH - 0.1, 0);
-    group.add(roof);
-
-    this.scene.add(group);
+    this.loadGLBModel('models/Cong_nho_ben_phai.glb', 14.0, 0, 5.5, 0, 1.0);
   },
 
   buildCourtyard() {
     const C = this.COLORS;
 
-    // 1. Hồ Thuỷ Tạ (Semi-circular pond on the left wall x=-30.0, curving to the right)
-    const pondShape = new THREE.Shape();
-    pondShape.absarc(0, 0, 4.5, 0, Math.PI, false);
-    pondShape.lineTo(4.5, 0); // Close shape
-    const pondGeo = new THREE.ShapeGeometry(pondShape);
-    const pond = new THREE.Mesh(pondGeo, this.mat(0x33A0FF, { roughness: 0.1, metalness: 0.8 }));
-    pond.rotation.x = -Math.PI / 2;
-    pond.rotation.z = -Math.PI / 2; // Flat edge along the left fence curving inwards to the right
-    pond.position.set(-29.9, 0.03, -13.0);
-    this.scene.add(pond);
+    // 1. Hồ Thuỷ Tạ (Semi-circular pond on the left wall x=-30.0, curving to the right) - GLB
+    this.loadGLBModel('models/Ho_Thuy_Ta.glb', -29.9, 0, -13.0, 0, 1.0);
 
-    // Pond stone border
-    const borderShape = new THREE.Shape();
-    borderShape.absarc(0, 0, 4.7, 0, Math.PI, false);
-    borderShape.lineTo(4.7, 0); // Close shape
-    const borderExtrude = new THREE.ExtrudeGeometry(borderShape, { depth: 0.2, bevelEnabled: false });
-    const border = new THREE.Mesh(borderExtrude, this.mat(C.stoneGray));
-    border.rotation.x = -Math.PI / 2;
-    border.rotation.z = -Math.PI / 2;
-    border.position.set(-29.9, 0.03, -13.0);
-    this.scene.add(border);
+    // 2. Sân Khấu Ngoài Trời (Outdoor Stage) - GLB
+    this.loadGLBModel('models/San_khau.glb', -4.5, 0, -19.5, 0, 1.0);
 
-    // 2. Sân Khấu Ngoài Trời (Outdoor Stage) - Aligned next to Vo Qui at x = -4.5, z = -19.5
-    // Stage base
-    this.scene.add(this.createBox(3.0, 0.4, 4.0, C.stoneGray, -4.5, 0.2, -19.5));
-    // Stage back wall on the top side (z = -20.9)
-    this.scene.add(this.createBox(3.0, 2.0, 0.15, C.columnRed, -4.5, 1.4, -20.9));
-    // Front corner columns (at z = -18.1)
-    this.scene.add(this.createBox(0.15, 2.0, 0.15, C.columnRed, -5.9, 1.4, -18.1));
-    this.scene.add(this.createBox(0.15, 2.0, 0.15, C.columnRed, -3.1, 1.4, -18.1));
-    // Stage roof
-    const stageRoof = this.createRoof(3.4, 4.4, 0.6, 0.2, C.roofRed, -4.5, 2.4, -19.5);
-    this.scene.add(stageRoof);
+    // 3. Bia Tưởng Niệm (Memorial Stele) - GLB
+    this.loadGLBModel('models/Bia_ghi_cong.glb', -18.5, 0, -20.0, 0, 1.0);
 
-    // 3. Bia Tưởng Niệm (Memorial Stele) - Column 2, Row 1 (Top): x = -18.5, z = -20.0
-    const mx = -18.5, mz = -20.0;
-    // Red base
-    this.scene.add(this.createBox(1.2, 0.3, 1.2, C.columnRed, mx, 0.15, mz));
-    // Central tall white pillar/obelisk
-    this.scene.add(this.createBox(0.3, 2.2, 0.3, 0xEEEEEE, mx, 1.25, mz));
-    // Plaque in front (red with gold border)
-    this.scene.add(this.createBox(0.05, 0.8, 0.6, C.columnRed, mx + 0.18, 1.0, mz));
-    this.scene.add(this.createBox(0.06, 0.7, 0.5, C.goldAccent, mx + 0.19, 1.0, mz, { metalness: 0.4 }));
-    // Side pillars (white with red caps)
-    this.scene.add(this.createBox(0.2, 1.6, 0.2, 0xEEEEEE, mx, 0.95, mz - 0.45));
-    this.scene.add(this.createBox(0.22, 0.15, 0.22, C.columnRed, mx, 1.8, mz - 0.45));
-    this.scene.add(this.createBox(0.2, 1.6, 0.2, 0xEEEEEE, mx, 0.95, mz + 0.45));
-    this.scene.add(this.createBox(0.22, 0.15, 0.22, C.columnRed, mx, 1.8, mz + 0.45));
+    // 4. Miếu thờ Bà Ngũ Hành - GLB
+    this.loadGLBModel('models/Mieu_Ba_Ngu_Hanh.glb', -18.5, 0, -15.0, 0, 1.0);
 
-    // 4. Miếu thờ Bà Ngũ Hành - Column 2, Row 2 (Middle-top): x = -18.5, z = -15.0
-    const m1x = -18.5, m1z = -15.0;
-    this.scene.add(this.createBox(1.2, 0.2, 1.2, C.stoneGray, m1x, 0.1, m1z));
-    this.scene.add(this.createBox(1.0, 1.3, 1.0, C.wallYellow, m1x, 0.75, m1z));
-    // Red columns on front face (+x side)
-    this.scene.add(this.createBox(0.1, 1.3, 0.15, C.columnRed, m1x + 0.51, 0.75, m1z - 0.35));
-    this.scene.add(this.createBox(0.1, 1.3, 0.15, C.columnRed, m1x + 0.51, 0.75, m1z + 0.35));
-    // White doorway outline
-    this.scene.add(this.createBox(0.05, 0.9, 0.5, 0xFFFFFF, m1x + 0.51, 0.55, m1z));
-    const sRoof1 = this.createRoof(1.4, 1.4, 0.6, 0.1, C.roofRed, m1x, 1.4, m1z);
-    this.scene.add(sRoof1);
+    // 5. Bàn thờ Thần Nông - GLB
+    this.loadGLBModel('models/Ban_Than_Nong.glb', -18.5, 0, -10.0, 0, 1.0);
 
-    // 5. Bàn thờ Thần Nông - Column 2, Row 3 (Middle-bottom): x = -18.5, z = -10.0
-    const bpx = -18.5, bpz = -10.0;
-    this.scene.add(this.createBox(0.25, 1.8, 3.0, C.wallYellow, bpx, 0.9, bpz));
-    this.scene.add(this.createBox(0.5, 0.15, 3.4, C.stoneGray, bpx, 0.075, bpz)); // base
-    // Red pillars at both ends
-    this.scene.add(this.createBox(0.3, 1.9, 0.3, C.columnRed, bpx, 0.95, bpz - 1.5));
-    this.scene.add(this.createBox(0.3, 1.9, 0.3, C.columnRed, bpx, 0.95, bpz + 1.5));
-    // Round calligraphic emblem frame on front face (+x)
-    const bpFrame = this.createCylinder(0.5, 0.5, 0.05, 0xFFFFFF, bpx + 0.13, 0.9, bpz, 16);
-    bpFrame.rotation.z = Math.PI / 2;
-    this.scene.add(bpFrame);
-    const bpChar = this.createCylinder(0.35, 0.35, 0.06, 0xAA0000, bpx + 0.14, 0.9, bpz, 16);
-    bpChar.rotation.z = Math.PI / 2;
-    this.scene.add(bpChar);
-    // Roof (runs along Z, no rotation)
-    const bpRoof = this.createRoof(0.4, 3.2, 0.4, 0.1, C.roofRed, bpx, 1.8, bpz);
-    this.scene.add(bpRoof);
+    // 6. Miếu thờ Bạch Mã - GLB
+    this.loadGLBModel('models/Mieu_Bach_Ma.glb', -18.5, 0, -5.0, 0, 1.0);
 
-    // 6. Miếu thờ Bạch Mã (Miếu Bạch Hổ) - Column 2, Row 4 (Bottom): x = -18.5, z = -5.0
-    const m2x = -18.5, m2z = -5.0;
-    this.scene.add(this.createBox(1.2, 0.2, 1.2, C.stoneGray, m2x, 0.1, m2z));
-    this.scene.add(this.createBox(1.0, 1.3, 1.0, C.wallYellow, m2x, 0.75, m2z));
-    // Red columns on front face (+x side)
-    this.scene.add(this.createBox(0.1, 1.3, 0.15, C.columnRed, m2x + 0.51, 0.75, m2z - 0.35));
-    this.scene.add(this.createBox(0.1, 1.3, 0.15, C.columnRed, m2x + 0.51, 0.75, m2z + 0.35));
-    // White doorway outline
-    this.scene.add(this.createBox(0.05, 0.9, 0.5, 0xFFFFFF, m2x + 0.51, 0.55, m2z));
-    const sRoof2 = this.createRoof(1.4, 1.4, 0.6, 0.1, C.roofRed, m2x, 1.4, m2z);
-    this.scene.add(sRoof2);
-
-    // 6B. Miếu thờ Thần Hổ - Column 1, Row 3 (behind Bàn thờ Thần Nông): x = -23.5, z = -10.0
+    // 6B. Miếu thờ Thần Hổ - Column 1, Row 3 (behind Bàn thờ Thần Nông): x = -23.5, z = -10.0 (Procedural, keep as is)
     const mhx = -23.5, mhz = -10.0;
     this.scene.add(this.createBox(1.2, 0.2, 1.2, C.stoneGray, mhx, 0.1, mhz));
     this.scene.add(this.createBox(1.0, 1.3, 1.0, C.wallYellow, mhx, 0.75, mhz));
@@ -563,19 +442,10 @@ const Temple3D = {
     const mhRoof = this.createRoof(1.4, 1.4, 0.6, 0.1, C.roofRed, mhx, 1.4, mhz);
     this.scene.add(mhRoof);
 
-    // 7. Bia Di Tích Kiến Trúc Nghệ Thuật (Stepped granite stele matching the photo, facing Back/-z)
-    const bx = -9.0, bz = -1.0;
-    // Granite base/pedestal
-    this.scene.add(this.createBox(1.6, 0.25, 0.6, 0x8B7D7A, bx, 0.125, bz));
-    // Main pillar body (pinkish-brown granite color)
-    this.scene.add(this.createBox(1.2, 1.8, 0.4, 0xC89E88, bx, 1.15, bz, { roughness: 0.7 }));
-    // Black inscription plaque on the back face (-z side)
-    this.scene.add(this.createBox(0.9, 1.4, 0.05, 0x222222, bx, 1.15, bz - 0.21, { roughness: 0.2 }));
-    // Stepped top layers
-    this.scene.add(this.createBox(1.0, 0.15, 0.4, 0xC89E88, bx, 2.125, bz));
-    this.scene.add(this.createBox(0.8, 0.15, 0.4, 0xC89E88, bx, 2.275, bz));
+    // 7. Bia Di Tích Kiến Trúc Nghệ Thuật - GLB
+    this.loadGLBModel('models/Bia_ghi_nhan_di_tich.glb', -9.0, 0, -1.0, 0, 1.0);
 
-    // Pathway from Cổng Tam Quan to the main temple courtyard
+    // Pathway from Cổng Tam Quan to the main temple courtyard (Keep as is)
     const pathGeo = new THREE.PlaneGeometry(4, 12);
     const pathMat = this.mat(0xC0A888, { roughness: 0.9 });
     const path = new THREE.Mesh(pathGeo, pathMat);
@@ -952,33 +822,7 @@ const Temple3D = {
   },
 
   buildFlagpole() {
-    const C = this.COLORS;
-    const group = new THREE.Group();
-    group.position.set(-9.0, 0, -10.0); // Center yard position
-
-    // Base
-    group.add(this.createCylinder(0.5, 0.6, 0.4, C.stoneGray, 0, 0.2, 0, 8));
-    group.add(this.createCylinder(0.3, 0.4, 0.3, C.stoneGray, 0, 0.55, 0, 8));
-
-    // Pole
-    group.add(this.createCylinder(0.06, 0.06, 6.0, 0xDDDDDD, 0, 3.0, 0, 8));
-
-    // Vietnam Flag
-    const flagGeo = new THREE.BoxGeometry(1.2, 0.8, 0.02);
-    const flagMat = new THREE.MeshBasicMaterial({ color: 0xDA251D }); // Red
-    const flag = new THREE.Mesh(flagGeo, flagMat);
-    flag.position.set(0.6, 5.6, 0);
-    group.add(flag);
-
-    // Yellow star in the center
-    const starGeo = new THREE.ConeGeometry(0.18, 0.04, 5);
-    const starMat = new THREE.MeshBasicMaterial({ color: 0xFFFF00 }); // Yellow
-    const star = new THREE.Mesh(starGeo, starMat);
-    star.rotation.x = Math.PI / 2;
-    star.position.set(0.6, 5.6, 0.02);
-    group.add(star);
-
-    this.scene.add(group);
+    this.loadGLBModel('models/Cot_co_Viet_Nam.glb', -9.0, 0, -10.0, 0, 1.0);
   },
 
   buildNhaThoBacHo() {
@@ -1010,51 +854,7 @@ const Temple3D = {
   },
 
   buildNhaBepVaWC() {
-    const C = this.COLORS;
-    
-    // 1. Nhà bếp (Kitchen) - aligned against the back fence (z = -25.0) at x = 23.0
-    const kx = 23.0, kz = -22.0, kw = 4.0, kd = 6.0, kh = 2.6;
-    // Foundation
-    this.scene.add(this.createBox(kw + 0.2, 0.2, kd + 0.2, C.stoneGray, kx, 0.1, kz));
-    // Walls (grayish brick wall)
-    // Back wall
-    this.scene.add(this.createBox(kw, kh, 0.15, 0xB0A896, kx, kh/2 + 0.1, kz - kd/2));
-    // Left wall
-    this.scene.add(this.createBox(0.15, kh, kd, 0xB0A896, kx - kw/2, kh/2 + 0.1, kz));
-    // Right wall
-    this.scene.add(this.createBox(0.15, kh, kd, 0xB0A896, kx + kw/2, kh/2 + 0.1, kz));
-    // Front wall (facing South, split for door)
-    this.scene.add(this.createBox(1.5, kh, 0.15, 0xB0A896, kx - 1.25, kh/2 + 0.1, kz + kd/2));
-    this.scene.add(this.createBox(1.5, kh, 0.15, 0xB0A896, kx + 1.25, kh/2 + 0.1, kz + kd/2));
-    this.scene.add(this.createBox(1.0, 0.8, 0.15, 0xB0A896, kx, 2.2 + 0.1, kz + kd/2));
-    
-    // Door (facing South)
-    this.scene.add(this.createBox(1.0, 1.8, 0.2, C.woodBrown, kx, 0.9 + 0.1, kz + kd/2));
-    // Roof
-    const kRoof = this.createRoof(kw, kd, 1.2, 0.3, C.roofRed, kx, kh + 0.1, kz);
-    this.scene.add(kRoof);
-
-    // 2. WC (Toilet) - identical in structure to Kitchen, at x = 28.0
-    const wcx = 28.0, wcz = -22.0, wcw = 4.0, wcd = 6.0, wch = 2.6;
-    // Foundation
-    this.scene.add(this.createBox(wcw + 0.2, 0.2, wcd + 0.2, C.stoneGray, wcx, 0.1, wcz));
-    // Walls (grayish brick wall - identical to Kitchen)
-    // Back wall
-    this.scene.add(this.createBox(wcw, wch, 0.15, 0xB0A896, wcx, wch/2 + 0.1, wcz - wcd/2));
-    // Left wall
-    this.scene.add(this.createBox(0.15, wch, wcd, 0xB0A896, wcx - wcw/2, wch/2 + 0.1, wcz));
-    // Right wall
-    this.scene.add(this.createBox(0.15, wch, wcd, 0xB0A896, wcx + wcw/2, wch/2 + 0.1, wcz));
-    // Front wall (facing South, split for door)
-    this.scene.add(this.createBox(1.5, wch, 0.15, 0xB0A896, wcx - 1.25, wch/2 + 0.1, wcz + wcd/2));
-    this.scene.add(this.createBox(1.5, wch, 0.15, 0xB0A896, wcx + 1.25, wch/2 + 0.1, wcz + wcd/2));
-    this.scene.add(this.createBox(1.0, 0.8, 0.15, 0xB0A896, wcx, 2.2 + 0.1, wcz + wcd/2));
-    
-    // Door (facing South)
-    this.scene.add(this.createBox(1.0, 1.8, 0.2, C.woodBrown, wcx, 0.9 + 0.1, wcz + wcd/2));
-    // Roof (red tiled roof - identical to Kitchen)
-    const wcRoof = this.createRoof(wcw, wcd, 1.2, 0.3, C.roofRed, wcx, wch + 0.1, wcz);
-    this.scene.add(wcRoof);
+    this.loadGLBModel('models/Toa_nha_bep_va_toa_WC.glb', 25.5, 0, -22.0, 0, 1.0);
   },
 
   destroy() {
