@@ -987,7 +987,7 @@ const Temple3D = {
 
   buildNhaThoBacHo() {
     const C = this.COLORS;
-    const x = 17.5, z = -20.0, w = 5.0, d = 5.0, h = 3.0; // Aligned in the top-right yard corner
+    const x = 21.0, z = -26.5, w = 5.0, d = 5.0, h = 3.0; // Aligned in the top-right yard corner
     
     // Foundation
     this.scene.add(this.createBox(w + 0.4, 0.3, d + 0.4, C.stoneGray, x, 0.15, z));
