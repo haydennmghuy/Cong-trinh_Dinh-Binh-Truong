@@ -15,3 +15,6 @@ desktop.ini
 
 # Gemini
 .agents/
+
+# Build scripts
+scripts/

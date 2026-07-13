@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+
+const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
 
 const Temple3D = {
   scene: null,
@@ -16,6 +19,10 @@ const Temple3D = {
   isInitialized: false,
   transitionTargetCam: null,
   transitionTargetLookAt: null,
+  // Loading progress tracking
+  totalModels: 14,
+  loadedModels_count: 0,
+  _gltfLoader: null,
 
   // Colors from real photos
   COLORS: {
@@ -54,22 +61,29 @@ const Temple3D = {
     // Scene
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0x1a1a2e);
-    this.scene.fog = new THREE.FogExp2(0x1a1a2e, 0.008);
+    this.scene.fog = new THREE.FogExp2(0x1a1a2e, isMobile ? 0.012 : 0.008);
 
     // Camera - aligned front-to-back with a clean isometric-like tilt to match the user's drawing layout
     this.camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 500);
     this.camera.position.set(0, 32, 28);
     this.camera.lookAt(0, 1, -8);
 
-    // Renderer
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    // Renderer — mobile optimizations: no anti-aliasing, lower pixel ratio, smaller shadow maps
+    this.renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true, powerPreference: 'high-performance' });
     this.renderer.setSize(w, h);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
     this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.shadowMap.type = isMobile ? THREE.BasicShadowMap : THREE.PCFSoftShadowMap;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.2;
     this.container.appendChild(this.renderer.domElement);
+
+    // Setup shared GLTFLoader with Draco decoder
+    this._gltfLoader = new GLTFLoader();
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
+    dracoLoader.preload();
+    this._gltfLoader.setDRACOLoader(dracoLoader);
 
     // Controls
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -131,8 +145,9 @@ const Temple3D = {
     const sun = new THREE.DirectionalLight(0xFFF5E0, 1.2);
     sun.position.set(20, 30, 15);
     sun.castShadow = true;
-    sun.shadow.mapSize.width = 2048;
-    sun.shadow.mapSize.height = 2048;
+    const shadowRes = isMobile ? 1024 : 2048;
+    sun.shadow.mapSize.width = shadowRes;
+    sun.shadow.mapSize.height = shadowRes;
     sun.shadow.camera.left = -30;
     sun.shadow.camera.right = 30;
     sun.shadow.camera.top = 30;
@@ -154,8 +169,21 @@ const Temple3D = {
     this.scene.add(hemi);
   },
 
+  updateLoadingProgress() {
+    this.loadedModels_count++;
+    const pct = Math.round((this.loadedModels_count / this.totalModels) * 100);
+    const bar = document.getElementById('model-loading-bar');
+    const txt = document.getElementById('model-loading-text');
+    const wrap = document.getElementById('model-loading-overlay');
+    if (bar) bar.style.width = pct + '%';
+    if (txt) txt.textContent = `Đang tải mô hình 3D... ${pct}%`;
+    if (pct >= 100 && wrap) {
+      setTimeout(() => { wrap.style.opacity = '0'; setTimeout(() => wrap.remove(), 500); }, 600);
+    }
+  },
+
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
-    const loader = new GLTFLoader();
+    const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
       path,
       (gltf) => {
@@ -304,10 +332,12 @@ const Temple3D = {
         }, 200);
         
         if (onLoaded) onLoaded(model);
+        this.updateLoadingProgress();
       },
       undefined,
       (error) => {
         console.error('Error loading GLB model:', path, error);
+        this.updateLoadingProgress(); // Still count failed loads for progress
       }
     );
   },
@@ -425,50 +455,46 @@ const Temple3D = {
     court.receiveShadow = true;
     this.scene.add(court);
 
-    // === SURROUNDING WALL / FENCE ===
+    // === SURROUNDING WALL / FENCE (procedural - instant) ===
     this.buildFence();
 
-    // === CỔNG TAM QUAN (Main Gate on front wall, bottom-left) ===
-    this.buildGate();
-
-    // === CỔNG NHỎ (Small Gate on front wall, bottom-right) ===
-    this.buildSmallGate();
-
-    // === SÂN ĐÌNH (Courtyard features) ===
-    this.buildCourtyard();
-
-    // === MAIN TEMPLE (Võ Ca, Võ Qui, Chánh Điện GLB Model) ===
-    // Front face oriented toward Hồ Thủy Tạ (negative-x direction)
-    this.loadGLBModel('models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, Math.PI / 2, 1.0);
-
-    // === TIỀN ĐIỆN (Front Hall) ===
+    // === Empty placeholder functions (replaced by GLB) ===
     this.buildTienDien();
-
-    // === CHÁNH ĐIỆN (Main Shrine Hall) ===
     this.buildChanhDien();
-
-    // === HẬU ĐIỆN (Rear Hall / Nhà khách) ===
-    this.buildHauDien();
-
-    // === NHÀ VÕ CA (Opera Stage) ===
     this.buildVoCa();
-
-    // === CỘT KÈO GỖ (Exposed structural woodwork display inside Chánh Điện) ===
     this.buildCotKeo();
-
-    // === ROOF DECORATIONS ===
     this.addRoofDecorations();
 
-    // === Stone monument ===
+    // === Procedural elements (instant) ===
+    this.buildCourtyard();
+    this.buildHauDien();
     this.addMonuments();
-
-    // === Small trees (proportional, not too big) ===
     this.addTrees();
 
-    // === Flagpole, Uncle Ho Temple, Kitchen & WC ===
-    this.buildFlagpole();
-    this.buildNhaThoBacHo();
-    this.buildNhaBepVaWC();
+    // === PRIORITY-BASED GLB LOADING ===
+    // P0: Core structures visible from default camera - load immediately
+    this.loadGLBModel('models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Cong_Tam_Quan.glb', -24.0, 0, 5.5, 0, 1.0);
+
+    // P1: Important secondary structures - load after 1 second
+    setTimeout(() => {
+      this.loadGLBModel('models/Ho_Thuy_Ta.glb', -26.5, 0, -13.0, Math.PI / 2, 1.0);
+      this.loadGLBModel('models/Cot_co_Viet_Nam.glb', -9.0, 0, -10.0, 0, 1.0);
+      this.loadGLBModel('models/Nha_tho_Bac_Ho.glb', 18.5, 0, -27.5, -Math.PI / 2, 1.0);
+      this.loadGLBModel('models/Cong_nho_ben_phai.glb', 14.0, 0, 5.5, 0, 1.0);
+    }, 1000);
+
+    // P2: Remaining structures - load after 3 seconds
+    setTimeout(() => {
+      this.loadGLBModel('models/San_khau.glb', -4.5, 0, -19.5, 0, 1.0);
+      this.loadGLBModel('models/Bia_ghi_cong.glb', -15.0, 0, -20.0, Math.PI / 2, 1.0);
+      this.loadGLBModel('models/Mieu_Ba_Ngu_Hanh.glb', -15.0, 0, -15.0, Math.PI / 2, 1.0);
+      this.loadGLBModel('models/Ban_Than_Nong.glb', -15.0, 0, -10.0, Math.PI / 2, 1.0);
+      this.loadGLBModel('models/Mieu_Bach_Ma.glb', -15.0, 0, -5.0, Math.PI / 2, 1.0);
+      this.loadGLBModel('models/Mieu_tho_Than_Ho.glb', -21.5, 0, -10.0, -Math.PI / 2, 1.0);
+      this.loadGLBModel('models/Bia_ghi_nhan_di_tich.glb', -9.0, 0, -1.0, 0, 1.0);
+      this.loadGLBModel('models/Toa_nha_bep_va_toa_WC.glb', 25.5, 0, -21.0, -Math.PI / 2, 1.0);
+    }, 3000);
   },
 
   buildFence() {
@@ -542,42 +568,8 @@ const Temple3D = {
     }
   },
 
-  buildGate() {
-    this.loadGLBModel('models/Cong_Tam_Quan.glb', -24.0, 0, 5.5, 0, 1.0);
-  },
-
-  buildSmallGate() {
-    this.loadGLBModel('models/Cong_nho_ben_phai.glb', 14.0, 0, 5.5, 0, 1.0);
-  },
-
   buildCourtyard() {
-    const C = this.COLORS;
-
-    // 1. Hồ Thuỷ Tạ (Semi-circular pond on the left wall x=-30.0, curving to the right) - GLB
-    this.loadGLBModel('models/Ho_Thuy_Ta.glb', -26.5, 0, -13.0, Math.PI / 2, 1.0);
-
-    // 2. Sân Khấu Ngoài Trời (Outdoor Stage) - GLB
-    this.loadGLBModel('models/San_khau.glb', -4.5, 0, -19.5, 0, 1.0);
-
-    // 3. Bia Tưởng Niệm (Memorial Stele) - GLB
-    this.loadGLBModel('models/Bia_ghi_cong.glb', -15.0, 0, -20.0, Math.PI / 2, 1.0);
-
-    // 4. Miếu thờ Bà Ngũ Hành - GLB
-    this.loadGLBModel('models/Mieu_Ba_Ngu_Hanh.glb', -15.0, 0, -15.0, Math.PI / 2, 1.0);
-
-    // 5. Bàn thờ Thần Nông - GLB
-    this.loadGLBModel('models/Ban_Than_Nong.glb', -15.0, 0, -10.0, Math.PI / 2, 1.0);
-
-    // 6. Miếu thờ Bạch Mã - GLB
-    this.loadGLBModel('models/Mieu_Bach_Ma.glb', -15.0, 0, -5.0, Math.PI / 2, 1.0);
-
-    // 6B. Miếu thờ Thần Hổ - GLB (faces West towards Hồ Thuỷ Tạ)
-    this.loadGLBModel('models/Mieu_tho_Than_Ho.glb', -21.5, 0, -10.0, -Math.PI / 2, 1.0);
-
-    // 7. Bia Di Tích Kiến Trúc Nghệ Thuật - GLB
-    this.loadGLBModel('models/Bia_ghi_nhan_di_tich.glb', -9.0, 0, -1.0, 0, 1.0);
-
-    // Pathway from Cổng Tam Quan to the main temple courtyard (Keep as is)
+    // Pathway from Cổng Tam Quan to the main temple courtyard (procedural - instant)
     const pathGeo = new THREE.PlaneGeometry(4, 12);
     const pathMat = this.mat(0xC0A888, { roughness: 0.9 });
     const path = new THREE.Mesh(pathGeo, pathMat);
@@ -875,17 +867,6 @@ const Temple3D = {
     });
   },
 
-  buildFlagpole() {
-    this.loadGLBModel('models/Cot_co_Viet_Nam.glb', -9.0, 0, -10.0, 0, 1.0);
-  },
-
-  buildNhaThoBacHo() {
-    this.loadGLBModel('models/Nha_tho_Bac_Ho.glb', 18.5, 0, -27.5, -Math.PI / 2, 1.0);
-  },
-
-  buildNhaBepVaWC() {
-    this.loadGLBModel('models/Toa_nha_bep_va_toa_WC.glb', 25.5, 0, -21.0, -Math.PI / 2, 1.0);
-  },
 
   focusOnArea(areaId) {
     const focusPositions = {
@@ -937,11 +918,29 @@ const Temple3D = {
 // Expose globally for access from regular scripts
 window.Temple3D = Temple3D;
 
-// Auto-init when DOM ready
+// Lazy-init: only load 3D when the section scrolls into view
+function lazyInit3D() {
+  const section = document.getElementById('mo-hinh-3d');
+  if (!section) return;
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          observer.disconnect();
+          Temple3D.init('temple-3d-container');
+        }
+      });
+    }, { rootMargin: '200px' }); // Start loading 200px before visible
+    observer.observe(section);
+  } else {
+    // Fallback: load after 2 seconds
+    setTimeout(() => Temple3D.init('temple-3d-container'), 2000);
+  }
+}
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => Temple3D.init('temple-3d-container'), 100);
-  });
+  document.addEventListener('DOMContentLoaded', lazyInit3D);
 } else {
-  setTimeout(() => Temple3D.init('temple-3d-container'), 100);
+  lazyInit3D();
 }
