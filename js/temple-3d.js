@@ -547,25 +547,25 @@ const Temple3D = {
     const C = this.COLORS;
 
     // 1. Hồ Thuỷ Tạ (Semi-circular pond on the left wall x=-30.0, curving to the right) - GLB
-    this.loadGLBModel('models/Ho_Thuy_Ta.glb', -25.0, 0, -13.0, Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Ho_Thuy_Ta.glb', -23.0, 0, -13.0, Math.PI / 2, 1.0);
 
     // 2. Sân Khấu Ngoài Trời (Outdoor Stage) - GLB
     this.loadGLBModel('models/San_khau.glb', -4.5, 0, -19.5, 0, 1.0);
 
     // 3. Bia Tưởng Niệm (Memorial Stele) - GLB
-    this.loadGLBModel('models/Bia_ghi_cong.glb', -17.0, 0, -20.0, Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Bia_ghi_cong.glb', -15.0, 0, -20.0, Math.PI / 2, 1.0);
 
     // 4. Miếu thờ Bà Ngũ Hành - GLB
-    this.loadGLBModel('models/Mieu_Ba_Ngu_Hanh.glb', -17.0, 0, -15.0, Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Mieu_Ba_Ngu_Hanh.glb', -15.0, 0, -15.0, Math.PI / 2, 1.0);
 
     // 5. Bàn thờ Thần Nông - GLB
-    this.loadGLBModel('models/Ban_Than_Nong.glb', -17.0, 0, -10.0, Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Ban_Than_Nong.glb', -15.0, 0, -10.0, Math.PI / 2, 1.0);
 
     // 6. Miếu thờ Bạch Mã - GLB
-    this.loadGLBModel('models/Mieu_Bach_Ma.glb', -17.0, 0, -5.0, Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Mieu_Bach_Ma.glb', -15.0, 0, -5.0, Math.PI / 2, 1.0);
 
-    // 6B. Miếu thờ Thần Hổ - Column 1, Row 3 (behind Bàn thờ Thần Nông): x = -23.5, z = -10.0 (Procedural, keep as is)
-    const mhx = -23.5, mhz = -10.0;
+    // 6B. Miếu thờ Thần Hổ - Column 1, Row 3 (behind Bàn thờ Thần Nông): x = -21.5, z = -10.0 (Procedural, keep as is)
+    const mhx = -21.5, mhz = -10.0;
     this.scene.add(this.createBox(1.2, 0.2, 1.2, C.stoneGray, mhx, 0.1, mhz));
     this.scene.add(this.createBox(1.0, 1.3, 1.0, C.wallYellow, mhx, 0.75, mhz));
     // Red columns on front face (+x side)
@@ -733,7 +733,7 @@ const Temple3D = {
       { x: -26.0, z: -20.0, scale: 0.75 },
       { x: -26.0, z: 0.0,   scale: 0.7 },
       { x: 26.0,  z: 0.0,   scale: 0.65 },
-      { x: -19.5, z: -10.0, scale: 0.65 } // Added tree to the right of Miếu thờ Thần Hổ
+      { x: -17.5, z: -10.0, scale: 0.65 } // Added tree to the right of Miếu thờ Thần Hổ
     ];
 
     treePositions.forEach(({ x, z, scale }) => {
@@ -766,14 +766,14 @@ const Temple3D = {
       'vo-qui':               { x: 0.5,   y: 4.5,  z: -10.0 },
       'chanh-dien':           { x: 6.5,   y: 6.0,  z: -10.0 },
       'tien-dien':            { x: 13.0,  y: 4.5,  z: -10.0 },
-      'ho-thuy-ta':           { x: -25.0, y: 1.5,  z: -13.0 },
+      'ho-thuy-ta':           { x: -23.0, y: 1.5,  z: -13.0 },
       'san-khau-ngoai-troi':  { x: -4.5,  y: 3.5,  z: -19.5 },
-      'bia-tuong-niem':       { x: -17.0, y: 2.2,  z: -20.0 },
+      'bia-tuong-niem':       { x: -15.0, y: 2.2,  z: -20.0 },
       'bia-di-tich':          { x: -9.0,  y: 3.2,  z: -1.0 },
-      'mieu-bach-ma':         { x: -17.0, y: 2.5,  z: -5.0 },
-      'ban-than-nong':        { x: -17.0, y: 2.2,  z: -10.0 },
-      'mieu-ho':              { x: -23.5, y: 2.5,  z: -10.0 },
-      'mieu-ba-ngu-hanh':     { x: -17.0, y: 2.5,  z: -15.0 },
+      'mieu-bach-ma':         { x: -15.0, y: 2.5,  z: -5.0 },
+      'ban-than-nong':        { x: -15.0, y: 2.2,  z: -10.0 },
+      'mieu-ho':              { x: -21.5, y: 2.5,  z: -10.0 },
+      'mieu-ba-ngu-hanh':     { x: -15.0, y: 2.5,  z: -15.0 },
       'cot-co':               { x: -9.0,  y: 4.5,  z: -10.0 },
       'nha-tho-bac-ho':       { x: 18.5,  y: 3.8,  z: -27.5 },
       'nha-bep':              { x: 23.0,  y: 3.0,  z: -21.0 },
@@ -1015,14 +1015,14 @@ const Temple3D = {
       'vo-qui':               { cam: { x: 0.5,   y: 6.0,  z: -2.0 },   lookAt: { x: 0.5,   y: 2.0,  z: -10.0 } },
       'chanh-dien':           { cam: { x: 6.5,   y: 7.5,  z: -2.0 },   lookAt: { x: 6.5,   y: 2.5,  z: -10.0 } },
       'tien-dien':            { cam: { x: 13.0,  y: 6.0,  z: -2.0 },   lookAt: { x: 13.0,  y: 2.0,  z: -10.0 } },
-      'ho-thuy-ta':           { cam: { x: -18.5, y: 5.0,  z: -13.0 },  lookAt: { x: -25.0, y: 1.0,  z: -13.0 } },
+      'ho-thuy-ta':           { cam: { x: -16.5, y: 5.0,  z: -13.0 },  lookAt: { x: -23.0, y: 1.0,  z: -13.0 } },
       'san-khau-ngoai-troi':  { cam: { x: -4.5,  y: 5.0,  z: -13.0 },  lookAt: { x: -4.5,  y: 1.5,  z: -19.5 } },
-      'bia-tuong-niem':       { cam: { x: -11.5, y: 4.5,  z: -20.0 },  lookAt: { x: -17.0, y: 1.5,  z: -20.0 } },
+      'bia-tuong-niem':       { cam: { x: -9.5,  y: 4.5,  z: -20.0 },  lookAt: { x: -15.0, y: 1.5,  z: -20.0 } },
       'bia-di-tich':          { cam: { x: -9.0,  y: 4.5,  z: 5.0 },   lookAt: { x: -9.0,  y: 1.5,  z: -1.0 } },
-      'mieu-bach-ma':         { cam: { x: -11.5, y: 5.0,  z: -5.0 },   lookAt: { x: -17.0, y: 1.5,  z: -5.0 } },
-      'ban-than-nong':        { cam: { x: -11.5, y: 5.0,  z: -10.0 },  lookAt: { x: -17.0, y: 1.5,  z: -10.0 } },
-      'mieu-ho':              { cam: { x: -18.0, y: 5.0,  z: -10.0 },  lookAt: { x: -23.5, y: 1.5,  z: -10.0 } },
-      'mieu-ba-ngu-hanh':     { cam: { x: -11.5, y: 5.0,  z: -15.0 },  lookAt: { x: -17.0, y: 1.5,  z: -15.0 } },
+      'mieu-bach-ma':         { cam: { x: -9.5,  y: 5.0,  z: -5.0 },   lookAt: { x: -15.0, y: 1.5,  z: -5.0 } },
+      'ban-than-nong':        { cam: { x: -9.5,  y: 5.0,  z: -10.0 },  lookAt: { x: -15.0, y: 1.5,  z: -10.0 } },
+      'mieu-ho':              { cam: { x: -16.0, y: 5.0,  z: -10.0 },  lookAt: { x: -21.5, y: 1.5,  z: -10.0 } },
+      'mieu-ba-ngu-hanh':     { cam: { x: -9.5,  y: 5.0,  z: -15.0 },  lookAt: { x: -15.0, y: 1.5,  z: -15.0 } },
       'cot-co':               { cam: { x: -9.0,  y: 6.0,  z: -3.0 },   lookAt: { x: -9.0,  y: 2.0,  z: -10.0 } },
       'nha-tho-bac-ho':       { cam: { x: 18.5,  y: 5.5,  z: -21.0 },  lookAt: { x: 18.5,  y: 1.5,  z: -27.5 } },
       'nha-bep':              { cam: { x: 17.0,  y: 5.0,  z: -21.0 },  lookAt: { x: 23.0,  y: 1.5,  z: -21.0 } },
