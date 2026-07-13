@@ -21,7 +21,7 @@ var MAP_DATA = {
     },
     {
       id: "cong-nho",
-      x: 50, y: 80,
+      x: 58, y: 80,
       color: "#8B8682",
       vi: {
         name: "Cổng Nhỏ",
@@ -40,7 +40,7 @@ var MAP_DATA = {
     },
     {
       id: "nha-vo-ca",
-      x: 50, y: 30,
+      x: 38, y: 50,
       color: "#9B7BAE",
       vi: {
         name: "Nhà Võ Ca",
@@ -59,7 +59,7 @@ var MAP_DATA = {
     },
     {
       id: "vo-qui",
-      x: 50, y: 42,
+      x: 44, y: 50,
       color: "#D4824C",
       vi: {
         name: "Nhà Võ Qui",
@@ -78,7 +78,7 @@ var MAP_DATA = {
     },
     {
       id: "chanh-dien",
-      x: 50, y: 55,
+      x: 51, y: 50,
       color: "#C9A84C",
       vi: {
         name: "Chánh Điện",
@@ -97,7 +97,7 @@ var MAP_DATA = {
     },
     {
       id: "tien-dien",
-      x: 50, y: 68,
+      x: 58, y: 50,
       color: "#B85C4C",
       vi: {
         name: "Tiền Điện",
@@ -116,7 +116,7 @@ var MAP_DATA = {
     },
     {
       id: "ho-thuy-ta",
-      x: 18, y: 15,
+      x: 14, y: 20,
       color: "#33A0FF",
       vi: {
         name: "Hồ Thủy Tạ",
@@ -135,7 +135,7 @@ var MAP_DATA = {
     },
     {
       id: "san-khau-ngoai-troi",
-      x: 65, y: 30,
+      x: 38, y: 35,
       color: "#9B7BAE",
       vi: {
         name: "Sân Khấu",
@@ -154,7 +154,7 @@ var MAP_DATA = {
     },
     {
       id: "bia-tuong-niem",
-      x: 22, y: 55,
+      x: 22, y: 68,
       color: "#C9A84C",
       vi: {
         name: "Bia Tưởng Niệm",
@@ -173,7 +173,7 @@ var MAP_DATA = {
     },
     {
       id: "bia-di-tich",
-      x: 36, y: 65,
+      x: 30, y: 68,
       color: "#B85C4C",
       vi: {
         name: "Bia Di Tích Cấp TP",
@@ -192,7 +192,7 @@ var MAP_DATA = {
     },
     {
       id: "mieu-bach-ma",
-      x: 22, y: 25,
+      x: 22, y: 32,
       color: "#8B6914",
       vi: {
         name: "Miếu thờ Bạch Mã",
@@ -211,7 +211,7 @@ var MAP_DATA = {
     },
     {
       id: "ban-than-nong",
-      x: 22, y: 35,
+      x: 22, y: 44,
       color: "#8B6914",
       vi: {
         name: "Bàn thờ Thần Nông",
@@ -230,7 +230,7 @@ var MAP_DATA = {
     },
     {
       id: "mieu-ho",
-      x: 30, y: 30,
+      x: 16, y: 38,
       color: "#8B6914",
       vi: {
         name: "Miếu thờ Thần Hổ",
@@ -249,7 +249,7 @@ var MAP_DATA = {
     },
     {
       id: "mieu-ba-ngu-hanh",
-      x: 22, y: 45,
+      x: 22, y: 56,
       color: "#8B6914",
       vi: {
         name: "Miếu thờ Bà Ngũ Hành",
@@ -268,7 +268,7 @@ var MAP_DATA = {
     },
     {
       id: "cot-co",
-      x: 36, y: 38,
+      x: 30, y: 50,
       color: "#DA251D",
       vi: {
         name: "Cột Cờ Tổ Quốc",
@@ -287,7 +287,7 @@ var MAP_DATA = {
     },
     {
       id: "nha-tho-bac-ho",
-      x: 78, y: 15,
+      x: 72, y: 15,
       color: "#DA251D",
       vi: {
         name: "Nhà Thờ Bác Hồ",
@@ -306,7 +306,7 @@ var MAP_DATA = {
     },
     {
       id: "nha-bep",
-      x: 75, y: 50,
+      x: 83, y: 25,
       color: "#8B8682",
       vi: {
         name: "Nhà Bếp",
@@ -325,7 +325,7 @@ var MAP_DATA = {
     },
     {
       id: "wc",
-      x: 83, y: 50,
+      x: 83, y: 35,
       color: "#8B8682",
       vi: {
         name: "Khu Vệ Sinh (WC)",
