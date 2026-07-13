@@ -306,7 +306,7 @@ var MAP_DATA = {
     },
     {
       id: "nha-bep",
-      x: 83, y: 20,
+      x: 75, y: 18,
       color: "#8B8682",
       vi: {
         name: "Nhà Bếp",
@@ -325,7 +325,7 @@ var MAP_DATA = {
     },
     {
       id: "wc",
-      x: 83, y: 26,
+      x: 83, y: 18,
       color: "#8B8682",
       vi: {
         name: "Khu Vệ Sinh (WC)",
