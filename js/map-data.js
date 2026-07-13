@@ -135,7 +135,7 @@ var MAP_DATA = {
     },
     {
       id: "san-khau-ngoai-troi",
-      x: 35, y: 18,
+      x: 35, y: 22,
       color: "#9B7BAE",
       vi: {
         name: "Sân Khấu",
