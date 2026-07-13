@@ -768,7 +768,7 @@ const Temple3D = {
       'mieu-ho':              { x: -21.5, y: 2.5,  z: -10.0 },
       'mieu-ba-ngu-hanh':     { x: -15.0, y: 2.5,  z: -15.0 },
       'cot-co':               { x: -9.0,  y: 4.5,  z: -10.0 },
-      'nha-tho-bac-ho':       { x: 18.5,  y: 3.8,  z: -25.0 },
+      'nha-tho-bac-ho':       { x: 18.5,  y: 3.8,  z: -27.0 },
       'nha-bep':              { x: 23.0,  y: 3.0,  z: -21.0 },
       'wc':                   { x: 28.0,  y: 3.0,  z: -21.0 },
     };
@@ -969,7 +969,7 @@ const Temple3D = {
   },
 
   buildNhaThoBacHo() {
-    this.loadGLBModel('models/Nha_tho_Bac_Ho.glb', 18.5, 0, -25.0, -Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Nha_tho_Bac_Ho.glb', 18.5, 0, -27.0, -Math.PI / 2, 1.0);
   },
 
   buildNhaBepVaWC() {
@@ -993,7 +993,7 @@ const Temple3D = {
       'mieu-ho':              { cam: { x: -16.0, y: 5.0,  z: -10.0 },  lookAt: { x: -21.5, y: 1.5,  z: -10.0 } },
       'mieu-ba-ngu-hanh':     { cam: { x: -9.5,  y: 5.0,  z: -15.0 },  lookAt: { x: -15.0, y: 1.5,  z: -15.0 } },
       'cot-co':               { cam: { x: -9.0,  y: 6.0,  z: -3.0 },   lookAt: { x: -9.0,  y: 2.0,  z: -10.0 } },
-      'nha-tho-bac-ho':       { cam: { x: 18.5,  y: 5.5,  z: -18.5 },  lookAt: { x: 18.5,  y: 1.5,  z: -25.0 } },
+      'nha-tho-bac-ho':       { cam: { x: 18.5,  y: 5.5,  z: -20.5 },  lookAt: { x: 18.5,  y: 1.5,  z: -27.0 } },
       'nha-bep':              { cam: { x: 17.0,  y: 5.0,  z: -21.0 },  lookAt: { x: 23.0,  y: 1.5,  z: -21.0 } },
       'wc':                   { cam: { x: 22.0,  y: 5.0,  z: -21.0 },  lookAt: { x: 28.0,  y: 1.5,  z: -21.0 } }
     };

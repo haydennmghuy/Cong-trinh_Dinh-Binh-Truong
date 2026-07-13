@@ -240,7 +240,7 @@ h3 {
   overflow: hidden;
   height: 550px; /* Moderate and perfectly balanced height on desktop */
   background: linear-gradient(to right, rgba(28, 16, 11, 0.8) 0%, rgba(28, 16, 11, 0.45) 35%, rgba(28, 16, 11, 0) 70%),
-              url('../images/thuyet_minh_final.jpg?v=2.5.2') no-repeat center 28% / cover;
+              url('../images/thuyet_minh_final.jpg?v=2.5.3') no-repeat center 28% / cover;
   color: #FFFFFF;
 }
 
@@ -1498,7 +1498,7 @@ h3 {
     min-height: 480px !important;
     height: auto !important;
     background: linear-gradient(to top, rgba(28, 16, 11, 0.95) 0%, rgba(28, 16, 11, 0.7) 100%),
-                url('../images/thuyet_minh_final.jpg?v=2.5.2') no-repeat center center / cover !important;
+                url('../images/thuyet_minh_final.jpg?v=2.5.3') no-repeat center center / cover !important;
     display: flex !important;
     align-items: center !important;
   }
