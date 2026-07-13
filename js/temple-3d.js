@@ -282,7 +282,7 @@ const Temple3D = {
               'Cot_co_Viet_Nam': { height: 6.4 },
               'Toa_nha_bep_va_toa_WC': { width: 9.0 },
               'Nha_tho_Bac_Ho': { width: 7.5 },
-              'Vo_Ca_Vo_Qui_Chanh_Dien': { depth: 17.0 }
+              'Vo_Ca_Vo_Qui_Chanh_Dien': { width: 17.0 }
             };
             
             const target = targets[modelName];
@@ -473,7 +473,7 @@ const Temple3D = {
 
     // === PRIORITY-BASED GLB LOADING ===
     // P0: Core structures visible from default camera - load immediately
-    this.loadGLBModel('models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, -Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, Math.PI, 1.0);
     this.loadGLBModel('models/Cong_Tam_Quan.glb', -24.0, 0, 5.5, 0, 1.0);
 
     // P1: Important secondary structures - load after 1 second
