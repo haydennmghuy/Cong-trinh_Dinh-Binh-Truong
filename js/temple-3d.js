@@ -274,7 +274,7 @@ const Temple3D = {
               'Toa_nha_bep_va_toa_WC': { width: 9.0 },
               'Nha_tho_Bac_Ho': { width: 7.5 },
               'Vo_Ca_Vo_Qui_Chanh_Dien': { width: 17.0 },
-              'Tien_Dien': { height: 4.5 }
+              'Tien_Dien': { height: 6.5 }
             };
             
             const target = targets[modelName];
@@ -457,7 +457,7 @@ const Temple3D = {
 
     // === LOAD ALL GLB MODELS IMMEDIATELY IN PARALLEL ===
     this.loadGLBModel('models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, Math.PI, 1.0);
-    this.loadGLBModel('models/Tien_Dien.glb', 11.5, 0, -10.0, Math.PI, 1.0);
+    this.loadGLBModel('models/Tien_Dien.glb', 11.5, 0, -10.0, 0, 1.0);
     this.loadGLBModel('models/Cong_Tam_Quan.glb', -24.0, 0, 5.5, 0, 1.0);
     this.loadGLBModel('models/Ho_Thuy_Ta.glb', -26.5, 0, -13.0, Math.PI / 2, 1.0);
     this.loadGLBModel('models/Cot_co_Viet_Nam.glb', -9.0, 0, -10.0, 0, 1.0);
