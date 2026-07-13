@@ -40,7 +40,7 @@ var MAP_DATA = {
     },
     {
       id: "nha-vo-ca",
-      x: 38, y: 50,
+      x: 43, y: 50,
       color: "#9B7BAE",
       vi: {
         name: "Nhà Võ Ca",
@@ -59,7 +59,7 @@ var MAP_DATA = {
     },
     {
       id: "vo-qui",
-      x: 44, y: 50,
+      x: 49, y: 50,
       color: "#D4824C",
       vi: {
         name: "Nhà Võ Qui",
@@ -78,7 +78,7 @@ var MAP_DATA = {
     },
     {
       id: "chanh-dien",
-      x: 51, y: 50,
+      x: 56, y: 50,
       color: "#C9A84C",
       vi: {
         name: "Chánh Điện",
@@ -97,7 +97,7 @@ var MAP_DATA = {
     },
     {
       id: "tien-dien",
-      x: 58, y: 50,
+      x: 63, y: 50,
       color: "#B85C4C",
       vi: {
         name: "Tiền Điện",
@@ -135,7 +135,7 @@ var MAP_DATA = {
     },
     {
       id: "san-khau-ngoai-troi",
-      x: 38, y: 25,
+      x: 43, y: 25,
       color: "#9B7BAE",
       vi: {
         name: "Sân Khấu",
@@ -268,7 +268,7 @@ var MAP_DATA = {
     },
     {
       id: "cot-co",
-      x: 37, y: 40,
+      x: 42, y: 40,
       color: "#DA251D",
       vi: {
         name: "Cột Cờ Tổ Quốc",
@@ -287,7 +287,7 @@ var MAP_DATA = {
     },
     {
       id: "nha-tho-bac-ho",
-      x: 72, y: 13,
+      x: 73, y: 13,
       color: "#DA251D",
       vi: {
         name: "Nhà Thờ Bác Hồ",

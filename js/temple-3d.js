@@ -312,8 +312,8 @@ const Temple3D = {
     this.scene.add(this.createBox(34.0, fenceH, wallThick, C.fenceYellow, -4.5, fenceH/2, 5.5));
     this.scene.add(this.createBox(14.5, fenceH, wallThick, C.fenceYellow, 22.75, fenceH/2, 5.5));
     
-    // Back wall segment left part: from x = -30 to x = 16.0
-    this.scene.add(this.createBox(46.0, fenceH, wallThick, C.fenceYellow, -7.0, fenceH/2, -25.0));
+    // Back wall segment left part: from x = -30 to x = 16.5
+    this.scene.add(this.createBox(46.5, fenceH, wallThick, C.fenceYellow, -6.75, fenceH/2, -25.0));
     // Back wall segment right part: from x = 21.0 to x = 30
     this.scene.add(this.createBox(9.0, fenceH, wallThick, C.fenceYellow, 25.5, fenceH/2, -25.0));
     
@@ -337,7 +337,7 @@ const Temple3D = {
     const pillarPositions = [
       [-26.5, 5.5], [-21.5, 5.5], [12.5, 5.5], [15.5, 5.5], [30, 5.5],           // Front wall
       [-26.5, -0.5], [-30, -6.5], [-30, -15], [-30, -25], [30, -25],              // Corner joints
-      [16.0, -25], [21.0, -25],                                                   // Uncle Ho recess joints
+      [16.5, -25], [21.0, -25],                                                   // Uncle Ho recess joints
       [30, -15], [30, -5], [30, 5],                                              // Right wall joints
       [-10, -25], [0, -25], [10, -25]                                             // Back wall joints
     ];
@@ -482,16 +482,16 @@ const Temple3D = {
     border.position.set(-29.9, 0.03, -13.0);
     this.scene.add(border);
 
-    // 2. Sân Khấu Ngoài Trời (Outdoor Stage) - Aligned next to Vo Qui at x = -7.5, z = -19.5
+    // 2. Sân Khấu Ngoài Trời (Outdoor Stage) - Aligned next to Vo Qui at x = -4.5, z = -19.5
     // Stage base
-    this.scene.add(this.createBox(3.0, 0.4, 4.0, C.stoneGray, -7.5, 0.2, -19.5));
+    this.scene.add(this.createBox(3.0, 0.4, 4.0, C.stoneGray, -4.5, 0.2, -19.5));
     // Stage back wall on the top side (z = -20.9)
-    this.scene.add(this.createBox(3.0, 2.0, 0.15, C.columnRed, -7.5, 1.4, -20.9));
+    this.scene.add(this.createBox(3.0, 2.0, 0.15, C.columnRed, -4.5, 1.4, -20.9));
     // Front corner columns (at z = -18.1)
-    this.scene.add(this.createBox(0.15, 2.0, 0.15, C.columnRed, -8.9, 1.4, -18.1));
-    this.scene.add(this.createBox(0.15, 2.0, 0.15, C.columnRed, -6.1, 1.4, -18.1));
+    this.scene.add(this.createBox(0.15, 2.0, 0.15, C.columnRed, -5.9, 1.4, -18.1));
+    this.scene.add(this.createBox(0.15, 2.0, 0.15, C.columnRed, -3.1, 1.4, -18.1));
     // Stage roof
-    const stageRoof = this.createRoof(3.4, 4.4, 0.6, 0.2, C.roofRed, -7.5, 2.4, -19.5);
+    const stageRoof = this.createRoof(3.4, 4.4, 0.6, 0.2, C.roofRed, -4.5, 2.4, -19.5);
     this.scene.add(stageRoof);
 
     // 3. Bia Tưởng Niệm (Memorial Stele) - Column 2, Row 1 (Top): x = -18.5, z = -20.0
@@ -587,7 +587,7 @@ const Temple3D = {
   buildVoCa() {
     const C = this.COLORS;
     // Opera stage - leftmost section of the horizontally connected block
-    const x = -7.5, z = -10.0, w = 5.0, d = 5.0, h = 3.5;
+    const x = -4.5, z = -10.0, w = 5.0, d = 5.0, h = 3.5;
 
     // Foundation
     this.scene.add(this.createBox(w + 0.4, 0.4, d + 0.4, C.stoneGray, x, 0.2, z));
@@ -612,7 +612,7 @@ const Temple3D = {
   buildTienDien() {
     const C = this.COLORS;
     // Second section (Võ Qui)
-    const x = -2.5, z = -10.0, w = 5.0, d = 5.0, h = 3.5;
+    const x = 0.5, z = -10.0, w = 5.0, d = 5.0, h = 3.5;
 
     // Foundation
     this.scene.add(this.createBox(w + 0.4, 0.4, d + 0.4, C.stoneGray, x, 0.2, z));
@@ -641,7 +641,7 @@ const Temple3D = {
   buildChanhDien() {
     const C = this.COLORS;
     // Third section (Chánh Điện, taller and deeper)
-    const x = 3.5, z = -10.0, w = 7.0, d = 5.0, h = 4.5;
+    const x = 6.5, z = -10.0, w = 7.0, d = 5.0, h = 4.5;
 
     // Foundation
     this.scene.add(this.createBox(w + 0.6, 0.6, d + 0.6, C.stoneGray, x, 0.3, z));
@@ -674,7 +674,7 @@ const Temple3D = {
   buildHauDien() {
     const C = this.COLORS;
     // Fourth section (Nhà Khách / Hậu Điện)
-    const x = 10.0, z = -10.0, w = 6.0, d = 5.0, h = 3.5;
+    const x = 13.0, z = -10.0, w = 6.0, d = 5.0, h = 3.5;
 
     // Foundation
     this.scene.add(this.createBox(w + 0.4, 0.4, d + 0.4, C.stoneGray, x, 0.2, z));
@@ -696,7 +696,7 @@ const Temple3D = {
 
   buildCotKeo() {
     const C = this.COLORS;
-    const x = 3.5, z = -10.0;
+    const x = 6.5, z = -10.0;
     // Exposed wooden beam system inside Chánh Điện
     for (let cz of [z - 2.0, z + 2.0]) {
       this.scene.add(this.createBox(6.5, 0.25, 0.2, C.woodLight, x, 4.5, cz));
@@ -713,7 +713,7 @@ const Temple3D = {
     const dragonGeo = new THREE.ConeGeometry(0.3, 1.2, 6);
     const dragonMat = this.mat(C.goldAccent, { metalness: 0.5 });
     
-    [[0.0, 7.6, -10.0], [7.0, 7.6, -10.0]].forEach(([x, y, z]) => {
+    [[3.0, 7.6, -10.0], [10.0, 7.6, -10.0]].forEach(([x, y, z]) => {
       const dragon = new THREE.Mesh(dragonGeo, dragonMat);
       dragon.position.set(x, y, z);
       dragon.rotation.z = x > 2.0 ? -0.4 : 0.4;
@@ -758,20 +758,20 @@ const Temple3D = {
     const hotspotPositions = {
       'cong-tam-quan':        { x: -24.0, y: 5.0,  z: 5.5 },
       'cong-nho':             { x: 14.0,  y: 3.5,  z: 5.5 },
-      'nha-vo-ca':            { x: -7.5,  y: 4.5,  z: -10.0 },
-      'vo-qui':               { x: -2.5,  y: 4.5,  z: -10.0 },
-      'chanh-dien':           { x: 3.5,   y: 6.0,  z: -10.0 },
-      'tien-dien':            { x: 10.0,  y: 4.5,  z: -10.0 },
+      'nha-vo-ca':            { x: -4.5,  y: 4.5,  z: -10.0 },
+      'vo-qui':               { x: 0.5,   y: 4.5,  z: -10.0 },
+      'chanh-dien':           { x: 6.5,   y: 6.0,  z: -10.0 },
+      'tien-dien':            { x: 13.0,  y: 4.5,  z: -10.0 },
       'ho-thuy-ta':           { x: -29.8, y: 1.5,  z: -13.0 },
-      'san-khau-ngoai-troi':  { x: -7.5,  y: 3.5,  z: -19.5 },
+      'san-khau-ngoai-troi':  { x: -4.5,  y: 3.5,  z: -19.5 },
       'bia-tuong-niem':       { x: -18.5, y: 2.2,  z: -20.0 },
       'bia-di-tich':          { x: -9.0,  y: 3.2,  z: -1.0 },
       'mieu-bach-ma':         { x: -18.5, y: 2.5,  z: -5.0 },
       'ban-than-nong':        { x: -18.5, y: 2.2,  z: -10.0 },
       'mieu-ho':              { x: -23.5, y: 2.5,  z: -10.0 },
       'mieu-ba-ngu-hanh':     { x: -18.5, y: 2.5,  z: -15.0 },
-      'cot-co':               { x: -12.0, y: 4.5,  z: -10.0 },
-      'nha-tho-bac-ho':       { x: 18.5,  y: 3.8,  z: -27.5 },
+      'cot-co':               { x: -9.0,  y: 4.5,  z: -10.0 },
+      'nha-tho-bac-ho':       { x: 19.0,  y: 3.8,  z: -27.5 },
       'nha-bep':              { x: 23.0,  y: 3.0,  z: -22.0 },
       'wc':                   { x: 28.0,  y: 3.0,  z: -22.0 },
     };
@@ -954,7 +954,7 @@ const Temple3D = {
   buildFlagpole() {
     const C = this.COLORS;
     const group = new THREE.Group();
-    group.position.set(-12.0, 0, -10.0); // Center yard position
+    group.position.set(-9.0, 0, -10.0); // Center yard position
 
     // Base
     group.add(this.createCylinder(0.5, 0.6, 0.4, C.stoneGray, 0, 0.2, 0, 8));
@@ -983,7 +983,7 @@ const Temple3D = {
 
   buildNhaThoBacHo() {
     const C = this.COLORS;
-    const x = 18.5, z = -27.5, w = 5.0, d = 5.0, h = 3.0; // Aligned in the top-right yard corner
+    const x = 19.0, z = -27.5, w = 5.0, d = 5.0, h = 3.0; // Aligned in the top-right yard corner
     
     // Foundation
     this.scene.add(this.createBox(w + 0.4, 0.3, d + 0.4, C.stoneGray, x, 0.15, z));
