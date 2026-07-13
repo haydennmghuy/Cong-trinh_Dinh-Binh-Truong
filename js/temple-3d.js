@@ -473,7 +473,7 @@ const Temple3D = {
 
     // === PRIORITY-BASED GLB LOADING ===
     // P0: Core structures visible from default camera - load immediately
-    this.loadGLBModel('models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, -Math.PI / 2, 1.0);
     this.loadGLBModel('models/Cong_Tam_Quan.glb', -24.0, 0, 5.5, 0, 1.0);
 
     // P1: Important secondary structures - load after 1 second
