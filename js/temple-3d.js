@@ -734,7 +734,7 @@ const Temple3D = {
       { x: -26.0, z: 0.0,   scale: 0.7 },
       { x: 26.0,  z: 0.0,   scale: 0.65 },
       { x: -10.0, z: -10.0, scale: 0.6 },
-      { x: -27.0, z: -10.0, scale: 0.65 } // Added tree to the left of Miếu thờ Thần Hổ
+      { x: -21.0, z: -10.0, scale: 0.65 } // Added tree to the right of Miếu thờ Thần Hổ
     ];
 
     treePositions.forEach(({ x, z, scale }) => {
