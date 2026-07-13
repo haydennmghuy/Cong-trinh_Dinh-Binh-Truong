@@ -479,8 +479,8 @@ const Temple3D = {
     
     // Back wall segment left part: from x = -30 to x = 16.0
     this.scene.add(this.createBox(46.0, fenceH, wallThick, C.fenceYellow, -7.0, fenceH/2, -25.0));
-    // Back wall segment right part: from x = 21.0 to x = 30
-    this.scene.add(this.createBox(9.0, fenceH, wallThick, C.fenceYellow, 25.5, fenceH/2, -25.0));
+    // Back wall segment right part: from x = 24.0 to x = 30 (shortened to prevent protruding next to kitchen)
+    this.scene.add(this.createBox(6.0, fenceH, wallThick, C.fenceYellow, 27.0, fenceH/2, -25.0));
     
     // Note: Removed protruding fence recess walls around Uncle Ho Temple (xóa hàng rào lồi ra bao quanh nhà Bác)
     
