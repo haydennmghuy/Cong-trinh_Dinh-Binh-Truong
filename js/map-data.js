@@ -287,7 +287,7 @@ var MAP_DATA = {
     },
     {
       id: "nha-tho-bac-ho",
-      x: 72, y: 13,
+      x: 65, y: 13,
       color: "#DA251D",
       vi: {
         name: "Nhà Thờ Bác Hồ",
