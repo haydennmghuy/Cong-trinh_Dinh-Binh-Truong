@@ -977,7 +977,7 @@ const Temple3D = {
   },
 
   buildNhaThoBacHo() {
-    this.loadGLBModel('models/Nha_tho_Bac_Ho.glb', 18.5, 0, -27.5, 0, 1.0);
+    this.loadGLBModel('models/Nha_tho_Bac_Ho.glb', 18.5, 0, -27.5, -Math.PI / 2, 1.0);
   },
 
   buildNhaBepVaWC() {
