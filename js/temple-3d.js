@@ -654,26 +654,21 @@ const Temple3D = {
   createHotspots() {
     if (typeof MAP_DATA === 'undefined') return;
 
-    // 3D positions matching the user's drawing layout
+    // 3D positions for the 13 highlighted areas
     const hotspotPositions = {
       'cong-tam-quan':        { x: -24.0, y: 5.0,  z: 5.5 },
-      'cong-nho':             { x: 14.0,  y: 3.5,  z: 5.5 },
-      'nha-vo-ca':            { x: -4.5,  y: 4.5,  z: -10.0 },
-      'vo-qui':               { x: 0.5,   y: 4.5,  z: -10.0 },
-      'chanh-dien':           { x: 6.5,   y: 6.0,  z: -10.0 },
-      'tien-dien':            { x: 13.0,  y: 4.5,  z: -10.0 },
-      'ho-thuy-ta':           { x: -26.5, y: 1.5,  z: -13.0 },
-      'san-khau-ngoai-troi':  { x: -4.5,  y: 3.5,  z: -19.5 },
-      'bia-tuong-niem':       { x: -15.0, y: 2.2,  z: -20.0 },
-      'bia-di-tich':          { x: -9.0,  y: 3.2,  z: -1.0 },
       'mieu-bach-ma':         { x: -15.0, y: 2.5,  z: -5.0 },
       'ban-than-nong':        { x: -15.0, y: 2.2,  z: -10.0 },
       'mieu-ho':              { x: -21.5, y: 2.5,  z: -10.0 },
       'mieu-ba-ngu-hanh':     { x: -15.0, y: 2.5,  z: -15.0 },
-      'cot-co':               { x: -9.0,  y: 4.5,  z: -10.0 },
+      'bia-tuong-niem':       { x: -15.0, y: 2.2,  z: -20.0 },
+      'bia-di-tich':          { x: -9.0,  y: 3.2,  z: -1.0 },
+      'san-khau-ngoai-troi':  { x: -4.5,  y: 3.5,  z: -19.5 },
+      'nha-vo-ca':            { x: -4.5,  y: 4.5,  z: -10.0 },
+      'vo-qui':               { x: 0.5,   y: 4.5,  z: -10.0 },
+      'chanh-dien':           { x: 6.5,   y: 6.0,  z: -10.0 },
+      'tien-dien':            { x: 13.0,  y: 4.5,  z: -10.0 },
       'nha-tho-bac-ho':       { x: 18.5,  y: 3.8,  z: -27.5 },
-      'nha-bep':              { x: 23.0,  y: 3.0,  z: -21.0 },
-      'wc':                   { x: 28.0,  y: 3.0,  z: -21.0 },
     };
 
     // Create 3D marker meshes for raycasting
