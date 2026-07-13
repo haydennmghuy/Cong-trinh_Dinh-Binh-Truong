@@ -465,24 +465,24 @@ const Temple3D = {
 
     // 1. Hồ Thuỷ Tạ (Semi-circular pond on the left wall x=-30.0, curving to the right)
     const pondShape = new THREE.Shape();
-    pondShape.absarc(0, 0, 7.0, 0, Math.PI, false);
-    pondShape.lineTo(7.0, 0); // Close shape
+    pondShape.absarc(0, 0, 4.5, 0, Math.PI, false);
+    pondShape.lineTo(4.5, 0); // Close shape
     const pondGeo = new THREE.ShapeGeometry(pondShape);
     const pond = new THREE.Mesh(pondGeo, this.mat(0x33A0FF, { roughness: 0.1, metalness: 0.8 }));
     pond.rotation.x = -Math.PI / 2;
     pond.rotation.z = -Math.PI / 2; // Flat edge along the left fence curving inwards to the right
-    pond.position.set(-29.8, 0.03, -13.0);
+    pond.position.set(-29.9, 0.03, -13.0);
     this.scene.add(pond);
 
     // Pond stone border
     const borderShape = new THREE.Shape();
-    borderShape.absarc(0, 0, 7.2, 0, Math.PI, false);
-    borderShape.lineTo(7.2, 0); // Close shape
-    const borderExtrude = new THREE.ExtrudeGeometry(borderShape, { depth: 0.25, bevelEnabled: false });
+    borderShape.absarc(0, 0, 4.7, 0, Math.PI, false);
+    borderShape.lineTo(4.7, 0); // Close shape
+    const borderExtrude = new THREE.ExtrudeGeometry(borderShape, { depth: 0.2, bevelEnabled: false });
     const border = new THREE.Mesh(borderExtrude, this.mat(C.stoneGray));
     border.rotation.x = -Math.PI / 2;
     border.rotation.z = -Math.PI / 2;
-    border.position.set(-29.8, 0.03, -13.0);
+    border.position.set(-29.9, 0.03, -13.0);
     this.scene.add(border);
 
     // 2. Sân Khấu Ngoài Trời (Outdoor Stage) - Aligned next to Vo Qui at x = -9.0, z = -13.5
@@ -733,7 +733,8 @@ const Temple3D = {
       { x: 26.0,  z: -20.0, scale: 0.7 },
       { x: -26.0, z: 0.0,   scale: 0.7 },
       { x: 26.0,  z: 0.0,   scale: 0.65 },
-      { x: -10.0, z: -10.0, scale: 0.6 }
+      { x: -10.0, z: -10.0, scale: 0.6 },
+      { x: -27.0, z: -10.0, scale: 0.65 } // Added tree to the left of Miếu thờ Thần Hổ
     ];
 
     treePositions.forEach(({ x, z, scale }) => {

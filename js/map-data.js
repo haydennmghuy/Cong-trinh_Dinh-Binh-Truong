@@ -116,7 +116,7 @@ var MAP_DATA = {
     },
     {
       id: "ho-thuy-ta",
-      x: 14, y: 38,
+      x: 12, y: 38,
       color: "#33A0FF",
       vi: {
         name: "Hồ Thủy Tạ",
