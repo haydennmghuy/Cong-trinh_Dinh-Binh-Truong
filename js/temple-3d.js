@@ -727,7 +727,6 @@ const Temple3D = {
     // Proportional trees in remaining yard areas to make the yard look natural
     const treePositions = [
       { x: -26.0, z: -20.0, scale: 0.75 },
-      { x: 26.0,  z: -20.0, scale: 0.7 },
       { x: -26.0, z: 0.0,   scale: 0.7 },
       { x: 26.0,  z: 0.0,   scale: 0.65 },
       { x: -21.0, z: -10.0, scale: 0.65 } // Added tree to the right of Miếu thờ Thần Hổ
@@ -1013,8 +1012,8 @@ const Temple3D = {
   buildNhaBepVaWC() {
     const C = this.COLORS;
     
-    // 1. Nhà bếp (Kitchen) at x = 22.0, z = -12.0 (next to Tiền Điện and WC)
-    const kx = 22.0, kz = -12.0, kw = 4.0, kd = 2.5, kh = 2.4;
+    // 1. Nhà bếp (Kitchen) at x = 27.5, z = -21.25 (adjacent to WC at the right yard area)
+    const kx = 27.5, kz = -21.25, kw = 4.0, kd = 4.5, kh = 2.6;
     // Foundation
     this.scene.add(this.createBox(kw + 0.2, 0.2, kd + 0.2, C.stoneGray, kx, 0.1, kz));
     // Walls (grayish brick wall)
@@ -1028,8 +1027,8 @@ const Temple3D = {
     const kRoof = this.createRoof(kw, kd, 1.0, 0.3, C.roofRed, kx, kh + 0.1, kz);
     this.scene.add(kRoof);
 
-    // 2. WC (Toilet) at x = 25.0, z = -12.0 (next to Kitchen on the right)
-    const wcx = 25.0, wcz = -12.0, wcw = 2.0, wcd = 2.0, wch = 2.2;
+    // 2. WC (Toilet) at x = 27.5, z = -14.75 (next to Kitchen on the front side)
+    const wcx = 27.5, wcz = -14.75, wcw = 4.0, wcd = 3.5, wch = 2.4;
     // Foundation
     this.scene.add(this.createBox(wcw + 0.2, 0.15, wcd + 0.2, C.stoneGray, wcx, 0.075, wcz));
     // Walls
