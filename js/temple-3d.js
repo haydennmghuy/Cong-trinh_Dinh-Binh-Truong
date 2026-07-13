@@ -53,10 +53,10 @@ const Temple3D = {
     this.scene.background = new THREE.Color(0x1a1a2e);
     this.scene.fog = new THREE.FogExp2(0x1a1a2e, 0.008);
 
-    // Camera - isometric-like angle matching the scan image
+    // Camera - aligned front-to-back with a clean isometric-like tilt to match the user's drawing layout
     this.camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 500);
-    this.camera.position.set(35, 30, 40);
-    this.camera.lookAt(0, 2, 0);
+    this.camera.position.set(0, 32, 28);
+    this.camera.lookAt(0, 1, -8);
 
     // Renderer
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -75,8 +75,8 @@ const Temple3D = {
     this.controls.maxPolarAngle = Math.PI / 2.1;
     this.controls.minDistance = 15;
     this.controls.maxDistance = 80;
-    this.controls.target.set(0, 2, 0);
-    this.controls.autoRotate = true;
+    this.controls.target.set(0, 1, -8);
+    this.controls.autoRotate = false;
     this.controls.autoRotateSpeed = 0.5;
 
     // Lighting
@@ -103,8 +103,8 @@ const Temple3D = {
       this.controls.update();
     });
     document.getElementById('model-reset')?.addEventListener('click', () => {
-      this.camera.position.set(35, 30, 40);
-      this.controls.target.set(0, 2, 0);
+      this.camera.position.set(0, 32, 28);
+      this.controls.target.set(0, 1, -8);
       this.controls.update();
     });
 
@@ -251,11 +251,11 @@ const Temple3D = {
     this.scene.add(ground);
 
     // Courtyard paving (within the compound)
-    const courtGeo = new THREE.PlaneGeometry(44, 32);
+    const courtGeo = new THREE.PlaneGeometry(60.0, 30.5);
     const courtMat = this.mat(C.groundPave, { roughness: 0.85 });
     const court = new THREE.Mesh(courtGeo, courtMat);
     court.rotation.x = -Math.PI / 2;
-    court.position.set(0, 0.01, 0);
+    court.position.set(0, 0.01, -9.75);
     court.receiveShadow = true;
     this.scene.add(court);
 
