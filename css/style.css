@@ -296,8 +296,8 @@ h3 {
   position: relative;
   overflow: hidden;
   height: 550px; /* Moderate and perfectly balanced height on desktop */
-  background: linear-gradient(to right, rgba(44, 30, 22, 0.72) 0%, rgba(44, 30, 22, 0.38) 45%, rgba(44, 30, 22, 0) 80%),
-              url('../images/hero_background.png?v=3.18.0') no-repeat right center / cover;
+  background: linear-gradient(to right, rgba(34, 34, 34, 0.82) 0%, rgba(34, 34, 34, 0.42) 45%, rgba(34, 34, 34, 0) 80%),
+              url('../images/hero_background.png?v=3.19.0') no-repeat right center / cover;
   color: #FFFFFF;
 }
 
@@ -1554,8 +1554,8 @@ h3 {
   .hero {
     min-height: 480px !important;
     height: auto !important;
-    background: linear-gradient(to top, rgba(44, 30, 22, 0.9) 0%, rgba(44, 30, 22, 0.4) 100%),
-                url('../images/hero_background.png?v=3.18.0') no-repeat right center / cover !important;
+    background: linear-gradient(to top, rgba(34, 34, 34, 0.9) 0%, rgba(34, 34, 34, 0.4) 100%),
+                url('../images/hero_background.png?v=3.19.0') no-repeat right center / cover !important;
     display: flex !important;
     align-items: center !important;
   }
