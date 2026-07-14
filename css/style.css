@@ -182,13 +182,23 @@ h3 {
    ===================================================================== */
 
 .site-header {
-  position: sticky;
+  position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
-  background: #5C4C43; /* Solid dark brown, constantly prominent */
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.16);
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: 1px solid transparent;
   color: var(--white);
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+}
+
+.site-header.scrolled {
+  position: fixed;
+  background: rgba(44, 30, 22, 0.95); /* Warm wood brown backdrop on scroll */
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.16);
 }
 
 .brand-name {
@@ -286,8 +296,8 @@ h3 {
   position: relative;
   overflow: hidden;
   height: 550px; /* Moderate and perfectly balanced height on desktop */
-  background: linear-gradient(to right, rgba(40, 26, 18, 0.72) 0%, rgba(40, 26, 18, 0.38) 45%, rgba(40, 26, 18, 0) 80%),
-              url('../images/hero_background.png?v=3.15.0') no-repeat right center / cover;
+  background: linear-gradient(to right, rgba(44, 30, 22, 0.72) 0%, rgba(44, 30, 22, 0.38) 45%, rgba(44, 30, 22, 0) 80%),
+              url('../images/hero_background.png?v=3.16.0') no-repeat right center / cover;
   color: #FFFFFF;
 }
 
@@ -1544,8 +1554,8 @@ h3 {
   .hero {
     min-height: 480px !important;
     height: auto !important;
-    background: linear-gradient(to top, rgba(40, 26, 18, 0.9) 0%, rgba(40, 26, 18, 0.4) 100%),
-                url('../images/hero_background.png?v=3.15.0') no-repeat right center / cover !important;
+    background: linear-gradient(to top, rgba(44, 30, 22, 0.9) 0%, rgba(44, 30, 22, 0.4) 100%),
+                url('../images/hero_background.png?v=3.16.0') no-repeat right center / cover !important;
     display: flex !important;
     align-items: center !important;
   }
