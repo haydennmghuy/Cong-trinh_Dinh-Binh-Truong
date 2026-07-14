@@ -176,7 +176,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.6.0`,
+      `${path}?v=3.7.0`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -470,7 +470,7 @@ const Temple3D = {
     this.loadGLBModel('models/Mieu_Bach_Ma.glb', -15.0, 0, -5.0, Math.PI / 2, 1.0);
     this.loadGLBModel('models/Mieu_tho_Than_Ho.glb', -21.5, 0, -10.0, -Math.PI / 2, 1.0);
     this.loadGLBModel('models/Bia_ghi_nhan_di_tich.glb', -9.0, 0, -1.0, 0, 1.0);
-    this.loadGLBModel('models/Toa_nha_bep_va_toa_WC.glb', 25.5, 0, -21.0, -Math.PI / 2, 1.0);
+    this.loadGLBModel('models/Toa_nha_bep_va_toa_WC.glb', 24.5, 0, -19.5, -Math.PI / 2, 1.0);
   },
 
   buildFence() {
@@ -815,8 +815,8 @@ const Temple3D = {
       'mieu-ba-ngu-hanh':     { cam: { x: -9.5,  y: 5.0,  z: -15.0 },  lookAt: { x: -15.0, y: 1.5,  z: -15.0 } },
       'cot-co':               { cam: { x: -9.0,  y: 6.0,  z: -3.0 },   lookAt: { x: -9.0,  y: 2.0,  z: -10.0 } },
       'nha-tho-bac-ho':       { cam: { x: 18.5,  y: 5.5,  z: -21.0 },  lookAt: { x: 18.5,  y: 1.5,  z: -27.5 } },
-      'nha-bep':              { cam: { x: 17.0,  y: 5.0,  z: -21.0 },  lookAt: { x: 23.0,  y: 1.5,  z: -21.0 } },
-      'wc':                   { cam: { x: 22.0,  y: 5.0,  z: -21.0 },  lookAt: { x: 28.0,  y: 1.5,  z: -21.0 } }
+      'nha-bep':              { cam: { x: 16.0,  y: 5.0,  z: -19.5 },  lookAt: { x: 22.0,  y: 1.5,  z: -19.5 } },
+      'wc':                   { cam: { x: 21.0,  y: 5.0,  z: -19.5 },  lookAt: { x: 27.0,  y: 1.5,  z: -19.5 } }
     };
 
     const cfg = focusPositions[areaId];
