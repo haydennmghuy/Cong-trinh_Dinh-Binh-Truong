@@ -138,7 +138,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.45.16';
+        mainImgEl.src = images[0] + '?v=3.45.17';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
