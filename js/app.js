@@ -185,17 +185,6 @@ const HotspotModal = {
       });
       detailBox.appendChild(listContainer);
     }
-
-    // Set architectural images grid or show placeholder
-    const imgGrid = document.getElementById('hotspot-modal-images-grid');
-    if (imgGrid) {
-      imgGrid.innerHTML = `
-        <div class="grid-placeholder-box">
-          <span class="placeholder-icon">📸</span>
-          <span class="placeholder-text">${lang === 'vi' ? 'Cần thêm ảnh' : 'Need photo'}</span>
-        </div>
-      `;
-    }
   },
 
   toggleAudio() {
