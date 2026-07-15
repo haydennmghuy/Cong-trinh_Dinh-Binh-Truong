@@ -63,9 +63,9 @@ const Temple3D = {
     this.scene.background = new THREE.Color(0xEFE9DA); // Warm cream-grey background
     this.scene.fog = new THREE.FogExp2(0xEFE9DA, isMobile ? 0.012 : 0.008);
 
-    // Camera - aligned front-to-back, responsive default zoom (zoomed out on mobile to fit screen width)
+    // Camera - aligned front-to-back, responsive default zoom (zoomed out on mobile/desktop to fit entire compound)
     this.camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 500);
-    this.camera.position.set(0, isMobile ? 38 : 24, isMobile ? 33 : 21);
+    this.camera.position.set(0, isMobile ? 68 : 36, isMobile ? 58 : 31);
     this.camera.lookAt(0, 0.5, -9.75);
 
     // Renderer — mobile optimizations: no anti-aliasing, lower pixel ratio, smaller shadow maps
@@ -89,11 +89,11 @@ const Temple3D = {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.08;
-    this.controls.zoomSpeed = 0.5; // Make scroll/trackpad zooming 50% more gradual/smooth
+    this.controls.zoomSpeed = 0.18; // Make scroll/trackpad zooming very gradual and smooth
     this.controls.enablePan = false; // Prevent panning to keep rotation perfectly centered on the temple courtyard
     this.controls.maxPolarAngle = Math.PI / 2.1;
     this.controls.minDistance = 2;
-    this.controls.maxDistance = 80;
+    this.controls.maxDistance = 150; // Increased maxDistance to allow zooming out on mobile
     this.controls.target.set(0, 0.5, -9.75); // Centered in the middle of the fenced compound
     this.controls.autoRotate = false;
     this.controls.autoRotateSpeed = 0.5;
@@ -120,19 +120,19 @@ const Temple3D = {
     // Control buttons — dolly toward/away from the controls target
     document.getElementById('model-zoom-in')?.addEventListener('click', () => {
       const dir = this.camera.position.clone().sub(this.controls.target);
-      dir.multiplyScalar(0.94);
+      dir.multiplyScalar(0.97); // 3% zoom step for very gradual zoom in
       this.camera.position.copy(this.controls.target).add(dir);
       this.controls.update();
     });
     document.getElementById('model-zoom-out')?.addEventListener('click', () => {
       const dir = this.camera.position.clone().sub(this.controls.target);
-      dir.multiplyScalar(1.06);
+      dir.multiplyScalar(1.03); // 3% zoom step for very gradual zoom out
       this.camera.position.copy(this.controls.target).add(dir);
       this.controls.update();
     });
     document.getElementById('model-reset')?.addEventListener('click', () => {
       const isMob = window.innerWidth < 768;
-      this.camera.position.set(0, isMob ? 38 : 24, isMob ? 33 : 21);
+      this.camera.position.set(0, isMob ? 68 : 36, isMob ? 58 : 31);
       this.controls.target.set(0, 0.5, -9.75);
       this.controls.update();
     });
@@ -183,7 +183,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.31.0`,
+      `${path}?v=3.32.0`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -848,7 +848,7 @@ const Temple3D = {
   resetCamera() {
     const isMob = window.innerWidth < 768;
     this.transitionTargetLookAt = new THREE.Vector3(0, 0.5, -9.75);
-    this.transitionTargetCam = new THREE.Vector3(0, isMob ? 38 : 24, isMob ? 33 : 21);
+    this.transitionTargetCam = new THREE.Vector3(0, isMob ? 68 : 36, isMob ? 58 : 31);
   },
 
   destroy() {

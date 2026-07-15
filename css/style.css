@@ -297,7 +297,7 @@ h3 {
   overflow: hidden;
   height: 550px; /* Moderate and perfectly balanced height on desktop */
   background: linear-gradient(to right, rgba(34, 34, 34, 0.88) 0%, rgba(34, 34, 34, 0.5) 45%, rgba(34, 34, 34, 0) 85%),
-              url('../images/hero_background.jpg?v=3.31.0') no-repeat right center / cover;
+              url('../images/hero_background.jpg?v=3.32.0') no-repeat right center / cover;
   color: #FFFFFF;
 }
 
@@ -371,18 +371,18 @@ h3 {
    ===================================================================== */
 
 .model3d-section {
-  background: #0f1626; /* Dark background matching the Three.js sky box */
-  color: #ffffff;
+  background: #EFE9DA; /* Match Three.js scene background color for seamless integration */
+  color: #333333;
   position: relative;
   padding: 0 !important;
   overflow: hidden;
 }
 
-/* --- 3-Column Layout -> Full Width Experience --- */
+/* --- 3-Column Layout -> Centered Container Experience --- */
 .model3d-three-col {
-  max-width: none !important;
+  max-width: 1180px !important; /* Constrain inside centered column like header/content */
   width: 100% !important;
-  margin: 0 !important;
+  margin: 0 auto !important; /* Centered on desktop */
   padding: 0 !important;
   display: block !important;
   position: relative !important;
@@ -1577,7 +1577,7 @@ h3 {
     min-height: 280px !important;
     height: auto !important;
     background: linear-gradient(to right, rgba(34, 34, 34, 0.9) 0%, rgba(34, 34, 34, 0.55) 50%, rgba(34, 34, 34, 0) 90%),
-                url('../images/hero_background.jpg?v=3.31.0') no-repeat 70% center / cover !important;
+                url('../images/hero_background.jpg?v=3.32.0') no-repeat 70% center / cover !important;
     display: flex !important;
     align-items: center !important;
   }
@@ -1662,6 +1662,8 @@ h3 {
   }
   .model3d-three-col {
     display: block !important;
+    max-width: none !important;
+    margin: 0 !important;
     gap: 0 !important;
   }
   .model3d-viewer-wrap {
