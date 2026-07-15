@@ -2,7 +2,7 @@ const HOTSPOT_IMAGES = {
   'cong-tam-quan':        ['images/real/cong_tam_quan_real.jpg'],
   'cong-nho':             [],
   'nha-vo-ca':            ['images/real/vo_ca_real.jpg'],
-  'vo-qui':               [],
+  'vo-qui':               ['images/real/vo_qui_real.jpg'],
   'chanh-dien':           ['images/real/inside_real.png'],
   'tien-dien':            [],
   'ho-thuy-ta':           [],
@@ -138,7 +138,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.45.17';
+        mainImgEl.src = images[0] + '?v=3.45.18';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
