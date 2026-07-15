@@ -121,8 +121,8 @@ var TRANSLATIONS = {
       lead: "Đình Bình Trường là kết tinh của văn hóa dân gian Nam Bộ và tinh thần kiên cường bất khuất của nhân dân Sài Gòn - Gia Định qua nhiều thế hệ. Mãi mãi là niềm tự hào của địa phương.",
       stat1: "Ghi danh sử sách triều Nguyễn",
       stat2: "Sắc phong vua Tự Đức ban tặng",
-      stat3_num: "Hơn 150",
-      stat3: "năm<br>Lưu giữ hồn quê Việt",
+      stat3_num: "<small style=\"margin-right: 4px; font-weight: 500;\">Hơn</small>150<small style=\"margin-left: 4px; font-weight: 500;\">năm</small>",
+      stat3: "Lưu giữ hồn quê Việt",
       stat4: "Xếp hạng Di tích cấp Thành phố",
       card1: {
         title: "Ý nghĩa lịch sử",
@@ -273,7 +273,8 @@ var TRANSLATIONS = {
       lead: "Binh Truong Communal House represents the culmination of Southern folk culture and the indomitable spirit of the Saigon - Gia Dinh people over generations. It remains a timeless source of local pride.",
       stat1: "Recorded in Nguyen Dynasty history",
       stat2: "Royal Decree by Emperor Tu Duc",
-      stat3: "Years preserving the Vietnamese soul",
+      stat3_num: "<small style=\"margin-right: 4px; font-weight: 500;\">Over</small>150<small style=\"margin-left: 4px; font-weight: 500;\">years</small>",
+      stat3: "Preserving the Vietnamese soul",
       stat4: "Classified as HCMC City Heritage",
       card1: {
         title: "Historical Significance",
