@@ -867,6 +867,10 @@ h3 {
   letter-spacing: 0.04em;
 }
 
+.timeline-section .section-heading {
+  margin-bottom: 8rem; /* Increased spacing between Dấu Ấn heading and timeline milestones */
+}
+
 .timeline {
   position: relative;
 }
@@ -874,9 +878,9 @@ h3 {
 .timeline-spine {
   position: absolute;
   left: 50%;
-  top: 0;
+  top: 30px; /* Start slightly lower to align with the first timeline item's dot */
   width: 2px;
-  height: 100%;
+  height: calc(100% - 60px); /* Adjust height to prevent spine from overextending at the bottom */
   background: var(--bronze-light);
   transform: translateX(-50%);
 }
