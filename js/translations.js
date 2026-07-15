@@ -76,7 +76,7 @@ var TRANSLATIONS = {
 
     // Phước Thành layout compatible additions
     model3d: {
-      title: "BẢN ĐỒ 3D",
+      title: "3D",
       body: "Khám phá khuôn viên di tích Đình Bình Trường qua mô hình 3D tương tác. Sử dụng các điểm nổi bật hoặc xoay mô hình để tìm hiểu thông tin kiến trúc chi tiết từng khu vực."
     },
     narration: {
@@ -205,7 +205,7 @@ var TRANSLATIONS = {
 
     // Phước Thành layout compatible additions
     model3d: {
-      title: "3D INTERACTIVE MODEL",
+      title: "3D",
       body: "Explore the Binh Truong Communal House grounds through our interactive 3D map. Click on hot spots or drag the model to learn about the architectural features of each area."
     },
     timeline: {
