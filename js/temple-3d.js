@@ -60,8 +60,8 @@ const Temple3D = {
 
     // Scene
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x87CEEB); // Sky blue background
-    this.scene.fog = new THREE.FogExp2(0x87CEEB, isMobile ? 0.008 : 0.005);
+    this.scene.background = new THREE.Color(0xBCE3F7); // Soft light sky blue background
+    this.scene.fog = new THREE.FogExp2(0xBCE3F7, isMobile ? 0.008 : 0.005);
 
     // Camera - aligned front-to-back, responsive default zoom (zoomed out on mobile/desktop to fit entire compound)
     this.camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 500);
@@ -89,7 +89,7 @@ const Temple3D = {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.08;
-    this.controls.zoomSpeed = 0.03; // Ultra-gradual zoom — each scroll tick barely changes
+    this.controls.enableZoom = false; // Disable OrbitControls native zoom to prevent jumpiness on laptop trackpads
     this.controls.enablePan = false; // Prevent panning to keep rotation perfectly centered on the temple courtyard
     this.controls.maxPolarAngle = Math.PI / 2.1;
     this.controls.minDistance = 2;
@@ -116,6 +116,23 @@ const Temple3D = {
     window.addEventListener('resize', () => this.onResize());
     this.renderer.domElement.addEventListener('click', (e) => this.onClick(e));
     this.renderer.domElement.addEventListener('mousemove', (e) => this.onMouseMove(e));
+
+    // Custom ultra-smooth and gradual scroll/trackpad wheel zoom
+    this.container.addEventListener('wheel', (e) => {
+      e.preventDefault(); // Prevent page scroll when mouse is hovering and zooming the 3D map
+      const dir = this.camera.position.clone().sub(this.controls.target);
+      const dist = dir.length();
+      
+      // Calculate micro zoom factor proportional to scroll delta
+      const factor = 1 + (e.deltaY * 0.00035);
+      
+      const nextDist = dist * factor;
+      if (nextDist < this.controls.minDistance || nextDist > this.controls.maxDistance) return;
+      
+      dir.setLength(nextDist);
+      this.camera.position.copy(this.controls.target).add(dir);
+      this.controls.update();
+    }, { passive: false });
 
     // Control buttons — dolly toward/away from the controls target
     document.getElementById('model-zoom-in')?.addEventListener('click', () => {
@@ -183,7 +200,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.35.0`,
+      `${path}?v=3.36.0`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
