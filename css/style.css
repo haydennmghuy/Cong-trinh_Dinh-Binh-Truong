@@ -296,9 +296,13 @@ h3 {
   position: relative;
   overflow: hidden;
   height: 550px; /* Moderate and perfectly balanced height on desktop */
+  max-width: 1180px; /* Boxed width to match the sections below */
+  margin: 0 auto; /* Centered on desktop */
   background: linear-gradient(to right, rgba(34, 34, 34, 0.88) 0%, rgba(34, 34, 34, 0.5) 45%, rgba(34, 34, 34, 0) 85%),
-              url('../images/hero_background.jpg?v=3.36.0') no-repeat right center / cover;
+              url('../images/hero_background.jpg?v=3.37.0') no-repeat right center / cover;
   color: #FFFFFF;
+  border-radius: 16px; /* Premium card rounded corners */
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
 }
 
 .hero-inner {
@@ -1576,8 +1580,11 @@ h3 {
   .hero {
     min-height: 280px !important;
     height: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
     background: linear-gradient(to right, rgba(34, 34, 34, 0.9) 0%, rgba(34, 34, 34, 0.55) 50%, rgba(34, 34, 34, 0) 90%),
-                url('../images/hero_background.jpg?v=3.36.0') no-repeat 70% center / cover !important;
+                url('../images/hero_background.jpg?v=3.37.0') no-repeat 70% center / cover !important;
     display: flex !important;
     align-items: center !important;
   }
