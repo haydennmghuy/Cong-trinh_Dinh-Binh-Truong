@@ -2103,3 +2103,8 @@ html[lang="en"] .hero-title {
     white-space: nowrap !important;
   }
 }
+
+#temple-3d-container,
+#temple-3d-container canvas {
+  touch-action: pan-y !important;
+}
