@@ -268,7 +268,7 @@ var MAP_DATA = {
     },
     {
       year: "1955–1975",
-      image: "images/gallery/gallery-2.png",
+      image: "images/gallery/khang_chien_chong_my_1955_1975.jpg",
       vi: {
         title: "Liên lạc kháng chiến chống Mỹ",
         body: "Đình tiếp tục duy trì vai trò trạm liên lạc liên quận, tiếp tế lương thực, nhu yếu phẩm cho các lực lượng bán vũ trang hoạt động trong lòng địch tại Gia Định."
