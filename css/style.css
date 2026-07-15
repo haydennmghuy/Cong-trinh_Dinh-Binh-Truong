@@ -297,7 +297,7 @@ h3 {
   overflow: hidden;
   height: 550px; /* Moderate and perfectly balanced height on desktop */
   background: linear-gradient(to right, rgba(34, 34, 34, 0.88) 0%, rgba(34, 34, 34, 0.5) 45%, rgba(34, 34, 34, 0) 85%),
-              url('../images/hero_background.jpg?v=3.29.0') no-repeat right center / cover;
+              url('../images/hero_background.jpg?v=3.31.0') no-repeat right center / cover;
   color: #FFFFFF;
 }
 
@@ -1494,19 +1494,22 @@ h3 {
     order: 3;
     display: flex !important;
     width: 100%;
-    justify-content: center;
-    gap: 0.25rem 0.5rem;
-    padding: 0.5rem 0 0.2rem;
+    justify-content: space-between; /* Spread evenly across one line */
+    gap: 0;
+    padding: 0.5rem 0.1rem 0.2rem;
     margin-top: 0.3rem;
     border-top: 1px solid rgba(212, 175, 55, 0.12);
-    overflow-x: hidden;
-    white-space: normal;
-    flex-wrap: wrap;
+    overflow: hidden;
+    white-space: nowrap;
+    flex-wrap: nowrap; /* Force single line */
     flex: none;
   }
   .main-nav a {
-    font-size: 0.62rem;
-    padding: 0.15rem 0.3rem;
+    font-size: clamp(8px, 2.5vw, 11px); /* Responsive fluid font sizing to guarantee one-line fit */
+    padding: 0.1rem 0.05rem;
+    letter-spacing: -0.01em;
+    flex: 1;
+    text-align: center;
     white-space: nowrap;
   }
 
@@ -1574,7 +1577,7 @@ h3 {
     min-height: 280px !important;
     height: auto !important;
     background: linear-gradient(to right, rgba(34, 34, 34, 0.9) 0%, rgba(34, 34, 34, 0.55) 50%, rgba(34, 34, 34, 0) 90%),
-                url('../images/hero_background.jpg?v=3.29.0') no-repeat 70% center / cover !important;
+                url('../images/hero_background.jpg?v=3.31.0') no-repeat 70% center / cover !important;
     display: flex !important;
     align-items: center !important;
   }
@@ -1582,7 +1585,7 @@ h3 {
     position: relative !important;
     width: 100% !important;
     min-height: auto !important;
-    padding: 1.5rem 1.2rem 1.5rem !important;
+    padding: 8.5rem 1.2rem 1.5rem !important;
     display: block !important; /* Reset grid on mobile */
   }
   .hero-copy {

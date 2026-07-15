@@ -183,7 +183,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.29.0`,
+      `${path}?v=3.31.0`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
