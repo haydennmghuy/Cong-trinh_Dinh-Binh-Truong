@@ -250,18 +250,6 @@ var MAP_DATA = {
   ],
   timeline: [
     {
-      year: "~1808",
-      image: "images/gallery/gallery-7_new.jpg",
-      vi: {
-        title: "Khởi dựng Đình Bình Trường",
-        body: "Đình Bình Trường được xây dựng bằng vật liệu gỗ quý, lợp ngói âm dương đất nung truyền thống làm nơi thờ cúng Thành Hoàng Bổn Cảnh và sinh hoạt văn hóa của cư dân Nam Bộ."
-      },
-      en: {
-        title: "Construction of the Communal House",
-        body: "Binh Truong Communal House was constructed with precious wood and traditional clay yin-yang roof tiles, serving as a shrine for the local Guardian Spirit and a communal gathering space."
-      }
-    },
-    {
       year: "1818",
       image: "images/gallery/gia_dinh_thanh_thong_chi.jpg",
       vi: {
