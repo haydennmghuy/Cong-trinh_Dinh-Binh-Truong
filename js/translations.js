@@ -3,11 +3,13 @@ var TRANSLATIONS = {
     nav: {
       home: "Trang Chủ",
       about: "Giới Thiệu",
-      map: "Bản Đồ 3D",
+      map: "3D",
       ar: "Xem 3D AR",
       timeline: "Dòng Lịch Sử",
       values: "Giá Trị",
       festival: "Lễ Hội",
+      festival_eyebrow: "Lễ Hội truyền thống",
+      festival_heading: "3 Lễ Hội Lớn Tại Đình Bình Trường",
       contact: "Liên Hệ"
     },
     hero: {
@@ -64,16 +66,6 @@ var TRANSLATIONS = {
     section_festival: "Lễ Hội & Văn Hóa",
     festival_title: "LỄ HỘI TRUYỀN THỐNG",
     festival_desc: "Các ngày lễ cúng bái tế tự cổ truyền diễn ra quanh năm.",
-    nav: {
-      home: "Trang Chủ",
-      about: "Giới Thiệu",
-      map: "3D",
-      ar: "Xem 3D AR",
-      timeline: "Dòng Lịch Sử",
-      festival: "Lễ Hội",
-      festival_eyebrow: "Lễ Hội truyền thống",
-      festival_heading: "3 Lễ Hội Lớn Tại Đình Bình Trường"
-    },
     festival: {
       card1: {
         date: "Rằm tháng Giêng (15 - 17/01 Âm lịch)",
@@ -142,12 +134,12 @@ var TRANSLATIONS = {
       }
     },
     footer: {
-      about: "Dự án số hóa địa chỉ đỏ Di tích kiến trúc nghệ thuật Đình Bình Trường tọa lạc tại Huyện Bình Chánh, TP.HCM nhằm bảo tồn và phổ biến các giá trị văn hóa, kiến trúc truyền thống.",
+      about: "Dự án số hóa địa chỉ đỏ Di tích kiến trúc nghệ thuật Đình Bình Trường tọa lạc tại xã Bình Chánh, huyện Bình Chánh, Thành phố Hồ Chí Minh nhằm bảo tồn và phổ biến các giá trị văn hóa, kiến trúc truyền thống.",
       explore: "Khám phá",
       info: "Thông tin",
       addressLabel: "Địa chỉ:",
       address: "Ấp 1, Xã Bình Chánh, Huyện Bình Chánh, TP.HCM",
-      map: "Bản đồ di tích",
+      map: "Bản đồ",
       copyrightMarquee: "Công trình số hóa địa chỉ đỏ Di tích lịch sử Đình Bình Trường - Thực hiện bởi Đội hình Chuyên Nâng cao Kỹ năng số - Chiến dịch Tình nguyện Sinh viên Kinh tế 2026 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       copyright: "Công trình số hóa địa chỉ đỏ Di tích lịch sử Đình Bình Trường<br>Thực hiện bởi Đội hình Chuyên Nâng cao Kỹ năng số<br>Chiến dịch Tình nguyện Sinh viên Kinh tế 2026"
     }
@@ -156,11 +148,13 @@ var TRANSLATIONS = {
     nav: {
       home: "Home",
       about: "About",
-      map: "3D Map",
+      map: "3D",
       ar: "View 3D AR",
       timeline: "Timeline",
       values: "Values",
-      festival: "Festival",
+      festival: "Festivals",
+      festival_eyebrow: "Traditional Festivals",
+      festival_heading: "3 Major Festivals at Binh Truong Communal House",
       contact: "Contact"
     },
     hero: {
@@ -222,16 +216,6 @@ var TRANSLATIONS = {
     section_festival: "Festival & Culture",
     festival_title: "TRADITIONAL FESTIVALS",
     festival_desc: "Traditional ritual offerings and worship taking place throughout the year.",
-    nav: {
-      home: "Home",
-      about: "About",
-      map: "3D",
-      ar: "View 3D AR",
-      timeline: "Timeline",
-      festival: "Festivals",
-      festival_eyebrow: "Traditional Festivals",
-      festival_heading: "3 Major Festivals at Binh Truong Communal House"
-    },
     festival: {
       card1: {
         date: "15th - 17th of the First Lunar Month",
@@ -299,7 +283,7 @@ var TRANSLATIONS = {
       info: "Information",
       addressLabel: "Address:",
       address: "Hamlet 1, Binh Chanh Commune, Binh Chanh District, Ho Chi Minh City",
-      map: "Interactive Map",
+      map: "Map",
       copyrightMarquee: "Digital Red Site Digitalization Project - Binh Truong Communal House - Carried out by the Digital Skills Enhancement Team - Student Economic Volunteer Campaign 2026 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       copyright: "Digital Red Site Digitalization Project - Binh Truong Communal House<br>Carried out by the Digital Skills Enhancement Team<br>Student Economic Volunteer Campaign 2026"
     }
