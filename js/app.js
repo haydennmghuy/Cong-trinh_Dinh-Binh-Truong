@@ -9,7 +9,7 @@ const HOTSPOT_IMAGES = {
   'bia-tuong-niem':       ['images/real/bia_tuong_niem_real.jpg'],
   'bia-di-tich':          [],
   'mieu-bach-ma':         ['images/real/mieu_bach_ma_real.jpg'],
-  'ban-than-nong':        ['images/real/binh_phong_real.jpg'],
+  'ban-than-nong':        ['images/real/ban_than_nong_real.jpg'],
   'mieu-ho':              [],
   'mieu-ba-ngu-hanh':     ['images/real/mieu_tho_real.jpg'],
   'cot-co':               [],
