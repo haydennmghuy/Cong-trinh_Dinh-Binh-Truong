@@ -7,15 +7,15 @@ var MAP_DATA = {
       vi: {
         name: "Cổng Tam Quan",
         short: "Cổng chính",
-        desc: "Cổng Tam Quan là lối vào chính của đình, mang kiến trúc ba ô cửa đặc trưng của đình chùa Nam Bộ. Hai trụ cột lớn chạm khắc câu đối chữ Hán ca ngợi công đức Thành Hoàng. Mái ngói âm dương uốn cong thanh thoát, trang trí hình lưỡng long chầu nhật trên bờ nóc.",
-        details: "• Kết cấu: 3 lối đi vòm cuốn cổ điển, khung bê tông cốt thép kết hợp gỗ căm xe.\n• Trang trí: Bờ nóc đắp nổi Lưỡng Long Chầu Nhật bằng sứ men gốm Đồng Nai.\n• Câu đối chữ Hán: 2 trụ chính chạm chìm chữ Hán thếp vàng nhũ, ca ngợi thần uy bảo an dân cư.",
+        desc: "Cổng Tam Quan là lối vào chính của Đình Bình Trường, mang đậm phong cách kiến trúc đình làng Nam Bộ. Công trình gồm ba lối đi với mái ngói âm dương nhiều tầng, đầu đao uốn cong thanh thoát. Hai trụ chính được trang trí câu đối chữ Hán và các họa tiết truyền thống, trong khi bờ nóc nổi bật với mô típ Lưỡng Long Chầu Nhật, biểu tượng cho sự linh thiêng, thịnh vượng và bình an.",
+        details: "+ Vật liệu: Bê tông cốt thép kết hợp các chi tiết trang trí truyền thống, mái lợp ngói âm dương.\n+ Trang trí: Bờ nóc đắp nổi mô típ Lưỡng Long Chầu Nhật, đầu đao cong mềm mại, các họa tiết rồng - mây mang ý nghĩa cát tường.\n+ Câu đối: Hai trụ cổng đặt câu đối chữ Hán tôn vinh Thành Hoàng Bổn Cảnh, đồng thời thể hiện khát vọng về cuộc sống bình yên, quốc thái dân an của người dân địa phương.",
         audio: "audio/vi/cong-tam-quan.mp3"
       },
       en: {
         name: "Main Triple Gate",
         short: "Main entrance",
-        desc: "The Triple Gate (Tam Quan) serves as the main entrance to the communal house, featuring three characteristic arched doorways typical of Southern Vietnamese temple architecture. Two large pillars are carved with Chinese couplets praising the Guardian Spirit's virtues. The yin-yang roof tiles curve gracefully, decorated with twin dragon motifs on the ridge.",
-        details: "• Structure: 3 classical arched gateways combining reinforced structure with cam xe hardwood.\n• Decoration: Roof ridge features twin dragons paying homage to the sun in Dong Nai glazed ceramics.\n• Chinese Couplets: Main pillars carry deeply carved gold-leaf Chinese calligraphy extolling divine protection.",
+        desc: "The Triple Gate (Tam Quan) is the main entrance of Binh Truong Communal House, deeply reflecting the Southern Vietnamese village temple architectural style. The structure features three walkways with multi-layered yin-yang tile roofs and gracefully curved roof edges. The two main pillars are adorned with Chinese couplets and traditional motifs, while the roof ridge stands out with the Twin Dragons paying homage to the Sun motif, representing divinity, prosperity, and peace.",
+        details: "+ Material: Reinforced concrete combined with traditional decorative details and yin-yang tiled roofs.\n+ Decoration: Roof ridge features twin dragons paying homage to the sun, curved roof corners, and auspicious dragon-and-cloud patterns.\n+ Couplets: The two gate pillars carry Chinese couplets honoring the Tutelary Deity, reflecting the local aspiration for peace, safety, and national prosperity.",
         audio: "audio/en/main-gate.mp3"
       }
     },
@@ -26,15 +26,15 @@ var MAP_DATA = {
       vi: {
         name: "Miếu thờ Bạch Mã",
         short: "Thần Bạch Mã",
-        desc: "Miếu thờ thần Bạch Mã (ngựa trắng), vị thần bảo hộ bờ cõi và là linh vật hộ vệ trung thành của thần Thành Hoàng, mang ý nghĩa cầu mong sự trung dũng, cát tường và thịnh vượng.",
-        details: "• Kết cấu: Miếu xây gạch, mái ngói đỏ đắp tượng bạch mã phục chầu uy nghiêm.\n• Vị trí: Nằm đầu tiên bên trái trong dãy miếu thờ phụ phía sau hồ bán nguyệt.",
+        desc: "Miếu Bạch Mã là công trình thờ Bạch Mã Thái Giám - vị thần hộ vệ được người dân tôn kính trong tín ngưỡng dân gian. Theo quan niệm truyền thống, ngài có nhiệm vụ trấn giữ đình làng, xua đuổi tà khí, bảo vệ không gian linh thiêng và mang đến sự bình an cho cộng đồng. Với quy mô nhỏ nhưng trang nghiêm, miếu góp phần hoàn thiện tổng thể kiến trúc và không gian tín ngưỡng của Đình Bình Trường.",
+        details: "+ Vật liệu: Tường xây gạch, trát vữa và sơn màu vàng kem. kết cấu bê tông cốt thép kết hợp mái lợp ngói đất nung.\n+ Trang trí: Hai bên cửa chính gắn liễn đối chữ Hán nền đỏ, khung viền trắng nổi bật trên tường vàng, góp phần tăng thêm vẻ trang nghiêm cho công trình.\n+ Không gian: Bên trong đặt bàn thờ Bạch Mã Thái Giám, cùng bát hương và các đồ thờ truyền thống, thể hiện tín ngưỡng thờ thần hộ vệ trong văn hóa đình làng Nam Bộ.",
         audio: "audio/vi/mieu-bach-ma.mp3"
       },
       en: {
         name: "Bach Ma Shrine",
         short: "White Horse Shrine",
-        desc: "A shrine dedicated to the White Horse deity (Bach Ma), a loyal guardian of the tutelary god, symbolizing loyalty, security, and prosperity for the community.",
-        details: "• Structure: Brick masonry shrine with a red-tiled roof, featuring a statue of a white horse.\n• Location: The first shrine on the left in the rear row near the pond.",
+        desc: "Bach Ma Shrine is dedicated to Bach Ma Thai Giam (the White Horse Eunuch Deity) - a protective deity revered in Vietnamese folk beliefs. According to traditional views, his mission is to guard the communal house, ward off negative spirits, protect the sacred space, and bring peace to the community. Despite its small scale, the shrine is solemn and completes the architectural and spiritual landscape of Binh Truong Communal House.",
+        details: "+ Material: Brick walls, plastered and painted in warm cream yellow; reinforced concrete structure combined with clay tiled roofs.\n+ Decoration: Both sides of the main door are decorated with red Chinese couplets in white borders standing out on the yellow walls, enhancing the solemnity.\n+ Space: The altar of Bach Ma Thai Giam is located inside, equipped with incense burners and traditional ritual items, representing the tutelary god worship in Southern Vietnamese village culture.",
         audio: "audio/en/bach-ma-shrine.mp3"
       }
     },
@@ -45,15 +45,15 @@ var MAP_DATA = {
       vi: {
         name: "Bàn thờ Thần Nông",
         short: "Thờ Thần Nông",
-        desc: "Bàn thờ Thần Nông (Vua Thần Nông - người dạy dân nghề nông) để cầu nguyện mùa màng tươi tốt, mưa thuận gió hòa, đời sống ấm no cho bà con làm nông nghiệp quanh vùng.",
-        details: "• Kiến trúc: Bệ thờ đá lộ thiên tôn nghiêm, đặt bát hương gốm và bài vị Thần Nông.\n• Vị trí: Đứng thứ hai từ trái sang trong hàng miếu thờ lộ thiên.",
+        desc: "Bàn thờ Thần Nông là nơi thờ Thần Nông - vị thần cai quản nông nghiệp trong tín ngưỡng dân gian Việt Nam. Đây là nơi người dân bày tỏ lòng biết ơn đối với vị thần đã che chở cho nghề nông, đồng thời cầu mong mưa thuận gió hòa, mùa màng bội thu, cây cối sinh trưởng tốt và cuộc sống ấm no, sung túc. Việc thờ Thần Nông cũng phản ánh truyền thống gắn bó lâu đời của cư dân Nam Bộ với nền văn minh lúa nước.",
+        details: "+ Vật liệu: Kết cấu xây gạch và bê tông, hoàn thiện bằng lớp vữa sơn màu kem kết hợp khung viền đỏ. Mặt bàn thờ ốp đá, phía trước chạm nổi hoa văn trang trí.\n+ Trang trí: Chính giữa là đại tự chữ Hán \"Thần Nông\", hai bên là cặp trụ vuông sơn đỏ khắc chữ Hán sơn son thếp vàng. Trên đỉnh mỗi trụ đặt đèn đá trang trí, phía trước bố trí lư hương đồng, chân đèn và bình hoa phục vụ các nghi lễ dâng hương.\n+ Không gian: Bàn thờ được đặt dưới bóng cây cổ thụ trong khuôn viên đình, phía trước là khoảng sân rộng, tạo nên không gian thoáng đãng và trang nghiêm, phù hợp với các nghi lễ cúng Thần Nông theo truyền thống.",
         audio: "audio/vi/ban-than-nong.mp3"
       },
       en: {
         name: "Shennong Altar",
         short: "Altar of agriculture",
-        desc: "An open-air altar dedicated to Shennong (the Deity of Agriculture), where locals pray for favorable weather, bountiful crops, and prosperity.",
-        details: "• Structure: Open stone altar pedestal decorated with traditional incense burner.\n• Location: The second installation from the left in the outdoor shrine line.",
+        desc: "The Shennong Altar is dedicated to Shennong - the Deity of Agriculture in Vietnamese folk beliefs. Here, locals express their gratitude to the deity who protects farming, while praying for favorable weather, bountiful harvests, healthy vegetation, and a warm, prosperous life. The worship of Shennong also reflects the long-standing bond of Southern residents with wet rice civilization.",
+        details: "+ Material: Masonry and concrete structure finished with cream-colored plaster and red borders. The altar table is stone-clad, featuring decorative patterns carved on the front.\n+ Decoration: The center carries the Chinese characters 'Shennong', flanked by square red pillars with gold-leaf inscriptions. Stone lanterns sit atop each pillar, with bronze censers, candle holders, and flower vases arranged in front.\n+ Space: The altar is located under ancient trees in the temple yard, facing a wide courtyard, creating an airy and solemn space suitable for traditional Shennong rituals.",
         audio: "audio/en/shennong-altar.mp3"
       }
     },
