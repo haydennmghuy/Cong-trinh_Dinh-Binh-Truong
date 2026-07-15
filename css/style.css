@@ -186,7 +186,7 @@ h3 {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 1000;
   background: transparent;
   backdrop-filter: none;
   border-bottom: 1px solid transparent;
@@ -396,7 +396,7 @@ h3 {
   position: absolute !important;
   top: 2.5rem !important;
   left: 2.5rem !important;
-  z-index: 100 !important;
+  z-index: 10 !important;
   max-width: 380px !important;
   background: rgba(15, 22, 38, 0.8) !important;
   backdrop-filter: blur(16px) saturate(180%) !important;
