@@ -107,6 +107,7 @@ const Temple3D = {
 
     this.controls.minDistance = 2;
     this.controls.maxDistance = 150; // Increased maxDistance to allow zooming out on mobile
+    this.controls.zoomSpeed = 0.3; // Slow down mouse-wheel zoom for gradual zoom steps
     this.controls.autoRotate = false;
     this.controls.autoRotateSpeed = 0.5;
 
