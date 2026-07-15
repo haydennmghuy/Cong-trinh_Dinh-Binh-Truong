@@ -1,5 +1,5 @@
 const HOTSPOT_IMAGES = {
-  'cong-tam-quan':        ['images/real/cong_tam_quan_real.png'],
+  'cong-tam-quan':        ['images/real/cong_tam_quan_real.jpg'],
   'cong-nho':             [],
   'nha-vo-ca':            [],
   'vo-qui':               [],
@@ -8,7 +8,7 @@ const HOTSPOT_IMAGES = {
   'ho-thuy-ta':           [],
   'bia-tuong-niem':       ['images/real/bia_tuong_niem_real.jpg'],
   'bia-di-tich':          [],
-  'mieu-bach-ma':         ['images/real/mieu_tho_real.jpg'],
+  'mieu-bach-ma':         ['images/real/mieu_bach_ma_real.jpg'],
   'ban-than-nong':        ['images/real/binh_phong_real.jpg'],
   'mieu-ho':              [],
   'mieu-ba-ngu-hanh':     ['images/real/mieu_tho_real.jpg'],
