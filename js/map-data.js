@@ -214,16 +214,16 @@ var MAP_DATA = {
       x: 63, y: 50,
       color: "#B85C4C",
       vi: {
-        name: "Tiền Điện",
-        short: "Tiền điện",
-        desc: "Tiền Điện là gian nhà đặt tại cuối cùng của dãy nhà chính (theo bản vẽ bố trí nội bộ của di tích), là nơi bái tế, chuẩn bị lễ vật và dâng hương của nhân dân trước khi hành lễ chính thức.",
+        name: "Hậu Sở",
+        short: "Hậu sở",
+        desc: "Hậu sở là gian nhà đặt tại cuối cùng của dãy nhà chính (theo bản vẽ bố trí nội bộ của di tích), là nơi bái tế, chuẩn bị lễ vật và dâng hương của nhân dân trước khi hành lễ chính thức.",
         details: "• Kết cấu: Mái lợp ngói âm dương, các kèo gỗ chạm khắc rồng mây.\n• Chức năng: Nơi dâng hương, trưng bày lễ vật cúng Thành Hoàng Bổn Cảnh.",
         audio: "audio/vi/tien-dien.mp3"
       },
       en: {
-        name: "Tien Dien (Front Hall)",
-        short: "Antechamber",
-        desc: "The Front Hall is positioned at the end of the main block (according to this heritage layout), serving as a space for public worship, preparation, and offering incense.",
+        name: "Hau So (Rear Quarters)",
+        short: "Rear Quarters",
+        desc: "The Rear Quarters (Hau So) is positioned at the end of the main block (according to this heritage layout), serving as a space for public worship, preparation, and offering incense.",
         details: "• Structure: Traditional yin-yang tiled roof with dragon and cloud wood carvings.\n• Function: Gathering area for visitors to light incense and present offerings to the deities.",
         audio: "audio/en/front-hall.mp3"
       }
