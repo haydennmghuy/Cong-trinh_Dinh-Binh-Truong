@@ -138,29 +138,24 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.45.20';
+        mainImgEl.src = images[0] + '?v=3.45.21';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
         // Make sure vertical shrines/steles are aligned properly so their headers and features are visible
-        const fitContainIds = ['ban-than-nong', 'bia-tuong-niem'];
-        if (fitContainIds.includes(this.currentArea.id)) {
-          mainImgEl.style.objectFit = 'contain';
-          mainImgEl.style.objectPosition = 'center';
-          mainImgEl.style.backgroundColor = '#1a1a2e'; // Dark background matching overlay
-        } else {
-          mainImgEl.style.objectFit = 'cover';
-          mainImgEl.style.backgroundColor = 'transparent';
-          
-          const positionMapping = {
-            'mieu-ba-ngu-hanh': '50% 38%',
-            'bia-di-tich': '50% 15%',
-            'mieu-bach-ma': '50% 20%',
-            'mieu-ho': 'top',
-            'chanh-dien': '50% 20%'
-          };
-          mainImgEl.style.objectPosition = positionMapping[this.currentArea.id] || 'center';
-        }
+        mainImgEl.style.objectFit = 'cover';
+        mainImgEl.style.backgroundColor = 'transparent';
+        
+        const positionMapping = {
+          'mieu-ba-ngu-hanh': '50% 38%',
+          'bia-di-tich': '50% 15%',
+          'mieu-bach-ma': '50% 20%',
+          'mieu-ho': 'top',
+          'chanh-dien': '50% 20%',
+          'ban-than-nong': '50% 80%',
+          'bia-tuong-niem': '50% 40%'
+        };
+        mainImgEl.style.objectPosition = positionMapping[this.currentArea.id] || 'center';
       }
       if (placeholderEl) {
         placeholderEl.classList.add('hidden');
