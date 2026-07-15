@@ -457,10 +457,11 @@ html[lang="en"] .hero-title {
 
 .model3d-copy h2 {
   color: var(--forest-dark);
-  font-size: clamp(2rem, 3.8vw, 2.8rem);
+  font-size: clamp(1.2rem, 3.2vw, 2.8rem);
   font-family: var(--font-display);
   letter-spacing: 0.03em;
   margin-bottom: 1.2rem;
+  white-space: nowrap;
 }
 
 .model3d-copy p {
@@ -679,10 +680,11 @@ html[lang="en"] .hero-title {
 
 .narration-copy h2 {
   color: var(--forest-dark);
-  font-size: clamp(2rem, 3.8vw, 2.8rem);
+  font-size: clamp(1.2rem, 3.2vw, 2.8rem);
   font-family: var(--font-display);
   letter-spacing: 0.03em;
   margin-bottom: 1.8rem;
+  white-space: nowrap;
 }
 
 .narration-text p {
@@ -888,9 +890,10 @@ html[lang="en"] .hero-title {
   margin: 0 auto 5.2rem;
 }
 .section-heading h2 {
-  font-size: clamp(2.2rem, 3.2vw, 3.2rem);
+  font-size: clamp(1.1rem, 3.2vw, 3.2rem);
   color: var(--forest-dark);
   letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .timeline-section .section-heading {
@@ -1016,8 +1019,9 @@ html[lang="en"] .hero-title {
 .timeline-content h3 {
   color: var(--forest-dark);
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
   margin-bottom: 0.8rem;
+  white-space: nowrap;
 }
 
 .timeline-content p {
@@ -1046,9 +1050,10 @@ html[lang="en"] .hero-title {
 
 .values h2 {
   color: var(--forest-dark);
-  font-size: clamp(2rem, 3.8vw, 2.8rem);
+  font-size: clamp(1.2rem, 3.2vw, 2.8rem);
   font-family: var(--font-display);
   margin-bottom: 1.2rem;
+  white-space: nowrap;
 }
 
 .values-lead {
@@ -1118,9 +1123,10 @@ html[lang="en"] .hero-title {
 
 .value-card h3 {
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
   color: var(--forest-dark);
   margin-bottom: 0.9rem;
+  white-space: nowrap;
 }
 
 .value-card p {
@@ -1217,7 +1223,7 @@ html[lang="en"] .hero-title {
   line-height: 1.65;
   color: #B2A292;
   text-align: justify;
-  max-width: 290px;
+  max-width: 380px;
 }
 
 .footer-col h4 {
@@ -1852,8 +1858,9 @@ html[lang="en"] .hero-title {
     font-size: 0.78rem;
   }
   .timeline-content h3 {
-    font-size: clamp(1.1rem, 4vw, 1.3rem);
+    font-size: clamp(0.9rem, 3.5vw, 1.25rem);
     margin-bottom: 0.3rem;
+    white-space: nowrap;
   }
   .timeline-content p {
     font-size: 0.95rem;
@@ -2030,10 +2037,11 @@ html[lang="en"] .hero-title {
 
 .festival-card h3 {
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
   color: var(--forest-dark);
   margin-bottom: 0.9rem;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .festival-card p {

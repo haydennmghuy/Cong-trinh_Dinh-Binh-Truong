@@ -90,7 +90,7 @@ const Temple3D = {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.08;
-    this.controls.enableZoom = false; // Disable OrbitControls native zoom to prevent jumpiness on laptop trackpads
+    this.controls.enableZoom = true; // Enable OrbitControls zoom (pinch-to-zoom on mobile, mouse wheel on desktop)
     this.controls.enablePan = false; // Prevent panning to keep rotation perfectly centered on the temple courtyard
     this.controls.maxPolarAngle = Math.PI / 2.1;
     this.controls.minDistance = 2;
@@ -99,10 +99,28 @@ const Temple3D = {
     this.controls.autoRotate = false;
     this.controls.autoRotateSpeed = 0.5;
 
+    // Track last user interaction for idle auto-rotation (10 seconds timeout)
+    this.lastInteractionTime = Date.now();
+    const resetIdleTimer = () => {
+      this.lastInteractionTime = Date.now();
+      if (this.controls.autoRotate) {
+        this.controls.autoRotate = false;
+      }
+    };
+
     this.controls.addEventListener('start', () => {
       this.transitionTargetCam = null;
       this.transitionTargetLookAt = null;
+      resetIdleTimer();
     });
+    this.controls.addEventListener('change', resetIdleTimer);
+
+    // Mouse, touch and wheel interaction listeners on the container to reset idle timer
+    this.container.addEventListener('mousedown', resetIdleTimer);
+    this.container.addEventListener('mousemove', resetIdleTimer, { passive: true });
+    this.container.addEventListener('touchstart', resetIdleTimer, { passive: true });
+    this.container.addEventListener('touchmove', resetIdleTimer, { passive: true });
+    this.container.addEventListener('wheel', resetIdleTimer, { passive: true });
 
     // Lighting
     this.addLighting();
@@ -118,21 +136,9 @@ const Temple3D = {
     this.renderer.domElement.addEventListener('click', (e) => this.onClick(e));
     this.renderer.domElement.addEventListener('mousemove', (e) => this.onMouseMove(e));
 
-    // Custom ultra-smooth and gradual scroll/trackpad wheel zoom
+    // Prevent page scroll when scrolling the mouse wheel on the 3D viewport
     this.container.addEventListener('wheel', (e) => {
-      e.preventDefault(); // Prevent page scroll when mouse is hovering and zooming the 3D map
-      const dir = this.camera.position.clone().sub(this.controls.target);
-      const dist = dir.length();
-      
-      // Calculate micro zoom factor proportional to scroll delta
-      const factor = 1 + (e.deltaY * 0.00035);
-      
-      const nextDist = dist * factor;
-      if (nextDist < this.controls.minDistance || nextDist > this.controls.maxDistance) return;
-      
-      dir.setLength(nextDist);
-      this.camera.position.copy(this.controls.target).add(dir);
-      this.controls.update();
+      e.preventDefault();
     }, { passive: false });
 
     // Control buttons — dolly toward/away from the controls target
@@ -793,6 +799,9 @@ const Temple3D = {
         this.transitionTargetLookAt = null;
       }
     } else {
+      if (Date.now() - this.lastInteractionTime > 10000) {
+        this.controls.autoRotate = true;
+      }
       this.controls.update();
     }
     this.renderer.render(this.scene, this.camera);
