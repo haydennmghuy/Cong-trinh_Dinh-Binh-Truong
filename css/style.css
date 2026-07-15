@@ -371,7 +371,7 @@ h3 {
    ===================================================================== */
 
 .model3d-section {
-  background: #87CEEB; /* Sky blue — match Three.js scene background */
+  background: #EFE9DA; /* Site cream background — only the inner 3D canvas is sky blue */
   color: #333333;
   position: relative;
   padding: 0 !important;
