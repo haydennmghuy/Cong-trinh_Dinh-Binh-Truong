@@ -255,7 +255,7 @@ h3 {
 }
 
 .header-inner {
-  max-width: 1180px;
+  max-width: 1380px;
   margin: 0 auto;
   padding: 0.9rem 1.5rem;
   display: flex;
@@ -296,7 +296,7 @@ h3 {
   position: relative;
   overflow: hidden;
   height: 550px; /* Moderate and perfectly balanced height on desktop */
-  max-width: 1180px; /* Boxed width to match the sections below */
+  max-width: 1380px; /* Boxed width to match the sections below */
   margin: 0 auto; /* Centered on desktop */
   background: linear-gradient(to right, rgba(34, 34, 34, 0.88) 0%, rgba(34, 34, 34, 0.5) 45%, rgba(34, 34, 34, 0) 85%),
               url('../images/hero_background.jpg?v=3.37.0') no-repeat right center / cover;
@@ -384,7 +384,7 @@ h3 {
 
 /* --- 3-Column Layout -> Centered Container Experience --- */
 .model3d-three-col {
-  max-width: 1180px !important; /* Constrain inside centered column like header/content */
+  max-width: 1380px !important; /* Constrain inside centered column like header/content */
   width: 100% !important;
   margin: 0 auto !important; /* Centered on desktop */
   padding: 0 !important;
@@ -453,7 +453,7 @@ h3 {
 
 .model-3d-wrapper {
   width: 100% !important;
-  height: 720px !important;
+  height: 800px !important;
   aspect-ratio: auto !important;
   background: linear-gradient(135deg, #BCE3F7, #DFF0FA, #BCE3F7) !important;
   border-radius: 0 !important;
@@ -625,7 +625,7 @@ h3 {
 }
 
 .narration-inner {
-  max-width: 1180px;
+  max-width: 1380px;
   margin: 0 auto;
   padding: 5.5rem 1.5rem;
   display: grid;
@@ -851,7 +851,7 @@ h3 {
 
 .timeline-section .section-heading,
 .timeline-section .timeline {
-  max-width: 1180px;
+  max-width: 1380px;
   margin: 0 auto;
 }
 
@@ -1008,7 +1008,7 @@ h3 {
 }
 
 .values-inner {
-  max-width: 1180px;
+  max-width: 1380px;
   margin: 0 auto;
   text-align: center;
 }
@@ -1161,7 +1161,7 @@ h3 {
 }
 
 .footer-inner {
-  max-width: 1180px;
+  max-width: 1380px;
   margin: 0 auto;
   padding: 5rem 1.5rem 3rem;
   display: grid;
@@ -1870,7 +1870,7 @@ h3 {
   border-top: 1px solid var(--border);
 }
 .festival-inner {
-  max-width: 1180px;
+  max-width: 1380px;
   margin: 0 auto;
   padding: 0 1.5rem;
   display: grid;
