@@ -134,12 +134,24 @@ const HotspotModal = {
     // Set main image (Avatar) or show placeholder
     const mainImgEl = document.getElementById('hotspot-modal-img');
     const placeholderEl = document.getElementById('hotspot-modal-img-placeholder');
+    const images = HOTSPOT_IMAGES[this.currentArea.id] || [];
 
-    if (mainImgEl) {
-      mainImgEl.classList.add('hidden');
-    }
-    if (placeholderEl) {
-      placeholderEl.classList.remove('hidden');
+    if (images.length > 0) {
+      if (mainImgEl) {
+        mainImgEl.src = images[0] + '?v=3.45.10';
+        mainImgEl.alt = data.name;
+        mainImgEl.classList.remove('hidden');
+      }
+      if (placeholderEl) {
+        placeholderEl.classList.add('hidden');
+      }
+    } else {
+      if (mainImgEl) {
+        mainImgEl.classList.add('hidden');
+      }
+      if (placeholderEl) {
+        placeholderEl.classList.remove('hidden');
+      }
     }
 
     // Set text contents
