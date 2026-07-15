@@ -86,7 +86,7 @@ var TRANSLATIONS = {
     },
     timeline: {
       eyebrow: "Dấu ấn",
-      heading: "HƠN 200 NĂM LƯU GIỮ HỒN QUÊ",
+      heading: "HƠN 150 NĂM LƯU GIỮ HỒN QUÊ",
       lead: "Được hình thành từ đầu thế kỷ XIX và sắc phong dưới triều vua Tự Đức năm 1852, Đình Bình Trường đã đồng hành cùng sự phát triển của vùng đất Bình Chánh, trở thành chứng nhân của nhiều giai đoạn lịch sử và cách mạng."
     },
     values: {
@@ -94,23 +94,24 @@ var TRANSLATIONS = {
       lead: "Đình Bình Trường là kết tinh của văn hóa dân gian Nam Bộ và tinh thần kiên cường bất khuất của nhân dân Sài Gòn - Gia Định qua nhiều thế hệ. Mãi mãi là niềm tự hào của địa phương.",
       stat1: "Ghi danh sử sách triều Nguyễn",
       stat2: "Sắc phong vua Tự Đức ban tặng",
-      stat3: "Năm lưu giữ hồn quê Việt",
+      stat3_num: "Hơn 150",
+      stat3: "năm<br>Lưu giữ hồn quê Việt",
       stat4: "Xếp hạng Di tích cấp Thành phố",
       card1: {
         title: "Ý nghĩa lịch sử",
         body: "Là địa điểm liên lạc, hộp thư nhận tin tức của cách mạng, gắn với hoạt động đột kích năm 1948 do Bí thư Chi bộ Nguyễn Chánh Thôn chỉ đạo."
       },
       card2: {
-        title: "Mỹ thuật kiến trúc",
-        body: "Chính điện kiểu tứ trụ, lối vào dạng cửa vòm, toàn bộ hệ cột hiên kiểu trụ vuông và đầu cột trang trí hoa văn vòng cuốn xoắn ốc."
+        title: "Giá trị nghệ thuật",
+        body: "kiến trúc truyền thống đình làng Nam Bộ cùng hệ thống bao lam, hoành phi, liễn đối, cửa võng và các cột gỗ chạm khắc rồng, phượng tinh xảo. Những đường nét điêu khắc, hoa văn trang trí và bố cục không gian thờ tự phản ánh trình độ mỹ thuật, kỹ thuật chế tác và tư duy thẩm mỹ của các nghệ nhân Việt Nam qua nhiều thế hệ."
       },
       card3: {
         title: "Hiện vật quý báu",
         body: "Lưu giữ sắc phong vua Tự Đức ban tặng năm 1852 cùng các hiện vật chạm khắc gỗ tinh vi, lư đồng cổ và tượng rồng lân bằng gốm sứ."
       },
       card4: {
-        title: "Lễ hội Kỳ Yên",
-        body: "Tổ chức long trọng ngày 16-17 tháng Giêng để cầu quốc thái dân an, kết hợp hát bội truyền thống biểu diễn tại Võ ca."
+        title: "Lễ hội",
+        body: "Đình Bình Trường hiện còn duy trì ba lễ hội truyền thống được lưu truyền qua nhiều thế hệ, góp phần bảo tồn những giá trị văn hóa và tín ngưỡng đặc sắc của đình làng Nam Bộ gồm: Lễ Kỳ Yên (Lễ Cầu An), Lễ Hạ Điền, Lễ Cầu Bông."
       }
     },
     footer: {
@@ -210,7 +211,7 @@ var TRANSLATIONS = {
     },
     timeline: {
       eyebrow: "Milestone",
-      heading: "OVER 200 YEARS OF PRESERVING SOUL OF HOME",
+      heading: "OVER 150 YEARS OF PRESERVING SOUL OF HOME",
       lead: "Established in the early 19th century and officially sealed in 1852 under Emperor Tu Duc, Binh Truong Communal House has accompanied the growth of Binh Chanh land, witnessing many historical and revolutionary milestones."
     },
     values: {
@@ -225,16 +226,16 @@ var TRANSLATIONS = {
         body: "Served as a crucial liaison post and secret mailbox for the revolution, linked to the historic 1948 raid directed by Secretary Nguyen Chanh Thon."
       },
       card2: {
-        title: "Architectural Art",
-        body: "Four-pillar sanctuary with arched entrances and square veranda columns decorated with spiral scroll patterns."
+        title: "Artistic Value",
+        body: "Traditional Southern Vietnamese communal house architecture with systems of bao lam, horizontal boards, parallel sentences, door carvings, and wooden pillars carved with exquisite dragons and phoenixes. The lines of sculpture, decorative patterns, and layout of the worship space reflect the level of artistry, crafting techniques, and aesthetic thinking of Vietnamese artisans across generations."
       },
       card3: {
         title: "Precious Artifacts",
         body: "Preserves the 1852 royal seal granted by Emperor Tu Duc, fine wood carvings, antique bronze censers, and ceramic dragons."
       },
       card4: {
-        title: "Ky Yen Festival",
-        body: "Solemnly celebrated on Jan 16-17 Lunar, featuring classical Hat Boi performances at Vo Ca stage to pray for peace."
+        title: "Festivals",
+        body: "Binh Truong Communal House currently maintains three traditional festivals passed down through generations, contributing to preserving the unique cultural and spiritual values of Southern communal houses: Ky Yen (Cau An) Festival, Ha Dien Festival, and Cau Bong Festival."
       }
     },
     footer: {
