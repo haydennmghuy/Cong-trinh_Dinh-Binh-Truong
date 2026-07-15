@@ -90,10 +90,11 @@ const Temple3D = {
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.08;
     this.controls.zoomSpeed = 0.5; // Make scroll/trackpad zooming 50% more gradual/smooth
+    this.controls.enablePan = false; // Prevent panning to keep rotation perfectly centered on the temple courtyard
     this.controls.maxPolarAngle = Math.PI / 2.1;
     this.controls.minDistance = 2;
     this.controls.maxDistance = 80;
-    this.controls.target.set(0, 1, -8);
+    this.controls.target.set(0, 0.5, -9.75); // Centered in the middle of the fenced compound
     this.controls.autoRotate = false;
     this.controls.autoRotateSpeed = 0.5;
 
@@ -128,7 +129,7 @@ const Temple3D = {
     document.getElementById('model-reset')?.addEventListener('click', () => {
       const isMob = window.innerWidth < 768;
       this.camera.position.set(0, isMob ? 38 : 24, isMob ? 33 : 21);
-      this.controls.target.set(0, 1, -8);
+      this.controls.target.set(0, 0.5, -9.75);
       this.controls.update();
     });
 
@@ -178,7 +179,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.26.0`,
+      `${path}?v=3.27.0`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -431,32 +432,32 @@ const Temple3D = {
     const C = this.COLORS;
 
     // === GROUND ===
-    // Main ground plane (large area around temple)
-    const groundGeo = new THREE.PlaneGeometry(120, 120);
-    const groundMat = this.mat(C.groundDark, { roughness: 0.9 });
-    const ground = new THREE.Mesh(groundGeo, groundMat);
-    ground.rotation.x = -Math.PI / 2;
-    ground.position.y = -0.05;
-    ground.receiveShadow = true;
-    this.scene.add(ground);
-
-    // Courtyard paving (within the compound)
-    // Courtyard paving (within the compound, tailored to fit the non-rectangular left fence wall)
+    // Courtyard paving (within the compound, tailored to fit the non-rectangular left fence wall and the Uncle Ho Temple recess)
     const courtShape = new THREE.Shape();
     courtShape.moveTo(30.0, -5.5);
     courtShape.lineTo(30.0, 25.0);
+    courtShape.lineTo(21.0, 25.0);
+    courtShape.lineTo(21.0, 30.0);
+    courtShape.lineTo(16.0, 30.0);
+    courtShape.lineTo(16.0, 25.0);
     courtShape.lineTo(-30.0, 25.0);
     courtShape.lineTo(-30.0, 6.5);
     courtShape.lineTo(-26.5, 0.5);
     courtShape.lineTo(-26.5, -5.5);
     courtShape.closePath();
 
-    const courtGeo = new THREE.ShapeGeometry(courtShape);
+    // Extrude the shape downward to make a solid 3D base (plinth) representing only the temple courtyard area
+    const extrudeSettings = {
+      depth: 0.25,
+      bevelEnabled: false
+    };
+    const courtGeo = new THREE.ExtrudeGeometry(courtShape, extrudeSettings);
     const courtMat = this.mat(C.groundPave, { roughness: 0.85 });
     const court = new THREE.Mesh(courtGeo, courtMat);
     court.rotation.x = -Math.PI / 2;
-    court.position.set(0, 0.01, 0); // Position is absolute now
+    court.position.set(0, 0.01, 0); // Flush top surface at y=0.01
     court.receiveShadow = true;
+    court.castShadow = true;
     this.scene.add(court);
 
     // === SURROUNDING WALL / FENCE (procedural - instant) ===
@@ -498,10 +499,15 @@ const Temple3D = {
     
     // Back wall segment left part: from x = -30 to x = 16.0
     this.scene.add(this.createBox(46.0, fenceH, wallThick, C.fenceYellow, -7.0, fenceH/2, -25.0));
+    // Small segment between Uncle Ho Temple recess and kitchen: from x = 21.0 to x = 24.0
+    this.scene.add(this.createBox(3.0, fenceH, wallThick, C.fenceYellow, 22.5, fenceH/2, -25.0));
     // Back wall segment right part: from x = 24.0 to x = 30 (shortened to prevent protruding next to kitchen)
     this.scene.add(this.createBox(6.0, fenceH, wallThick, C.fenceYellow, 27.0, fenceH/2, -25.0));
     
-    // Note: Removed protruding fence recess walls around Uncle Ho Temple (xóa hàng rào lồi ra bao quanh nhà Bác)
+    // Protruding fence recess walls around Uncle Ho Temple (x = 16.0 to 21.0, z = -25.0 to -30.0)
+    this.scene.add(this.createBox(wallThick, fenceH, 5.0, C.fenceYellow, 16.0, fenceH/2, -27.5));
+    this.scene.add(this.createBox(wallThick, fenceH, 5.0, C.fenceYellow, 21.0, fenceH/2, -27.5));
+    this.scene.add(this.createBox(5.0, fenceH, wallThick, C.fenceYellow, 18.5, fenceH/2, -30.0));
     
     // Right wall segment (solid, x = 30)
     this.scene.add(this.createBox(wallThick, fenceH, 30.5, C.fenceYellow, 30.0, fenceH/2, -9.75));
@@ -840,7 +846,7 @@ const Temple3D = {
 
   resetCamera() {
     const isMob = window.innerWidth < 768;
-    this.transitionTargetLookAt = new THREE.Vector3(0, 1, -8);
+    this.transitionTargetLookAt = new THREE.Vector3(0, 0.5, -9.75);
     this.transitionTargetCam = new THREE.Vector3(0, isMob ? 38 : 24, isMob ? 33 : 21);
   },
 
