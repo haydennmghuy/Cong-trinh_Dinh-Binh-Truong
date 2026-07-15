@@ -64,15 +64,15 @@ var MAP_DATA = {
       vi: {
         name: "Miếu thờ Thần Hổ",
         short: "Thần Hổ Sơn Lâm",
-        desc: "Miếu thờ Hổ Thần (Chúa Sơn Lâm), biểu tượng của sức mạnh tự nhiên trấn giữ tà khí, bảo vệ sự bình an thanh tịnh cho toàn bộ khuôn viên tôn nghiêm của đình.",
-        details: "• Kết cấu: Am thờ nhỏ ẩn sau dãy miếu thờ chính, đắp nổi hình hổ sơn lâm oai phong.\n• Ý nghĩa: Trấn át tà ma, bảo vệ ngôi đình khỏi những chướng khí xấu.",
+        desc: "Miếu thờ Thần Hổ là vị thần được nhân dân Nam Bộ tôn kính như người bảo hộ núi rừng, trấn giữ vùng đất và che chở cho cuộc sống của cư dân. Việc thờ Thần Hổ phản ánh tín ngưỡng dân gian của người Việt trong quá trình khai hoang, lập ấp, với mong muốn được bảo vệ khỏi thú dữ, tai ương và cầu mong cuộc sống bình yên, thuận lợi.",
+        details: "+ Trang trí: Kiến trúc được thiết kế đơn giản, trang nghiêm với các họa tiết truyền thống, phù hợp với không gian tín ngưỡng của đình làng Nam Bộ.\n+ Không gian: Có đặt bàn thờ Thần Hổ cùng bát hương và các đồ thờ cúng truyền thống, thể hiện niềm tin của người dân vào sự che chở của vị thần đối với làng xóm và cuộc sống cộng đồng.",
         audio: "audio/vi/mieu-ho.mp3"
       },
       en: {
-        name: "Tiger God Shrine",
+        name: "Tiger Deity Shrine",
         short: "Lord of the Forest",
-        desc: "A small shrine dedicated to the Tiger God (Chua Son Lam), representing natural strength to ward off negative spirits and preserve peace in the temple compound.",
-        details: "• Structure: Miniature stone alcove containing a painted Tiger relief.\n• Meaning: Acts as a spiritual shield guarding the temple borders.",
+        desc: "The Tiger Deity Shrine pays homage to the Tiger God, revered by Southern people as the protector of mountains and forests, guarding the land and shielding residents' lives. Tiger worship reflects the folk beliefs of Vietnamese pioneers during early land reclamation, expressing their desire for protection from wild beasts and natural disasters, and praying for a peaceful, favorable life.",
+        details: "+ Decoration: Simple and solemn architecture with traditional motifs, matching the spiritual atmosphere of Southern communal houses.\n+ Space: Houses the Tiger Deity altar with incense burners and traditional ritual items, representing the local trust in the deity's protection for the village.",
         audio: "audio/en/tiger-shrine.mp3"
       }
     },
@@ -81,17 +81,17 @@ var MAP_DATA = {
       x: 25, y: 33,
       color: "#8B6914",
       vi: {
-        name: "Miếu thờ Bà Ngũ Hành",
+        name: "Miếu Bà Ngũ Hành",
         short: "Năm vị nữ thần",
-        desc: "Miếu thờ Bà Ngũ Hành tượng trưng cho Kim, Mộc, Thủy, Hỏa, Thổ. Các Mẹ Ngũ Hành cai quản các yếu tố sinh hoạt và sản xuất nông nghiệp của cư dân địa phương.",
-        details: "• Kiến trúc: Miếu thờ gạch đỏ, bên trong thờ 5 bài vị của năm vị nữ thần ngũ hành.\n• Vị trí: Đứng thứ tư từ trái sang trong dãy thờ phụ cạnh hồ thủy tạ.",
+        desc: "Miếu Bà Ngũ Hành là công trình thờ Ngũ Hành Nương Nương - năm vị nữ thần tượng trưng cho năm yếu tố Kim, Mộc, Thủy, Hỏa và Thổ trong triết lý Ngũ hành phương Đông. Theo tín ngưỡng dân gian Việt Nam, các vị thần cai quản sự vận hành của trời đất, bảo hộ cuộc sống con người và mang đến sự cân bằng giữa thiên nhiên với vạn vật. Người dân đến đây dâng hương, cầu mong bình an, sức khỏe, hạnh phúc, gia đình hòa thuận và cuộc sống thuận lợi.",
+        details: "+ Vật liệu: Tường xây gạch, trát vữa và sơn màu truyền thống. Kết cấu bê tông cốt thép kết hợp mái lợp ngói.\n+ Trang trí: Hai bên cửa chính gắn liễn đối chữ Hán nền đỏ, khung viền trắng nổi bật trên tường vàng, góp phần tăng thêm vẻ trang nghiêm cho công trình.\n+ Không gian: Bên trong đặt bàn thờ Ngũ Hành Nương Nương, cùng bát hương và các đồ thờ truyền thống, thể hiện tín ngưỡng thờ Mẫu và ước vọng về sự bình an, sức khỏe, hạnh phúc và cuộc sống sung túc.",
         audio: "audio/vi/mieu-ngu-hanh.mp3"
       },
       en: {
-        name: "Five Elements Shrine",
-        short: "Five Goddesses Shrine",
-        desc: "Dedicated to the Five Goddesses of the Elements (Metal, Wood, Water, Fire, Earth) who oversee production, health, and daily life in Southern culture.",
-        details: "• Structure: Traditional red-brick shrine housing five symbolic tablets of the goddesses.\n• Location: The fourth shrine from the left in the courtyard row.",
+        name: "Five Elements Goddesses Shrine",
+        short: "Five Goddesses",
+        desc: "The Five Elements Shrine is dedicated to Ngũ Hành Nương Nương - the five goddesses representing the elements of Metal, Wood, Water, Fire, and Earth in Eastern philosophy. In Vietnamese folk belief, they govern the operations of heaven and earth, protect human life, and maintain harmony between nature and all beings. Locals come here to pray for peace, health, happiness, family harmony, and smooth living.",
+        details: "+ Material: Brick walls, plastered and painted in traditional colors; reinforced concrete structure combined with tiled roofs.\n+ Decoration: Both sides of the main entrance are decorated with red Chinese couplets in white borders standing out on the yellow walls, enhancing the solemnity.\n+ Space: Houses the altar of the Five Elements Goddesses, incense burners, and traditional ritual items, representing Mother Goddess worship and local aspirations for health, happiness, and prosperity.",
         audio: "audio/en/elements-shrine.mp3"
       }
     },
@@ -100,17 +100,17 @@ var MAP_DATA = {
       x: 25, y: 20,
       color: "#C9A84C",
       vi: {
-        name: "Bia Ghi Công",
-        short: "Bia ghi công",
-        desc: "Bia ghi công ghi danh các anh hùng liệt sĩ đã hy sinh xương máu cho sự nghiệp giải phóng dân tộc của quê hương Bình Trường.",
-        details: "• Chất liệu: Bằng đá hoa cương đen nguyên tấm chạm khắc chữ vàng nhũ.\n• Ý nghĩa: Thể hiện truyền thống 'Uống nước nhớ nguồn' của người dân địa phương.",
+        name: "Bia tưởng niệm liệt sĩ",
+        short: "Bia tưởng niệm",
+        desc: "Bia tưởng niệm liệt sĩ là công trình tưởng niệm nằm trong khuôn viên Đình Bình Trường, được xây dựng nhằm tri ân các anh hùng liệt sĩ đã anh dũng hy sinh vì sự nghiệp đấu tranh giành độc lập, tự do và bảo vệ Tổ quốc. Đây không chỉ là nơi thể hiện lòng biết ơn đối với các thế hệ đi trước mà còn góp phần giáo dục truyền thống yêu nước, tinh thần \"Uống nước nhớ nguồn\" và trách nhiệm gìn giữ những giá trị lịch sử của dân tộc.",
+        details: "+ Vật liệu: Kết cấu bê tông cốt thép kết hợp bệ ốp đá, lan can bao quanh và lư hương bằng vật liệu đúc truyền thống.\n+ Trang trí: Trung tâm công trình là lư hương lớn đặt trên bệ thờ, phía sau là bia ghi danh với dòng chữ \"TỔ QUỐC GHI CÔNG\" cùng biểu tượng ngôi sao, thể hiện sự ghi nhận và tri ân của Tổ quốc đối với những người đã hy sinh. Không gian được bố trí thêm cột trụ, lan can và các chi tiết trang trí mang tính trang nghiêm, tôn kính.\n+ Không gian: Khu vực bia được bố trí riêng biệt trong khuôn viên đình, là nơi diễn ra các nghi lễ dâng hương vào những dịp lễ lớn, ngày kỷ niệm và các hoạt động giáo dục truyền thống, góp phần gìn giữ đạo lý \"Uống nước nhớ nguồn\" của dân tộc Việt Nam.",
         audio: "audio/vi/bia-tuong-niem.mp3"
       },
       en: {
-        name: "Memorial Stele",
-        short: "Honor stele",
-        desc: "The Memorial Stele lists the names of heroic martyrs who sacrificed their lives for national liberation in the Binh Truong area.",
-        details: "• Material: Single black granite block engraved with gold-inlaid letters.\n• Meaning: Represents the community's deep gratitude and patriotic spirit.",
+        name: "Martyrs Memorial Stele",
+        short: "Memorial Stele",
+        desc: "The Martyrs Memorial Stele is a commemorative monument located inside Binh Truong Communal House, built to express gratitude to the heroic martyrs who sacrificed their lives for national independence, freedom, and defense. It serves as a place of remembrance, promoting patriotism, the principle of 'gratitude to the source', and the responsibility to preserve national history.",
+        details: "+ Material: Reinforced concrete structure combined with stone pedestal, surrounding fences, and traditional cast bronze censer.\n+ Decoration: The center features a large censer on the altar, backed by the honor roll carrying 'THE FATHERLAND REMEMBERS YOUR SERVICE' and a star symbol. Pillars, railings, and solemn details create a respectful space.\n+ Space: Located in a dedicated area of the temple grounds, it hosts incense-offering ceremonies during major holidays, anniversaries, and patriotic education events.",
         audio: "audio/en/memorial.mp3"
       }
     },
@@ -119,17 +119,17 @@ var MAP_DATA = {
       x: 27, y: 68,
       color: "#B85C4C",
       vi: {
-        name: "Bia Ghi Nhận Di Tích",
+        name: "Bia ghi nhận di tích",
         short: "Bia ghi nhận di tích",
-        desc: "Bia đá khắc Quyết định công nhận Đình Bình Trường là Di tích Kiến trúc Nghệ thuật cấp Thành phố vào năm 2005, khẳng định giá trị lịch sử lâu đời của đình.",
-        details: "• Cấu trúc: Bia đá sa thạch đặt trên bệ đỡ tròn vững chắc, có mái che ngói nhỏ phía trên.\n• Nội dung: Trích lục quyết định của Ủy ban Nhân dân TP.HCM xếp hạng di tích lịch sử cấp thành phố.",
+        desc: "Bia ghi nhận di tích được xây dựng trong khuôn viên Đình Bình Trường nhằm ghi dấu sự kiện ngôi đình được Ủy ban nhân dân Thành phố Hồ Chí Minh xếp hạng Di tích kiến trúc nghệ thuật cấp Thành phố theo Quyết định số 21/2005/QĐ-UB ngày 01 tháng 02 năm 2005. Công trình không chỉ khẳng định giá trị lịch sử, văn hóa và kiến trúc của đình mà còn góp phần tuyên truyền, nâng cao ý thức gìn giữ và phát huy di sản văn hóa địa phương.",
+        details: "+ Vật liệu: Toàn bộ bia được chế tác từ đá granite màu xám, bề mặt được mài bóng, bảo đảm độ bền và khả năng lưu giữ lâu dài.\n+ Trang trí: Mặt trước gắn phù hiệu xếp hạng di tích cùng tên Đình Bình Trường, trong khi mặt sau khắc nội dung giới thiệu về lịch sử hình thành, giá trị kiến trúc và quá trình được công nhận là di tích. Các bảng nội dung được viền hoa văn trang trí mang phong cách truyền thống, hài hòa với tổng thể kiến trúc của đình.\n+ Ý nghĩa: Bia là dấu mốc ghi nhận giá trị của Đình Bình Trường trong hệ thống di sản văn hóa Thành phố Hồ Chí Minh, đồng thời là nguồn tư liệu giúp người dân và du khách hiểu rõ hơn về lịch sử, kiến trúc và vai trò của ngôi đình trong đời sống văn hóa địa phương.",
         audio: "audio/vi/bia-di-tich.mp3"
       },
       en: {
         name: "Heritage Stele",
-        short: "Artistic heritage stele",
-        desc: "A stone monument recognizing Binh Truong Communal House as a City-level Architectural and Artistic Heritage Site in 2005, highlighting its long-term value.",
-        details: "• Structure: Sandstone stele mounted on a round stone base with a small tiled roof cover.\n• Content: Details the Ho Chi Minh City People's Committee declaration of heritage protection.",
+        short: "Heritage record stele",
+        desc: "The Heritage Stele is erected in Binh Truong Communal House to mark its designation by the Ho Chi Minh City People's Committee as a City-level Artistic Architectural Relic under Decision No. 21/2005/QD-UB dated February 1, 2005. It confirms the site's historical, cultural, and architectural values and helps promote heritage preservation.",
+        details: "+ Material: Crafted entirely from polished grey granite, ensuring durability and long-term storage.\n+ Decoration: The front features the official heritage plaque and the temple's name, while the back is carved with a summary of its history, architectural values, and designation process, framed with traditional borders.\n+ Significance: Serves as a key milestone of Binh Truong's value in HCMC's heritage system and provides visitors with authentic educational resources.",
         audio: "audio/en/heritage-stele.mp3"
       }
     },
@@ -140,15 +140,15 @@ var MAP_DATA = {
       vi: {
         name: "Võ Ca",
         short: "Nhà Võ Ca",
-        desc: "Nhà Võ Ca là nơi diễn ra các buổi biểu diễn hát bội truyền thống dâng thần trong lễ Kỳ Yên. Kiến trúc mở ba phía giúp âm thanh vang xa, mang đậm dấu ấn văn hóa diễn xướng Nam Bộ.",
-        details: "• Kết cấu: Sàn gỗ gõ đỏ nâng cao 0.8m so với mặt sân, không có vách ngăn xung quanh.\n• Âm học: Trần gỗ uốn cong nhẹ giúp âm thanh cộng hưởng tự nhiên, rõ nét.",
+        desc: "Võ Ca là không gian nằm phía trước Chánh điện, nơi diễn ra các nghi lễ tế thần và các hoạt động biểu diễn nghệ thuật truyền thống trong những dịp lễ hội của Đình Bình Trường. Đây là nơi tổ chức hát bội trong các kỳ lễ lớn như Lễ Kỳ Yên (Lễ Cầu An). Theo quan niệm dân gian, những buổi hát bội tại đình không nhằm phục vụ khán giả mà được biểu diễn để dâng lên Thành Hoàng Bổn Cảnh, vì vậy còn được gọi là \"hát cho Thần xem\". Không gian Võ Ca góp phần gìn giữ nghệ thuật hát bội và phản ánh đời sống văn hóa tín ngưỡng đặc sắc của đình làng Nam Bộ.",
+        details: "+ Vật liệu: Kết cấu khung gỗ kết hợp bê tông cốt thép, mái lợp ngói truyền thống, nền lát gạch hoặc đá.\n+ Trang trí: Bốn cột chính được trang trí các họa tiết cổ như Nhật - Nguyệt, Tứ Sơn Dương cùng nhiều hoa văn chạm khắc truyền thống. Hệ thống bao lam, hoành phi và các chi tiết trang trí mang đậm phong cách kiến trúc đình làng Nam Bộ, thể hiện sự tinh xảo trong nghệ thuật điêu khắc dân gian.\n+ Công năng: Là nơi diễn ra các nghi thức tế lễ, hát bội và các hoạt động văn hóa truyền thống trong những ngày lễ hội, góp phần bảo tồn nghệ thuật sân khấu cổ truyền và gìn giữ bản sắc văn hóa của cộng đồng.",
         audio: "audio/vi/nha-vo-ca.mp3"
       },
       en: {
         name: "Vo Ca",
-        short: "Vo Ca stage",
-        desc: "The Vo Ca Stage hosts traditional 'hat boi' (classical opera) performances for the deities during the Ky Yen festival. Open on three sides, its architecture enhances acoustics and embodies Southern performance traditions.",
-        details: "• Structure: Elevated red doussie hardwood platform (0.8m high) open on 3 sides.\n• Acoustics: Gently vaulted wooden ceiling designed for natural acoustic resonance.",
+        short: "Vo Ca performance hall",
+        desc: "Vo Ca is the open-sided hall in front of the Main Sanctuary, hosting rituals and traditional theatrical performances during festivals at Binh Truong Communal House. It is the site for classical opera (hat boi) during the Ky Yen Festival. In folklore, these performances are dedicated directly to the Tutelary Deity (hát cho Thần xem) rather than the general public. Vo Ca preserves the art of classical opera and reflects the unique spiritual culture of Southern communal houses.",
+        details: "+ Material: Wooden frame system combined with reinforced concrete, traditional tiled roof, and brick or stone floor.\n+ Decoration: Four main pillars are decorated with ancient motifs like the Sun and Moon, Tu Son Duong, and intricate carvings. Screens (bao lam), horizontal boards (hoanh phi), and ornaments show the refinement of folk wood carvings.\n+ Function: Serves as the central space for worship rituals, opera shows, and cultural festivities, preserving performing arts and community identity.",
         audio: "audio/en/opera-stage.mp3"
       }
     },
@@ -159,15 +159,15 @@ var MAP_DATA = {
       vi: {
         name: "Võ Quy",
         short: "Nhà Võ Quy",
-        desc: "Nhà Võ Qui là gian trung điện kết nối giữa sân khấu Võ Ca phía trước và Điện thờ chính (Chánh Điện) uy nghiêm phía sau. Đây là nơi chuẩn bị các nghi thức cúng tế và là không gian đệm tâm linh quan trọng.",
-        details: "• Kết cấu: Nối liền giữa Võ Ca và Chánh Điện, khung cột gỗ lim vững chãi.\n• Chức năng: Nơi ban tế tự tề tựu chuẩn bị y phục, phẩm vật trước khi tiến hành đại lễ cúng Thần.",
+        desc: "Võ Quy là công trình nối liền Võ Ca với Chánh điện, tạo nên sự liên kết hài hòa giữa không gian hành lễ và khu vực thờ tự chính của Đình Bình Trường. Khác với nhiều đình làng Nam Bộ có khoảng sân trống ngăn cách hai hạng mục này, Võ Quy được xây dựng như một hành lang có mái che, giúp tổng thể kiến trúc trở nên thống nhất, đồng thời tạo sự thuận tiện cho việc di chuyển và thực hiện các nghi thức tế lễ trong mọi điều kiện thời tiết.",
+        details: "+ Vật liệu: Kết cấu khung gỗ kết hợp bê tông cốt thép, mái lợp ngói truyền thống, nền lát gạch hoặc đá đồng bộ với các hạng mục khác trong đình.\n+ Trang trí: Hệ mái được thiết kế cân đối, các cột và kết cấu chịu lực mang phong cách kiến trúc đình làng Nam Bộ, hài hòa với tổng thể công trình và góp phần tôn lên vẻ trang nghiêm của không gian thờ tự.\n+ Công năng: Là không gian chuyển tiếp giữa khu vực biểu diễn nghi lễ và Chánh điện, phục vụ việc di chuyển của Ban Quý tế trong các kỳ lễ hội, đồng thời góp phần hoàn thiện bố cục kiến trúc khép kín và trang nghiêm của Đình Bình Trường.",
         audio: "audio/vi/vo-qui.mp3"
       },
       en: {
         name: "Vo Quy",
         short: "Vo Quy transition hall",
-        desc: "The Vo Qui Hall is the transitional chamber connecting the front Võ Ca performance stage and the sacred Main Shrine (Chánh Điện). It is used for ritual preparations and serves as an important spiritual buffer.",
-        details: "• Structure: Joins the opera stage and main hall, constructed with durable ironwood pillars.\n• Function: Assembly room for the temple committee to organize offerings and ceremony garments.",
+        desc: "Vo Quy is the building connecting Vo Ca with the Main Sanctuary, creating a harmonious link between the ritual performance area and the main worship space. Unlike many Southern temples that separate these structures with an open courtyard, Binh Truong's Vo Quy is a covered corridor, unifying the architecture and facilitating rituals during any weather conditions.",
+        details: "+ Material: Wooden frame with reinforced concrete structure, traditional tiled roof, and brick or stone floors matching other areas.\n+ Decoration: Balanced rooflines, pillars, and structures in Southern temple style, complementing the overall architecture and enhancing the sanctuary's solemnity.\n+ Function: Acts as a transition space between Vo Ca and the Main Hall, facilitating the movement of ritual officers during festivals and completing the temple's enclosed layout.",
         audio: "audio/en/vo-qui.mp3"
       }
     },
@@ -176,17 +176,17 @@ var MAP_DATA = {
       x: 56, y: 50,
       color: "#C9A84C",
       vi: {
-        name: "Chính Điện",
-        short: "Chính Điện",
-        desc: "Chánh Điện là nơi trang nghiêm nhất, thờ Thành Hoàng Bổn Cảnh. Bàn thờ sơn son thếp vàng lộng lẫy và lưu giữ sắc phong triều Nguyễn năm 1852 do vua Tự Đức ban tặng.",
-        details: "• Linh vị: Khám thờ điêu khắc tinh xảo, chứa Hộp Sắc Phong vua Tự Đức ban năm 1852.\n• Cột đỡ: Hệ thống cột gỗ lim nguyên khối vững chãi kê trên bệ đá hình hoa sen.",
+        name: "Chánh điện",
+        short: "Chánh Điện",
+        desc: "Chánh điện là công trình trung tâm và cũng là không gian linh thiêng nhất của Đình Bình Trường. Nơi đây thờ Thành Hoàng Bổn Cảnh - vị thần bảo hộ vùng đất, người có công khai phá, ổn định và phát triển vùng đất Bình Trường. Theo tín ngưỡng dân gian, các bậc tiền nhân khi còn sống có công với quê hương, sau khi mất được nhân dân tôn kính và sắc phong làm Thành Hoàng để tiếp tục che chở cho dân làng.",
+        details: "+ Vật liệu: Kết cấu khung gỗ kết hợp tường xây gạch và mái lợp ngói truyền thống. Các cấu kiện gỗ được chế tác công phu, góp phần tạo nên vẻ đẹp bền vững của công trình.\n+ Trang trí: Nổi bật là hệ thống bao lam, hoành phi, liễn đối cùng các cột gỗ được chạm khắc hình rồng chầu, phụng múa và nhiều hoa văn truyền thống tinh xảo. Các chi tiết trang trí mang giá trị nghệ thuật cao, thể hiện tài hoa của các nghệ nhân Việt Nam qua nhiều thế hệ.\n+ Không gian: Chính giữa là bàn thờ Thành Hoàng Bổn Cảnh, hai bên thờ Tả Thanh Long và Hữu Bạch Hổ. Dọc hai bên vách là các bàn thờ Tiền Hiền, Hậu Hiền, Tả Ban và Hữu Ban, tạo nên một hệ thống thờ tự hoàn chỉnh, phản ánh tín ngưỡng thờ Thành Hoàng và truyền thống tri ân các bậc tiền nhân của đình làng Nam Bộ.",
         audio: "audio/vi/chanh-dien.mp3"
       },
       en: {
-        name: "Main Sanctuary (Chanh Dien)",
-        short: "Main altar",
-        desc: "The Main Shrine Hall is the most sacred sanctuary, housing the Guardian Spirit (Thanh Hoang) altar. It preserves the 1852 imperial decree (Sac Phong) granted by Emperor Tu Duc.",
-        details: "• Shrine: Intricately carved wooden shrine containing the 1852 Royal Decree Box.\n• Pillars: Solid ironwood columns anchored on stone plinths carved with lotus patterns.",
+        name: "Main Sanctuary",
+        short: "Main Sanctuary",
+        desc: "The Main Sanctuary is the central and most sacred space of Binh Truong Communal House. It worships the Tutelary Deity (Thành Hoàng Bổn Cảnh) - the guardian god of the land who led early settlers to cultivate, stabilize, and develop the Binh Truong area. In folk belief, ancestors with great merits are revered and deified as Thành Hoàng to continue protecting the villagers.",
+        details: "+ Material: Wooden frame structure combined with brick walls and traditional tiled roofs, with finely crafted wood components ensuring durability.\n+ Decoration: Reflected in screens (bao lam), horizontal boards (hoanh phi), parallel panels (lien doi), and wooden pillars carved with dragons and phoenixes. These details showcase high artistic value.\n+ Space: Houses the central altar of the Tutelary Deity, flanked by Tả Thanh Long (Green Dragon) and Hữu Bạch Hổ (White Tiger). Along the walls are altars for ancestors (Tien Hien, Hau Hien) and administrative deities (Ta Ban, Huu Ban), reflecting Southern temple worship customs.",
         audio: "audio/en/main-shrine.mp3"
       }
     },
@@ -197,15 +197,15 @@ var MAP_DATA = {
       vi: {
         name: "Hậu Sở",
         short: "Hậu sở",
-        desc: "Hậu sở là gian nhà đặt tại cuối cùng của dãy nhà chính (theo bản vẽ bố trí nội bộ của di tích), là nơi bái tế, chuẩn bị lễ vật và dâng hương của nhân dân trước khi hành lễ chính thức.",
-        details: "• Kết cấu: Mái lợp ngói âm dương, các kèo gỗ chạm khắc rồng mây.\n• Chức năng: Nơi dâng hương, trưng bày lễ vật cúng Thành Hoàng Bổn Cảnh.",
+        desc: "Hậu Sở là công trình nằm phía sau Chánh điện, giữ vai trò quan trọng trong hệ thống không gian thờ tự của Đình Bình Trường. Đây là nơi đặt nhiều bàn thờ phục vụ các nghi lễ truyền thống, đồng thời thể hiện tín ngưỡng thờ cúng các vị thần, các bậc tiền nhân và những người có công với đình làng. Không gian Hậu Sở phản ánh đạo lý \"Uống nước nhớ nguồn\" và truyền thống tôn sư trọng đạo của người Việt qua nhiều thế hệ.",
+        details: "+ Vật liệu: Kết cấu khung gỗ kết hợp tường xây gạch, mái lợp ngói truyền thống; nội thất sử dụng hệ thống bàn thờ gỗ cùng các đồ thờ cổ, hài hòa với kiến trúc tổng thể của đình.\n+ Trang trí: Hệ thống bàn thờ, hoành phi, liễn đối và các đồ thờ được bài trí trang nghiêm. Nổi bật là 16 cây gươm giáo cổ được bố trí thành hai hàng hai bên bàn thờ Tiền Viên Quan, góp phần tạo nên không gian uy nghi và gợi nhớ hình ảnh nghi lễ xử án trong truyền thống.\n+ Không gian: Phía trên thờ Tiên Sư, Phật Táo, Thần Tài và Thổ Địa - những vị thần gắn liền với đời sống tâm linh, nghề nghiệp và cuộc sống của người dân. Phía dưới là bàn thờ Tiền Viên Quan, biểu tượng của sự công minh và chính trực. Hai bên Hậu Sở là bàn thờ Cố Hội Hương Nam và Cố Hội Hương Nữ, nhằm tưởng nhớ những hương chức đã có công phụng sự đình khi còn sinh thời. Phía sau cùng là bàn thờ Chiến sĩ trận vong, nơi thờ những người đã hy sinh vì quê hương, thể hiện lòng biết ơn và truyền thống tri ân đối với các bậc tiền nhân.",
         audio: "audio/vi/tien-dien.mp3"
       },
       en: {
-        name: "Hau So (Rear Quarters)",
-        short: "Rear Quarters",
-        desc: "The Rear Quarters (Hau So) is positioned at the end of the main block (according to this heritage layout), serving as a space for public worship, preparation, and offering incense.",
-        details: "• Structure: Traditional yin-yang tiled roof with dragon and cloud wood carvings.\n• Function: Gathering area for visitors to light incense and present offerings to the deities.",
+        name: "Hau So (Rear Hall)",
+        short: "Rear Hall",
+        desc: "Hau So is the building located behind the Main Sanctuary, playing an important role in Binh Truong's worship system. It houses various altars for traditional rituals, honoring deities, ancestors, and contributors to the temple. Hau So reflects the moral of gratitude and respect for teachers in Vietnamese culture.",
+        details: "+ Material: Wooden frame with brick walls, traditional tiled roof; interior features wooden altars and antique ritual items.\n+ Decoration: Altars, boards, panels, and items are solemnly arranged, highlighted by 16 antique spears in two rows flanking the Tien Vien Quan altar, invoking traditional court setups.\n+ Space: Upper altars worship Tien Su, Kitchen Gods, and Wealth Gods. The lower altar is dedicated to Tien Vien Quan, representing justice. Sides house altars for deceased male and female committee members. The rear holds the altar for fallen soldiers, expressing national gratitude.",
         audio: "audio/en/front-hall.mp3"
       }
     },
@@ -216,15 +216,15 @@ var MAP_DATA = {
       vi: {
         name: "Nhà thờ Bác Hồ",
         short: "Nhà thờ Bác Hồ",
-        desc: "Nhà thờ Bác Hồ là công trình trang trọng được xây dựng trong khuôn viên đình, thể hiện lòng biết ơn vô hạn của nhân dân địa phương đối với Chủ tịch Hồ Chí Minh vĩ đại.",
-        details: "• Kết cấu: Ngôi nhà nhỏ 1 gian mái ngói đỏ, sơn vàng trang nghiêm, đặt bàn thờ và chân dung Bác Hồ.\n• Vị trí: Nằm ở góc sân phía Đông Nam (phía dưới bên phải bản vẽ).",
+        desc: "Nhà tưởng niệm Chủ tịch Hồ Chí Minh được xây dựng trong khuôn viên Đình Bình Trường sau năm 1975 nhằm bày tỏ lòng biết ơn và sự kính trọng đối với Chủ tịch Hồ Chí Minh - vị lãnh tụ vĩ đại của dân tộc Việt Nam. Công trình là nơi để nhân dân và du khách dâng hương, tưởng nhớ công lao to lớn của Người đối với sự nghiệp đấu tranh giành độc lập dân tộc, thống nhất đất nước và xây dựng đất nước. Đồng thời, đây cũng là địa điểm giáo dục truyền thống yêu nước, tư tưởng, đạo đức và phong cách Hồ Chí Minh cho các thế hệ hôm nay và mai sau.",
+        details: "+ Vật liệu: Kết cấu bê tông cốt thép kết hợp tường xây gạch, hệ cửa và cột bằng gỗ, mái lợp ngói truyền thống, nền và bậc tam cấp lát gạch.\n+ Trang trí: Mặt tiền nổi bật với hệ thống cột gỗ sơn đỏ, cửa gỗ lớn và mái hiên lợp ngói. Kiến trúc được thiết kế giản dị nhưng trang nghiêm, mang đậm nét truyền thống của đình làng Nam Bộ.\n+ Không gian tưởng niệm: Bên trong đặt bàn thờ Chủ tịch Hồ Chí Minh cùng ảnh chân dung, lư hương và các đồ thờ cúng truyền thống. Đây là nơi diễn ra các hoạt động dâng hương, báo công và sinh hoạt truyền thống của địa phương vào các dịp lễ lớn, góp phần giáo dục lòng yêu nước và gìn giữ truyền thống cách mạng.",
         audio: "audio/vi/nha-tho-bac-ho.mp3"
       },
       en: {
-        name: "Ho Chi Minh Shrine",
+        name: "Uncle Ho Shrine",
         short: "Uncle Ho Temple",
-        desc: "A solemn shrine dedicated to President Ho Chi Minh, built within the temple grounds to express the local community's deep gratitude to the national leader.",
-        details: "• Structure: Single-chamber yellow house with a red tiled roof, containing an altar and portrait of Uncle Ho.\n• Location: Situated in the southeast courtyard corner.",
+        desc: "The President Ho Chi Minh Memorial Shrine was built in Binh Truong Communal House after 1975 to express local gratitude to the national leader. It serves as a place for residents and visitors to pay respects and remember his great contributions to national independence, reunification, and construction. It is also a site for patriotic education and moral studies for current and future generations.",
+        details: "+ Material: Reinforced concrete frame with brick walls, wooden pillars and doors, traditional tiled roof, and brick-paved tam-cap steps.\n+ Decoration: The facade stands out with red-painted wooden pillars, large wooden doors, and tiled eaves, presenting a simple yet dignified design typical of Southern temples.\n+ Memorial Space: The interior houses Uncle Ho's altar with his portrait, incense censer, and traditional ritual items, hosting local ceremonies and educational meetings during national holidays.",
         audio: "audio/en/uncle-ho-temple.mp3"
       }
     }

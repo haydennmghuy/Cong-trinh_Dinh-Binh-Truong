@@ -816,6 +816,7 @@ const Temple3D = {
     const labels = this.overlayContainer.children;
     this.hotspots.forEach((h, i) => {
       if (!labels[i]) return;
+      labels[i].title = h.area[lang]?.name || '';
       const screenPos = h.pos.clone().project(this.camera);
       const x = (screenPos.x * 0.5 + 0.5) * this.container.clientWidth;
       const y = (-screenPos.y * 0.5 + 0.5) * this.container.clientHeight;
