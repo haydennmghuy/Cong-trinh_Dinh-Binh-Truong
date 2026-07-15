@@ -6,7 +6,6 @@ const HOTSPOT_IMAGES = {
   'chanh-dien':           ['images/real/inside_real.png'],
   'tien-dien':            [],
   'ho-thuy-ta':           [],
-  'san-khau-ngoai-troi':  [],
   'bia-tuong-niem':       ['images/real/bia_tuong_niem_real.jpg'],
   'bia-di-tich':          [],
   'mieu-bach-ma':         ['images/real/mieu_tho_real.jpg'],

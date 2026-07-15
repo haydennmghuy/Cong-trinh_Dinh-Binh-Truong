@@ -134,25 +134,6 @@ var MAP_DATA = {
       }
     },
     {
-      id: "san-khau-ngoai-troi",
-      x: 43, y: 25,
-      color: "#9B7BAE",
-      vi: {
-        name: "Sân Khấu",
-        short: "Sân khấu ngoài trời",
-        desc: "Sân khấu ngoài trời nằm cạnh bia tưởng niệm, là nơi tổ chức các sự kiện văn nghệ cộng đồng, biểu diễn ca nhạc dân gian ngoài trời cho nhân dân trong vùng.",
-        details: "• Kết cấu: Bục bê tông lát gạch tàu đỏ, có mái che che nắng mưa.\n• Hoạt động: Tổ chức đờn ca tài tử, múa thiếu nhi dịp Tết Trung Thu và lễ hội làng.",
-        audio: "audio/vi/san-khau.mp3"
-      },
-      en: {
-        name: "Stage",
-        short: "Outdoor stage",
-        desc: "The Outdoor Stage is situated next to the memorial monument, serving as the venue for community cultural shows, folk music performances, and festival activities.",
-        details: "• Structure: Tiled concrete platform with a protective red tile roof.\n• Activities: Hosts traditional amateur music (Don Ca Tai Tu) and kids' performances during festivals.",
-        audio: "audio/en/outdoor-stage.mp3"
-      }
-    },
-    {
       id: "nha-vo-ca",
       x: 43, y: 50,
       color: "#9B7BAE",
