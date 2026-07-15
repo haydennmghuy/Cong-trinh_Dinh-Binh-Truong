@@ -297,7 +297,7 @@ h3 {
   overflow: hidden;
   height: 550px; /* Moderate and perfectly balanced height on desktop */
   background: linear-gradient(to right, rgba(34, 34, 34, 0.88) 0%, rgba(34, 34, 34, 0.5) 45%, rgba(34, 34, 34, 0) 85%),
-              url('../images/hero_background.jpg?v=3.32.0') no-repeat right center / cover;
+              url('../images/hero_background.jpg?v=3.33.0') no-repeat right center / cover;
   color: #FFFFFF;
 }
 
@@ -371,7 +371,7 @@ h3 {
    ===================================================================== */
 
 .model3d-section {
-  background: #EFE9DA; /* Match Three.js scene background color for seamless integration */
+  background: #87CEEB; /* Sky blue — match Three.js scene background */
   color: #333333;
   position: relative;
   padding: 0 !important;
@@ -451,7 +451,7 @@ h3 {
   width: 100% !important;
   height: 720px !important;
   aspect-ratio: auto !important;
-  background: linear-gradient(135deg, #FFFDF8, #F3ECE0, #EAE2D3) !important;
+  background: linear-gradient(135deg, #87CEEB, #A8D8EA, #87CEEB) !important;
   border-radius: 0 !important;
   overflow: hidden;
   box-shadow: none !important;
@@ -1577,7 +1577,7 @@ h3 {
     min-height: 280px !important;
     height: auto !important;
     background: linear-gradient(to right, rgba(34, 34, 34, 0.9) 0%, rgba(34, 34, 34, 0.55) 50%, rgba(34, 34, 34, 0) 90%),
-                url('../images/hero_background.jpg?v=3.32.0') no-repeat 70% center / cover !important;
+                url('../images/hero_background.jpg?v=3.33.0') no-repeat 70% center / cover !important;
     display: flex !important;
     align-items: center !important;
   }

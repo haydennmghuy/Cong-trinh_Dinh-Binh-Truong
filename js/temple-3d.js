@@ -60,8 +60,8 @@ const Temple3D = {
 
     // Scene
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0xEFE9DA); // Warm cream-grey background
-    this.scene.fog = new THREE.FogExp2(0xEFE9DA, isMobile ? 0.012 : 0.008);
+    this.scene.background = new THREE.Color(0x87CEEB); // Sky blue background
+    this.scene.fog = new THREE.FogExp2(0x87CEEB, isMobile ? 0.008 : 0.005);
 
     // Camera - aligned front-to-back, responsive default zoom (zoomed out on mobile/desktop to fit entire compound)
     this.camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 500);
@@ -89,7 +89,7 @@ const Temple3D = {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.08;
-    this.controls.zoomSpeed = 0.18; // Make scroll/trackpad zooming very gradual and smooth
+    this.controls.zoomSpeed = 0.08; // Extremely gradual scroll/trackpad zoom — "thu phóng từ từ"
     this.controls.enablePan = false; // Prevent panning to keep rotation perfectly centered on the temple courtyard
     this.controls.maxPolarAngle = Math.PI / 2.1;
     this.controls.minDistance = 2;
@@ -183,7 +183,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.32.0`,
+      `${path}?v=3.33.0`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
