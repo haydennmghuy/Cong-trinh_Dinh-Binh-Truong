@@ -138,7 +138,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.45.31';
+        mainImgEl.src = images[0] + '?v=3.45.32';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -503,10 +503,11 @@ const NarrationAudio = {
 
   _getSources() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
+    const version = '3.45.32';
     if (lang === 'en') {
-      return ['audio/en/thuyet-minh-1.mp3', 'audio/en/thuyet-minh-2.mp3'];
+      return [`audio/en/thuyet-minh-1.mp3?v=${version}`, `audio/en/thuyet-minh-2.mp3?v=${version}`];
     }
-    return ['audio/vi/thuyet-minh-1.mp3', 'audio/vi/thuyet-minh-2.mp3'];
+    return [`audio/vi/thuyet-minh-1.mp3?v=${version}`, `audio/vi/thuyet-minh-2.mp3?v=${version}`];
   },
 
   /** Total duration = track1 + gap + track2 */
