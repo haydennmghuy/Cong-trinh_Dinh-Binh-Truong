@@ -3,7 +3,7 @@ const HOTSPOT_IMAGES = {
   'cong-nho':             [],
   'nha-vo-ca':            ['images/real/vo_ca_real.jpg'],
   'vo-qui':               ['images/real/vo_qui_real.jpg'],
-  'chanh-dien':           ['images/real/inside_real.png'],
+  'chanh-dien':           ['images/real/chanh_dien_real.jpg'],
   'tien-dien':            [],
   'ho-thuy-ta':           [],
   'bia-tuong-niem':       ['images/real/bia_tuong_niem_real.png'],
@@ -138,7 +138,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.45.19';
+        mainImgEl.src = images[0] + '?v=3.45.20';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -156,7 +156,8 @@ const HotspotModal = {
             'mieu-ba-ngu-hanh': '50% 38%',
             'bia-di-tich': '50% 15%',
             'mieu-bach-ma': '50% 20%',
-            'mieu-ho': 'top'
+            'mieu-ho': 'top',
+            'chanh-dien': '50% 20%'
           };
           mainImgEl.style.objectPosition = positionMapping[this.currentArea.id] || 'center';
         }
