@@ -11,7 +11,7 @@ const HOTSPOT_IMAGES = {
   'mieu-bach-ma':         ['images/real/mieu_bach_ma_real.jpg'],
   'ban-than-nong':        ['images/real/ban_than_nong_real.jpg'],
   'mieu-ho':              [],
-  'mieu-ba-ngu-hanh':     ['images/real/mieu_tho_real.jpg'],
+  'mieu-ba-ngu-hanh':     ['images/real/mieu_ba_ngu_hanh_real.png'],
   'cot-co':               [],
   'nha-tho-bac-ho':       [],
   'nha-bep':              [],
