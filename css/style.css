@@ -448,7 +448,7 @@ h3 {
   width: 100% !important;
   height: 720px !important;
   aspect-ratio: auto !important;
-  background: linear-gradient(135deg, #090a10, #0f1626, #16223f);
+  background: linear-gradient(135deg, #FFFDF8, #F3ECE0, #EAE2D3) !important;
   border-radius: 0 !important;
   overflow: hidden;
   box-shadow: none !important;
@@ -468,17 +468,17 @@ h3 {
 
 .model-ctrl-btn {
   width: 34px; height: 34px;
-  background: rgba(255,255,255,0.12);
+  background: rgba(44, 24, 16, 0.08);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(44, 24, 16, 0.15);
   border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
-  color: rgba(255,255,255,0.8);
+  color: #2C1810;
   transition: var(--transition);
   cursor: pointer;
 }
 .model-ctrl-btn:hover {
-  background: rgba(255,255,255,0.25);
+  background: #2C1810;
   color: #fff;
 }
 .model-ctrl-btn svg { stroke: currentColor; fill: none; }
@@ -488,11 +488,11 @@ h3 {
   display: flex; align-items: center; gap: 6px;
   font-size: 0.65rem; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
+  color: rgba(44, 24, 16, 0.6);
   z-index: 10;
   white-space: nowrap;
 }
-.model-drag-hint svg { stroke: rgba(255,255,255,0.5); fill: none; }
+.model-drag-hint svg { stroke: rgba(44, 24, 16, 0.6); fill: none; }
 
 #hotspot-overlay {
   position: absolute; inset: 0;
