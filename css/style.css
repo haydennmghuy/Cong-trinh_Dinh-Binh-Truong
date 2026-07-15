@@ -1409,7 +1409,40 @@ h3 {
   font-size: 0.92rem;
   color: var(--ink-soft);
   line-height: 1.8;
-  white-space: pre-line;
+}
+
+.hotspot-details-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hotspot-detail-item {
+  position: relative;
+  padding-left: 20px;
+  text-indent: 0;
+  margin: 0;
+  text-align: justify;
+}
+
+.hotspot-detail-item::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--gold-dark, #C9A84C);
+  font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.hotspot-detail-label {
+  color: var(--ink);
+  font-weight: 600;
+  margin-right: 4px;
 }
 
 /* Images Grid */

@@ -149,7 +149,41 @@ const HotspotModal = {
     // Set architectural detail content (directly visible)
     const detailBox = document.getElementById('hotspot-modal-detail-box');
     if (detailBox) {
-      detailBox.textContent = data.details || (lang === 'vi' ? 'Chưa có chi tiết kiến trúc bổ sung.' : 'No additional architectural details available.');
+      const detailsText = data.details || (lang === 'vi' ? 'Chưa có chi tiết kiến trúc bổ sung.' : 'No additional architectural details available.');
+      detailBox.innerHTML = '';
+      
+      const listContainer = document.createElement('ul');
+      listContainer.className = 'hotspot-details-list';
+      
+      detailsText.split('\n').forEach(line => {
+        const trimmed = line.trim();
+        if (!trimmed) return;
+        
+        const listItem = document.createElement('li');
+        listItem.className = 'hotspot-detail-item';
+        
+        if (trimmed.startsWith('+') || trimmed.startsWith('•') || trimmed.startsWith('-')) {
+          let cleanText = trimmed.substring(1).trim();
+          const colonIdx = cleanText.indexOf(':');
+          if (colonIdx !== -1) {
+            const label = cleanText.substring(0, colonIdx + 1);
+            const content = cleanText.substring(colonIdx + 1);
+            
+            const boldLabel = document.createElement('strong');
+            boldLabel.className = 'hotspot-detail-label';
+            boldLabel.textContent = label;
+            
+            listItem.appendChild(boldLabel);
+            listItem.appendChild(document.createTextNode(content));
+          } else {
+            listItem.textContent = cleanText;
+          }
+        } else {
+          listItem.textContent = trimmed;
+        }
+        listContainer.appendChild(listItem);
+      });
+      detailBox.appendChild(listContainer);
     }
 
     // Set architectural images grid or show placeholder
