@@ -138,7 +138,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.45.23';
+        mainImgEl.src = images[0] + '?v=3.45.24';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -151,8 +151,8 @@ const HotspotModal = {
           'bia-di-tich': '50% 15%',
           'mieu-bach-ma': '50% 20%',
           'mieu-ho': 'top',
-          'chanh-dien': '50% 50%',
-          'ban-than-nong': '50% 80%',
+          'chanh-dien': '50% 58%',
+          'ban-than-nong': '50% 68%',
           'bia-tuong-niem': '50% 40%'
         };
         mainImgEl.style.objectPosition = positionMapping[this.currentArea.id] || 'center';
