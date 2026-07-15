@@ -138,7 +138,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.45.28';
+        mainImgEl.src = images[0] + '?v=3.45.29';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -369,7 +369,7 @@ const NarrationAudio = {
   tracks: [],       // Array of Audio elements [track1, track2]
   trackSrcs: [],    // Source URLs
   durations: [0, 0],
-  gapDuration: 2,   // 2-second gap between tracks
+  gapDuration: 1,   // 1-second gap between tracks
   currentTrackIdx: 0,
   isPlaying: false,
   _gapTimer: null,
