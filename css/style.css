@@ -2084,6 +2084,10 @@ html[lang="en"] .hero-title {
   overflow: visible !important;
 }
 
+.stat-label {
+  white-space: nowrap !important;
+}
+
 @media (max-width: 768px) {
   .section-heading h2,
   .values h2,
@@ -2101,6 +2105,10 @@ html[lang="en"] .hero-title {
   .timeline-content h3 {
     font-size: clamp(0.72rem, 3.5vw, 1.25rem) !important;
     white-space: nowrap !important;
+  }
+
+  .stat-label {
+    font-size: clamp(0.55rem, 3.2vw, 0.8rem) !important;
   }
 }
 
