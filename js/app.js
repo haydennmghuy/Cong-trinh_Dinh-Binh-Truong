@@ -138,21 +138,23 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.45.15';
+        mainImgEl.src = images[0] + '?v=3.45.16';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
-        // Make sure vertical shrines/steles are aligned to the top so their header signs are visible
-        const topAlignIds = ['mieu-ba-ngu-hanh', 'bia-di-tich', 'mieu-bach-ma', 'ban-than-nong', 'bia-tuong-niem', 'mieu-ho'];
-        if (topAlignIds.includes(this.currentArea.id)) {
-          mainImgEl.style.objectFit = 'cover';
-          mainImgEl.style.objectPosition = 'top';
-          mainImgEl.style.backgroundColor = 'transparent';
-        } else {
-          mainImgEl.style.objectFit = 'cover';
-          mainImgEl.style.objectPosition = 'center';
-          mainImgEl.style.backgroundColor = 'transparent';
-        }
+        // Make sure vertical shrines/steles are aligned properly so their headers and features are visible
+        mainImgEl.style.objectFit = 'cover';
+        mainImgEl.style.backgroundColor = 'transparent';
+        
+        const positionMapping = {
+          'mieu-ba-ngu-hanh': '50% 38%',
+          'bia-di-tich': '50% 15%',
+          'mieu-bach-ma': '50% 20%',
+          'ban-than-nong': 'top',
+          'bia-tuong-niem': 'top',
+          'mieu-ho': 'top'
+        };
+        mainImgEl.style.objectPosition = positionMapping[this.currentArea.id] || 'center';
       }
       if (placeholderEl) {
         placeholderEl.classList.add('hidden');
