@@ -263,7 +263,7 @@ var MAP_DATA = {
     },
     {
       year: "1818",
-      image: "images/gallery/gallery-10.png",
+      image: "images/gallery/gia_dinh_thanh_thong_chi.png",
       vi: {
         title: "Ghi nhận trong sử sách",
         body: "Đình được chính thức chép lại trong bộ sử 'Gia Định Thành Thông Chí' do học giả Trịnh Hoài Đức biên soạn, khẳng định vị trí lịch sử và vai trò tâm linh từ thời khẩn hoang."
