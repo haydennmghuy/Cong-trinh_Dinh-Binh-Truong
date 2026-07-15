@@ -4,7 +4,7 @@ const HOTSPOT_IMAGES = {
   'nha-vo-ca':            ['images/real/vo_ca_real.jpg'],
   'vo-qui':               ['images/real/vo_qui_real.jpg'],
   'chanh-dien':           ['images/real/chanh_dien_real.jpg'],
-  'tien-dien':            [],
+  'tien-dien':            ['images/real/hau_so_real.jpg'],
   'ho-thuy-ta':           [],
   'bia-tuong-niem':       ['images/real/bia_tuong_niem_real.png'],
   'bia-di-tich':          ['images/real/bia_di_tich_real.png'],
@@ -138,7 +138,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.45.22';
+        mainImgEl.src = images[0] + '?v=3.45.23';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
