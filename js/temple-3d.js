@@ -65,7 +65,7 @@ const Temple3D = {
 
     // Camera - aligned front-to-back, responsive default zoom (zoomed out on mobile/desktop to fit entire compound)
     this.camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 500);
-    this.camera.position.set(0, isMobile ? 68 : 39, isMobile ? 58 : 33.6);
+    this.camera.position.set(0, isMobile ? 75 : 48, -9.74);
     this.camera.lookAt(0, 0.5, -9.75);
 
     // Renderer — use full native DPR for sharp rendering on high-DPI screens
@@ -90,7 +90,8 @@ const Temple3D = {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.08;
-    this.controls.enableZoom = true; // Enable OrbitControls zoom (pinch-to-zoom on mobile, mouse wheel on desktop)
+    this.controls.enableZoom = false; // Initially locked, flat view
+    this.controls.enableRotate = false; // Initially locked, flat view
     this.controls.enablePan = false; // Prevent panning to keep rotation perfectly centered on the temple courtyard
     this.controls.maxPolarAngle = Math.PI / 2.1;
     this.controls.minDistance = 2;
@@ -100,7 +101,9 @@ const Temple3D = {
     this.controls.autoRotateSpeed = 0.5;
 
     // Track last user interaction for idle auto-rotation (10 seconds timeout)
+    this.controlsLocked = true;
     this.lastInteractionTime = Date.now();
+
     const resetIdleTimer = () => {
       this.lastInteractionTime = Date.now();
       if (this.controls.autoRotate) {
@@ -108,19 +111,31 @@ const Temple3D = {
       }
     };
 
+    const unlock = () => {
+      if (this.controlsLocked) {
+        this.controlsLocked = false;
+        this.controls.enableRotate = true;
+        this.controls.enableZoom = true;
+        this.controls.update();
+      }
+      resetIdleTimer();
+    };
+
+    this.unlockControls = unlock;
+
     this.controls.addEventListener('start', () => {
       this.transitionTargetCam = null;
       this.transitionTargetLookAt = null;
-      resetIdleTimer();
+      unlock();
     });
     this.controls.addEventListener('change', resetIdleTimer);
 
     // Mouse, touch and wheel interaction listeners on the container to reset idle timer
-    this.container.addEventListener('mousedown', resetIdleTimer);
+    this.container.addEventListener('mousedown', unlock);
     this.container.addEventListener('mousemove', resetIdleTimer, { passive: true });
-    this.container.addEventListener('touchstart', resetIdleTimer, { passive: true });
+    this.container.addEventListener('touchstart', unlock, { passive: true });
     this.container.addEventListener('touchmove', resetIdleTimer, { passive: true });
-    this.container.addEventListener('wheel', resetIdleTimer, { passive: true });
+    this.container.addEventListener('wheel', unlock, { passive: true });
 
     // Lighting
     this.addLighting();
@@ -143,20 +158,23 @@ const Temple3D = {
 
     // Control buttons — dolly toward/away from the controls target
     document.getElementById('model-zoom-in')?.addEventListener('click', () => {
+      unlock();
       const dir = this.camera.position.clone().sub(this.controls.target);
       dir.multiplyScalar(0.97); // 3% zoom step for very gradual zoom in
       this.camera.position.copy(this.controls.target).add(dir);
       this.controls.update();
     });
     document.getElementById('model-zoom-out')?.addEventListener('click', () => {
+      unlock();
       const dir = this.camera.position.clone().sub(this.controls.target);
       dir.multiplyScalar(1.03); // 3% zoom step for very gradual zoom out
       this.camera.position.copy(this.controls.target).add(dir);
       this.controls.update();
     });
     document.getElementById('model-reset')?.addEventListener('click', () => {
+      unlock();
       const isMob = window.innerWidth < 768;
-      this.camera.position.set(0, isMob ? 68 : 39, isMob ? 58 : 33.6);
+      this.camera.position.set(0, isMob ? 75 : 48, -9.74);
       this.controls.target.set(0, 0.5, -9.75);
       this.controls.update();
     });
@@ -879,6 +897,9 @@ const Temple3D = {
       'wc':                   { cam: { x: 21.0,  y: 5.0,  z: -19.5 },  lookAt: { x: 27.0,  y: 1.5,  z: -19.5 } }
     };
 
+    if (typeof this.unlockControls === 'function') {
+      this.unlockControls();
+    }
     const cfg = focusPositions[areaId];
     if (cfg) {
       this.transitionTargetCam = new THREE.Vector3(cfg.cam.x, cfg.cam.y, cfg.cam.z);
@@ -889,7 +910,7 @@ const Temple3D = {
   resetCamera() {
     const isMob = window.innerWidth < 768;
     this.transitionTargetLookAt = new THREE.Vector3(0, 0.5, -9.75);
-    this.transitionTargetCam = new THREE.Vector3(0, isMob ? 68 : 36, isMob ? 58 : 31);
+    this.transitionTargetCam = new THREE.Vector3(0, isMob ? 75 : 48, -9.74);
   },
 
   destroy() {

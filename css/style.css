@@ -1641,7 +1641,7 @@ html[lang="en"] .hero-title {
 
   body, p { font-size: 0.9rem; line-height: 1.65; }
 
-  h2 { font-size: clamp(1.2rem, 4.5vw, 1.45rem) !important; }
+  h2 { font-size: clamp(1.2rem, 4.5vw, 1.45rem); }
   h3 { font-size: clamp(1.1rem, 4vw, 1.3rem); }
 
   main > section,
@@ -2065,5 +2065,41 @@ html[lang="en"] .hero-title {
   }
   .festival-card-img {
     height: 180px;
+  }
+}
+
+
+/* =====================================================================
+   ADDITIONAL CUSTOM OVERRIDES (PREVENT TITLE WRAPPING & MOBILE TITLES)
+   ===================================================================== */
+.section-heading h2,
+.values h2,
+.festival-header .section-title,
+.model3d-copy h2,
+.narration-copy h2,
+.gallery-section-wrap .section-title {
+  white-space: nowrap !important;
+  font-size: clamp(0.85rem, 4.2vw, 3.2rem) !important;
+  letter-spacing: 0.02em;
+  overflow: visible !important;
+}
+
+@media (max-width: 768px) {
+  .section-heading h2,
+  .values h2,
+  .festival-header .section-title,
+  .model3d-copy h2,
+  .narration-copy h2,
+  .gallery-section-wrap .section-title {
+    font-size: clamp(0.68rem, 3.8vw, 1.5rem) !important;
+  }
+  
+  .timeline-content {
+    padding: 1.2rem !important;
+  }
+  
+  .timeline-content h3 {
+    font-size: clamp(0.72rem, 3.5vw, 1.25rem) !important;
+    white-space: nowrap !important;
   }
 }
