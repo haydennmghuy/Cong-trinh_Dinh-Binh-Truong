@@ -62,8 +62,35 @@ var TRANSLATIONS = {
     ar_desc: "Trải nghiệm mô hình 3D AR ngay trong không gian thực tế qua camera điện thoại.",
     section_timeline: "Dòng Lịch Sử",
     section_festival: "Lễ Hội & Văn Hóa",
-    festival_title: "LỄ HỘI KỲ YÊN — NÉT ĐẸP TÂM LINH",
-    festival_desc: "Hằng năm vào rằm tháng Giêng (ngày 15-17 âm lịch), Đình Bình Trường long trọng tổ chức đại lễ Kỳ Yên để tạ ơn Thành hoàng và cầu mong mưa thuận gió hòa, quốc thái dân an. Đây là dịp hội tụ đông đảo người dân với các nghi thức cúng tế cổ truyền độc đáo, biểu diễn hát bội tế thần và các trò chơi dân gian đặc sắc.",
+    festival_title: "LỄ HỘI TRUYỀN THỐNG",
+    festival_desc: "Các ngày lễ cúng bái tế tự cổ truyền diễn ra quanh năm.",
+    nav: {
+      home: "Trang Chủ",
+      about: "Giới Thiệu",
+      map: "3D",
+      ar: "Xem 3D AR",
+      timeline: "Dòng Lịch Sử",
+      festival: "Lễ Hội",
+      festival_eyebrow: "Lễ Hội truyền thống",
+      festival_heading: "3 Lễ Hội Lớn Tại Đình Bình Trường"
+    },
+    festival: {
+      card1: {
+        date: "Rằm tháng Giêng (15 - 17/01 Âm lịch)",
+        title: "Lễ Kỳ Yên",
+        body: "Lễ Kỳ Yên là lễ hội lớn và quan trọng nhất của Đình Bình Trường, được tổ chức hằng năm từ ngày 15 đến ngày 17 tháng Giêng âm lịch. Đây là dịp để người dân địa phương dâng hương, tế lễ Thành Hoàng Bổn Cảnh, cầu mong quốc thái dân an, mưa thuận gió hòa, mùa màng bội thu và cuộc sống bình an, hạnh phúc. Trong thời gian diễn ra lễ hội, nhiều nghi thức tế lễ truyền thống được cử hành trang trọng theo nghi lễ đình làng Nam Bộ. Đặc biệt, đình tổ chức hát bội tại Võ Ca theo quan niệm dân gian \"hát cho Thần xem\", như một hình thức dâng lễ bằng nghệ thuật để bày tỏ lòng thành kính đối với Thành Hoàng, đồng thời góp phần gìn giữ và phát huy giá trị của nghệ thuật sân khấu truyền thống Việt Nam."
+      },
+      card2: {
+        date: "Ngày 12 tháng Tư Âm lịch",
+        title: "Lễ Hạ Điền",
+        body: "Lễ Hạ Điền được tổ chức vào ngày 12 tháng Tư âm lịch, là nghi lễ truyền thống đánh dấu sự khởi đầu của một vụ mùa mới. Trong ngày lễ, người dân dâng hương, cúng Thần Nông để bày tỏ lòng biết ơn đối với vị thần bảo hộ nông nghiệp, đồng thời cầu mong mưa thuận gió hòa, mùa màng bội thu, cây cối sinh trưởng tốt và cuộc sống ấm no, sung túc. Đây cũng là dịp thể hiện nét đẹp trong tín ngưỡng nông nghiệp và truyền thống gắn bó với nghề trồng lúa của cư dân Nam Bộ."
+      },
+      card3: {
+        date: "Ngày 12 tháng Mười Âm lịch",
+        title: "Lễ Cầu Bông",
+        body: "Lễ Cầu Bông được tổ chức vào ngày 12 tháng Mười âm lịch, là nghi lễ truyền thống gắn liền với đời sống nông nghiệp của cư dân địa phương. Trong ngày lễ, người dân dâng hương và thực hiện các nghi thức cúng lễ để cầu mong cây lúa trổ bông, mùa màng tươi tốt, sản xuất thuận lợi, mưa thuận gió hòa và cuộc sống ấm no, hạnh phúc. Đây là dịp thể hiện niềm tin, ước vọng về một năm lao động bội thu, đồng thời góp phần gìn giữ những giá trị văn hóa và tín ngưỡng đặc sắc của đình làng Nam Bộ."
+      }
+    },
     footer_contact: "Liên Hệ & Vị Trí",
     footer_address: "Ấp 1, Xã Bình Chánh, Huyện Bình Chánh, TP.HCM",
     footer_credits: "Dự án số hóa di tích Đình Bình Trường — nhằm bảo tồn và phát huy giá trị kiến trúc, lịch sử và văn hóa cho các thế hệ tương lai.",
@@ -193,8 +220,35 @@ var TRANSLATIONS = {
     ar_desc: "Rotate, zoom in, and place the temple model into your real space through your phone's camera.",
     section_timeline: "Historical Timeline",
     section_festival: "Festival & Culture",
-    festival_title: "KY YEN FESTIVAL — SPIRITUAL BEAUTY",
-    festival_desc: "Every year during the full moon of the first lunar month (15th-17th days), Binh Truong Communal House solemnly hosts the Ky Yen Festival to thank the tutelary god and pray for good weather, peace, and prosperity for the country. This is a gathering place for many people with unique traditional ritual worship, classical opera performances, and folk games.",
+    festival_title: "TRADITIONAL FESTIVALS",
+    festival_desc: "Traditional ritual offerings and worship taking place throughout the year.",
+    nav: {
+      home: "Home",
+      about: "About",
+      map: "3D",
+      ar: "View 3D AR",
+      timeline: "Timeline",
+      festival: "Festivals",
+      festival_eyebrow: "Traditional Festivals",
+      festival_heading: "3 Major Festivals at Binh Truong Communal House"
+    },
+    festival: {
+      card1: {
+        date: "15th - 17th of the First Lunar Month",
+        title: "Ky Yen Festival",
+        body: "Ky Yen is the largest and most important festival of Binh Truong Communal House, held annually from the 15th to the 17th day of the first lunar month. This is an occasion for local people to offer incense and worship the Guardian Spirit, praying for peace, favorable weather, bumper harvests, and happy lives. During the festival, many traditional rituals are solemnly performed in accordance with Southern communal house customs. Notably, classical opera (Hat Boi) is performed at Vo Ca stage under the concept of 'singing for the gods to watch', as an artistic offering of respect to the deity while preserving Vietnamese theatrical heritage."
+      },
+      card2: {
+        date: "12th day of the Fourth Lunar Month",
+        title: "Ha Dien Festival",
+        body: "Ha Dien is held on the 12th day of the fourth lunar month, marking the beginning of a new crop season. During the festival, locals offer incense to Than Nong (the God of Agriculture) to express gratitude and pray for good weather, high crop yields, and prosperous lives. It is a beautiful reflection of agricultural beliefs and the traditional attachment of Southern inhabitants to wet rice cultivation."
+      },
+      card3: {
+        date: "12th day of the Tenth Lunar Month",
+        title: "Cau Bong Festival",
+        body: "Cau Bong is organized on the 12th day of the tenth lunar month, deeply connected to the agricultural life of local residents. People burn incense and perform rituals to pray for rice fields to bloom, fertile crops, favorable production, and comfortable lives. It expresses hopes for a successful labor year while safeguarding the cultural and spiritual values of Southern communal houses."
+      }
+    },
     footer_contact: "Contact & Location",
     footer_address: "Hamlet 1, Binh Chanh Commune, Binh Chanh District, Ho Chi Minh City",
     footer_credits: "Digital preservation project for Binh Truong Communal House — preserving architectural, historical and cultural values for future generations.",
