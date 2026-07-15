@@ -384,7 +384,7 @@ h3 {
 
 /* --- 3-Column Layout -> Centered Container Experience --- */
 .model3d-three-col {
-  max-width: 1600px !important; /* Constrain inside centered column like header/content */
+  max-width: 1180px !important; /* Constrain inside centered column like header/content */
   width: 100% !important;
   margin: 0 auto !important; /* Centered on desktop */
   padding: 0 !important;
@@ -453,12 +453,12 @@ h3 {
 
 .model-3d-wrapper {
   width: 100% !important;
-  height: 820px !important;
+  height: 650px !important;
   aspect-ratio: auto !important;
   background: linear-gradient(135deg, #BCE3F7, #DFF0FA, #BCE3F7) !important;
-  border-radius: 0 !important;
+  border-radius: 16px !important;
   overflow: hidden;
-  box-shadow: none !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08) !important;
   position: relative;
   border: none !important;
 }
