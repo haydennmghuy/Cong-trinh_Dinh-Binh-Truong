@@ -89,6 +89,7 @@ const Temple3D = {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.08;
+    this.controls.zoomSpeed = 0.5; // Make scroll/trackpad zooming 50% more gradual/smooth
     this.controls.maxPolarAngle = Math.PI / 2.1;
     this.controls.minDistance = 2;
     this.controls.maxDistance = 80;
@@ -117,11 +118,11 @@ const Temple3D = {
 
     // Control buttons
     document.getElementById('model-zoom-in')?.addEventListener('click', () => {
-      this.camera.position.multiplyScalar(0.85);
+      this.camera.position.multiplyScalar(0.94);
       this.controls.update();
     });
     document.getElementById('model-zoom-out')?.addEventListener('click', () => {
-      this.camera.position.multiplyScalar(1.15);
+      this.camera.position.multiplyScalar(1.06);
       this.controls.update();
     });
     document.getElementById('model-reset')?.addEventListener('click', () => {
@@ -176,7 +177,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.24.0`,
+      `${path}?v=3.25.0`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
