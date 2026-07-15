@@ -61,21 +61,22 @@ const Temple3D = {
     // Scene
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0xBCE3F7); // Soft light sky blue background
-    this.scene.fog = new THREE.FogExp2(0xBCE3F7, isMobile ? 0.008 : 0.005);
+    this.scene.fog = new THREE.FogExp2(0xBCE3F7, isMobile ? 0.006 : 0.003);
 
     // Camera - aligned front-to-back, responsive default zoom (zoomed out on mobile/desktop to fit entire compound)
     this.camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 500);
     this.camera.position.set(0, isMobile ? 68 : 39, isMobile ? 58 : 33.6);
     this.camera.lookAt(0, 0.5, -9.75);
 
-    // Renderer — mobile optimizations: no anti-aliasing, lower pixel ratio, smaller shadow maps
-    this.renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true, powerPreference: 'high-performance' });
+    // Renderer — use full native DPR for sharp rendering on high-DPI screens
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
     this.renderer.setSize(w, h);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
+    this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = isMobile ? THREE.BasicShadowMap : THREE.PCFSoftShadowMap;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.2;
+    this.renderer.toneMappingExposure = 1.15;
+    this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.container.appendChild(this.renderer.domElement);
 
     // Setup shared GLTFLoader with Draco decoder
@@ -209,10 +210,24 @@ const Temple3D = {
         
         const modelName = path.split('/').pop().replace('.glb', '');
         
+        // Max anisotropy for sharp textures at oblique angles
+        const maxAniso = this.renderer ? this.renderer.capabilities.getMaxAnisotropy() : 4;
+
         model.traverse((node) => {
           if (node.isMesh) {
             node.castShadow = true;
             node.receiveShadow = true;
+            
+            // Sharpen all textures with anisotropic filtering
+            if (node.material) {
+              const mats = Array.isArray(node.material) ? node.material : [node.material];
+              mats.forEach(mat => {
+                if (mat.map) { mat.map.anisotropy = maxAniso; mat.map.needsUpdate = true; }
+                if (mat.normalMap) { mat.normalMap.anisotropy = maxAniso; mat.normalMap.needsUpdate = true; }
+                if (mat.roughnessMap) { mat.roughnessMap.anisotropy = maxAniso; }
+                if (mat.metalnessMap) { mat.metalnessMap.anisotropy = maxAniso; }
+              });
+            }
             
             // Hide fence attachments inside Cong_nho_ben_phai GLB
             if (modelName === 'Cong_nho_ben_phai') {
@@ -739,6 +754,7 @@ const Temple3D = {
     const h = this.container.clientHeight;
     this.camera.aspect = w / h;
     this.camera.updateProjectionMatrix();
+    this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(w, h);
   },
 
