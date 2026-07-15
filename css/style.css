@@ -103,6 +103,10 @@ body {
   padding-bottom: 24px; /* Space for sticky marquee footer */
 }
 
+section {
+  scroll-margin-top: 80px; /* Offset for sticky header on desktop */
+}
+
 img { max-width: 100%; display: block; }
 
 a { text-decoration: none; color: inherit; }
@@ -186,7 +190,7 @@ h3 {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 99999 !important;
   background: transparent;
   backdrop-filter: none;
   border-bottom: 1px solid transparent;
@@ -196,6 +200,7 @@ h3 {
 
 .site-header.scrolled {
   position: fixed;
+  z-index: 99999 !important;
   background: rgba(44, 30, 22, 0.95); /* Warm wood brown backdrop on scroll */
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(212, 175, 55, 0.16);
@@ -299,7 +304,7 @@ h3 {
   max-width: 1600px; /* Boxed width to match the sections below */
   margin: 0 auto; /* Centered on desktop */
   background: linear-gradient(to right, rgba(34, 34, 34, 0.88) 0%, rgba(34, 34, 34, 0.5) 45%, rgba(34, 34, 34, 0) 85%),
-              url('../images/hero_background.jpg?v=3.44.0') no-repeat right center / cover;
+              url('../images/hero_background.jpg?v=3.45.0') no-repeat right center / cover;
   color: #FFFFFF;
   border-radius: 16px; /* Premium card rounded corners */
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
@@ -394,7 +399,7 @@ h3 {
 
 .model3d-title-col {
   position: absolute !important;
-  top: 2.5rem !important;
+  top: 6.5rem !important;
   left: 2.5rem !important;
   z-index: 10 !important;
   max-width: 380px !important;
@@ -674,6 +679,7 @@ h3 {
 
 /* Audio player */
 .audio-player {
+  width: 100%;
   max-width: 58ch;
   margin-top: 2.2rem;
   margin-bottom: 1.5rem;
@@ -1484,6 +1490,10 @@ h3 {
    ===================================================================== */
 
 @media (max-width: 900px) {
+  section {
+    scroll-margin-top: 110px !important; /* Offset for taller two-row header on mobile */
+  }
+
   .header-inner {
     padding: 0.9rem 1.2rem;
   }
@@ -1541,6 +1551,10 @@ h3 {
 
   .model3d-viewer-wrap { order: -1; position: relative; top: 0; }
 
+  .timeline-section .section-heading {
+    margin-bottom: 5rem !important; /* Perfect gap on mobile */
+  }
+
   .timeline-spine { left: 24px; }
   .timeline-item,
   .timeline-item.is-right {
@@ -1589,7 +1603,7 @@ h3 {
     margin: 0 !important;
     border-radius: 0 !important;
     background: linear-gradient(to right, rgba(34, 34, 34, 0.9) 0%, rgba(34, 34, 34, 0.55) 50%, rgba(34, 34, 34, 0) 90%),
-                url('../images/hero_background.jpg?v=3.44.0') no-repeat 70% center / cover !important;
+                url('../images/hero_background.jpg?v=3.45.0') no-repeat 70% center / cover !important;
     display: flex !important;
     align-items: center !important;
   }
