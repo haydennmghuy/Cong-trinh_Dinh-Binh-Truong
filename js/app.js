@@ -138,7 +138,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.45.21';
+        mainImgEl.src = images[0] + '?v=3.45.22';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -151,7 +151,7 @@ const HotspotModal = {
           'bia-di-tich': '50% 15%',
           'mieu-bach-ma': '50% 20%',
           'mieu-ho': 'top',
-          'chanh-dien': '50% 20%',
+          'chanh-dien': '50% 50%',
           'ban-than-nong': '50% 80%',
           'bia-tuong-niem': '50% 40%'
         };
