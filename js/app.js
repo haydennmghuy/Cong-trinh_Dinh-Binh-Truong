@@ -138,9 +138,19 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.45.12';
+        mainImgEl.src = images[0] + '?v=3.45.13';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
+        
+        // Make sure vertical shrines/steles are fully visible without being cropped by cover fit
+        const fitContainIds = ['mieu-ba-ngu-hanh', 'bia-di-tich', 'mieu-bach-ma', 'ban-than-nong', 'bia-tuong-niem', 'mieu-ho'];
+        if (fitContainIds.includes(this.currentArea.id)) {
+          mainImgEl.style.objectFit = 'contain';
+          mainImgEl.style.backgroundColor = '#1a1a2e';
+        } else {
+          mainImgEl.style.objectFit = 'cover';
+          mainImgEl.style.backgroundColor = 'transparent';
+        }
       }
       if (placeholderEl) {
         placeholderEl.classList.add('hidden');
