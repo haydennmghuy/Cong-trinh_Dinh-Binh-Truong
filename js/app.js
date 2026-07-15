@@ -138,7 +138,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.45.29';
+        mainImgEl.src = images[0] + '?v=3.45.30';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -535,6 +535,9 @@ const NarrationAudio = {
     this._gapElapsed = 0;
     this._gapStartTime = performance.now();
     this.currentTrackIdx = 1; // Logically in-between, will play track 2 after gap
+    
+    // Play cassette static transition noise
+    this._playStaticNoise(this.gapDuration);
 
     // Animate gap progress smoothly using rAF
     const animateGap = () => {
@@ -544,6 +547,7 @@ const NarrationAudio = {
       if (this._gapElapsed >= this.gapDuration) {
         this._inGap = false;
         this._gapElapsed = this.gapDuration;
+        this._stopStaticNoise();
         this._playTrack(1);
         return;
       }
@@ -555,8 +559,75 @@ const NarrationAudio = {
   _cancelGap() {
     this._inGap = false;
     this._gapElapsed = 0;
+    this._stopStaticNoise();
     if (this._gapTimer) { clearTimeout(this._gapTimer); this._gapTimer = null; }
     if (this._gapRafId) { cancelAnimationFrame(this._gapRafId); this._gapRafId = null; }
+  },
+
+  _playStaticNoise(duration) {
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+      const ctx = new AudioContextClass();
+      
+      const bufferSize = ctx.sampleRate * duration;
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      
+      for (let i = 0; i < bufferSize; i++) {
+        // Base white noise
+        const noise = Math.random() * 2 - 1;
+        
+        // Add simulated tape hum (50Hz sine wave)
+        const t = i / ctx.sampleRate;
+        const hum = Math.sin(2 * Math.PI * 50 * t) * 0.3;
+        
+        // Random tape pops/crackle
+        let crackle = 0;
+        if (Math.random() < 0.0005) {
+          crackle = (Math.random() * 2 - 1) * 2.0;
+        }
+        
+        data[i] = (noise * 0.15 + hum + crackle) * 0.08; // Keep it low and comfortable
+      }
+      
+      const source = ctx.createBufferSource();
+      source.buffer = buffer;
+      
+      // Bandpass filter to make it sound like a vintage radio / tape static
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.frequency.value = 1500;
+      filter.Q.value = 1.2;
+      
+      // Gain node for smooth fade-in and fade-out
+      const gainNode = ctx.createGain();
+      gainNode.gain.setValueAtTime(0, ctx.currentTime);
+      gainNode.gain.linearRampToValueAtTime(0.3, ctx.currentTime + 0.15);
+      gainNode.gain.setValueAtTime(0.3, ctx.currentTime + duration - 0.25);
+      gainNode.gain.linearRampToValueAtTime(0, ctx.currentTime + duration);
+      
+      source.connect(filter);
+      filter.connect(gainNode);
+      gainNode.connect(ctx.destination);
+      
+      source.start();
+      this._activeNoiseSource = source;
+      this._activeNoiseCtx = ctx;
+    } catch (err) {
+      console.warn("Failed to play transition static noise:", err);
+    }
+  },
+
+  _stopStaticNoise() {
+    if (this._activeNoiseSource) {
+      try { this._activeNoiseSource.stop(); } catch(e){}
+      this._activeNoiseSource = null;
+    }
+    if (this._activeNoiseCtx) {
+      try { this._activeNoiseCtx.close(); } catch(e){}
+      this._activeNoiseCtx = null;
+    }
   },
 
   _playTrack(idx) {
