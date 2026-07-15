@@ -85,7 +85,9 @@ var TRANSLATIONS = {
       button: "Bắt đầu nghe"
     },
     timeline: {
-      heading: "LỊCH SỬ HÌNH THÀNH"
+      eyebrow: "Dấu ấn",
+      heading: "HƠN 200 NĂM LƯU GIỮ HỒN QUÊ",
+      lead: "Được hình thành từ đầu thế kỷ XIX và sắc phong dưới triều vua Tự Đức năm 1852, Đình Bình Trường đã đồng hành cùng sự phát triển của vùng đất Bình Chánh, trở thành chứng nhân của nhiều giai đoạn lịch sử và cách mạng."
     },
     values: {
       heading: "GIÁ TRỊ DI TÍCH",
@@ -207,7 +209,9 @@ var TRANSLATIONS = {
       button: "Start listening"
     },
     timeline: {
-      heading: "FORMATION HISTORY"
+      eyebrow: "Milestone",
+      heading: "OVER 200 YEARS OF PRESERVING SOUL OF HOME",
+      lead: "Established in the early 19th century and officially sealed in 1852 under Emperor Tu Duc, Binh Truong Communal House has accompanied the growth of Binh Chanh land, witnessing many historical and revolutionary milestones."
     },
     values: {
       heading: "HERITAGE VALUES",

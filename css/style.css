@@ -674,6 +674,7 @@ h3 {
 
 /* Audio player */
 .audio-player {
+  max-width: 58ch;
   margin-top: 2.2rem;
   margin-bottom: 1.5rem;
   display: flex;
@@ -844,7 +845,7 @@ h3 {
   position: relative;
   width: 100%;
   padding: 5rem 0 6rem;
-  background: var(--smoke);
+  background: linear-gradient(135deg, #FFF9F2 0%, #FFE9D6 50%, #FFD8B6 100%); /* Gorgeous warm sunset gradient background */
   color: var(--ink);
   overflow: hidden;
 }
