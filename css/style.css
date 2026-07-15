@@ -1685,6 +1685,12 @@ h3 {
   .model3d-info-col {
     display: none !important;
   }
+  .hotspot-num {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 0.58rem !important;
+    border-width: 1.5px !important;
+  }
 
   .narration-inner {
     grid-template-columns: 1fr;

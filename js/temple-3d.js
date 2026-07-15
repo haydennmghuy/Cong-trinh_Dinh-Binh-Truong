@@ -63,9 +63,9 @@ const Temple3D = {
     this.scene.background = new THREE.Color(0xEFE9DA); // Warm cream-grey background
     this.scene.fog = new THREE.FogExp2(0xEFE9DA, isMobile ? 0.012 : 0.008);
 
-    // Camera - aligned front-to-back, zoomed in closer (y=24, z=21) for a larger view
+    // Camera - aligned front-to-back, responsive default zoom (zoomed out on mobile to fit screen width)
     this.camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 500);
-    this.camera.position.set(0, 24, 21);
+    this.camera.position.set(0, isMobile ? 38 : 24, isMobile ? 33 : 21);
     this.camera.lookAt(0, 1, -8);
 
     // Renderer — mobile optimizations: no anti-aliasing, lower pixel ratio, smaller shadow maps
@@ -126,7 +126,8 @@ const Temple3D = {
       this.controls.update();
     });
     document.getElementById('model-reset')?.addEventListener('click', () => {
-      this.camera.position.set(0, 24, 21);
+      const isMob = window.innerWidth < 768;
+      this.camera.position.set(0, isMob ? 38 : 24, isMob ? 33 : 21);
       this.controls.target.set(0, 1, -8);
       this.controls.update();
     });
@@ -177,7 +178,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.25.0`,
+      `${path}?v=3.26.0`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -838,8 +839,9 @@ const Temple3D = {
   },
 
   resetCamera() {
+    const isMob = window.innerWidth < 768;
     this.transitionTargetLookAt = new THREE.Vector3(0, 1, -8);
-    this.transitionTargetCam = new THREE.Vector3(0, 24, 21);
+    this.transitionTargetCam = new THREE.Vector3(0, isMob ? 38 : 24, isMob ? 33 : 21);
   },
 
   destroy() {
