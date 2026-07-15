@@ -66,7 +66,7 @@ const Temple3D = {
     // Camera - aligned front-to-back, responsive default zoom (zoomed out on mobile to fit screen width)
     this.camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 500);
     this.camera.position.set(0, isMobile ? 38 : 24, isMobile ? 33 : 21);
-    this.camera.lookAt(0, 1, -8);
+    this.camera.lookAt(0, 0.5, -9.75);
 
     // Renderer — mobile optimizations: no anti-aliasing, lower pixel ratio, smaller shadow maps
     this.renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true, powerPreference: 'high-performance' });
@@ -117,13 +117,17 @@ const Temple3D = {
     this.renderer.domElement.addEventListener('click', (e) => this.onClick(e));
     this.renderer.domElement.addEventListener('mousemove', (e) => this.onMouseMove(e));
 
-    // Control buttons
+    // Control buttons — dolly toward/away from the controls target
     document.getElementById('model-zoom-in')?.addEventListener('click', () => {
-      this.camera.position.multiplyScalar(0.94);
+      const dir = this.camera.position.clone().sub(this.controls.target);
+      dir.multiplyScalar(0.94);
+      this.camera.position.copy(this.controls.target).add(dir);
       this.controls.update();
     });
     document.getElementById('model-zoom-out')?.addEventListener('click', () => {
-      this.camera.position.multiplyScalar(1.06);
+      const dir = this.camera.position.clone().sub(this.controls.target);
+      dir.multiplyScalar(1.06);
+      this.camera.position.copy(this.controls.target).add(dir);
       this.controls.update();
     });
     document.getElementById('model-reset')?.addEventListener('click', () => {
@@ -179,7 +183,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.28.0`,
+      `${path}?v=3.29.0`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -504,10 +508,7 @@ const Temple3D = {
     // Back wall segment right part: from x = 24.0 to x = 30 (shortened to prevent protruding next to kitchen)
     this.scene.add(this.createBox(6.0, fenceH, wallThick, C.fenceYellow, 27.0, fenceH/2, -25.0));
     
-    // Protruding fence recess walls around Uncle Ho Temple (x = 16.0 to 21.0, z = -25.0 to -30.0)
-    this.scene.add(this.createBox(wallThick, fenceH, 5.0, C.fenceYellow, 16.0, fenceH/2, -27.5));
-    this.scene.add(this.createBox(wallThick, fenceH, 5.0, C.fenceYellow, 21.0, fenceH/2, -27.5));
-    this.scene.add(this.createBox(5.0, fenceH, wallThick, C.fenceYellow, 18.5, fenceH/2, -30.0));
+    // Uncle Ho Temple area - no fence per user request
     
     // Right wall segment (solid, x = 30)
     this.scene.add(this.createBox(wallThick, fenceH, 30.5, C.fenceYellow, 30.0, fenceH/2, -9.75));
