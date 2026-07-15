@@ -200,7 +200,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.43.0`,
+      `${path}?v=3.44.0`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -884,9 +884,26 @@ const Temple3D = {
 // Expose globally for access from regular scripts
 window.Temple3D = Temple3D;
 
-// Initialize 3D immediately on page load
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => Temple3D.init('temple-3d-container'));
-} else {
-  Temple3D.init('temple-3d-container');
-}
+// Lazy-initialize 3D scene using IntersectionObserver —
+// only loads Three.js scene + all GLB models when the user scrolls near the 3D section
+(function() {
+  function initWhenReady() {
+    var container = document.getElementById('temple-3d-container');
+    if (!container) return;
+    var section = container.closest('section') || container;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          observer.disconnect();
+          Temple3D.init('temple-3d-container');
+        }
+      });
+    }, { rootMargin: '300px' }); // Start loading 300px before the section enters viewport
+    observer.observe(section);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWhenReady);
+  } else {
+    initWhenReady();
+  }
+})();

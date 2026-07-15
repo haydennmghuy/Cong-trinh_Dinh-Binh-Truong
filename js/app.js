@@ -32,7 +32,7 @@ const HotspotModal = {
     if (!this.modalEl) return;
 
     this.audio = new Audio();
-    this.audio.preload = 'auto';
+    this.audio.preload = 'none';
 
     // Close handlers
     document.getElementById('hotspot-modal-close')?.addEventListener('click', () => this.close());
@@ -249,7 +249,7 @@ const Timeline = {
         const sideClass = i % 2 === 0 ? 'is-left' : 'is-right';
         const langData = item[lang] || {};
         const mediaHtml = item.image ? 
-          `<img src="${item.image}" alt="${langData.title || ''}" />` : 
+          `<img src="${item.image}" alt="${langData.title || ''}" loading="lazy" decoding="async" onerror="this.parentElement.innerHTML='<div class=placeholder-image-box><span class=placeholder-icon>📸</span><span class=placeholder-text>${lang === 'vi' ? 'Cần thêm ảnh' : 'Need photo'}</span></div>'" />` :
           `<div class="placeholder-image-box">
             <span class="placeholder-icon">📸</span>
             <span class="placeholder-text">${lang === 'vi' ? 'Cần thêm ảnh' : 'Need photo'}</span>
@@ -329,7 +329,7 @@ const NarrationAudio = {
 
   init() {
     this.audio = new Audio();
-    this.audio.preload = 'auto';
+    this.audio.preload = 'none';
 
     this.progressEl = document.getElementById('audio-progress');
     this.knobEl = document.getElementById('audio-knob');
