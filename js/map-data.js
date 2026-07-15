@@ -256,7 +256,7 @@ var MAP_DATA = {
     },
     {
       year: "1945–1954",
-      image: "images/gallery/gallery-1.png",
+      image: "images/gallery/hop_thu_lien_lac_1945_1954.png",
       vi: {
         title: "Hộp thư liên lạc bí mật",
         body: "Trong kháng chiến chống Pháp, đình là 'hộp thư bí mật' chuyển giao tin tức, công văn mật, và là nơi dừng chân an toàn của các cán bộ hoạt động bí mật vùng Sài Gòn."
