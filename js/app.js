@@ -138,7 +138,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.45.27';
+        mainImgEl.src = images[0] + '?v=3.45.28';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -364,10 +364,21 @@ const App = {
   }
 };
 
-// ===== Narration Audio =====
+// ===== Narration Audio (2-track sequential playback with 2s gap) =====
 const NarrationAudio = {
-  audio: null,
+  tracks: [],       // Array of Audio elements [track1, track2]
+  trackSrcs: [],    // Source URLs
+  durations: [0, 0],
+  gapDuration: 2,   // 2-second gap between tracks
+  currentTrackIdx: 0,
   isPlaying: false,
+  _gapTimer: null,
+  _inGap: false,
+  _gapElapsed: 0,
+  _gapRafId: null,
+  _gapStartTime: 0,
+
+  // UI elements
   progressEl: null,
   knobEl: null,
   toggleBtn: null,
@@ -378,9 +389,18 @@ const NarrationAudio = {
   trackEl: null,
 
   init() {
-    this.audio = new Audio();
-    this.audio.preload = 'none';
+    // Build track source arrays per language
+    this.trackSrcs = this._getSources();
 
+    // Create 2 Audio elements
+    this.tracks = this.trackSrcs.map(src => {
+      const a = new Audio();
+      a.preload = 'metadata';
+      a.src = src;
+      return a;
+    });
+
+    // UI references
     this.progressEl = document.getElementById('audio-progress');
     this.knobEl = document.getElementById('audio-knob');
     this.toggleBtn = document.getElementById('audio-toggle');
@@ -390,8 +410,9 @@ const NarrationAudio = {
     this.durationEl = document.getElementById('audio-duration');
     this.trackEl = document.querySelector('.audio-track');
 
-    if (!this.toggleBtn) return; // No audio UI present
+    if (!this.toggleBtn) return;
 
+    // Button events
     this.toggleBtn.addEventListener('click', () => this.toggle());
     if (this.triggerBtn) {
       this.triggerBtn.addEventListener('click', () => this.toggle());
@@ -404,14 +425,32 @@ const NarrationAudio = {
       });
     }
 
-    this.audio.addEventListener('timeupdate', () => this.updateProgress());
-    this.audio.addEventListener('durationchange', () => this.updateProgress());
-    this.audio.addEventListener('loadedmetadata', () => this.updateProgress());
-    this.audio.addEventListener('ended', () => {
-      this.isPlaying = false;
-      this.toggleBtn.textContent = '▶';
-      this.audio.currentTime = 0;
-      this.updateProgress();
+    // Track events — timeupdate for progress, ended for chain
+    this.tracks.forEach((audio, idx) => {
+      audio.addEventListener('timeupdate', () => this.updateProgress());
+      audio.addEventListener('durationchange', () => {
+        this.durations[idx] = audio.duration || 0;
+        this.updateProgress();
+      });
+      audio.addEventListener('loadedmetadata', () => {
+        this.durations[idx] = audio.duration || 0;
+        this.updateProgress();
+      });
+      audio.addEventListener('ended', () => {
+        if (idx === 0) {
+          // Track 1 ended — start 2-second gap, then play track 2
+          this._startGap();
+        } else {
+          // Track 2 ended — playback complete
+          this.isPlaying = false;
+          this._inGap = false;
+          this.currentTrackIdx = 0;
+          this.tracks[0].currentTime = 0;
+          this.tracks[1].currentTime = 0;
+          this.toggleBtn.textContent = '▶';
+          this.updateProgress();
+        }
+      });
     });
 
     // Track seeking
@@ -428,36 +467,114 @@ const NarrationAudio = {
         document.body.style.userSelect = 'none';
       });
     }
-
     document.addEventListener('pointermove', (e) => {
       if (!isScrubbing) return;
       this.seek(e);
     });
-
-    document.addEventListener('pointerup', (e) => {
+    document.addEventListener('pointerup', () => {
       if (!isScrubbing) return;
       isScrubbing = false;
       document.body.style.userSelect = '';
     });
 
-    // Language change event listener
+    // Language change
     document.addEventListener('langchange', () => {
       const wasPlaying = this.isPlaying;
-      this.audio.pause();
+      this._cancelGap();
+      this.tracks.forEach(a => { a.pause(); a.currentTime = 0; });
       this.isPlaying = false;
+      this._inGap = false;
+      this.currentTrackIdx = 0;
       this.toggleBtn.textContent = '▶';
-      this.audio.src = i18n.current === 'en' ? 'audio/en/thuyet-minh.mp3' : 'audio/vi/thuyet-minh.mp3';
-      this.audio.load();
+
+      this.trackSrcs = this._getSources();
+      this.tracks.forEach((a, i) => {
+        a.src = this.trackSrcs[i];
+        a.load();
+      });
+
       if (wasPlaying) {
         this.play();
       } else {
         this.updateProgress();
       }
     });
+  },
 
-    // Initial load
-    this.audio.src = i18n.current === 'en' ? 'audio/en/thuyet-minh.mp3' : 'audio/vi/thuyet-minh.mp3';
-    this.audio.load();
+  _getSources() {
+    const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
+    if (lang === 'en') {
+      return ['audio/en/thuyet-minh-1.mp3', 'audio/en/thuyet-minh-2.mp3'];
+    }
+    return ['audio/vi/thuyet-minh-1.mp3', 'audio/vi/thuyet-minh-2.mp3'];
+  },
+
+  /** Total duration = track1 + gap + track2 */
+  get totalDuration() {
+    const d1 = this.durations[0] || 0;
+    const d2 = this.durations[1] || 0;
+    if (d1 === 0 && d2 === 0) return 0;
+    return d1 + this.gapDuration + d2;
+  },
+
+  /** Current combined elapsed time across both tracks + gap */
+  get totalCurrentTime() {
+    const d1 = this.durations[0] || 0;
+    if (this.currentTrackIdx === 0 && !this._inGap) {
+      return this.tracks[0].currentTime || 0;
+    }
+    if (this._inGap) {
+      return d1 + this._gapElapsed;
+    }
+    // Track 2
+    return d1 + this.gapDuration + (this.tracks[1].currentTime || 0);
+  },
+
+  _startGap() {
+    this._inGap = true;
+    this._gapElapsed = 0;
+    this._gapStartTime = performance.now();
+    this.currentTrackIdx = 1; // Logically in-between, will play track 2 after gap
+
+    // Animate gap progress smoothly using rAF
+    const animateGap = () => {
+      if (!this._inGap) return;
+      this._gapElapsed = (performance.now() - this._gapStartTime) / 1000;
+      this.updateProgress();
+      if (this._gapElapsed >= this.gapDuration) {
+        this._inGap = false;
+        this._gapElapsed = this.gapDuration;
+        this._playTrack(1);
+        return;
+      }
+      this._gapRafId = requestAnimationFrame(animateGap);
+    };
+    this._gapRafId = requestAnimationFrame(animateGap);
+  },
+
+  _cancelGap() {
+    this._inGap = false;
+    this._gapElapsed = 0;
+    if (this._gapTimer) { clearTimeout(this._gapTimer); this._gapTimer = null; }
+    if (this._gapRafId) { cancelAnimationFrame(this._gapRafId); this._gapRafId = null; }
+  },
+
+  _playTrack(idx) {
+    this.currentTrackIdx = idx;
+    this.tracks[idx].play().then(() => {
+      this.isPlaying = true;
+      this.toggleBtn.textContent = '❚❚';
+    }).catch(err => {
+      console.warn('Track play failed:', err);
+      this.tracks[idx].load();
+      this.tracks[idx].play().then(() => {
+        this.isPlaying = true;
+        this.toggleBtn.textContent = '❚❚';
+      }).catch(() => {
+        this.isPlaying = false;
+        this.toggleBtn.textContent = '▶';
+      });
+    });
   },
 
   formatTime(seconds) {
@@ -468,8 +585,8 @@ const NarrationAudio = {
   },
 
   updateProgress() {
-    const cur = this.audio.currentTime || 0;
-    const dur = this.audio.duration || 0;
+    const cur = this.totalCurrentTime;
+    const dur = this.totalDuration;
     if (dur > 0) {
       const pct = (cur / dur) * 100;
       if (this.progressEl) this.progressEl.style.width = `${pct}%`;
@@ -488,7 +605,8 @@ const NarrationAudio = {
   },
 
   pause() {
-    this.audio.pause();
+    this._cancelGap();
+    this.tracks.forEach(a => a.pause());
     this.isPlaying = false;
     this.toggleBtn.textContent = '▶';
   },
@@ -499,28 +617,57 @@ const NarrationAudio = {
       HotspotModal.toggleAudio();
     }
     this.toggleBtn.textContent = '⌛';
-    this.audio.play().then(() => {
+
+    if (this._inGap) {
+      // Resume gap countdown
+      this._startGap();
       this.isPlaying = true;
       this.toggleBtn.textContent = '❚❚';
-    }).catch(err => {
-      console.warn("Audio play blocked, reloading...", err);
-      this.audio.load();
-      this.audio.play().then(() => {
-        this.isPlaying = true;
-        this.toggleBtn.textContent = '❚❚';
-      }).catch(e => {
-        this.isPlaying = false;
-        this.toggleBtn.textContent = '▶';
-      });
-    });
+      return;
+    }
+
+    this._playTrack(this.currentTrackIdx);
   },
 
   seek(e) {
-    if (!this.trackEl || !this.audio.duration) return;
+    if (!this.trackEl) return;
+    const dur = this.totalDuration;
+    if (!dur) return;
+
     const rect = this.trackEl.getBoundingClientRect();
     let pct = (e.clientX - rect.left) / rect.width;
     pct = Math.max(0, Math.min(1, pct));
-    this.audio.currentTime = pct * this.audio.duration;
+
+    const seekTime = pct * dur;
+    const d1 = this.durations[0] || 0;
+
+    this._cancelGap();
+
+    if (seekTime <= d1) {
+      // Seeking into track 1
+      this.tracks[1].pause();
+      this.tracks[1].currentTime = 0;
+      this.currentTrackIdx = 0;
+      this._inGap = false;
+      this.tracks[0].currentTime = seekTime;
+      if (this.isPlaying) this._playTrack(0);
+    } else if (seekTime <= d1 + this.gapDuration) {
+      // Seeking into the gap — jump to start of track 2
+      this.tracks[0].pause();
+      this.tracks[0].currentTime = d1;
+      this.tracks[1].currentTime = 0;
+      this.currentTrackIdx = 1;
+      this._inGap = false;
+      if (this.isPlaying) this._playTrack(1);
+    } else {
+      // Seeking into track 2
+      this.tracks[0].pause();
+      this.tracks[0].currentTime = d1;
+      this.currentTrackIdx = 1;
+      this._inGap = false;
+      this.tracks[1].currentTime = seekTime - d1 - this.gapDuration;
+      if (this.isPlaying) this._playTrack(1);
+    }
     this.updateProgress();
   }
 };
