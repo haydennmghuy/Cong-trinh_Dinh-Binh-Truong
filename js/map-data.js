@@ -311,7 +311,7 @@ var MAP_DATA = {
     },
     {
       year: "2005",
-      image: "images/gallery/gallery-5.jpg",
+      image: "images/gallery/bang_xep_hang_di_tich.jpg",
       vi: {
         title: "Xếp hạng Di tích Cấp Thành phố",
         body: "UBND TP.HCM chính thức công nhận Đình Bình Trường là Di tích Kiến trúc Nghệ thuật cấp Thành phố, bước ngoặt bảo tồn lâu dài các giá trị lịch sử độc đáo."
