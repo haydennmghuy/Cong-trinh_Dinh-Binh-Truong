@@ -92,10 +92,10 @@ var TRANSLATIONS = {
     values: {
       heading: "GIÁ TRỊ DI TÍCH",
       lead: "Đình Bình Trường là kết tinh của văn hóa dân gian Nam Bộ và tinh thần kiên cường bất khuất của nhân dân Sài Gòn - Gia Định qua nhiều thế hệ. Mãi mãi là niềm tự hào của địa phương.",
-      stat1: "Năm khởi dựng ước tính",
-      stat2: "Năm tuổi lịch sử hào hùng",
-      stat3: "Điểm tương tác nổi bật",
-      stat4: "Xếp hạng di tích cấp Thành phố",
+      stat1: "Ghi danh sử sách triều Nguyễn",
+      stat2: "Sắc phong vua Tự Đức ban tặng",
+      stat3: "Năm lưu giữ hồn quê Việt",
+      stat4: "Xếp hạng Di tích cấp Thành phố",
       card1: {
         title: "Ý nghĩa lịch sử",
         body: "Là địa điểm liên lạc, hộp thư nhận tin tức của cách mạng, gắn với hoạt động đột kích năm 1948 do Bí thư Chi bộ Nguyễn Chánh Thôn chỉ đạo."
@@ -216,10 +216,10 @@ var TRANSLATIONS = {
     values: {
       heading: "HERITAGE VALUES",
       lead: "Binh Truong Communal House represents the culmination of Southern folk culture and the indomitable spirit of the Saigon - Gia Dinh people over generations. It remains a timeless source of local pride.",
-      stat1: "Estimated construction year",
-      stat2: "Years of rich history",
-      stat3: "Interactive highlights",
-      stat4: "City-level heritage grade",
+      stat1: "Recorded in Nguyen Dynasty history",
+      stat2: "Royal Decree by Emperor Tu Duc",
+      stat3: "Years preserving the Vietnamese soul",
+      stat4: "Classified as HCMC City Heritage",
       card1: {
         title: "Historical Significance",
         body: "Served as a crucial liaison post and secret mailbox for the revolution, linked to the historic 1948 raid directed by Secretary Nguyen Chanh Thon."
