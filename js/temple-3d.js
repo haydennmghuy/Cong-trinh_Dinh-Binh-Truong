@@ -176,7 +176,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.21.0`,
+      `${path}?v=3.22.0`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -439,11 +439,21 @@ const Temple3D = {
     this.scene.add(ground);
 
     // Courtyard paving (within the compound)
-    const courtGeo = new THREE.PlaneGeometry(60.0, 30.5);
+    // Courtyard paving (within the compound, tailored to fit the non-rectangular left fence wall)
+    const courtShape = new THREE.Shape();
+    courtShape.moveTo(30.0, -5.5);
+    courtShape.lineTo(30.0, 25.0);
+    courtShape.lineTo(-30.0, 25.0);
+    courtShape.lineTo(-30.0, 6.5);
+    courtShape.lineTo(-26.5, 0.5);
+    courtShape.lineTo(-26.5, -5.5);
+    courtShape.closePath();
+
+    const courtGeo = new THREE.ShapeGeometry(courtShape);
     const courtMat = this.mat(C.groundPave, { roughness: 0.85 });
     const court = new THREE.Mesh(courtGeo, courtMat);
     court.rotation.x = -Math.PI / 2;
-    court.position.set(0, 0.01, -9.75);
+    court.position.set(0, 0.01, 0); // Position is absolute now
     court.receiveShadow = true;
     this.scene.add(court);
 
