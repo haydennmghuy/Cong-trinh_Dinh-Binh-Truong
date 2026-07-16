@@ -517,16 +517,7 @@ html[lang="en"] .hero-title {
 }
 .model-ctrl-btn svg { stroke: currentColor; fill: none; }
 
-.model-drag-hint {
-  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
-  display: flex; align-items: center; gap: 6px;
-  font-size: 0.65rem; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(44, 24, 16, 0.6);
-  z-index: 10;
-  white-space: nowrap;
-}
-.model-drag-hint svg { stroke: rgba(44, 24, 16, 0.6); fill: none; }
+
 
 #hotspot-overlay {
   position: absolute; inset: 0;
