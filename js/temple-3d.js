@@ -97,7 +97,7 @@ const Temple3D = {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.08;
-    this.controls.enableZoom = true;
+    this.controls.enableZoom = false; // Disable default instant zoom to allow custom smooth manual zoom control
     this.controls.enableRotate = true;
     this.controls.enablePan = false; // Prevent panning to keep rotation perfectly centered on the temple courtyard
     this.controls.zoomToCursor = true; // Zoom to pointer location
@@ -156,12 +156,40 @@ const Temple3D = {
     this.renderer.domElement.addEventListener('click', (e) => this.onClick(e));
     this.renderer.domElement.addEventListener('mousemove', (e) => this.onMouseMove(e));
 
-    // Prevent page scroll when scrolling the mouse wheel on the 3D viewport
-    // and subtly nudge the controls target towards the point under the mouse cursor
+    // Track pinch gesture distance on mobile
+    this._lastTouchDist = null;
+
+    this.container.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 2) {
+        const dx = e.touches[0].clientX - e.touches[1].clientX;
+        const dy = e.touches[0].clientY - e.touches[1].clientY;
+        this._lastTouchDist = Math.sqrt(dx * dx + dy * dy);
+      }
+    }, { passive: true });
+
+    this.container.addEventListener('touchend', () => {
+      this._lastTouchDist = null;
+    }, { passive: true });
+
+    // Prevent page scroll and execute custom smooth mouse wheel zoom
     this.container.addEventListener('wheel', (e) => {
       e.preventDefault();
       
-      // Raycast to find the point under the mouse
+      const dir = this.camera.position.clone().sub(this.controls.target);
+      const dist = dir.length();
+      if (this.targetDistance === null) this.targetDistance = dist;
+      
+      // Calculate new target distance (increment/decrement by 10%)
+      const zoomFactor = 1.12;
+      if (e.deltaY > 0) {
+        // Zoom out
+        this.targetDistance = Math.min(this.controls.maxDistance - 0.1, this.targetDistance * zoomFactor);
+      } else {
+        // Zoom in
+        this.targetDistance = Math.max(this.controls.minDistance + 0.1, this.targetDistance / zoomFactor);
+      }
+      
+      // Raycast to find the point under the mouse to shift the orbit target towards it
       this.raycaster.setFromCamera(this.mouse, this.camera);
       const intersects = this.raycaster.intersectObjects(this.scene.children, true);
       const valid = intersects.find(i => i.object.isMesh && i.object.name !== 'sky' && i.object.name !== 'grid');
@@ -171,14 +199,35 @@ const Temple3D = {
       }
     }, { passive: false });
 
-    // Also support touch pinch-zoom center targeting on mobile
+    // Custom smooth touch pinch-zoom for mobile
     this.container.addEventListener('touchmove', (e) => {
       if (e.touches.length === 2) {
         const t1 = e.touches[0];
         const t2 = e.touches[1];
+        
+        // Calculate pinch center
         const clientX = (t1.clientX + t2.clientX) / 2;
         const clientY = (t1.clientY + t2.clientY) / 2;
         
+        // Calculate current touch distance
+        const dx = t1.clientX - t2.clientX;
+        const dy = t1.clientY - t2.clientY;
+        const touchDist = Math.sqrt(dx * dx + dy * dy);
+        
+        if (this._lastTouchDist) {
+          const ratio = touchDist / this._lastTouchDist;
+          if (ratio !== 1 && Math.abs(ratio - 1) > 0.01) {
+            const dir = this.camera.position.clone().sub(this.controls.target);
+            const dist = dir.length();
+            if (this.targetDistance === null) this.targetDistance = dist;
+            
+            // Adjust target distance based on touch pinch ratio
+            this.targetDistance = Math.max(this.controls.minDistance + 0.1, Math.min(this.controls.maxDistance - 0.1, this.targetDistance / ratio));
+          }
+        }
+        this._lastTouchDist = touchDist;
+
+        // Shift orbit target towards touch center point
         const rect = this.renderer.domElement.getBoundingClientRect();
         const touchX = ((clientX - rect.left) / rect.width) * 2 - 1;
         const touchY = -((clientY - rect.top) / rect.height) * 2 + 1;
@@ -267,7 +316,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.46.90`,
+      `${path}?v=3.46.91`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
