@@ -1388,19 +1388,32 @@ html[lang="en"] .hero-title {
   text-shadow: 0 2px 12px rgba(0,0,0,0.8);
 }
 #hotspot-modal-close {
-  position: absolute; top: 16px; right: 16px;
-  width: 36px; height: 36px;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(4px);
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 42px;
+  height: 42px;
+  background: rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
   border-radius: 50%;
-  color: #fff; font-size: 1.1rem;
-  display: flex; align-items: center; justify-content: center;
-  transition: var(--transition);
-  z-index: 5;
-  border: none;
+  color: #fff;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  z-index: 2010; /* Float above the modal card */
   cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
-#hotspot-modal-close:hover { background: var(--accent-gold-dark); transform: rotate(90deg); }
+#hotspot-modal-close:hover {
+  background: var(--accent-gold) !important;
+  color: var(--forest-dark) !important;
+  border-color: var(--accent-gold) !important;
+  transform: rotate(90deg);
+}
 
 /* Modal body */
 .hotspot-modal-body {
@@ -2247,15 +2260,15 @@ html[lang="en"] .timeline-content p {
   }
   #hotspot-modal-close {
     position: fixed !important; /* Stay anchored at top-right of screen */
-    top: 14px !important;
-    right: 14px !important;
-    width: 32px !important;
-    height: 32px !important;
+    top: 16px !important;
+    right: 16px !important;
+    width: 36px !important;
+    height: 36px !important;
     background: rgba(0, 0, 0, 0.75) !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35) !important;
     z-index: 99999 !important; /* Above everything else */
     border-radius: 50% !important;
-    font-size: 0.95rem !important;
+    font-size: 1rem !important;
   }
 }
 
