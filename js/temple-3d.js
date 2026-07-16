@@ -229,7 +229,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.46.83`,
+      `${path}?v=3.46.84`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -553,25 +553,64 @@ const Temple3D = {
       ['models/Toa_nha_bep_va_toa_WC.glb', 24.5, 0, -19.5, -Math.PI / 2, 1.0],     // 2.1MB
     ];
 
-    // Load all models on both desktop and mobile
-    // On mobile, they are staggered (500ms gap) and rendered with low-memory settings to prevent crash
-    const modelQueue = allModels;
-    this.totalModels = modelQueue.length;
+    // Store models array on instance
+    this.allModels = allModels;
 
     if (isMobile) {
-      // Stagger: load 1 model at a time with 500ms gaps to prevent memory spikes
+      // By default on mobile, only load 6 essential models (~8MB) to prevent in-app browser crash
+      const initialModels = allModels.slice(0, 6);
+      this.totalModels = initialModels.length;
+
+      // Stagger: load initial 6 models with 500ms gaps
       let idx = 0;
-      const loadNext = () => {
-        if (idx < modelQueue.length) {
-          const m = modelQueue[idx++];
+      const loadNextInitial = () => {
+        if (idx < initialModels.length) {
+          const m = initialModels[idx++];
           this.loadGLBModel(m[0], m[1], m[2], m[3], m[4], m[5]);
-          setTimeout(loadNext, 500);
+          setTimeout(loadNextInitial, 500);
         }
       };
-      loadNext();
+      loadNextInitial();
+
+      // Show the button to load more models
+      const btn = document.getElementById('btn-load-full-3d');
+      if (btn) {
+        btn.classList.remove('hidden');
+        btn.addEventListener('click', () => {
+          btn.disabled = true;
+          const textEl = btn.querySelector('.btn-text');
+          if (textEl) textEl.textContent = 'Đang tải thêm...';
+          
+          // Load remaining 9 models staggered
+          const remainingModels = this.allModels.slice(6);
+          let remIdx = 0;
+          let loadedRemCount = 0;
+          
+          const loadNextRemaining = () => {
+            if (remIdx < remainingModels.length) {
+              const m = remainingModels[remIdx++];
+              this.loadGLBModel(m[0], m[1], m[2], m[3], m[4], m[5], () => {
+                loadedRemCount++;
+                if (loadedRemCount === remainingModels.length) {
+                  // All remaining models loaded, fade out and hide button
+                  btn.style.opacity = '0';
+                  setTimeout(() => btn.classList.add('hidden'), 500);
+                }
+              });
+              setTimeout(loadNextRemaining, 500);
+            }
+          };
+          loadNextRemaining();
+        });
+      }
     } else {
-      // Desktop: load all in parallel
-      modelQueue.forEach(m => this.loadGLBModel(m[0], m[1], m[2], m[3], m[4], m[5]));
+      // Desktop: load all 15 in parallel
+      this.totalModels = allModels.length;
+      allModels.forEach(m => this.loadGLBModel(m[0], m[1], m[2], m[3], m[4], m[5]));
+      
+      // Hide the load more button on desktop
+      const btn = document.getElementById('btn-load-full-3d');
+      if (btn) btn.classList.add('hidden');
     }
   },
 

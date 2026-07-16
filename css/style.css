@@ -2284,4 +2284,48 @@ html[lang="en"] .timeline-content p {
   }
 }
 
+/* Load full 3D button for mobile */
+.btn-load-full-3d {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-gold);
+  border: none;
+  border-radius: 24px;
+  padding: 10px 20px;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(201, 168, 76, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  cursor: pointer;
+  pointer-events: all;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.btn-load-full-3d:hover {
+  background: var(--accent-gold-dark);
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 12px 28px rgba(201, 168, 76, 0.5), 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+.btn-load-full-3d:active {
+  transform: translateX(-50%) translateY(0);
+}
+.btn-load-full-3d:disabled {
+  background: #7a6e55 !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  box-shadow: none !important;
+  cursor: not-allowed;
+  transform: translateX(-50%);
+}
+.btn-load-full-3d.hidden {
+  display: none !important;
+}
+
 
