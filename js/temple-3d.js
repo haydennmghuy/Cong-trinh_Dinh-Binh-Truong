@@ -316,7 +316,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.46.93`,
+      `${path}?v=3.46.94`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -333,14 +333,24 @@ const Temple3D = {
             node.castShadow = !isMobile; // Skip shadow casting on mobile
             node.receiveShadow = !isMobile;
             
-            // Sharpen textures (skip anisotropic filtering on mobile for GPU savings)
-            if (!isMobile && node.material) {
+            // Texture processing (anisotropy on desktop, downscale VRAM on mobile)
+            if (node.material) {
               const mats = Array.isArray(node.material) ? node.material : [node.material];
               mats.forEach(mat => {
-                if (mat.map) { mat.map.anisotropy = maxAniso; mat.map.needsUpdate = true; }
-                if (mat.normalMap) { mat.normalMap.anisotropy = maxAniso; mat.normalMap.needsUpdate = true; }
-                if (mat.roughnessMap) { mat.roughnessMap.anisotropy = maxAniso; }
-                if (mat.metalnessMap) { mat.metalnessMap.anisotropy = maxAniso; }
+                if (!isMobile) {
+                  if (mat.map) { mat.map.anisotropy = maxAniso; mat.map.needsUpdate = true; }
+                  if (mat.normalMap) { mat.normalMap.anisotropy = maxAniso; mat.normalMap.needsUpdate = true; }
+                  if (mat.roughnessMap) { mat.roughnessMap.anisotropy = maxAniso; }
+                  if (mat.metalnessMap) { mat.metalnessMap.anisotropy = maxAniso; }
+                } else {
+                  // Downscale textures on mobile to save VRAM and prevent iOS WebKit crash
+                  const maps = ['map', 'normalMap', 'roughnessMap', 'metalnessMap', 'aoMap', 'emissiveMap'];
+                  maps.forEach(mapKey => {
+                    if (mat[mapKey] && mat[mapKey].image) {
+                      this.downscaleTexture(mat[mapKey], 512);
+                    }
+                  });
+                }
               });
             }
             
@@ -486,6 +496,39 @@ const Temple3D = {
         this.updateLoadingProgress(); // Still count failed loads for progress
       }
     );
+  },
+
+  downscaleTexture(texture, maxSize) {
+    try {
+      const image = texture.image;
+      if (!image || !image.width || !image.height) return;
+      if (image.width <= maxSize && image.height <= maxSize) return;
+
+      let w = image.width;
+      let h = image.height;
+      if (w > h) {
+        if (w > maxSize) {
+          h = Math.round(h * maxSize / w);
+          w = maxSize;
+        }
+      } else {
+        if (h > maxSize) {
+          w = Math.round(w * maxSize / h);
+          h = maxSize;
+        }
+      }
+
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(image, 0, 0, w, h);
+
+      texture.image = canvas;
+      texture.needsUpdate = true;
+    } catch (e) {
+      console.warn("Failed to downscale texture:", e);
+    }
   },
 
   // ============ MATERIAL HELPERS ============
@@ -647,36 +690,16 @@ const Temple3D = {
     const isInAppBrowser = /Zalo|FBAN|FBAV|Messenger|Instagram/i.test(navigator.userAgent);
 
     if (isMobile) {
-      let initialModels = [];
-      
-      if (isInAppBrowser) {
-        // Zalo/Messenger/Facebook webviews: Load ONLY 3 essential models (total ~3.9MB)
-        // to guarantee 100% no crash due to WebKit memory limits.
-        const allowedInApp = [
-          'Vo_Ca_Vo_Qui_Chanh_Dien.glb',
-          'Cong_Tam_Quan.glb',
-          'Nha_tho_Bac_Ho.glb'
-        ];
-        initialModels = allModels.filter(m => {
-          const path = m[0];
-          return allowedInApp.some(name => path.includes(name));
-        });
-      } else {
-        // Mobile Safari/Chrome: Load 6 core models (total ~11.3MB)
-        // to prevent WebKit VRAM overflow crash on iOS devices.
-        const allowedMobileSafari = [
-          'Vo_Ca_Vo_Qui_Chanh_Dien.glb',
-          'Cong_Tam_Quan.glb',
-          'Tien_Dien.glb',
-          'Nha_tho_Bac_Ho.glb',
-          'Cot_co_Viet_Nam.glb',
-          'Cong_nho_ben_phai.glb'
-        ];
-        initialModels = allModels.filter(m => {
-          const path = m[0];
-          return allowedMobileSafari.some(name => path.includes(name));
-        });
-      }
+      // Mobile (Safari, Chrome, and Zalo/Messenger WebView):
+      // Load all models EXCEPT the 5 models requested to be hidden to prevent OOM.
+      const initialModels = allModels.filter(m => {
+        const path = m[0];
+        return !path.includes('Ho_Thuy_Ta') &&
+               !path.includes('San_khau') &&
+               !path.includes('Toa_nha_bep_va_toa_WC') &&
+               !path.includes('Cong_nho_ben_phai') &&
+               !path.includes('Cot_co_Viet_Nam');
+      });
       
       this.totalModels = initialModels.length;
 
