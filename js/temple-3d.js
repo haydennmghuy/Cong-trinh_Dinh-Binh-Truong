@@ -108,12 +108,7 @@ const Temple3D = {
     // Enable controls immediately on all devices
     this.controls.enabled = true;
 
-    if (isMobile) {
-      // Use pan-y to let browser handle vertical scrolling, while OrbitControls handles horizontal rotating
-      this.controls.domElement.style.touchAction = 'pan-y';
-    } else {
-      this.controls.domElement.style.touchAction = 'none';
-    }
+    this.controls.domElement.style.touchAction = 'none';
 
     this.lastInteractionTime = Date.now();
 

@@ -472,13 +472,27 @@ html[lang="en"] .hero-title {
   overflow: hidden;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08) !important;
   position: relative;
-  border: 2px solid rgba(133, 199, 242, 0.9) !important;
+  border: 1px solid rgba(212, 175, 55, 0.25) !important;
   box-sizing: border-box !important;
 }
 
 .model-3d-wrapper canvas {
   display: block; width: 100% !important; height: 100% !important;
 }
+
+/* Decorative Golden Corners */
+.model-3d-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--accent-gold);
+  z-index: 5;
+  pointer-events: none;
+}
+.model-3d-corner.tl { top: 12px; left: 12px; border-right: none !important; border-bottom: none !important; }
+.model-3d-corner.tr { top: 12px; right: 12px; border-left: none !important; border-bottom: none !important; }
+.model-3d-corner.bl { bottom: 12px; left: 12px; border-right: none !important; border-top: none !important; }
+.model-3d-corner.br { bottom: 12px; right: 12px; border-left: none !important; border-top: none !important; }
 
 .model-3d-controls {
   position: absolute; top: 12px; right: 12px;
@@ -1773,9 +1787,18 @@ html[lang="en"] .hero-title {
   .model-3d-wrapper {
     height: 350px !important;
     border-radius: 20px !important;
-    border: 2px solid rgba(133, 199, 242, 0.9) !important;
+    border: 1px solid rgba(212, 175, 55, 0.25) !important;
     box-sizing: border-box !important;
   }
+  .model-3d-corner {
+    width: 12px !important;
+    height: 12px !important;
+    border-width: 1.2px !important;
+  }
+  .model-3d-corner.tl { top: 10px !important; left: 10px !important; }
+  .model-3d-corner.tr { top: 10px !important; right: 10px !important; }
+  .model-3d-corner.bl { bottom: 10px !important; left: 10px !important; }
+  .model-3d-corner.br { bottom: 10px !important; right: 10px !important; }
   .model3d-embedded-title {
     top: 14px !important;
     left: 14px !important;
@@ -2086,7 +2109,7 @@ html[lang="en"] .hero-title {
 }
 
 .stat-label {
-  white-space: nowrap !important;
+  white-space: normal !important;
 }
 
 @media (max-width: 768px) {
@@ -2137,7 +2160,7 @@ html[lang="en"] .hero-title {
 
 #temple-3d-container,
 #temple-3d-container canvas {
-  touch-action: pan-y !important;
+  touch-action: none !important;
 }
 
 /* =====================================================================
