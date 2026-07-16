@@ -214,15 +214,15 @@ var MAP_DATA = {
       x: 73, y: 13,
       color: "#DA251D",
       vi: {
-        name: "Nhà thờ Bác Hồ",
-        short: "Nhà thờ Bác Hồ",
+        name: "Không gian văn hóa Hồ Chí Minh",
+        short: "Không gian văn hóa Hồ Chí Minh",
         desc: "Nhà tưởng niệm Chủ tịch Hồ Chí Minh được xây dựng trong khuôn viên Đình Bình Trường sau năm 1975 nhằm bày tỏ lòng biết ơn và sự kính trọng đối với Chủ tịch Hồ Chí Minh - vị lãnh tụ vĩ đại của dân tộc Việt Nam. Công trình là nơi để nhân dân và du khách dâng hương, tưởng nhớ công lao to lớn của Người đối với sự nghiệp đấu tranh giành độc lập dân tộc, thống nhất đất nước và xây dựng đất nước. Đồng thời, đây cũng là địa điểm giáo dục truyền thống yêu nước, tư tưởng, đạo đức và phong cách Hồ Chí Minh cho các thế hệ hôm nay và mai sau.",
         details: "+ Vật liệu: Kết cấu bê tông cốt thép kết hợp tường xây gạch, hệ cửa và cột bằng gỗ, mái lợp ngói truyền thống, nền và bậc tam cấp lát gạch.\n+ Trang trí: Mặt tiền nổi bật với hệ thống cột gỗ sơn đỏ, cửa gỗ lớn và mái hiên lợp ngói. Kiến trúc được thiết kế giản dị nhưng trang nghiêm, mang đậm nét truyền thống của đình làng Nam Bộ.\n+ Không gian tưởng niệm: Bên trong đặt bàn thờ Chủ tịch Hồ Chí Minh cùng ảnh chân dung, lư hương và các đồ thờ cúng truyền thống. Đây là nơi diễn ra các hoạt động dâng hương, báo công và sinh hoạt truyền thống của địa phương vào các dịp lễ lớn, góp phần giáo dục lòng yêu nước và gìn giữ truyền thống cách mạng.",
         audio: "audio/vi/nha-tho-bac-ho.mp3"
       },
       en: {
-        name: "Uncle Ho Shrine",
-        short: "Uncle Ho Temple",
+        name: "Ho Chi Minh Cultural Space",
+        short: "Ho Chi Minh Cultural Space",
         desc: "The President Ho Chi Minh Memorial Shrine was built in Binh Truong Communal House after 1975 to express local gratitude to the national leader. It serves as a place for residents and visitors to pay respects and remember his great contributions to national independence, reunification, and construction. It is also a site for patriotic education and moral studies for current and future generations.",
         details: "+ Material: Reinforced concrete frame with brick walls, wooden pillars and doors, traditional tiled roof, and brick-paved tam-cap steps.\n+ Decoration: The facade stands out with red-painted wooden pillars, large wooden doors, and tiled eaves, presenting a simple yet dignified design typical of Southern temples.\n+ Memorial Space: The interior houses Uncle Ho's altar with his portrait, incense censer, and traditional ritual items, hosting local ceremonies and educational meetings during national holidays.",
         audio: "audio/en/uncle-ho-temple.mp3"
