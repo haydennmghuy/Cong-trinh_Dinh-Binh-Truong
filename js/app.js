@@ -26,6 +26,7 @@ const HotspotModal = {
   audio: null,
   isPlaying: false,
   _openedAt: 0,  // Timestamp when modal was opened (ghost click prevention)
+  _isClosingManually: false,
 
   init() {
     this.modalEl = document.getElementById('hotspot-modal');
@@ -33,6 +34,17 @@ const HotspotModal = {
 
     this.audio = new Audio();
     this.audio.preload = 'none';
+
+    // Intercept phone/browser back button to close the modal
+    window.addEventListener('popstate', () => {
+      if (this._isClosingManually) {
+        this._isClosingManually = false;
+        return;
+      }
+      if (this.modalEl && this.modalEl.classList.contains('open')) {
+        this.closeInternal();
+      }
+    });
 
     // Close handlers
     document.getElementById('hotspot-modal-close')?.addEventListener('click', () => this.close());
@@ -150,7 +162,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.46.94';
+        mainImgEl.src = images[0] + '?v=3.46.95';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -266,6 +278,11 @@ const HotspotModal = {
     this.currentArea = area;
     this.updateContent();
 
+    // Push history state if opening the modal for the first time
+    if (!this.modalEl.classList.contains('open')) {
+      history.pushState({ modalOpen: true }, '');
+    }
+
     // Show modal
     this._openedAt = Date.now(); // Record open time for ghost-click prevention
     this.modalEl.classList.add('open');
@@ -278,6 +295,18 @@ const HotspotModal = {
   },
 
   close() {
+    if (!this.modalEl) return;
+    
+    // If the modal was opened via history, pop the state manually
+    if (history.state && history.state.modalOpen) {
+      this._isClosingManually = true;
+      history.back();
+    }
+    
+    this.closeInternal();
+  },
+
+  closeInternal() {
     if (!this.modalEl) return;
     this.modalEl.classList.remove('open');
     document.body.style.overflow = '';
@@ -479,7 +508,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.46.94';
+    const version = '3.46.95';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
