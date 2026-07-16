@@ -316,7 +316,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.46.92`,
+      `${path}?v=3.46.93`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -662,8 +662,20 @@ const Temple3D = {
           return allowedInApp.some(name => path.includes(name));
         });
       } else {
-        // Mobile Safari/Chrome: Load all 15 models!
-        initialModels = allModels;
+        // Mobile Safari/Chrome: Load 6 core models (total ~11.3MB)
+        // to prevent WebKit VRAM overflow crash on iOS devices.
+        const allowedMobileSafari = [
+          'Vo_Ca_Vo_Qui_Chanh_Dien.glb',
+          'Cong_Tam_Quan.glb',
+          'Tien_Dien.glb',
+          'Nha_tho_Bac_Ho.glb',
+          'Cot_co_Viet_Nam.glb',
+          'Cong_nho_ben_phai.glb'
+        ];
+        initialModels = allModels.filter(m => {
+          const path = m[0];
+          return allowedMobileSafari.some(name => path.includes(name));
+        });
       }
       
       this.totalModels = initialModels.length;
