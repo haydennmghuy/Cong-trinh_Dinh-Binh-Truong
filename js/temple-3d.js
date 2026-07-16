@@ -17,8 +17,12 @@ const Temple3D = {
   overlayContainer: null,
   animationId: null,
   isInitialized: false,
+  isPaused: false,
+  interactableObjects: [],
   transitionTargetCam: null,
   transitionTargetLookAt: null,
+  _scratchVec3: new THREE.Vector3(),
+  _lastMouseMove: 0,
   // Loading progress tracking
   totalModels: 15,
   loadedModels_count: 0,
@@ -175,7 +179,7 @@ const Temple3D = {
     this.container.addEventListener('wheel', (e) => {
       e.preventDefault();
       
-      const dir = this.camera.position.clone().sub(this.controls.target);
+      const dir = this._scratchVec3.copy(this.camera.position).sub(this.controls.target);
       const dist = dir.length();
       if (this.targetDistance === null) this.targetDistance = dist;
       
@@ -191,7 +195,7 @@ const Temple3D = {
       
       // Raycast to find the point under the mouse to shift the orbit target towards it
       this.raycaster.setFromCamera(this.mouse, this.camera);
-      const intersects = this.raycaster.intersectObjects(this.scene.children, true);
+      const intersects = this.raycaster.intersectObjects(this.interactableObjects, true);
       const valid = intersects.find(i => i.object.isMesh && i.object.name !== 'sky' && i.object.name !== 'grid');
       if (valid) {
         // Nudge target towards the intersection point by 6% per wheel tick
@@ -217,7 +221,7 @@ const Temple3D = {
         if (this._lastTouchDist) {
           const ratio = touchDist / this._lastTouchDist;
           if (ratio !== 1 && Math.abs(ratio - 1) > 0.01) {
-            const dir = this.camera.position.clone().sub(this.controls.target);
+            const dir = this._scratchVec3.copy(this.camera.position).sub(this.controls.target);
             const dist = dir.length();
             if (this.targetDistance === null) this.targetDistance = dist;
             
@@ -233,7 +237,7 @@ const Temple3D = {
         const touchY = -((clientY - rect.top) / rect.height) * 2 + 1;
         
         this.raycaster.setFromCamera(new THREE.Vector2(touchX, touchY), this.camera);
-        const intersects = this.raycaster.intersectObjects(this.scene.children, true);
+        const intersects = this.raycaster.intersectObjects(this.interactableObjects, true);
         const valid = intersects.find(i => i.object.isMesh && i.object.name !== 'sky' && i.object.name !== 'grid');
         if (valid) {
           // Nudge target towards the pinch center by 4%
@@ -244,7 +248,7 @@ const Temple3D = {
 
     // Control buttons — dolly toward/away from the controls target safely and gradually
     document.getElementById('model-zoom-in')?.addEventListener('click', () => {
-      const dir = this.camera.position.clone().sub(this.controls.target);
+      const dir = this._scratchVec3.copy(this.camera.position).sub(this.controls.target);
       const dist = dir.length();
       if (dist < 0.1) return;
       
@@ -252,7 +256,7 @@ const Temple3D = {
       this.targetDistance = Math.max(this.controls.minDistance + 0.1, this.targetDistance * 0.80);
     });
     document.getElementById('model-zoom-out')?.addEventListener('click', () => {
-      const dir = this.camera.position.clone().sub(this.controls.target);
+      const dir = this._scratchVec3.copy(this.camera.position).sub(this.controls.target);
       const dist = dir.length();
       if (dist < 0.1) return;
       
@@ -316,7 +320,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.46.96`,
+      `${path}?v=3.46.97`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -394,6 +398,7 @@ const Temple3D = {
         });
         
         this.scene.add(model);
+        this.interactableObjects.push(model);
         
         // Expose to window for easy debugging/positioning
         if (!window.loadedModels) window.loadedModels = {};
@@ -624,6 +629,7 @@ const Temple3D = {
   // ============ BUILD TEMPLE ============
   buildTemple() {
     const C = this.COLORS;
+    this.interactableObjects = [];
 
     // === GROUND ===
     // Courtyard paving (within the compound, tailored to fit the non-rectangular left fence wall and the Uncle Ho Temple recess)
@@ -653,6 +659,7 @@ const Temple3D = {
     court.receiveShadow = true;
     court.castShadow = true;
     this.scene.add(court);
+    this.interactableObjects.push(court);
 
     // === SURROUNDING WALL / FENCE (procedural - instant) ===
     this.buildFence();
@@ -830,25 +837,47 @@ const Temple3D = {
     this.scene.add(this.createBox(34.0, 0.08, 0.12, C.fenceBars, -4.5, fenceH + 0.04, 5.5, { metalness: 0.5 }));
     this.scene.add(this.createBox(14.5, 0.08, 0.12, C.fenceBars, 22.75, fenceH + 0.04, 5.5, { metalness: 0.5 }));
 
-    // Decorative metal fence bars along front walls
-    // On mobile: use wider spacing (1.2) to halve mesh count for performance
+    // Decorative metal fence bars along front walls (using InstancedMesh to merge draw calls)
+    const barGeo = new THREE.BoxGeometry(0.05, 0.9, 0.05);
+    const barMat = this.mat(C.fenceBars, { metalness: 0.5 });
+    
+    // Count total bars
+    let barCount = 0;
     const barStep = isMobile ? 1.2 : 0.6;
+    for (let x = -21.0; x <= 12.0; x += barStep) barCount++;
+    for (let x = 16.0; x <= 29.0; x += barStep) barCount++;
+    for (let z = -24.5; z <= 5.0; z += barStep) barCount++;
+    for (let z = -24.5; z <= -7.0; z += barStep) barCount++;
+    
+    const instancedBars = new THREE.InstancedMesh(barGeo, barMat, barCount);
+    instancedBars.castShadow = !isMobile;
+    instancedBars.receiveShadow = !isMobile;
+    
+    const dummy = new THREE.Object3D();
+    let barIdx = 0;
+    
     for (let x = -21.0; x <= 12.0; x += barStep) {
-      this.scene.add(this.createBox(0.05, 0.9, 0.05, C.fenceBars, x, 0.65, 5.5, { metalness: 0.5 }));
+      dummy.position.set(x, 0.65, 5.5);
+      dummy.updateMatrix();
+      instancedBars.setMatrixAt(barIdx++, dummy.matrix);
     }
     for (let x = 16.0; x <= 29.0; x += barStep) {
-      this.scene.add(this.createBox(0.05, 0.9, 0.05, C.fenceBars, x, 0.65, 5.5, { metalness: 0.5 }));
+      dummy.position.set(x, 0.65, 5.5);
+      dummy.updateMatrix();
+      instancedBars.setMatrixAt(barIdx++, dummy.matrix);
     }
-
-    // Fence bars along right wall (x = 30)
     for (let z = -24.5; z <= 5.0; z += barStep) {
-      this.scene.add(this.createBox(0.05, 0.9, 0.05, C.fenceBars, 30.0, 0.65, z, { metalness: 0.5 }));
+      dummy.position.set(30.0, 0.65, z);
+      dummy.updateMatrix();
+      instancedBars.setMatrixAt(barIdx++, dummy.matrix);
     }
-
-    // Fence bars along left wall (x = -30, on the main vertical segment z = -25.0 to z = -6.5)
     for (let z = -24.5; z <= -7.0; z += barStep) {
-      this.scene.add(this.createBox(0.05, 0.9, 0.05, C.fenceBars, -30.0, 0.65, z, { metalness: 0.5 }));
+      dummy.position.set(-30.0, 0.65, z);
+      dummy.updateMatrix();
+      instancedBars.setMatrixAt(barIdx++, dummy.matrix);
     }
+    
+    this.scene.add(instancedBars);
   },
 
   buildCourtyard() {
@@ -993,6 +1022,10 @@ const Temple3D = {
   },
 
   onMouseMove(event) {
+    const now = Date.now();
+    if (this._lastMouseMove && (now - this._lastMouseMove) < 32) return;
+    this._lastMouseMove = now;
+
     const rect = this.renderer.domElement.getBoundingClientRect();
     this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
@@ -1014,8 +1047,8 @@ const Temple3D = {
     this.renderer.setSize(w, h);
   },
 
-  // ============ ANIMATION ============
   animate() {
+    if (this.isPaused) return;
     this.animationId = requestAnimationFrame(() => this.animate());
 
     // Throttle to ~30fps on mobile to reduce GPU load
@@ -1167,6 +1200,22 @@ const Temple3D = {
     this.transitionTargetCam = new THREE.Vector3(-30, isMob ? 80 : 55, -12.5);
   },
 
+  pause() {
+    this.isPaused = true;
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+      this.animationId = null;
+    }
+  },
+
+  resume() {
+    if (!this.isPaused) return;
+    this.isPaused = false;
+    if (!this.animationId) {
+      this.animate();
+    }
+  },
+
   destroy() {
     if (this.animationId) cancelAnimationFrame(this.animationId);
     if (this.renderer) {
@@ -1183,8 +1232,9 @@ const Temple3D = {
 // Expose globally for access from regular scripts
 window.Temple3D = Temple3D;
 
-// Lazy-initialize 3D scene using IntersectionObserver —
-// only loads Three.js scene + all GLB models when the user scrolls near the 3D section
+// Lazy-initialize 3D scene and play/pause animation loop using IntersectionObserver —
+// only loads Three.js scene + all GLB models when the user scrolls near the 3D section,
+// and pauses rendering when the user scrolls away to save CPU/GPU resource.
 (function() {
   function initWhenReady() {
     var container = document.getElementById('temple-3d-container');
@@ -1193,11 +1243,18 @@ window.Temple3D = Temple3D;
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
-          observer.disconnect();
-          Temple3D.init('temple-3d-container');
+          if (!Temple3D.isInitialized) {
+            Temple3D.init('temple-3d-container');
+          } else {
+            Temple3D.resume();
+          }
+        } else {
+          if (Temple3D.isInitialized) {
+            Temple3D.pause();
+          }
         }
       });
-    }, { rootMargin: '300px' }); // Start loading 300px before the section enters viewport
+    }, { rootMargin: '150px' }); // Start loading/playing 150px before entering viewport
     observer.observe(section);
   }
   if (document.readyState === 'loading') {

@@ -244,7 +244,7 @@ var MAP_DATA = {
     },
     {
       year: "1852",
-      image: "images/gallery/gallery-8_new.png",
+      image: "images/gallery/gallery-8_new.webp",
       vi: {
         title: "Nhận sắc phong Tự Đức",
         body: "Vua Tự Đức triều Nguyễn ban sắc phong thần 'Thành Hoàng Bổn Cảnh', công nhận đình thuộc hệ thống thờ tự chính thống của quốc gia và khẳng định địa vị linh thiêng."
@@ -256,7 +256,7 @@ var MAP_DATA = {
     },
     {
       year: "1945–1954",
-      image: "images/gallery/hop_thu_lien_lac_1945_1954.png",
+      image: "images/gallery/hop_thu_lien_lac_1945_1954.webp",
       vi: {
         title: "Hộp thư liên lạc bí mật",
         body: "Trong kháng chiến chống Pháp, đình là 'hộp thư bí mật' chuyển giao tin tức, công văn mật, và là nơi dừng chân an toàn của các cán bộ hoạt động bí mật vùng Sài Gòn."

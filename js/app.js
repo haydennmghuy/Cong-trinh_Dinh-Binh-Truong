@@ -27,6 +27,10 @@ const HotspotModal = {
   isPlaying: false,
   _openedAt: 0,  // Timestamp when modal was opened (ghost click prevention)
   _isClosingManually: false,
+  timeEl: null,
+  durEl: null,
+  progEl: null,
+  playBtn: null,
 
   init() {
     this.modalEl = document.getElementById('hotspot-modal');
@@ -34,6 +38,12 @@ const HotspotModal = {
 
     this.audio = new Audio();
     this.audio.preload = 'none';
+
+    // Cache DOM references to prevent repeated lookups
+    this.timeEl = document.getElementById('hotspot-audio-time');
+    this.durEl = document.getElementById('hotspot-audio-duration');
+    this.progEl = document.getElementById('hotspot-audio-progress');
+    this.playBtn = document.getElementById('hotspot-audio-play-btn');
 
     // Intercept phone/browser back button to close the modal
     window.addEventListener('popstate', () => {
@@ -63,7 +73,7 @@ const HotspotModal = {
     });
 
     // Play/Pause button
-    document.getElementById('hotspot-audio-play-btn')?.addEventListener('click', () => this.toggleAudio());
+    this.playBtn?.addEventListener('click', () => this.toggleAudio());
 
     // Seeking on progress track
     const trackBar = document.getElementById('hotspot-audio-track-bar');
@@ -71,31 +81,26 @@ const HotspotModal = {
       trackBar.addEventListener('click', (e) => this.seek(e));
     }
 
-    // Audio events
+    // Audio events (optimized using cached DOM elements)
     this.audio.addEventListener('timeupdate', () => {
       const cur = this.audio.currentTime || 0;
       const dur = this.audio.duration || 0;
-      const timeEl = document.getElementById('hotspot-audio-time');
-      const durEl = document.getElementById('hotspot-audio-duration');
-      const progEl = document.getElementById('hotspot-audio-progress');
 
-      if (timeEl) timeEl.textContent = this.formatTime(cur);
-      if (durEl && dur > 0) durEl.textContent = this.formatTime(dur);
-      if (progEl && dur > 0) {
-        progEl.style.width = `${(cur / dur) * 100}%`;
+      if (this.timeEl) this.timeEl.textContent = this.formatTime(cur);
+      if (this.durEl && dur > 0) this.durEl.textContent = this.formatTime(dur);
+      if (this.progEl && dur > 0) {
+        this.progEl.style.width = `${(cur / dur) * 100}%`;
       }
     });
 
     this.audio.addEventListener('loadedmetadata', () => {
       const dur = this.audio.duration || 0;
-      const durEl = document.getElementById('hotspot-audio-duration');
-      if (durEl && dur > 0) durEl.textContent = this.formatTime(dur);
+      if (this.durEl && dur > 0) this.durEl.textContent = this.formatTime(dur);
     });
 
     this.audio.addEventListener('ended', () => {
       this.isPlaying = false;
-      const btn = document.getElementById('hotspot-audio-play-btn');
-      if (btn) btn.textContent = '▶';
+      if (this.playBtn) this.playBtn.textContent = '▶';
       this.audio.currentTime = 0;
     });
 
@@ -162,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.46.96';
+        mainImgEl.src = images[0] + '?v=3.46.97';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -391,10 +396,17 @@ const App = {
       });
     });
 
-    // Header scroll effect
+    // Header scroll effect (throttled with requestAnimationFrame)
+    let scrollTicking = false;
     window.addEventListener('scroll', () => {
-      const header = document.getElementById('header');
-      if (header) header.classList.toggle('scrolled', window.scrollY > 20);
+      if (!scrollTicking) {
+        window.requestAnimationFrame(() => {
+          const header = document.getElementById('header');
+          if (header) header.classList.toggle('scrolled', window.scrollY > 20);
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
     });
   },
 
@@ -508,7 +520,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.46.96';
+    const version = '3.46.97';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
