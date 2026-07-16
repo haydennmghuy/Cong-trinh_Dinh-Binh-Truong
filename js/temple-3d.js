@@ -229,7 +229,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.46.81`,
+      `${path}?v=3.46.82`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -553,21 +553,19 @@ const Temple3D = {
       ['models/Toa_nha_bep_va_toa_WC.glb', 24.5, 0, -19.5, -Math.PI / 2, 1.0],     // 2.1MB
     ];
 
-    // Mobile: only load 6 essential buildings (total ~8MB vs ~35MB)
-    // Prioritise the main structures that define the temple silhouette
-    const mobileModels = allModels.slice(0, 6); // Chanh Dien, Cong Tam Quan, Tien Dien, Cot Co, Bac Ho, Cong Nho
-
-    const modelQueue = isMobile ? mobileModels : allModels;
+    // Load all models on both desktop and mobile
+    // On mobile, they are staggered (500ms gap) and rendered with low-memory settings to prevent crash
+    const modelQueue = allModels;
     this.totalModels = modelQueue.length;
 
     if (isMobile) {
-      // Stagger: load 1 model at a time with 800ms gaps to prevent memory pressure
+      // Stagger: load 1 model at a time with 500ms gaps to prevent memory spikes
       let idx = 0;
       const loadNext = () => {
         if (idx < modelQueue.length) {
           const m = modelQueue[idx++];
           this.loadGLBModel(m[0], m[1], m[2], m[3], m[4], m[5]);
-          setTimeout(loadNext, 800);
+          setTimeout(loadNext, 500);
         }
       };
       loadNext();
