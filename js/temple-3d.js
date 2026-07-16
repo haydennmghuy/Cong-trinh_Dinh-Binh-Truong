@@ -229,7 +229,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.46.82`,
+      `${path}?v=3.46.83`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -726,7 +726,7 @@ const Temple3D = {
       this.scene.add(marker);
 
       // Visible pin
-      const pinGeo = new THREE.SphereGeometry(0.45, 16, 16);
+      const pinGeo = new THREE.SphereGeometry(isMobile ? 0.22 : 0.45, 16, 16);
       const pinMat = new THREE.MeshStandardMaterial({
         color: area.color,
         emissive: area.color,
@@ -739,7 +739,7 @@ const Temple3D = {
       this.scene.add(pin);
 
       // Outer ring (pulsing glow)
-      const ringGeo = new THREE.RingGeometry(0.5, 0.7, 24);
+      const ringGeo = new THREE.RingGeometry(isMobile ? 0.25 : 0.5, isMobile ? 0.38 : 0.7, 24);
       const ringMat = new THREE.MeshBasicMaterial({
         color: area.color,
         transparent: true,

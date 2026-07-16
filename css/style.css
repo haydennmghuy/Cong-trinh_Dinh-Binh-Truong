@@ -1738,10 +1738,16 @@ html[lang="en"] .hero-title {
     line-height: 1.7 !important;
     margin: 0 auto !important;
   }
+  .hotspot-label {
+    transform: translate(5px, -14px) !important;
+  }
+  .hotspot-label:hover {
+    transform: translate(5px, -14px) scale(1.2) !important;
+  }
   .hotspot-num {
-    width: 20px !important; height: 20px !important;
-    font-size: 0.55rem !important;
-    border-width: 1.5px !important;
+    width: 16px !important; height: 16px !important;
+    font-size: 0.52rem !important;
+    border-width: 1px !important;
   }
 
   .header-inner {
@@ -1825,11 +1831,17 @@ html[lang="en"] .hero-title {
   .model3d-info-col {
     display: none !important;
   }
+  .hotspot-label {
+    transform: translate(5px, -14px) !important;
+  }
+  .hotspot-label:hover {
+    transform: translate(5px, -14px) scale(1.2) !important;
+  }
   .hotspot-num {
-    width: 20px !important;
-    height: 20px !important;
-    font-size: 0.58rem !important;
-    border-width: 1.5px !important;
+    width: 16px !important;
+    height: 16px !important;
+    font-size: 0.52rem !important;
+    border-width: 1px !important;
   }
 
   .narration-inner {
