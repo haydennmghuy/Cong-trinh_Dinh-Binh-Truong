@@ -109,7 +109,7 @@ const Temple3D = {
 
     this.controls.minDistance = 2;
     this.controls.maxDistance = 150; // Increased maxDistance to allow zooming out on mobile
-    this.controls.zoomSpeed = 0.3; // Slow down mouse-wheel zoom for gradual zoom steps
+    this.controls.zoomSpeed = 0.85; // Faster zoom response (about 2.8x faster than 0.3)
     this.controls.autoRotate = false;
     this.controls.autoRotateSpeed = 0.5;
 
@@ -225,14 +225,14 @@ const Temple3D = {
     document.getElementById('model-zoom-in')?.addEventListener('click', () => {
       activate3DMode();
       const dir = this.camera.position.clone().sub(this.controls.target);
-      dir.multiplyScalar(0.97); // 3% zoom step for very gradual zoom in
+      dir.multiplyScalar(0.93); // Zoom in twice as fast (7% step instead of 3%)
       this.camera.position.copy(this.controls.target).add(dir);
       this.controls.update();
     });
     document.getElementById('model-zoom-out')?.addEventListener('click', () => {
       activate3DMode();
       const dir = this.camera.position.clone().sub(this.controls.target);
-      dir.multiplyScalar(1.03); // 3% zoom step for very gradual zoom out
+      dir.multiplyScalar(1.07); // Zoom out twice as fast (7% step instead of 3%)
       this.camera.position.copy(this.controls.target).add(dir);
       this.controls.update();
     });
