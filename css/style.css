@@ -2290,21 +2290,21 @@ html[lang="en"] .timeline-content p {
 /* Load full 3D button for mobile */
 .btn-load-full-3d {
   position: absolute;
-  bottom: 24px;
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
   background: var(--accent-gold);
   border: none;
-  border-radius: 24px;
-  padding: 10px 20px;
+  border-radius: 18px;
+  padding: 6px 14px;
   color: #fff;
   font-family: var(--font-heading);
-  font-size: 0.8rem;
+  font-size: 0.68rem;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 8px;
-  box-shadow: 0 8px 24px rgba(201, 168, 76, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+  gap: 6px;
+  box-shadow: 0 6px 18px rgba(201, 168, 76, 0.35), 0 3px 8px rgba(0, 0, 0, 0.2);
   z-index: 100;
   cursor: pointer;
   pointer-events: all;
