@@ -415,34 +415,32 @@ html[lang="en"] .hero-title {
   position: relative !important;
 }
 
-.model3d-title-col {
+.model3d-embedded-title {
   position: absolute !important;
-  top: 6.5rem !important;
-  left: 2.5rem !important;
-  z-index: 10 !important;
-  max-width: 380px !important;
-  background: rgba(15, 22, 38, 0.8) !important;
-  backdrop-filter: blur(16px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 16px !important;
-  padding: 1.8rem !important;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5) !important;
+  top: 24px !important;
+  left: 24px !important;
+  z-index: 12 !important; /* Under modal, above controls */
+  pointer-events: none !important;
+  background: rgba(15, 22, 38, 0.85) !important;
+  backdrop-filter: blur(12px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+  border: 1px solid rgba(212, 175, 55, 0.35) !important;
+  border-radius: 30px !important;
+  padding: 6px 18px !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
 }
-.model3d-title-col h2 {
+.model3d-embedded-title h2 {
   color: #D4AF37 !important;
-  font-size: clamp(1.4rem, 2.5vw, 1.8rem) !important;
-  font-family: var(--font-display);
-  letter-spacing: 0.03em;
-  margin-bottom: 0.8rem !important;
+  font-size: 1.05rem !important;
   font-weight: 700 !important;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-}
-.model3d-title-col p {
-  color: rgba(255, 255, 255, 0.85) !important;
-  font-size: 0.9rem !important;
-  line-height: 1.65 !important;
+  font-family: var(--font-display);
   margin: 0 !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
 .model3d-viewer-col {
@@ -1789,26 +1787,13 @@ html[lang="en"] .hero-title {
     border: 2px solid rgba(133, 199, 242, 0.9) !important;
     box-sizing: border-box !important;
   }
-  .model3d-title-col {
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
-    max-width: 100% !important;
-    width: 100% !important;
-    border-radius: 0 !important;
-    border: none !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-    background: #0f1626 !important;
-    padding: 1.25rem 1rem !important;
-    box-shadow: none !important;
+  .model3d-embedded-title {
+    top: 14px !important;
+    left: 14px !important;
+    padding: 4px 12px !important;
   }
-  .model3d-title-col h2 {
-    font-size: 1.3rem !important;
-    margin-bottom: 0.5rem !important;
-  }
-  .model3d-title-col p {
+  .model3d-embedded-title h2 {
     font-size: 0.85rem !important;
-    line-height: 1.5 !important;
   }
   .model3d-info-col {
     display: none !important;
