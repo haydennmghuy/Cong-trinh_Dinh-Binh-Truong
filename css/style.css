@@ -1561,37 +1561,34 @@ html[lang="en"] .hero-title {
     order: 3;
     display: flex !important;
     width: 100%;
-    justify-content: flex-start;
-    gap: 0.6rem;
-    padding: 0.6rem 0.5rem;
+    justify-content: space-between; /* Spread evenly across one line */
+    gap: 0;
+    padding: 0.5rem 0.1rem 0.2rem;
     margin-top: 0.3rem;
     border-top: 1px solid rgba(212, 175, 55, 0.12);
-    overflow-x: auto;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
     white-space: nowrap;
-    flex-wrap: nowrap;
-  }
-  .main-nav::-webkit-scrollbar {
-    display: none;
+    flex-wrap: nowrap; /* Force single line */
+    flex: none;
   }
   .main-nav a {
-    font-size: 0.8rem !important;
-    padding: 0.35rem 0.75rem !important;
-    letter-spacing: 0.01em;
-    flex: 0 0 auto;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 20px;
+    font-size: clamp(8px, 2.5vw, 11px) !important; /* Responsive fluid font sizing to guarantee one-line fit */
+    padding: 0.1rem 0.05rem !important;
+    letter-spacing: -0.01em !important;
+    flex: 1 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    background: none !important;
+    border: none !important;
+    border-radius: 0 !important;
     color: rgba(255, 255, 255, 0.85) !important;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease;
   }
   .main-nav a.active,
   .main-nav a:hover {
-    background: var(--accent-gold) !important;
-    border-color: var(--accent-gold) !important;
-    color: var(--forest-dark) !important;
+    background: none !important;
+    border: none !important;
+    color: var(--accent-gold) !important;
   }
 
   .hero-inner,
@@ -1690,10 +1687,10 @@ html[lang="en"] .hero-title {
     justify-self: center !important;
   }
   .hero-title {
-    font-size: clamp(1.8rem, 6vw, 2.5rem) !important;
-    line-height: 1.2;
+    font-size: clamp(1.2rem, 5.8vw, 1.85rem) !important;
+    line-height: 1.2 !important;
     margin-bottom: 0.6rem !important;
-    white-space: normal !important;
+    white-space: nowrap !important;
   }
   .hero-copy .eyebrow {
     font-size: 0.68rem !important;
@@ -1702,11 +1699,12 @@ html[lang="en"] .hero-title {
     width: 100%;
   }
   .hero-copy .subtitle {
-    font-size: clamp(0.95rem, 3.5vw, 1.15rem) !important;
+    font-size: clamp(0.7rem, 3.2vw, 0.95rem) !important;
     margin-bottom: 1.2rem !important;
     text-align: center !important;
     color: var(--accent-gold) !important;
-    width: 100%;
+    width: 100% !important;
+    white-space: nowrap !important;
   }
   .hero-copy .lead {
     text-align: center !important;
@@ -1726,7 +1724,8 @@ html[lang="en"] .hero-title {
     gap: 0.5rem;
   }
   .brand-name {
-    font-size: 0.85rem;
+    font-size: 0.85rem !important;
+    white-space: nowrap !important;
   }
   .brand { gap: 0.4rem; }
 
