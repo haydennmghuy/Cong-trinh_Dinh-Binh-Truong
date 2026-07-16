@@ -1404,7 +1404,7 @@ html[lang="en"] .hero-title {
   align-items: center;
   justify-content: center;
   transition: all 0.25s ease;
-  z-index: 2010; /* Float above the modal card */
+  z-index: 99999 !important; /* Float above the modal card */
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
