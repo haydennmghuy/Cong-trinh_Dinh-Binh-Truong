@@ -464,9 +464,11 @@ html[lang="en"] .hero-title {
 }
 
 .model-3d-wrapper {
+  max-width: 600px !important;
   width: 100% !important;
-  height: 650px !important;
-  aspect-ratio: auto !important;
+  aspect-ratio: 1 / 1 !important; /* Perfect square layout */
+  height: auto !important;
+  margin: 0 auto !important; /* Centered on screen */
   background: linear-gradient(180deg, #AEE0FA 0%, #E0F5E9 100%) !important;
   border-radius: 24px !important;
   overflow: hidden;
@@ -1785,7 +1787,11 @@ html[lang="en"] .hero-title {
     box-sizing: border-box !important;
   }
   .model-3d-wrapper {
-    height: 350px !important;
+    max-width: 450px !important;
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important; /* Perfect square layout on mobile */
+    height: auto !important;
+    margin: 0 auto !important; /* Centered */
     border-radius: 20px !important;
     border: 1px solid rgba(212, 175, 55, 0.25) !important;
     box-sizing: border-box !important;

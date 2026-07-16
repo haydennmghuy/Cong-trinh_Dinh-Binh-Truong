@@ -90,8 +90,8 @@ const Temple3D = {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.08;
-    this.controls.enableZoom = false; // Initially locked, flat view
-    this.controls.enableRotate = false; // Initially locked, flat view
+    this.controls.enableZoom = true;
+    this.controls.enableRotate = true;
     this.controls.enablePan = false; // Prevent panning to keep rotation perfectly centered on the temple courtyard
     this.controls.zoomToCursor = true; // Zoom to pointer location
     this.controls.target.set(0, 0.5, -9.75); // Centered in the middle of the fenced compound
