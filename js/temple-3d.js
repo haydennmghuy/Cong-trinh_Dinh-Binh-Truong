@@ -65,7 +65,7 @@ const Temple3D = {
 
     // Camera - aligned front-to-back, responsive default zoom (zoomed out on mobile/desktop to fit entire compound)
     this.camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 500);
-    this.camera.position.set(0, isMobile ? 75 : 48, -9.65);
+    this.camera.position.set(-44, isMobile ? 120 : 80, -14);
     this.camera.lookAt(0, 0.5, -9.75);
 
     // Renderer — use full native DPR for sharp rendering on high-DPI screens
@@ -93,6 +93,7 @@ const Temple3D = {
     this.controls.enableZoom = false; // Initially locked, flat view
     this.controls.enableRotate = false; // Initially locked, flat view
     this.controls.enablePan = false; // Prevent panning to keep rotation perfectly centered on the temple courtyard
+    this.controls.zoomToCursor = true; // Zoom to pointer location
     this.controls.target.set(0, 0.5, -9.75); // Centered in the middle of the fenced compound
     this.controls.update();
 
@@ -185,7 +186,7 @@ const Temple3D = {
     document.getElementById('model-reset')?.addEventListener('click', () => {
       unlock();
       const isMob = window.innerWidth < 768;
-      this.camera.position.set(0, isMob ? 75 : 48, -9.65);
+      this.camera.position.set(-44, isMob ? 120 : 80, -14);
       this.controls.target.set(0, 0.5, -9.75);
       this.controls.update();
     });
@@ -921,7 +922,7 @@ const Temple3D = {
   resetCamera() {
     const isMob = window.innerWidth < 768;
     this.transitionTargetLookAt = new THREE.Vector3(0, 0.5, -9.75);
-    this.transitionTargetCam = new THREE.Vector3(0, isMob ? 75 : 48, -9.65);
+    this.transitionTargetCam = new THREE.Vector3(-44, isMob ? 120 : 80, -14);
   },
 
   destroy() {

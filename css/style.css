@@ -2116,3 +2116,44 @@ html[lang="en"] .hero-title {
 #temple-3d-container canvas {
   touch-action: pan-y !important;
 }
+
+/* =====================================================================
+   ENGLISH LANGUAGE LAYOUT AND ALIGNMENT ENFORCEMENT
+   ===================================================================== */
+html[lang="en"] .section-heading,
+html[lang="en"] .festival-header,
+html[lang="en"] .values,
+html[lang="en"] .model3d-copy,
+html[lang="en"] .narration-copy {
+  text-align: center;
+}
+
+html[lang="en"] .section-heading h2,
+html[lang="en"] .values h2,
+html[lang="en"] .festival-header .section-title,
+html[lang="en"] .model3d-copy h2,
+html[lang="en"] .narration-copy h2,
+html[lang="en"] .gallery-section-wrap .section-title {
+  text-align: center !important;
+  white-space: nowrap !important;
+  font-size: clamp(0.75rem, 3.2vw, 2.2rem) !important;
+}
+
+@media (max-width: 768px) {
+  html[lang="en"] .section-heading h2,
+  html[lang="en"] .values h2,
+  html[lang="en"] .festival-header .section-title,
+  html[lang="en"] .model3d-copy h2,
+  html[lang="en"] .narration-copy h2,
+  html[lang="en"] .gallery-section-wrap .section-title {
+    font-size: clamp(0.55rem, 2.8vw, 1.25rem) !important;
+  }
+}
+
+html[lang="en"] p,
+html[lang="en"] .narration-copy p,
+html[lang="en"] .model3d-copy p,
+html[lang="en"] .festival-card p,
+html[lang="en"] .timeline-content p {
+  text-align: justify !important;
+}
