@@ -123,7 +123,49 @@ const Temple3D = {
       }
     };
 
+    const activate3DMode = () => {
+      const touchOverlay = document.getElementById('model-3d-touch-overlay');
+      const lockScrollBtn = document.getElementById('model-3d-lock-scroll');
+      if (touchOverlay) touchOverlay.classList.add('hidden');
+      if (lockScrollBtn) lockScrollBtn.classList.remove('hidden');
+      
+      this.controls.minPolarAngle = 0;
+      this.controls.maxPolarAngle = Math.PI / 2.15;
+      this.controls.enableRotate = true;
+      this.controls.enableZoom = true;
+      this.controls.update();
+      this.controls.domElement.style.touchAction = 'none';
+      this.controlsLocked = false;
+    };
+
+    const deactivate3DMode = () => {
+      const touchOverlay = document.getElementById('model-3d-touch-overlay');
+      const lockScrollBtn = document.getElementById('model-3d-lock-scroll');
+      if (touchOverlay) touchOverlay.classList.remove('hidden');
+      if (lockScrollBtn) lockScrollBtn.classList.add('hidden');
+      
+      const isMob = window.innerWidth < 768;
+      if (isMob) {
+        const initPolar = this.controls.getPolarAngle();
+        this.controls.minPolarAngle = initPolar;
+        this.controls.maxPolarAngle = initPolar;
+        this.controls.enableRotate = false;
+        this.controls.enableZoom = false;
+        this.controls.update();
+        this.controls.domElement.style.touchAction = 'pan-y';
+        this.controlsLocked = true;
+      }
+    };
+
     const unlock = () => {
+      const isMob = window.innerWidth < 768;
+      const touchOverlay = document.getElementById('model-3d-touch-overlay');
+      const isOverlayActive = touchOverlay && !touchOverlay.classList.contains('hidden');
+
+      if (isMob && isOverlayActive) {
+        return; // Prevent touch interaction from hijacking scroll while overlay is visible
+      }
+
       if (this.controlsLocked) {
         this.controlsLocked = false;
         this.controls.enableRotate = true;
@@ -133,7 +175,7 @@ const Temple3D = {
       resetIdleTimer();
     };
 
-    this.unlockControls = unlock;
+    this.unlockControls = activate3DMode;
 
     this.controls.addEventListener('start', () => {
       this.transitionTargetCam = null;
@@ -148,6 +190,14 @@ const Temple3D = {
     this.container.addEventListener('touchstart', unlock, { passive: true });
     this.container.addEventListener('touchmove', resetIdleTimer, { passive: true });
     this.container.addEventListener('wheel', unlock, { passive: true });
+
+    // Hook overlay interactions
+    const touchOverlay = document.getElementById('model-3d-touch-overlay');
+    const lockScrollBtn = document.getElementById('model-3d-lock-scroll');
+    if (touchOverlay && lockScrollBtn) {
+      touchOverlay.addEventListener('click', activate3DMode);
+      lockScrollBtn.addEventListener('click', deactivate3DMode);
+    }
 
     // Lighting
     this.addLighting();
@@ -170,21 +220,21 @@ const Temple3D = {
 
     // Control buttons — dolly toward/away from the controls target
     document.getElementById('model-zoom-in')?.addEventListener('click', () => {
-      unlock();
+      activate3DMode();
       const dir = this.camera.position.clone().sub(this.controls.target);
       dir.multiplyScalar(0.97); // 3% zoom step for very gradual zoom in
       this.camera.position.copy(this.controls.target).add(dir);
       this.controls.update();
     });
     document.getElementById('model-zoom-out')?.addEventListener('click', () => {
-      unlock();
+      activate3DMode();
       const dir = this.camera.position.clone().sub(this.controls.target);
       dir.multiplyScalar(1.03); // 3% zoom step for very gradual zoom out
       this.camera.position.copy(this.controls.target).add(dir);
       this.controls.update();
     });
     document.getElementById('model-reset')?.addEventListener('click', () => {
-      unlock();
+      activate3DMode();
       const isMob = window.innerWidth < 768;
       this.camera.position.set(-44, isMob ? 120 : 80, -14);
       this.controls.target.set(0, 0.5, -9.75);
