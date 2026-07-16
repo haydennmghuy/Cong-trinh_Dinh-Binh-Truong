@@ -1796,7 +1796,7 @@ html[lang="en"] .hero-title {
     position: relative !important;
     width: 100% !important;
     aspect-ratio: auto !important;
-    padding: 0 16px !important;
+    padding: 20px 16px !important; /* Spacing at top/bottom and left/right */
     box-sizing: border-box !important;
   }
   .model-3d-wrapper {
