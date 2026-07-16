@@ -2225,6 +2225,7 @@ html[lang="en"] .timeline-content p {
   pointer-events: all;
   transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   border-radius: 24px;
+  touch-action: pan-y !important;
 }
 
 @media (max-width: 768px) {

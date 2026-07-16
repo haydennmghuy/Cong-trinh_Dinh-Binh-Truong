@@ -102,6 +102,7 @@ const Temple3D = {
       this.controls.minPolarAngle = initPolar;
       this.controls.maxPolarAngle = initPolar;
       this.controls.domElement.style.touchAction = 'pan-y';
+      this.controls.enabled = false; // Disable controls initially on mobile to allow scroll
     } else {
       this.controls.maxPolarAngle = Math.PI / 2.1;
     }
@@ -129,6 +130,7 @@ const Temple3D = {
       if (touchOverlay) touchOverlay.classList.add('hidden');
       if (lockScrollBtn) lockScrollBtn.classList.remove('hidden');
       
+      this.controls.enabled = true; // Enable OrbitControls to allow interaction
       this.controls.minPolarAngle = 0;
       this.controls.maxPolarAngle = Math.PI / 2.15;
       this.controls.enableRotate = true;
@@ -152,6 +154,7 @@ const Temple3D = {
         this.controls.enableRotate = false;
         this.controls.enableZoom = false;
         this.controls.update();
+        this.controls.enabled = false; // Disable controls completely to release touch events for browser scrolling
         this.controls.domElement.style.touchAction = 'pan-y';
         this.controlsLocked = true;
       }
