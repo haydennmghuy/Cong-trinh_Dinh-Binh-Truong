@@ -229,7 +229,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.46.85`,
+      `${path}?v=3.46.86`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -556,12 +556,30 @@ const Temple3D = {
     // Store models array on instance
     this.allModels = allModels;
 
+    // Detect if inside in-app browser (Zalo, Messenger, Facebook, Instagram webviews)
+    const isInAppBrowser = /Zalo|FBAN|FBAV|Messenger|Instagram/i.test(navigator.userAgent);
+
     if (isMobile) {
-      // By default on mobile, only load 6 essential models (~8MB) to prevent in-app browser crash
-      const initialModels = allModels.slice(0, 6);
+      let initialModels = [];
+      
+      if (isInAppBrowser) {
+        // Zalo/Messenger: Hide Stage, Kitchen & WC, Side Gate, Flagpole, Lake (to prevent OOM crash)
+        initialModels = allModels.filter(m => {
+          const path = m[0];
+          return !path.includes('San_khau') &&
+                 !path.includes('Toa_nha_bep_va_toa_WC') &&
+                 !path.includes('Cong_nho_ben_phai') &&
+                 !path.includes('Cot_co_Viet_Nam') &&
+                 !path.includes('Ho_Thuy_Ta');
+        });
+      } else {
+        // Mobile Safari/Chrome: Load all 15 models!
+        initialModels = allModels;
+      }
+      
       this.totalModels = initialModels.length;
 
-      // Stagger: load initial 6 models with 500ms gaps
+      // Stagger: load models with 500ms gaps
       let idx = 0;
       const loadNextInitial = () => {
         if (idx < initialModels.length) {
@@ -572,46 +590,66 @@ const Temple3D = {
       };
       loadNextInitial();
 
-      // Show the button to load more models
-      const btn = document.getElementById('btn-load-full-3d');
+      // Show/Hide webview escape button
+      const btn = document.getElementById('btn-escape-webview');
       if (btn) {
-        btn.classList.remove('hidden');
-        btn.addEventListener('click', () => {
-          btn.disabled = true;
-          const textEl = btn.querySelector('.btn-text');
-          if (textEl) textEl.textContent = 'Đang tải thêm...';
-          
-          // Load remaining 9 models staggered
-          const remainingModels = this.allModels.slice(6);
-          let remIdx = 0;
-          let loadedRemCount = 0;
-          
-          const loadNextRemaining = () => {
-            if (remIdx < remainingModels.length) {
-              const m = remainingModels[remIdx++];
-              this.loadGLBModel(m[0], m[1], m[2], m[3], m[4], m[5], () => {
-                loadedRemCount++;
-                if (loadedRemCount === remainingModels.length) {
-                  // All remaining models loaded, fade out and hide button
-                  btn.style.opacity = '0';
-                  setTimeout(() => btn.classList.add('hidden'), 500);
-                }
-              });
-              setTimeout(loadNextRemaining, 500);
+        if (isInAppBrowser) {
+          btn.classList.remove('hidden');
+          btn.addEventListener('click', () => {
+            const url = window.location.href;
+            const isAndroid = /Android/i.test(navigator.userAgent);
+            
+            if (isAndroid) {
+              // Escape to native Chrome on Android automatically
+              window.location.href = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;action=android.intent.action.VIEW;end`;
+            } else {
+              // iOS (Zalo/Messenger): Show beautiful fullscreen instruction overlay
+              this.showEscapeOverlay();
             }
-          };
-          loadNextRemaining();
-        });
+          });
+        } else {
+          btn.classList.add('hidden');
+        }
       }
     } else {
       // Desktop: load all 15 in parallel
       this.totalModels = allModels.length;
       allModels.forEach(m => this.loadGLBModel(m[0], m[1], m[2], m[3], m[4], m[5]));
       
-      // Hide the load more button on desktop
-      const btn = document.getElementById('btn-load-full-3d');
+      // Hide the redirect button on desktop
+      const btn = document.getElementById('btn-escape-webview');
       if (btn) btn.classList.add('hidden');
     }
+  },
+
+  showEscapeOverlay() {
+    // Prevent duplicate overlays
+    if (document.getElementById('escape-guide-overlay')) return;
+
+    const overlay = document.createElement('div');
+    overlay.id = 'escape-guide-overlay';
+    overlay.className = 'escape-overlay';
+    
+    const isZalo = /Zalo/i.test(navigator.userAgent);
+    const instructionText = isZalo 
+      ? 'Vui lòng nhấn biểu tượng <b>ba dấu chấm (...)</b> ở góc trên cùng bên phải màn hình, chọn <b>"Mở bằng trình duyệt Safari/Chrome"</b> để hiển thị đầy đủ bản đồ 3D.'
+      : 'Vui lòng nhấn biểu tượng <b>ba dấu chấm (...)</b> hoặc <b>biểu tượng chia sẻ</b>, chọn <b>"Mở bằng trình duyệt"</b> (Open in Browser) để hiển thị đầy đủ bản đồ 3D.';
+
+    overlay.innerHTML = `
+      <div class="escape-overlay-inner">
+        <div class="escape-arrow">↑</div>
+        <div class="escape-title">MỞ BẰNG TRÌNH DUYỆT NGOÀI</div>
+        <div class="escape-step">${instructionText}</div>
+        <button class="escape-close-btn">Đóng hướng dẫn</button>
+      </div>
+    `;
+
+    overlay.querySelector('.escape-close-btn').addEventListener('click', () => {
+      overlay.style.opacity = '0';
+      setTimeout(() => overlay.remove(), 300);
+    });
+
+    document.body.appendChild(overlay);
   },
 
   buildFence() {

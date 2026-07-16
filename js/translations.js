@@ -98,7 +98,7 @@ var TRANSLATIONS = {
       title: "3D",
       body: "Khám phá khuôn viên di tích Đình Bình Trường qua mô hình 3D tương tác. Sử dụng các điểm nổi bật hoặc xoay mô hình để tìm hiểu thông tin kiến trúc chi tiết từng khu vực.",
       touch_interact_title: "Chạm để xoay 3D (360°)",
-      load_more: "Hiện thêm công trình phụ (+9)",
+      view_full: "Xem toàn cảnh (Mở trình duyệt)",
       touch_interact_sub: "Tap to interact & rotate 3D",
       lock_scroll_btn: "Khóa xoay để cuộn trang"
     },
@@ -251,7 +251,7 @@ var TRANSLATIONS = {
       title: "3D",
       body: "Explore the Binh Truong Communal House grounds through our interactive 3D map. Click on hot spots or drag the model to learn about the architectural features of each area.",
       touch_interact_title: "Tap to Rotate 3D (360°)",
-      load_more: "Show more structures (+9)",
+      view_full: "View full landscape (Open browser)",
       touch_interact_sub: "Unlock full vertical & horizontal rotation",
       lock_scroll_btn: "Lock rotation to scroll page"
     },

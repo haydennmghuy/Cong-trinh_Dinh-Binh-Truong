@@ -2331,4 +2331,65 @@ html[lang="en"] .timeline-content p {
   display: none !important;
 }
 
+/* Webview escape overlay */
+.escape-overlay {
+  position: fixed; inset: 0; z-index: 999999;
+  background: rgba(15, 15, 27, 0.95);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+  font-family: var(--font-heading);
+  animation: fadeIn 0.3s ease;
+  transition: opacity 0.3s ease;
+}
+.escape-overlay-inner {
+  max-width: 450px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.escape-arrow {
+  font-size: 3.5rem;
+  color: var(--accent-gold);
+  animation: bounce 1.5s infinite;
+  line-height: 1;
+}
+.escape-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.escape-step {
+  line-height: 1.8;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+.escape-close-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 8px 24px;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.2s ease;
+}
+.escape-close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #fff;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
 
