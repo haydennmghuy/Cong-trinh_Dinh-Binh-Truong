@@ -421,26 +421,16 @@ html[lang="en"] .hero-title {
   left: 24px !important;
   z-index: 12 !important; /* Under modal, above controls */
   pointer-events: none !important;
-  background: rgba(15, 22, 38, 0.85) !important;
-  backdrop-filter: blur(12px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
-  border: 1px solid rgba(212, 175, 55, 0.35) !important;
-  border-radius: 30px !important;
-  padding: 6px 18px !important;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
-  display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
 }
 .model3d-embedded-title h2 {
   color: #D4AF37 !important;
-  font-size: 1.05rem !important;
+  font-size: 1.5rem !important; /* Elegant size */
   font-weight: 700 !important;
   font-family: var(--font-display);
   margin: 0 !important;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45) !important; /* High contrast against sky background */
 }
 
 .model3d-viewer-col {
@@ -1790,10 +1780,10 @@ html[lang="en"] .hero-title {
   .model3d-embedded-title {
     top: 14px !important;
     left: 14px !important;
-    padding: 4px 12px !important;
+    padding: 0 !important;
   }
   .model3d-embedded-title h2 {
-    font-size: 0.85rem !important;
+    font-size: 1.10rem !important;
   }
   .model3d-info-col {
     display: none !important;
