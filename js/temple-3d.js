@@ -315,12 +315,30 @@ const Temple3D = {
 
   updateLoadingProgress() {
     this.loadedModels_count++;
+    
+    const bar = document.getElementById('temple-loading-bar');
+    const percent = document.getElementById('temple-loading-percent');
+    if (bar || percent) {
+      const pct = Math.min(100, Math.round((this.loadedModels_count / this.totalModels) * 100));
+      if (bar) bar.style.width = pct + '%';
+      if (percent) percent.textContent = pct;
+    }
+
+    if (this.loadedModels_count >= this.totalModels) {
+      const overlay = document.getElementById('temple-loading-overlay');
+      if (overlay) {
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+          overlay.classList.add('hidden');
+        }, 500);
+      }
+    }
   },
 
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.46.98`,
+      `${path}?v=3.46.99`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -498,6 +516,7 @@ const Temple3D = {
       undefined,
       (error) => {
         console.error('Error loading GLB model:', path, error);
+        if (onLoaded) onLoaded(null);
         this.updateLoadingProgress(); // Still count failed loads for progress
       }
     );
@@ -669,25 +688,23 @@ const Temple3D = {
     this.addMonuments();
     this.addTrees();
 
-    // === LOAD GLB MODELS ===
-    // Desktop: all 15 models in parallel (~35MB)
-    // Mobile: only 6 essential models (~8MB) to prevent browser crash
+    // Sort models by size & importance to load central structural components first
     const allModels = [
-      ['models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, Math.PI, 1.0],        // 740KB - Main temple
-      ['models/Cong_Tam_Quan.glb', -24.0, 0, 5.5, 0, 1.0],                          // 2.6MB - Front gate
-      ['models/Tien_Dien.glb', 11.5, 0, -10.0, 0, 1.0],                             // 5.3MB - Front hall
+      ['models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, Math.PI, 1.0],        // 740KB - Central/Main temple
       ['models/Cot_co_Viet_Nam.glb', -9.0, 0, -10.0, 0, 1.0],                       // 560KB - Flag pole
       ['models/Nha_tho_Bac_Ho.glb', 18.5, 0, -27.5, -Math.PI / 2, 1.0],             // 620KB - Ho Chi Minh shrine
-      ['models/Cong_nho_ben_phai.glb', 14.0, 0, 5.5, 0, 1.0],                       // 1.5MB - Side gate
-      ['models/Ho_Thuy_Ta.glb', -26.5, 0, -13.0, Math.PI / 2, 1.0],                 // 2MB
-      ['models/San_khau.glb', -4.5, 0, -19.5, 0, 1.0],                              // 1.3MB
-      ['models/Bia_ghi_nhan_di_tich.glb', -9.0, 0, -1.0, 0, 1.0],                   // 2.1MB
-      ['models/Mieu_Ba_Ngu_Hanh.glb', -15.0, 0, -15.0, Math.PI / 2, 1.0],           // 3.1MB
-      ['models/Ban_Than_Nong.glb', -15.0, 0, -10.0, Math.PI / 2, 1.0],              // 3.1MB
-      ['models/Mieu_Bach_Ma.glb', -15.0, 0, -5.0, Math.PI / 2, 1.0],               // 3.2MB
-      ['models/Mieu_tho_Than_Ho.glb', -21.5, 0, -10.0, -Math.PI / 2, 1.0],          // 3.2MB
-      ['models/Bia_ghi_cong.glb', -15.0, 0, -20.0, Math.PI / 2, 1.0],              // 3.3MB
-      ['models/Toa_nha_bep_va_toa_WC.glb', 24.5, 0, -19.5, -Math.PI / 2, 1.0],     // 2.1MB
+      ['models/Cong_Tam_Quan.glb', -24.0, 0, 5.5, 0, 1.0],                          // 2.6MB - Front gate
+      ['models/Tien_Dien.glb', 11.5, 0, -10.0, 0, 1.0],                             // 5.3MB - Front hall
+      ['models/Bia_ghi_nhan_di_tich.glb', -9.0, 0, -1.0, 0, 1.0],                   // 2.1MB - Monument tablet
+      ['models/Ban_Than_Nong.glb', -15.0, 0, -10.0, Math.PI / 2, 1.0],              // 3.1MB - Than Nong altar
+      ['models/Mieu_Ba_Ngu_Hanh.glb', -15.0, 0, -15.0, Math.PI / 2, 1.0],           // 3.1MB - Ba Ngu Hanh temple
+      ['models/Mieu_tho_Than_Ho.glb', -21.5, 0, -10.0, -Math.PI / 2, 1.0],          // 3.2MB - Tiger temple
+      ['models/Mieu_Bach_Ma.glb', -15.0, 0, -5.0, Math.PI / 2, 1.0],               // 3.2MB - White Horse temple
+      ['models/Bia_ghi_cong.glb', -15.0, 0, -20.0, Math.PI / 2, 1.0],              // 3.3MB - Memorial stele
+      ['models/Ho_Thuy_Ta.glb', -26.5, 0, -13.0, Math.PI / 2, 1.0],                 // 2MB - Pond house (secondary)
+      ['models/San_khau.glb', -4.5, 0, -19.5, 0, 1.0],                              // 1.3MB - Stage (secondary)
+      ['models/Cong_nho_ben_phai.glb', 14.0, 0, 5.5, 0, 1.0],                       // 1.5MB - Side gate (secondary)
+      ['models/Toa_nha_bep_va_toa_WC.glb', 24.5, 0, -19.5, -Math.PI / 2, 1.0],     // 2.1MB - Kitchen & WC (secondary)
     ];
 
     // Store models array on instance
@@ -696,10 +713,11 @@ const Temple3D = {
     // Detect if inside in-app browser (Zalo, Messenger, Facebook, Instagram webviews)
     const isInAppBrowser = /Zalo|FBAN|FBAV|Messenger|Instagram/i.test(navigator.userAgent);
 
+    let modelsToLoad = [];
     if (isMobile) {
       // Mobile (Safari, Chrome, and Zalo/Messenger WebView):
       // Load all models EXCEPT the 5 models requested to be hidden to prevent OOM.
-      const initialModels = allModels.filter(m => {
+      modelsToLoad = allModels.filter(m => {
         const path = m[0];
         return !path.includes('Ho_Thuy_Ta') &&
                !path.includes('San_khau') &&
@@ -707,49 +725,63 @@ const Temple3D = {
                !path.includes('Cong_nho_ben_phai') &&
                !path.includes('Cot_co_Viet_Nam');
       });
-      
-      this.totalModels = initialModels.length;
-
-      // Stagger: load models with 500ms gaps
-      let idx = 0;
-      const loadNextInitial = () => {
-        if (idx < initialModels.length) {
-          const m = initialModels[idx++];
-          this.loadGLBModel(m[0], m[1], m[2], m[3], m[4], m[5]);
-          setTimeout(loadNextInitial, 500);
-        }
-      };
-      loadNextInitial();
-
-      // Show/Hide webview escape button
-      const btn = document.getElementById('btn-escape-webview');
-      if (btn) {
-        if (isInAppBrowser) {
-          btn.classList.remove('hidden');
-          btn.addEventListener('click', () => {
-            const url = window.location.href;
-            const isAndroid = /Android/i.test(navigator.userAgent);
-            
-            if (isAndroid) {
-              // Escape to native Chrome on Android automatically
-              window.location.href = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;action=android.intent.action.VIEW;end`;
-            } else {
-              // iOS (Zalo/Messenger): Show beautiful fullscreen instruction overlay
-              this.showEscapeOverlay();
-            }
-          });
-        } else {
-          btn.classList.add('hidden');
-        }
-      }
     } else {
-      // Desktop: load all 15 in parallel
-      this.totalModels = allModels.length;
-      allModels.forEach(m => this.loadGLBModel(m[0], m[1], m[2], m[3], m[4], m[5]));
-      
-      // Hide the redirect button on desktop
-      const btn = document.getElementById('btn-escape-webview');
-      if (btn) btn.classList.add('hidden');
+      modelsToLoad = allModels;
+    }
+
+    this.totalModels = modelsToLoad.length;
+    this.loadedModels_count = 0;
+
+    // Reset overlay elements if they exist
+    const bar = document.getElementById('temple-loading-bar');
+    const percent = document.getElementById('temple-loading-percent');
+    const overlay = document.getElementById('temple-loading-overlay');
+    if (bar) bar.style.width = '0%';
+    if (percent) percent.textContent = '0';
+    if (overlay) {
+      overlay.style.opacity = '1';
+      overlay.classList.remove('hidden');
+    }
+
+    // Queue loader (concurrency-limited)
+    // Mobile WebViews are very fragile, so load 1 at a time; Desktop can handle 3 in parallel
+    const concurrency = isMobile ? 1 : 3;
+    let running = 0;
+    let idx = 0;
+
+    const loadNext = () => {
+      if (idx >= modelsToLoad.length && running === 0) {
+        return;
+      }
+      while (running < concurrency && idx < modelsToLoad.length) {
+        const m = modelsToLoad[idx++];
+        running++;
+        this.loadGLBModel(m[0], m[1], m[2], m[3], m[4], m[5], () => {
+          running--;
+          loadNext();
+        });
+      }
+    };
+    loadNext();
+
+    // Show/Hide webview escape button
+    const btn = document.getElementById('btn-escape-webview');
+    if (btn) {
+      if (isMobile && isInAppBrowser) {
+        btn.classList.remove('hidden');
+        btn.addEventListener('click', () => {
+          const url = window.location.href;
+          const isAndroid = /Android/i.test(navigator.userAgent);
+          
+          if (isAndroid) {
+            window.location.href = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;action=android.intent.action.VIEW;end`;
+          } else {
+            this.showEscapeOverlay();
+          }
+        });
+      } else {
+        btn.classList.add('hidden');
+      }
     }
   },
 
