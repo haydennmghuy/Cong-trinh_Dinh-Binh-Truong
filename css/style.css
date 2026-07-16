@@ -480,11 +480,12 @@ html[lang="en"] .hero-title {
   height: 650px !important;
   aspect-ratio: auto !important;
   background: linear-gradient(180deg, #AEE0FA 0%, #E0F5E9 100%) !important;
-  border-radius: 16px !important;
+  border-radius: 24px !important;
   overflow: hidden;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08) !important;
   position: relative;
-  border: none !important;
+  border: 2px solid rgba(133, 199, 242, 0.9) !important;
+  box-sizing: border-box !important;
 }
 
 .model-3d-wrapper canvas {
@@ -1779,10 +1780,14 @@ html[lang="en"] .hero-title {
     position: relative !important;
     width: 100% !important;
     aspect-ratio: auto !important;
+    padding: 0 16px !important;
+    box-sizing: border-box !important;
   }
   .model-3d-wrapper {
     height: 480px !important;
-    border-radius: 0 !important;
+    border-radius: 20px !important;
+    border: 2px solid rgba(133, 199, 242, 0.9) !important;
+    box-sizing: border-box !important;
   }
   .model3d-title-col {
     position: relative !important;
@@ -2219,12 +2224,12 @@ html[lang="en"] .timeline-content p {
   opacity: 1;
   pointer-events: all;
   transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border-radius: 16px;
+  border-radius: 24px;
 }
 
 @media (max-width: 768px) {
   .model-3d-touch-overlay {
-    border-radius: 0 !important; /* Full bleed on mobile */
+    border-radius: 20px !important;
   }
 }
 
@@ -2362,53 +2367,4 @@ html[lang="en"] .timeline-content p {
   }
 }
 
-/* =====================================================================
-   GOLDEN FRAMING CORNERS OVERLAYS (MATCHING USER REFERENCE IMAGE)
-   ===================================================================== */
-.model-3d-frame-corner {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  z-index: 12;
-  pointer-events: none; /* Let clicks pass through to canvas/hotspots */
-  transition: all 0.3s ease;
-}
-.model-3d-frame-corner.top-left {
-  top: 24px;
-  left: 24px;
-  border-top: 3px solid rgba(212, 175, 55, 0.9);
-  border-left: 3px solid rgba(212, 175, 55, 0.9);
-  border-radius: 4px 0 0 0;
-}
-.model-3d-frame-corner.top-right {
-  top: 24px;
-  right: 24px;
-  border-top: 3px solid rgba(212, 175, 55, 0.9);
-  border-right: 3px solid rgba(212, 175, 55, 0.9);
-  border-radius: 0 4px 0 0;
-}
-.model-3d-frame-corner.bottom-left {
-  bottom: 24px;
-  left: 24px;
-  border-bottom: 3px solid rgba(212, 175, 55, 0.9);
-  border-left: 3px solid rgba(212, 175, 55, 0.9);
-  border-radius: 0 0 0 4px;
-}
-.model-3d-frame-corner.bottom-right {
-  bottom: 24px;
-  right: 24px;
-  border-bottom: 3px solid rgba(212, 175, 55, 0.9);
-  border-right: 3px solid rgba(212, 175, 55, 0.9);
-  border-radius: 0 0 4px 0;
-}
 
-@media (max-width: 768px) {
-  .model-3d-frame-corner {
-    width: 18px;
-    height: 18px;
-  }
-  .model-3d-frame-corner.top-left { top: 16px; left: 16px; }
-  .model-3d-frame-corner.top-right { top: 16px; right: 16px; }
-  .model-3d-frame-corner.bottom-left { bottom: 16px; left: 16px; }
-  .model-3d-frame-corner.bottom-right { bottom: 16px; right: 16px; }
-}
