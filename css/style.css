@@ -1771,7 +1771,7 @@ html[lang="en"] .hero-title {
     box-sizing: border-box !important;
   }
   .model-3d-wrapper {
-    height: 480px !important;
+    height: 350px !important;
     border-radius: 20px !important;
     border: 2px solid rgba(133, 199, 242, 0.9) !important;
     box-sizing: border-box !important;
@@ -2181,119 +2181,7 @@ html[lang="en"] .timeline-content p {
   text-align: justify !important;
 }
 
-/* =====================================================================
-   3D VIEW INTERACTIVE HELPER OVERLAYS
-   ===================================================================== */
-.model-3d-touch-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(34, 30, 26, 0.55);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 15;
-  cursor: pointer;
-  opacity: 1;
-  pointer-events: all;
-  transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border-radius: 24px;
-  touch-action: pan-y !important;
-}
 
-@media (max-width: 768px) {
-  .model-3d-touch-overlay {
-    border-radius: 20px !important;
-  }
-}
-
-.model-3d-touch-overlay.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.touch-overlay-content {
-  text-align: center;
-  color: var(--white);
-  padding: 1.25rem 1.5rem;
-  background: rgba(44, 30, 22, 0.9);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  border-radius: 16px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
-  max-width: 260px;
-  transform: scale(1);
-  transition: transform 0.3s ease;
-}
-
-.model-3d-touch-overlay:hover .touch-overlay-content {
-  transform: scale(1.03);
-  border-color: rgba(212, 175, 55, 0.6);
-}
-
-.touch-icon {
-  margin-bottom: 0.6rem;
-  animation: pulse-rotate 2.5s infinite ease-in-out;
-}
-
-@keyframes pulse-rotate {
-  0% { transform: scale(1) rotate(0deg); opacity: 0.9; }
-  50% { transform: scale(1.08) rotate(15deg); opacity: 1; filter: drop-shadow(0 0 8px rgba(212,175,55,0.6)); }
-  100% { transform: scale(1) rotate(0deg); opacity: 0.9; }
-}
-
-.touch-title {
-  font-family: var(--font-heading);
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--accent-gold);
-  margin-bottom: 0.2rem;
-  letter-spacing: 0.02em;
-}
-
-.touch-subtitle {
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Floating lock scroll button */
-.model-3d-lock-scroll {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 18;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0.45rem 0.9rem;
-  background: rgba(44, 30, 22, 0.92);
-  border: 1px solid var(--accent-gold);
-  color: var(--accent-gold);
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 0.75rem;
-  border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.model-3d-lock-scroll svg {
-  stroke: var(--accent-gold);
-}
-
-.model-3d-lock-scroll:hover {
-  background: var(--accent-gold);
-  color: var(--forest-dark);
-  transform: translateY(-2px);
-}
-.model-3d-lock-scroll:hover svg {
-  stroke: var(--forest-dark);
-}
-
-.model-3d-lock-scroll.hidden {
-  display: none !important;
-}
 
 /* =====================================================================
    COMPACT HOTSPOT MODAL FOR MOBILE

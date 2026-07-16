@@ -65,7 +65,7 @@ const Temple3D = {
 
     // Camera - aligned front-to-back, responsive default zoom (zoomed out on mobile/desktop to fit entire compound)
     this.camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 500);
-    this.camera.position.set(-44, isMobile ? 120 : 80, -14);
+    this.camera.position.set(-30, isMobile ? 80 : 55, -12.5);
     this.camera.lookAt(0, 0.5, -9.75);
 
     // Renderer — use full native DPR for sharp rendering on high-DPI screens
@@ -97,24 +97,24 @@ const Temple3D = {
     this.controls.target.set(0, 0.5, -9.75); // Centered in the middle of the fenced compound
     this.controls.update();
 
-    if (isMobile) {
-      const initPolar = this.controls.getPolarAngle();
-      this.controls.minPolarAngle = initPolar;
-      this.controls.maxPolarAngle = initPolar;
-      this.controls.domElement.style.touchAction = 'pan-y';
-      this.controls.enabled = false; // Disable controls initially on mobile to allow scroll
-    } else {
-      this.controls.maxPolarAngle = Math.PI / 2.1;
-    }
-
+    this.controls.minPolarAngle = 0;
+    this.controls.maxPolarAngle = Math.PI / 2.15;
     this.controls.minDistance = 2;
-    this.controls.maxDistance = 150; // Increased maxDistance to allow zooming out on mobile
-    this.controls.zoomSpeed = 0.85; // Faster zoom response (about 2.8x faster than 0.3)
+    this.controls.maxDistance = 150;
+    this.controls.zoomSpeed = 0.85;
     this.controls.autoRotate = false;
     this.controls.autoRotateSpeed = 0.5;
 
-    // Track last user interaction for idle auto-rotation (10 seconds timeout)
-    this.controlsLocked = true;
+    // Enable controls immediately on all devices
+    this.controls.enabled = true;
+
+    if (isMobile) {
+      // Use pan-y to let browser handle vertical scrolling, while OrbitControls handles horizontal rotating
+      this.controls.domElement.style.touchAction = 'pan-y';
+    } else {
+      this.controls.domElement.style.touchAction = 'none';
+    }
+
     this.lastInteractionTime = Date.now();
 
     const resetIdleTimer = () => {
@@ -124,83 +124,21 @@ const Temple3D = {
       }
     };
 
-    const activate3DMode = () => {
-      const touchOverlay = document.getElementById('model-3d-touch-overlay');
-      const lockScrollBtn = document.getElementById('model-3d-lock-scroll');
-      if (touchOverlay) touchOverlay.classList.add('hidden');
-      if (lockScrollBtn) lockScrollBtn.classList.remove('hidden');
-      
-      this.controls.enabled = true; // Enable OrbitControls to allow interaction
-      this.controls.minPolarAngle = 0;
-      this.controls.maxPolarAngle = Math.PI / 2.15;
-      this.controls.enableRotate = true;
-      this.controls.enableZoom = true;
-      this.controls.update();
-      this.controls.domElement.style.touchAction = 'none';
-      this.controlsLocked = false;
-    };
-
-    const deactivate3DMode = () => {
-      const touchOverlay = document.getElementById('model-3d-touch-overlay');
-      const lockScrollBtn = document.getElementById('model-3d-lock-scroll');
-      if (touchOverlay) touchOverlay.classList.remove('hidden');
-      if (lockScrollBtn) lockScrollBtn.classList.add('hidden');
-      
-      const isMob = window.innerWidth < 768;
-      if (isMob) {
-        const initPolar = this.controls.getPolarAngle();
-        this.controls.minPolarAngle = initPolar;
-        this.controls.maxPolarAngle = initPolar;
-        this.controls.enableRotate = false;
-        this.controls.enableZoom = false;
-        this.controls.update();
-        this.controls.enabled = false; // Disable controls completely to release touch events for browser scrolling
-        this.controls.domElement.style.touchAction = 'pan-y';
-        this.controlsLocked = true;
-      }
-    };
-
-    const unlock = () => {
-      const isMob = window.innerWidth < 768;
-      const touchOverlay = document.getElementById('model-3d-touch-overlay');
-      const isOverlayActive = touchOverlay && !touchOverlay.classList.contains('hidden');
-
-      if (isMob && isOverlayActive) {
-        return; // Prevent touch interaction from hijacking scroll while overlay is visible
-      }
-
-      if (this.controlsLocked) {
-        this.controlsLocked = false;
-        this.controls.enableRotate = true;
-        this.controls.enableZoom = true;
-        this.controls.update();
-      }
-      resetIdleTimer();
-    };
-
-    this.unlockControls = activate3DMode;
+    this.unlockControls = () => {};
 
     this.controls.addEventListener('start', () => {
       this.transitionTargetCam = null;
       this.transitionTargetLookAt = null;
-      unlock();
+      resetIdleTimer();
     });
     this.controls.addEventListener('change', resetIdleTimer);
 
     // Mouse, touch and wheel interaction listeners on the container to reset idle timer
-    this.container.addEventListener('mousedown', unlock);
+    this.container.addEventListener('mousedown', resetIdleTimer);
     this.container.addEventListener('mousemove', resetIdleTimer, { passive: true });
-    this.container.addEventListener('touchstart', unlock, { passive: true });
+    this.container.addEventListener('touchstart', resetIdleTimer, { passive: true });
     this.container.addEventListener('touchmove', resetIdleTimer, { passive: true });
-    this.container.addEventListener('wheel', unlock, { passive: true });
-
-    // Hook overlay interactions
-    const touchOverlay = document.getElementById('model-3d-touch-overlay');
-    const lockScrollBtn = document.getElementById('model-3d-lock-scroll');
-    if (touchOverlay && lockScrollBtn) {
-      touchOverlay.addEventListener('click', activate3DMode);
-      lockScrollBtn.addEventListener('click', deactivate3DMode);
-    }
+    this.container.addEventListener('wheel', resetIdleTimer, { passive: true });
 
     // Lighting
     this.addLighting();
@@ -223,23 +161,20 @@ const Temple3D = {
 
     // Control buttons — dolly toward/away from the controls target
     document.getElementById('model-zoom-in')?.addEventListener('click', () => {
-      activate3DMode();
       const dir = this.camera.position.clone().sub(this.controls.target);
       dir.multiplyScalar(0.93); // Zoom in twice as fast (7% step instead of 3%)
       this.camera.position.copy(this.controls.target).add(dir);
       this.controls.update();
     });
     document.getElementById('model-zoom-out')?.addEventListener('click', () => {
-      activate3DMode();
       const dir = this.camera.position.clone().sub(this.controls.target);
       dir.multiplyScalar(1.07); // Zoom out twice as fast (7% step instead of 3%)
       this.camera.position.copy(this.controls.target).add(dir);
       this.controls.update();
     });
     document.getElementById('model-reset')?.addEventListener('click', () => {
-      activate3DMode();
       const isMob = window.innerWidth < 768;
-      this.camera.position.set(-44, isMob ? 120 : 80, -14);
+      this.camera.position.set(-30, isMob ? 80 : 55, -12.5);
       this.controls.target.set(0, 0.5, -9.75);
       this.controls.update();
     });
@@ -975,7 +910,7 @@ const Temple3D = {
   resetCamera() {
     const isMob = window.innerWidth < 768;
     this.transitionTargetLookAt = new THREE.Vector3(0, 0.5, -9.75);
-    this.transitionTargetCam = new THREE.Vector3(-44, isMob ? 120 : 80, -14);
+    this.transitionTargetCam = new THREE.Vector3(-30, isMob ? 80 : 55, -12.5);
   },
 
   destroy() {
