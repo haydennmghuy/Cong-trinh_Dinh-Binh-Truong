@@ -316,7 +316,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.46.91`,
+      `${path}?v=3.46.92`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -650,14 +650,16 @@ const Temple3D = {
       let initialModels = [];
       
       if (isInAppBrowser) {
-        // Zalo/Messenger: Hide Stage, Kitchen & WC, Side Gate, Flagpole, Lake (to prevent OOM crash)
+        // Zalo/Messenger/Facebook webviews: Load ONLY 3 essential models (total ~3.9MB)
+        // to guarantee 100% no crash due to WebKit memory limits.
+        const allowedInApp = [
+          'Vo_Ca_Vo_Qui_Chanh_Dien.glb',
+          'Cong_Tam_Quan.glb',
+          'Nha_tho_Bac_Ho.glb'
+        ];
         initialModels = allModels.filter(m => {
           const path = m[0];
-          return !path.includes('San_khau') &&
-                 !path.includes('Toa_nha_bep_va_toa_WC') &&
-                 !path.includes('Cong_nho_ben_phai') &&
-                 !path.includes('Cot_co_Viet_Nam') &&
-                 !path.includes('Ho_Thuy_Ta');
+          return allowedInApp.some(name => path.includes(name));
         });
       } else {
         // Mobile Safari/Chrome: Load all 15 models!
