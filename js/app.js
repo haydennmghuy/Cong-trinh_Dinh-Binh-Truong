@@ -25,6 +25,7 @@ const HotspotModal = {
   modalEl: null,
   audio: null,
   isPlaying: false,
+  _openedAt: 0,  // Timestamp when modal was opened (ghost click prevention)
 
   init() {
     this.modalEl = document.getElementById('hotspot-modal');
@@ -35,8 +36,19 @@ const HotspotModal = {
 
     // Close handlers
     document.getElementById('hotspot-modal-close')?.addEventListener('click', () => this.close());
-    this.modalEl.querySelector('.hotspot-modal-overlay')?.addEventListener('click', () => this.close());
+    // Overlay click to close — with ghost-click guard for mobile
+    this.modalEl.querySelector('.hotspot-modal-overlay')?.addEventListener('click', () => {
+      // Ignore clicks that arrive within 400ms of the modal opening
+      // (prevents mobile ghost/phantom click from auto-closing the modal)
+      if (Date.now() - this._openedAt < 400) return;
+      this.close();
+    });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') this.close(); });
+
+    // Prevent touch events on the card from bubbling to the overlay (mobile fix)
+    this.modalEl.querySelector('.hotspot-modal-card-wrapper')?.addEventListener('touchend', (e) => {
+      e.stopPropagation();
+    });
 
     // Play/Pause button
     document.getElementById('hotspot-audio-play-btn')?.addEventListener('click', () => this.toggleAudio());
@@ -138,7 +150,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.45.79';
+        mainImgEl.src = images[0] + '?v=3.46.81';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -255,6 +267,7 @@ const HotspotModal = {
     this.updateContent();
 
     // Show modal
+    this._openedAt = Date.now(); // Record open time for ghost-click prevention
     this.modalEl.classList.add('open');
     document.body.style.overflow = 'hidden';
 
@@ -466,7 +479,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.45.79';
+    const version = '3.46.81';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }

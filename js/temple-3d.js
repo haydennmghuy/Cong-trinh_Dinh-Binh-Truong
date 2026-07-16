@@ -68,12 +68,18 @@ const Temple3D = {
     this.camera.position.set(-30, isMobile ? 80 : 55, -12.5);
     this.camera.lookAt(0, 0.5, -9.75);
 
-    // Renderer — use full native DPR for sharp rendering on high-DPI screens
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    // Renderer — cap DPR on mobile to avoid rendering 9x pixels on 3x screens
+    const mobileDPR = Math.min(window.devicePixelRatio, 1.5);
+    this.renderer = new THREE.WebGLRenderer({
+      antialias: !isMobile, // Disable AA on mobile for performance
+      alpha: true,
+      powerPreference: 'high-performance',
+      precision: isMobile ? 'mediump' : 'highp' // Lower precision on mobile to save GPU memory
+    });
     this.renderer.setSize(w, h);
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = isMobile ? THREE.BasicShadowMap : THREE.PCFSoftShadowMap;
+    this.renderer.setPixelRatio(isMobile ? mobileDPR : window.devicePixelRatio);
+    this.renderer.shadowMap.enabled = !isMobile; // Disable shadows entirely on mobile
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.15;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -181,35 +187,38 @@ const Temple3D = {
   },
 
   addLighting() {
-    // Ambient light - warm
-    const ambient = new THREE.AmbientLight(0xFFF0D0, 0.5);
+    // Ambient light - warm (stronger on mobile to compensate for no shadows)
+    const ambient = new THREE.AmbientLight(0xFFF0D0, isMobile ? 0.8 : 0.5);
     this.scene.add(ambient);
 
     // Main directional light (sun)
     const sun = new THREE.DirectionalLight(0xFFF5E0, 1.2);
     sun.position.set(20, 30, 15);
-    sun.castShadow = true;
-    const shadowRes = isMobile ? 1024 : 2048;
-    sun.shadow.mapSize.width = shadowRes;
-    sun.shadow.mapSize.height = shadowRes;
-    sun.shadow.camera.left = -30;
-    sun.shadow.camera.right = 30;
-    sun.shadow.camera.top = 30;
-    sun.shadow.camera.bottom = -30;
+    sun.castShadow = !isMobile; // No shadow casting on mobile
+    if (!isMobile) {
+      sun.shadow.mapSize.width = 2048;
+      sun.shadow.mapSize.height = 2048;
+      sun.shadow.camera.left = -30;
+      sun.shadow.camera.right = 30;
+      sun.shadow.camera.top = 30;
+      sun.shadow.camera.bottom = -30;
+    }
     this.scene.add(sun);
 
-    // Fill light
-    const fill = new THREE.DirectionalLight(0xB0D0FF, 0.3);
-    fill.position.set(-10, 15, -10);
-    this.scene.add(fill);
+    // Fill light (skip on mobile to reduce draw calls)
+    if (!isMobile) {
+      const fill = new THREE.DirectionalLight(0xB0D0FF, 0.3);
+      fill.position.set(-10, 15, -10);
+      this.scene.add(fill);
 
-    // Rim light
-    const rim = new THREE.DirectionalLight(0xFFE0A0, 0.4);
-    rim.position.set(-15, 10, 20);
-    this.scene.add(rim);
+      // Rim light
+      const rim = new THREE.DirectionalLight(0xFFE0A0, 0.4);
+      rim.position.set(-15, 10, 20);
+      this.scene.add(rim);
+    }
 
     // Hemisphere light
-    const hemi = new THREE.HemisphereLight(0x87CEEB, 0x8B7B60, 0.3);
+    const hemi = new THREE.HemisphereLight(0x87CEEB, 0x8B7B60, isMobile ? 0.5 : 0.3);
     this.scene.add(hemi);
   },
 
@@ -220,7 +229,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.44.0`,
+      `${path}?v=3.46.81`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -234,11 +243,11 @@ const Temple3D = {
 
         model.traverse((node) => {
           if (node.isMesh) {
-            node.castShadow = true;
-            node.receiveShadow = true;
+            node.castShadow = !isMobile; // Skip shadow casting on mobile
+            node.receiveShadow = !isMobile;
             
-            // Sharpen all textures with anisotropic filtering
-            if (node.material) {
+            // Sharpen textures (skip anisotropic filtering on mobile for GPU savings)
+            if (!isMobile && node.material) {
               const mats = Array.isArray(node.material) ? node.material : [node.material];
               mats.forEach(mat => {
                 if (mat.map) { mat.map.anisotropy = maxAniso; mat.map.needsUpdate = true; }
@@ -407,17 +416,17 @@ const Temple3D = {
     const geo = new THREE.BoxGeometry(w, h, d);
     const mesh = new THREE.Mesh(geo, this.mat(color, opts));
     mesh.position.set(x, y, z);
-    mesh.castShadow = true;
-    mesh.receiveShadow = true;
+    mesh.castShadow = !isMobile;
+    mesh.receiveShadow = !isMobile;
     return mesh;
   },
 
   createCylinder(rTop, rBot, h, color, x, y, z, segments = 12) {
-    const geo = new THREE.CylinderGeometry(rTop, rBot, h, segments);
+    const geo = new THREE.CylinderGeometry(rTop, rBot, h, isMobile ? 6 : segments);
     const mesh = new THREE.Mesh(geo, this.mat(color, { roughness: 0.5 }));
     mesh.position.set(x, y, z);
-    mesh.castShadow = true;
-    mesh.receiveShadow = true;
+    mesh.castShadow = !isMobile;
+    mesh.receiveShadow = !isMobile;
     return mesh;
   },
 
@@ -523,22 +532,49 @@ const Temple3D = {
     this.addMonuments();
     this.addTrees();
 
-    // === LOAD ALL GLB MODELS IMMEDIATELY IN PARALLEL ===
-    this.loadGLBModel('models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, Math.PI, 1.0);
-    this.loadGLBModel('models/Tien_Dien.glb', 11.5, 0, -10.0, 0, 1.0);
-    this.loadGLBModel('models/Cong_Tam_Quan.glb', -24.0, 0, 5.5, 0, 1.0);
-    this.loadGLBModel('models/Ho_Thuy_Ta.glb', -26.5, 0, -13.0, Math.PI / 2, 1.0);
-    this.loadGLBModel('models/Cot_co_Viet_Nam.glb', -9.0, 0, -10.0, 0, 1.0);
-    this.loadGLBModel('models/Nha_tho_Bac_Ho.glb', 18.5, 0, -27.5, -Math.PI / 2, 1.0);
-    this.loadGLBModel('models/Cong_nho_ben_phai.glb', 14.0, 0, 5.5, 0, 1.0);
-    this.loadGLBModel('models/San_khau.glb', -4.5, 0, -19.5, 0, 1.0);
-    this.loadGLBModel('models/Bia_ghi_cong.glb', -15.0, 0, -20.0, Math.PI / 2, 1.0);
-    this.loadGLBModel('models/Mieu_Ba_Ngu_Hanh.glb', -15.0, 0, -15.0, Math.PI / 2, 1.0);
-    this.loadGLBModel('models/Ban_Than_Nong.glb', -15.0, 0, -10.0, Math.PI / 2, 1.0);
-    this.loadGLBModel('models/Mieu_Bach_Ma.glb', -15.0, 0, -5.0, Math.PI / 2, 1.0);
-    this.loadGLBModel('models/Mieu_tho_Than_Ho.glb', -21.5, 0, -10.0, -Math.PI / 2, 1.0);
-    this.loadGLBModel('models/Bia_ghi_nhan_di_tich.glb', -9.0, 0, -1.0, 0, 1.0);
-    this.loadGLBModel('models/Toa_nha_bep_va_toa_WC.glb', 24.5, 0, -19.5, -Math.PI / 2, 1.0);
+    // === LOAD GLB MODELS ===
+    // Desktop: all 15 models in parallel (~35MB)
+    // Mobile: only 6 essential models (~8MB) to prevent browser crash
+    const allModels = [
+      ['models/Vo_Ca_Vo_Qui_Chanh_Dien.glb', 1.5, 0, -10.0, Math.PI, 1.0],        // 740KB - Main temple
+      ['models/Cong_Tam_Quan.glb', -24.0, 0, 5.5, 0, 1.0],                          // 2.6MB - Front gate
+      ['models/Tien_Dien.glb', 11.5, 0, -10.0, 0, 1.0],                             // 5.3MB - Front hall
+      ['models/Cot_co_Viet_Nam.glb', -9.0, 0, -10.0, 0, 1.0],                       // 560KB - Flag pole
+      ['models/Nha_tho_Bac_Ho.glb', 18.5, 0, -27.5, -Math.PI / 2, 1.0],             // 620KB - Ho Chi Minh shrine
+      ['models/Cong_nho_ben_phai.glb', 14.0, 0, 5.5, 0, 1.0],                       // 1.5MB - Side gate
+      ['models/Ho_Thuy_Ta.glb', -26.5, 0, -13.0, Math.PI / 2, 1.0],                 // 2MB
+      ['models/San_khau.glb', -4.5, 0, -19.5, 0, 1.0],                              // 1.3MB
+      ['models/Bia_ghi_nhan_di_tich.glb', -9.0, 0, -1.0, 0, 1.0],                   // 2.1MB
+      ['models/Mieu_Ba_Ngu_Hanh.glb', -15.0, 0, -15.0, Math.PI / 2, 1.0],           // 3.1MB
+      ['models/Ban_Than_Nong.glb', -15.0, 0, -10.0, Math.PI / 2, 1.0],              // 3.1MB
+      ['models/Mieu_Bach_Ma.glb', -15.0, 0, -5.0, Math.PI / 2, 1.0],               // 3.2MB
+      ['models/Mieu_tho_Than_Ho.glb', -21.5, 0, -10.0, -Math.PI / 2, 1.0],          // 3.2MB
+      ['models/Bia_ghi_cong.glb', -15.0, 0, -20.0, Math.PI / 2, 1.0],              // 3.3MB
+      ['models/Toa_nha_bep_va_toa_WC.glb', 24.5, 0, -19.5, -Math.PI / 2, 1.0],     // 2.1MB
+    ];
+
+    // Mobile: only load 6 essential buildings (total ~8MB vs ~35MB)
+    // Prioritise the main structures that define the temple silhouette
+    const mobileModels = allModels.slice(0, 6); // Chanh Dien, Cong Tam Quan, Tien Dien, Cot Co, Bac Ho, Cong Nho
+
+    const modelQueue = isMobile ? mobileModels : allModels;
+    this.totalModels = modelQueue.length;
+
+    if (isMobile) {
+      // Stagger: load 1 model at a time with 800ms gaps to prevent memory pressure
+      let idx = 0;
+      const loadNext = () => {
+        if (idx < modelQueue.length) {
+          const m = modelQueue[idx++];
+          this.loadGLBModel(m[0], m[1], m[2], m[3], m[4], m[5]);
+          setTimeout(loadNext, 800);
+        }
+      };
+      loadNext();
+    } else {
+      // Desktop: load all in parallel
+      modelQueue.forEach(m => this.loadGLBModel(m[0], m[1], m[2], m[3], m[4], m[5]));
+    }
   },
 
   buildFence() {
@@ -596,20 +632,22 @@ const Temple3D = {
     this.scene.add(this.createBox(14.5, 0.08, 0.12, C.fenceBars, 22.75, fenceH + 0.04, 5.5, { metalness: 0.5 }));
 
     // Decorative metal fence bars along front walls
-    for (let x = -21.0; x <= 12.0; x += 0.6) {
+    // On mobile: use wider spacing (1.2) to halve mesh count for performance
+    const barStep = isMobile ? 1.2 : 0.6;
+    for (let x = -21.0; x <= 12.0; x += barStep) {
       this.scene.add(this.createBox(0.05, 0.9, 0.05, C.fenceBars, x, 0.65, 5.5, { metalness: 0.5 }));
     }
-    for (let x = 16.0; x <= 29.0; x += 0.6) {
+    for (let x = 16.0; x <= 29.0; x += barStep) {
       this.scene.add(this.createBox(0.05, 0.9, 0.05, C.fenceBars, x, 0.65, 5.5, { metalness: 0.5 }));
     }
 
     // Fence bars along right wall (x = 30)
-    for (let z = -24.5; z <= 5.0; z += 0.6) {
+    for (let z = -24.5; z <= 5.0; z += barStep) {
       this.scene.add(this.createBox(0.05, 0.9, 0.05, C.fenceBars, 30.0, 0.65, z, { metalness: 0.5 }));
     }
 
     // Fence bars along left wall (x = -30, on the main vertical segment z = -25.0 to z = -6.5)
-    for (let z = -24.5; z <= -7.0; z += 0.6) {
+    for (let z = -24.5; z <= -7.0; z += barStep) {
       this.scene.add(this.createBox(0.05, 0.9, 0.05, C.fenceBars, -30.0, 0.65, z, { metalness: 0.5 }));
     }
   },
@@ -773,13 +811,20 @@ const Temple3D = {
     const h = this.container.clientHeight;
     this.camera.aspect = w / h;
     this.camera.updateProjectionMatrix();
-    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.setPixelRatio(isMobile ? Math.min(window.devicePixelRatio, 1.5) : window.devicePixelRatio);
     this.renderer.setSize(w, h);
   },
 
   // ============ ANIMATION ============
   animate() {
     this.animationId = requestAnimationFrame(() => this.animate());
+
+    // Throttle to ~30fps on mobile to reduce GPU load
+    if (isMobile) {
+      const now = performance.now();
+      if (this._lastFrameTime && (now - this._lastFrameTime) < 30) return; // ~33ms = 30fps
+      this._lastFrameTime = now;
+    }
     
     const time = Date.now() * 0.001;
 
