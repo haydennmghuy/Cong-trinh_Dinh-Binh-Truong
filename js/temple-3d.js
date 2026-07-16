@@ -23,6 +23,7 @@ const Temple3D = {
   totalModels: 15,
   loadedModels_count: 0,
   _gltfLoader: null,
+  targetDistance: null,
 
   // Colors from real photos
   COLORS: {
@@ -156,34 +157,61 @@ const Temple3D = {
     this.renderer.domElement.addEventListener('mousemove', (e) => this.onMouseMove(e));
 
     // Prevent page scroll when scrolling the mouse wheel on the 3D viewport
+    // and subtly nudge the controls target towards the point under the mouse cursor
     this.container.addEventListener('wheel', (e) => {
       e.preventDefault();
+      
+      // Raycast to find the point under the mouse
+      this.raycaster.setFromCamera(this.mouse, this.camera);
+      const intersects = this.raycaster.intersectObjects(this.scene.children, true);
+      const valid = intersects.find(i => i.object.isMesh && i.object.name !== 'sky' && i.object.name !== 'grid');
+      if (valid) {
+        // Nudge target towards the intersection point by 6% per wheel tick
+        this.controls.target.lerp(valid.point, 0.06);
+      }
     }, { passive: false });
 
-    // Control buttons — dolly toward/away from the controls target safely
+    // Also support touch pinch-zoom center targeting on mobile
+    this.container.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 2) {
+        const t1 = e.touches[0];
+        const t2 = e.touches[1];
+        const clientX = (t1.clientX + t2.clientX) / 2;
+        const clientY = (t1.clientY + t2.clientY) / 2;
+        
+        const rect = this.renderer.domElement.getBoundingClientRect();
+        const touchX = ((clientX - rect.left) / rect.width) * 2 - 1;
+        const touchY = -((clientY - rect.top) / rect.height) * 2 + 1;
+        
+        this.raycaster.setFromCamera(new THREE.Vector2(touchX, touchY), this.camera);
+        const intersects = this.raycaster.intersectObjects(this.scene.children, true);
+        const valid = intersects.find(i => i.object.isMesh && i.object.name !== 'sky' && i.object.name !== 'grid');
+        if (valid) {
+          // Nudge target towards the pinch center by 4%
+          this.controls.target.lerp(valid.point, 0.04);
+        }
+      }
+    }, { passive: true });
+
+    // Control buttons — dolly toward/away from the controls target safely and gradually
     document.getElementById('model-zoom-in')?.addEventListener('click', () => {
       const dir = this.camera.position.clone().sub(this.controls.target);
       const dist = dir.length();
-      if (dist < 0.1) return; // Prevent divide by zero/NaN
+      if (dist < 0.1) return;
       
-      // Calculate new distance (clamped to minDistance + small offset)
-      const newDist = Math.max(this.controls.minDistance + 0.1, dist * 0.85);
-      dir.setLength(newDist);
-      this.camera.position.copy(this.controls.target).add(dir);
-      this.controls.update();
+      if (this.targetDistance === null) this.targetDistance = dist;
+      this.targetDistance = Math.max(this.controls.minDistance + 0.1, this.targetDistance * 0.80);
     });
     document.getElementById('model-zoom-out')?.addEventListener('click', () => {
       const dir = this.camera.position.clone().sub(this.controls.target);
       const dist = dir.length();
       if (dist < 0.1) return;
       
-      // Calculate new distance (clamped to maxDistance - small offset)
-      const newDist = Math.min(this.controls.maxDistance - 0.1, dist * 1.15);
-      dir.setLength(newDist);
-      this.camera.position.copy(this.controls.target).add(dir);
-      this.controls.update();
+      if (this.targetDistance === null) this.targetDistance = dist;
+      this.targetDistance = Math.min(this.controls.maxDistance - 0.1, this.targetDistance * 1.20);
     });
     document.getElementById('model-reset')?.addEventListener('click', () => {
+      this.targetDistance = null; // Clear animate zoom
       const isMob = window.innerWidth < 768;
       this.camera.position.set(-30, isMob ? 80 : 55, -12.5);
       this.controls.target.set(0, 0.5, -9.75);
@@ -239,7 +267,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.46.89`,
+      `${path}?v=3.46.90`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
@@ -942,6 +970,21 @@ const Temple3D = {
         this.transitionTargetLookAt = null;
       }
     } else {
+      // Smooth zoom distance transitions (buttons)
+      if (this.targetDistance !== null) {
+        const dir = this.camera.position.clone().sub(this.controls.target);
+        const dist = dir.length();
+        const newDist = THREE.MathUtils.lerp(dist, this.targetDistance, 0.12);
+        
+        if (Math.abs(newDist - this.targetDistance) < 0.05) {
+          dir.setLength(this.targetDistance);
+          this.targetDistance = null;
+        } else {
+          dir.setLength(newDist);
+        }
+        this.camera.position.copy(this.controls.target).add(dir);
+      }
+
       if (Date.now() - this.lastInteractionTime > 10000) {
         this.controls.autoRotate = true;
       }
