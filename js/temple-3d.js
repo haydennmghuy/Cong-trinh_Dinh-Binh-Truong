@@ -105,7 +105,7 @@ const Temple3D = {
 
     this.controls.minPolarAngle = 0;
     this.controls.maxPolarAngle = Math.PI / 2.15;
-    this.controls.minDistance = 2;
+    this.controls.minDistance = 5;
     this.controls.maxDistance = 150;
     this.controls.zoomSpeed = 0.85;
     this.controls.autoRotate = false;
@@ -160,16 +160,26 @@ const Temple3D = {
       e.preventDefault();
     }, { passive: false });
 
-    // Control buttons — dolly toward/away from the controls target
+    // Control buttons — dolly toward/away from the controls target safely
     document.getElementById('model-zoom-in')?.addEventListener('click', () => {
       const dir = this.camera.position.clone().sub(this.controls.target);
-      dir.multiplyScalar(0.93); // Zoom in twice as fast (7% step instead of 3%)
+      const dist = dir.length();
+      if (dist < 0.1) return; // Prevent divide by zero/NaN
+      
+      // Calculate new distance (clamped to minDistance + small offset)
+      const newDist = Math.max(this.controls.minDistance + 0.1, dist * 0.85);
+      dir.setLength(newDist);
       this.camera.position.copy(this.controls.target).add(dir);
       this.controls.update();
     });
     document.getElementById('model-zoom-out')?.addEventListener('click', () => {
       const dir = this.camera.position.clone().sub(this.controls.target);
-      dir.multiplyScalar(1.07); // Zoom out twice as fast (7% step instead of 3%)
+      const dist = dir.length();
+      if (dist < 0.1) return;
+      
+      // Calculate new distance (clamped to maxDistance - small offset)
+      const newDist = Math.min(this.controls.maxDistance - 0.1, dist * 1.15);
+      dir.setLength(newDist);
       this.camera.position.copy(this.controls.target).add(dir);
       this.controls.update();
     });
@@ -229,7 +239,7 @@ const Temple3D = {
   loadGLBModel(path, x, y, z, rotY = 0, scale = 1, onLoaded = null) {
     const loader = this._gltfLoader || new GLTFLoader();
     loader.load(
-      `${path}?v=3.46.87`,
+      `${path}?v=3.46.88`,
       (gltf) => {
         const model = gltf.scene;
         model.position.set(x, y, z);
