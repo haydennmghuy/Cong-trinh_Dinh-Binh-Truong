@@ -1,19 +1,19 @@
 const HOTSPOT_IMAGES = {
-  'cong-tam-quan':        ['images/real/cong_tam_quan_real.jpg'],
+  'cong-tam-quan':        ['images/real/cong_tam_quan_real.webp'],
   'cong-nho':             [],
-  'nha-vo-ca':            ['images/real/vo_ca_real.jpg'],
-  'vo-qui':               ['images/real/vo_qui_real.jpg'],
-  'chanh-dien':           ['images/real/chanh_dien_real.jpg'],
-  'tien-dien':            ['images/real/hau_so_real.jpg'],
+  'nha-vo-ca':            ['images/real/vo_ca_real.webp'],
+  'vo-qui':               ['images/real/vo_qui_real.webp'],
+  'chanh-dien':           ['images/real/chanh_dien_real.webp'],
+  'tien-dien':            ['images/real/hau_so_real.webp'],
   'ho-thuy-ta':           [],
-  'bia-tuong-niem':       ['images/real/bia_tuong_niem_real.png'],
-  'bia-di-tich':          ['images/real/bia_di_tich_real.png'],
-  'mieu-bach-ma':         ['images/real/mieu_bach_ma_real.jpg'],
-  'ban-than-nong':        ['images/real/ban_than_nong_real.jpg'],
+  'bia-tuong-niem':       ['images/real/bia_tuong_niem_real.webp'],
+  'bia-di-tich':          ['images/real/bia_di_tich_real.webp'],
+  'mieu-bach-ma':         ['images/real/mieu_bach_ma_real.webp'],
+  'ban-than-nong':        ['images/real/ban_than_nong_real.webp'],
   'mieu-ho':              [],
-  'mieu-ba-ngu-hanh':     ['images/real/mieu_ba_ngu_hanh_real.png'],
+  'mieu-ba-ngu-hanh':     ['images/real/mieu_ba_ngu_hanh_real.webp'],
   'cot-co':               [],
-  'nha-tho-bac-ho':       ['images/real/nha_tho_bac_ho_real.jpg'],
+  'nha-tho-bac-ho':       ['images/real/nha_tho_bac_ho_real.webp'],
   'nha-bep':              [],
   'wc':                   [],
 };
@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.46.97';
+        mainImgEl.src = images[0] + '?v=3.46.98';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -520,7 +520,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.46.97';
+    const version = '3.46.98';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }

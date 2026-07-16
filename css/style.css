@@ -323,7 +323,7 @@ html[lang="en"] .hero-title {
   height: 550px; /* Moderate and perfectly balanced height on desktop */
   width: 100%; /* Full bleed screen width */
   background: linear-gradient(to right, rgba(34, 34, 34, 0.88) 0%, rgba(34, 34, 34, 0.5) 45%, rgba(34, 34, 34, 0) 85%),
-              url('../images/hero_background.jpg?v=3.45.0') no-repeat right center / cover;
+              url('../images/hero_background.webp?v=3.45.0') no-repeat right center / cover;
   color: #FFFFFF;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
 }
@@ -1705,7 +1705,7 @@ html[lang="en"] .hero-title {
     margin: 0 !important;
     border-radius: 0 !important;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.8) 100%),
-                url('../images/hero_background.jpg?v=3.45.0') no-repeat 70% center / cover !important;
+                url('../images/hero_background.webp?v=3.45.0') no-repeat 70% center / cover !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;

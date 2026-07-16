@@ -232,7 +232,7 @@ var MAP_DATA = {
   timeline: [
     {
       year: "1818",
-      image: "images/gallery/gia_dinh_thanh_thong_chi.jpg",
+      image: "images/gallery/gia_dinh_thanh_thong_chi.webp",
       vi: {
         title: "Ghi nhận trong sử sách",
         body: "Đình được chính thức chép lại trong bộ sử 'Gia Định Thành Thông Chí' do học giả Trịnh Hoài Đức biên soạn, khẳng định vị trí lịch sử và vai trò tâm linh từ thời khẩn hoang."
@@ -268,7 +268,7 @@ var MAP_DATA = {
     },
     {
       year: "1955–1975",
-      image: "images/gallery/khang_chien_chong_my_1955_1975.jpg",
+      image: "images/gallery/khang_chien_chong_my_1955_1975.webp",
       vi: {
         title: "Liên lạc kháng chiến chống Mỹ",
         body: "Đình tiếp tục duy trì vai trò trạm liên lạc liên quận, tiếp tế lương thực, nhu yếu phẩm cho các lực lượng bán vũ trang hoạt động trong lòng địch tại Gia Định."
@@ -280,7 +280,7 @@ var MAP_DATA = {
     },
     {
       year: "2005",
-      image: "images/gallery/bang_xep_hang_di_tich.jpg",
+      image: "images/gallery/bang_xep_hang_di_tich.webp",
       vi: {
         title: "Xếp hạng Di tích Cấp Thành phố",
         body: "UBND TP.HCM chính thức công nhận Đình Bình Trường là Di tích Kiến trúc Nghệ thuật cấp Thành phố, bước ngoặt bảo tồn lâu dài các giá trị lịch sử độc đáo."
