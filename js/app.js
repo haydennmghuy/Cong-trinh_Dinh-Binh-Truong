@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.12';
+        mainImgEl.src = images[0] + '?v=3.47.13';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -520,7 +520,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.12';
+    const version = '3.47.13';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
