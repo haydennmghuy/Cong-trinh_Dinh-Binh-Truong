@@ -375,11 +375,13 @@ html[lang="en"] .hero-title {
 .hero-copy .subtitle {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(1.1rem, 2.4vw, 1.45rem);
-  font-weight: 400;
+  font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+  font-weight: 500;
   margin-bottom: 1.8rem;
-  color: #C9A84C; /* Gold color */
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  color: var(--bronze-light, #E8C96A);
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
 }
 
 .hero-copy .lead {
@@ -1742,12 +1744,14 @@ html[lang="en"] .hero-title {
     width: 100%;
   }
   .hero-copy .subtitle {
-    font-size: clamp(0.7rem, 3.2vw, 0.95rem) !important;
+    font-size: clamp(0.68rem, 3vw, 0.9rem) !important;
     margin-bottom: 1.2rem !important;
     text-align: center !important;
-    color: var(--accent-gold) !important;
+    color: var(--bronze-light, #E8C96A) !important;
     width: 100% !important;
     white-space: nowrap !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.02em !important;
   }
   .hero-copy .lead {
     text-align: center !important;
