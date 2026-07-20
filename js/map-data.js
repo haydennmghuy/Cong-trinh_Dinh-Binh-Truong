@@ -237,7 +237,7 @@ var MAP_DATA = {
       image: "",
       vi: {
         title: "Khoảng năm 1808",
-        body: "Đình Bình Trường được xây dựng"
+        body: "Đình Bình Trường được&nbsp;xây&nbsp;dựng"
       },
       en: {
         title: "Around 1808",
@@ -251,7 +251,7 @@ var MAP_DATA = {
       image: "images/real/sac_than_khung_go.webp",
       vi: {
         title: "Năm 1852",
-        body: "Năm thứ 5 đời Vua Tự Đức đã ban sắc phong cho Thần Thành Hoàng thôn (làng) Bình Trường và được thờ cúng tại Đình."
+        body: "Năm thứ 5 đời Vua Tự Đức đã ban sắc phong cho Thần Thành Hoàng thôn (làng) Bình Trường và được thờ&nbsp;cúng&nbsp;tại&nbsp;Đình."
       },
       en: {
         title: "Year 1852",
@@ -265,7 +265,7 @@ var MAP_DATA = {
       image: "",
       vi: {
         title: "Tháng 8 năm 1948",
-        body: "nhằm gây thanh thế cách mạng trong lúc địch đang ra sức bình định, kìm kẹp, đồng chí Nguyễn Chánh Thôn - Bí thư Chi bộ xã Bình Chánh đã chỉ đạo cuộc đột kích nhân dịp đình Bình Trường cúng lễ cầu bông."
+        body: "Nhằm gây thanh thế cách mạng trong lúc địch đang ra sức bình định, kìm kẹp, đồng chí Nguyễn Chánh Thôn - Bí thư Chi bộ xã Bình Chánh đã chỉ đạo cuộc đột kích nhân dịp đình Bình Trường cúng&nbsp;lễ&nbsp;cầu&nbsp;bông."
       },
       en: {
         title: "August 1948",
@@ -279,7 +279,7 @@ var MAP_DATA = {
       image: "",
       vi: {
         title: "Năm 1945 - 1975",
-        body: "Đình Bình Trường là địa điểm liên lạc, hộp thư nhận tin tức của cách mạng"
+        body: "Đình Bình Trường là địa điểm liên lạc, hộp thư nhận tin tức của&nbsp;cách&nbsp;mạng"
       },
       en: {
         title: "Years 1945 - 1975",
@@ -293,7 +293,7 @@ var MAP_DATA = {
       image: "images/gallery/bang_xep_hang_di_tich.webp",
       vi: {
         title: "Năm 2005",
-        body: "Với những nét đẹp lịch sử - văn hóa vốn có của đình làng Nam Bộ, đình Bình Trường đã được Ủy ban nhân dân Thành phố Hồ Chí Minh xếp hạng là di tích kiến trúc nghệ thuật cấp Thành phố theo Quyết định số 21/2005/QĐ-UB ngày 01 tháng 02 năm 2005"
+        body: "Với những nét đẹp lịch sử - văn hóa vốn có của đình làng Nam Bộ, đình Bình Trường đã được Ủy ban nhân dân Thành phố Hồ Chí Minh xếp hạng là di tích kiến trúc nghệ thuật cấp Thành phố theo Quyết&nbsp;định&nbsp;số&nbsp;21/2005/QĐ-UB&nbsp;ngày&nbsp;01&nbsp;tháng&nbsp;02&nbsp;năm&nbsp;2005"
       },
       en: {
         title: "Year 2005",
