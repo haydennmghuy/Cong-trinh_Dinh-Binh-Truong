@@ -122,7 +122,7 @@ var TRANSLATIONS = {
       stat4: "Được xếp hạng Di tích cấp Thành phố",
       card1: {
         title: "Ý nghĩa lịch sử",
-        body: "Là địa&nbsp;điểm liên&nbsp;lạc, hộp&nbsp;thư nhận&nbsp;tin&nbsp;tức của cách&nbsp;mạng, gắn với hoạt&nbsp;động đột&nbsp;kích năm&nbsp;1948 do Bí&nbsp;thư&nbsp;Chi&nbsp;bộ Nguyễn&nbsp;Chánh&nbsp;Thôn chỉ&nbsp;đạo."
+        body: "Là địa điểm liên lạc, hộp thư nhận tin tức<br>của cách mạng, gắn với hoạt động đột kích<br>năm 1948 do Bí thư Chi bộ Nguyễn Chánh Thôn<br>chỉ đạo."
       },
       card2: {
         title: "Giá trị nghệ thuật",
@@ -130,11 +130,11 @@ var TRANSLATIONS = {
       },
       card3: {
         title: "Hiện vật quý báu",
-        body: "Lưu&nbsp;giữ sắc&nbsp;phong vua&nbsp;Tự&nbsp;Đức ban&nbsp;tặng năm&nbsp;1852 cùng các hiện&nbsp;vật chạm&nbsp;khắc gỗ tinh&nbsp;vi, lư&nbsp;đồng cổ và tượng rồng lân bằng gốm&nbsp;sứ."
+        body: "Lưu giữ sắc phong vua Tự Đức ban tặng<br>năm 1852 cùng các hiện vật chạm khắc gỗ<br>tinh vi, lư đồng cổ và tượng rồng lân<br>bằng gốm sứ."
       },
       card4: {
         title: "Lễ hội",
-        body: "Đình&nbsp;Bình&nbsp;Trường hiện còn duy&nbsp;trì ba lễ&nbsp;hội truyền&nbsp;thống được lưu&nbsp;truyền qua nhiều thế&nbsp;hệ, góp phần bảo&nbsp;tồn những giá&nbsp;trị văn&nbsp;hóa và tín&nbsp;ngưỡng đặc&nbsp;sắc của đình&nbsp;làng Nam&nbsp;Bộ gồm: Lễ&nbsp;Kỳ&nbsp;Yên (Lễ&nbsp;Cầu&nbsp;An), Lễ&nbsp;Hạ&nbsp;Điền, Lễ&nbsp;Cầu&nbsp;Bông."
+        body: "Đình Bình Trường hiện còn duy trì ba lễ hội<br>truyền thống được lưu truyền qua nhiều thế hệ,<br>góp phần bảo tồn những giá trị văn hóa<br>và tín ngưỡng đặc sắc của đình làng Nam Bộ<br>gồm: Lễ Kỳ Yên (Lễ Cầu An), Lễ Hạ Điền, Lễ Cầu Bông."
       }
     },
     footer: {
