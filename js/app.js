@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.24';
+        mainImgEl.src = images[0] + '?v=3.47.25';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -433,40 +433,22 @@ const Timeline = {
       timelineSection.dataset.scrollBound = 'true';
       let isCoolingDown = false;
 
-      // Check if timeline section is properly in view before locking scroll
-      const isSectionInView = () => {
-        const rect = timelineSection.getBoundingClientRect();
-        // Section top must be near top of viewport (under fixed header) so whole section card is in full view
-        return rect.top <= 100 && rect.top >= -100;
-      };
-
-      // Reset to milestone 0 as soon as scrolling above the timeline section
-      window.addEventListener('scroll', () => {
-        const rect = timelineSection.getBoundingClientRect();
-        if (rect.top > 120 && this.activeIdx !== 0) {
-          updateActive(0);
-        }
-      }, { passive: true });
-
       timelineSection.addEventListener('wheel', (e) => {
         const total = MAP_DATA.timeline.length;
         if (e.deltaY > 0) { // Scrolling DOWN
           if (this.activeIdx < total - 1) {
-            // Only hijack scroll if section has scrolled into view completely!
-            if (isSectionInView()) {
-              e.preventDefault();
-              if (!isCoolingDown) {
-                isCoolingDown = true;
-                updateActive(this.activeIdx + 1);
-                setTimeout(() => { isCoolingDown = false; }, 400);
-              }
+            e.preventDefault();
+            if (!isCoolingDown) {
+              isCoolingDown = true;
+              updateActive(this.activeIdx + 1);
+              setTimeout(() => { isCoolingDown = false; }, 350);
             }
           }
-          // If activeIdx === total - 1 or not yet in view, allow natural downward page scroll
+          // If activeIdx === total - 1 (last milestone 2005), allow natural page scroll down
         } else if (e.deltaY < 0) { // Scrolling UP
           if (this.activeIdx > 0) {
             updateActive(0); // Instantly return to initial milestone (1808)
-            // Do NOT prevent default: page scrolls up smoothly to section above
+            // Allow natural page scroll up without preventDefault
           }
         }
       }, { passive: false });
@@ -485,17 +467,15 @@ const Timeline = {
         const diffY = startY - currentY;
         const total = MAP_DATA.timeline.length;
 
-        if (Math.abs(diffY) > 35) {
+        if (Math.abs(diffY) > 30) {
           if (diffY > 0) { // Swipe UP -> Scroll DOWN
             if (this.activeIdx < total - 1) {
-              if (isSectionInView()) {
-                if (e.cancelable) e.preventDefault();
-                if (!isCoolingDown) {
-                  isCoolingDown = true;
-                  updateActive(this.activeIdx + 1);
-                  startY = currentY;
-                  setTimeout(() => { isCoolingDown = false; }, 400);
-                }
+              if (e.cancelable) e.preventDefault();
+              if (!isCoolingDown) {
+                isCoolingDown = true;
+                updateActive(this.activeIdx + 1);
+                startY = currentY;
+                setTimeout(() => { isCoolingDown = false; }, 350);
               }
             }
           } else { // Swipe DOWN -> Scroll UP
@@ -657,7 +637,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.24';
+    const version = '3.47.25';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
