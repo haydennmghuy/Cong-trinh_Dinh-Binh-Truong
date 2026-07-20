@@ -387,7 +387,8 @@ html[lang="en"] .hero-title {
 .hero-copy .lead {
   font-size: 0.98rem;
   line-height: 1.8;
-  margin-bottom: 0;
+  margin: 0 auto;
+  text-align: center;
   max-width: 52ch;
   color: rgba(255, 255, 255, 0.88);
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
@@ -2151,12 +2152,11 @@ html[lang="en"] .hero-title {
 .model3d-copy h2,
 .narration-copy h2,
 .gallery-section-wrap .section-title {
-  font-family: var(--font-heading), sans-serif;
+  font-family: var(--font-display), serif;
   font-weight: 700;
-  text-transform: uppercase;
   white-space: nowrap !important;
   font-size: clamp(0.85rem, 3.6vw, 2.2rem) !important;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.02em;
   overflow: visible !important;
 }
 
