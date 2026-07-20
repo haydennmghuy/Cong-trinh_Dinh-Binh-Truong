@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.17';
+        mainImgEl.src = images[0] + '?v=3.47.18';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -332,6 +332,7 @@ const HotspotModal = {
 
 // ===== Timeline =====
 const Timeline = {
+  activeIdx: 0,
   init() {
     this.render();
     document.addEventListener('langchange', () => this.render());
@@ -340,36 +341,102 @@ const Timeline = {
     const container = document.getElementById('timeline-container');
     if (!container) return;
     const lang = i18n.current;
+    
+    // Build the nodes HTML
+    const nodesHtml = MAP_DATA.timeline.map((item, idx) => {
+      const activeClass = idx === this.activeIdx ? 'active' : '';
+      const label = lang === 'vi' ? item.vi.title : item.en.title;
+      
+      // Determine what the label under the dot is.
+      let labelHtml = '';
+      if (item.image) {
+        labelHtml = `<div class="node-label-thumb"><img src="${item.image}" alt="${label}" loading="lazy"></div>`;
+      } else {
+        const textLabel = lang === 'vi' ? item.label : item.labelEn;
+        labelHtml = `<span class="node-label-text">${textLabel}</span>`;
+      }
+      
+      return `
+        <div class="timeline-node ${activeClass}" data-index="${idx}" tabindex="0" role="button" aria-label="Milestone ${item.year}">
+          <div class="node-year">${item.year}</div>
+          <div class="node-dot"></div>
+          <div class="node-label">${labelHtml}</div>
+        </div>
+      `;
+    }).join('');
+
+    // Build the details HTML
+    const detailsHtml = MAP_DATA.timeline.map((item, idx) => {
+      const activeClass = idx === this.activeIdx ? 'active' : '';
+      const langData = item[lang] || {};
+      const imageHtml = item.image ? 
+        `<div class="detail-card-img">
+          <img src="${item.image}" alt="${langData.title || ''}" loading="lazy">
+         </div>` : '';
+      const contentClass = item.image ? 'has-image' : 'no-image';
+      
+      return `
+        <div class="timeline-detail-card ${activeClass} ${contentClass}" data-index="${idx}">
+          ${imageHtml}
+          <div class="detail-card-content">
+            <h3 class="detail-card-title">${langData.title || ''}</h3>
+            <p class="detail-card-text">${langData.body || ''}</p>
+          </div>
+        </div>
+      `;
+    }).join('');
+
     container.innerHTML = `
-      <div class="timeline-spine" aria-hidden="true"></div>
-      ${MAP_DATA.timeline.map((item, i) => {
-        const sideClass = i % 2 === 0 ? 'is-left' : 'is-right';
-        const langData = item[lang] || {};
-        const mediaHtml = item.image ? 
-          `<img src="${item.image}" alt="${langData.title || ''}" loading="lazy" decoding="async" onerror="this.parentElement.innerHTML='<div class=placeholder-image-box><span class=placeholder-icon>📸</span><span class=placeholder-text>${lang === 'vi' ? 'Cần thêm ảnh' : 'Need photo'}</span></div>'" />` :
-          `<div class="placeholder-image-box">
-            <span class="placeholder-icon">📸</span>
-            <span class="placeholder-text">${lang === 'vi' ? 'Cần thêm ảnh' : 'Need photo'}</span>
-          </div>`;
-        return `
-          <article class="timeline-item ${sideClass}" style="animation-delay:${i*0.1}s">
-            <div class="timeline-media">
-              ${mediaHtml}
-            </div>
-            <div class="timeline-content">
-              <span class="timeline-year">${item.year}</span>
-              <h3>${langData.title || ''}</h3>
-              <p>${langData.body || ''}</p>
-            </div>
-          </article>
-        `;
-      }).join('')}
+      <div class="timeline-horizontal-wrap">
+        <div class="timeline-horizontal">
+          <div class="timeline-line"></div>
+          <div class="timeline-line-progress" id="timeline-progress"></div>
+          <div class="timeline-nodes">
+            ${nodesHtml}
+          </div>
+        </div>
+        <div class="timeline-details-container">
+          ${detailsHtml}
+        </div>
+      </div>
     `;
-    const items = container.querySelectorAll('.timeline-item');
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.2 });
-    items.forEach(el => obs.observe(el));
+
+    // Add event listeners
+    const progressEl = container.querySelector('#timeline-progress');
+    const nodes = container.querySelectorAll('.timeline-node');
+    const cards = container.querySelectorAll('.timeline-detail-card');
+
+    const updateActive = (targetIdx) => {
+      this.activeIdx = targetIdx;
+      
+      // Update progress bar width
+      const pct = (targetIdx / (MAP_DATA.timeline.length - 1)) * 100;
+      if (progressEl) progressEl.style.width = `${pct}%`;
+
+      // Update nodes
+      nodes.forEach((node, idx) => {
+        node.classList.toggle('active', idx === targetIdx);
+      });
+
+      // Update cards
+      cards.forEach((card, idx) => {
+        card.classList.toggle('active', idx === targetIdx);
+      });
+    };
+
+    nodes.forEach((node, idx) => {
+      node.addEventListener('click', () => updateActive(idx));
+      node.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          updateActive(idx);
+        }
+      });
+    });
+
+    // Initialize progress bar
+    const initialPct = (this.activeIdx / (MAP_DATA.timeline.length - 1)) * 100;
+    if (progressEl) progressEl.style.width = `${initialPct}%`;
   }
 };
 
@@ -520,7 +587,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.17';
+    const version = '3.47.18';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }

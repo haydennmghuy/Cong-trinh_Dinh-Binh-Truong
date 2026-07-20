@@ -231,63 +231,73 @@ var MAP_DATA = {
   ],
   timeline: [
     {
-      year: "1818",
-      image: "images/gallery/gia_dinh_thanh_thong_chi.webp",
+      year: "1808",
+      label: "Đình được<br>xây dựng",
+      labelEn: "Communal house<br>constructed",
+      image: "",
       vi: {
-        title: "Ghi nhận trong sử sách",
-        body: "Đình được chính thức chép lại trong bộ sử 'Gia Định Thành Thông Chí' do học giả Trịnh Hoài Đức biên soạn, khẳng định vị trí lịch sử và vai trò tâm linh từ thời khẩn hoang."
+        title: "Khoảng năm 1808",
+        body: "Đình Bình Trường được xây dựng"
       },
       en: {
-        title: "Historical Record",
-        body: "The site was formally recorded in the famous book 'Gia Dinh Thanh Thong Chi' by scholar Trinh Hoai Duc, certifying its ancient roots and spiritual status since early colonization."
+        title: "Around 1808",
+        body: "Binh Truong Communal House was constructed"
       }
     },
     {
       year: "1852",
-      image: "images/gallery/gallery-8_new.webp",
+      label: "[ẢNH SẮC]",
+      labelEn: "[DECREE IMAGE]",
+      image: "images/real/sac_than_khung_go.webp",
       vi: {
-        title: "Nhận sắc phong Tự Đức",
-        body: "Vua Tự Đức triều Nguyễn ban sắc phong thần 'Thành Hoàng Bổn Cảnh', công nhận đình thuộc hệ thống thờ tự chính thống của quốc gia và khẳng định địa vị linh thiêng."
+        title: "Năm 1852",
+        body: "Năm thứ 5 đời Vua Tự Đức đã ban sắc phong cho Thần Thành Hoàng thôn (làng) Bình Trường và được thờ cúng tại Đình."
       },
       en: {
-        title: "Royal Decree of Emperor Tu Duc",
-        body: "Emperor Tu Duc of the Nguyen Dynasty officially granted a royal decree declaring the deity of the communal house as the Guardian Spirit, securing its imperial status."
+        title: "Year 1852",
+        body: "In the 5th year of Emperor Tu Duc's reign, the royal decree was granted to the Guardian Spirit of Binh Truong village, worshipped at the communal house."
       }
     },
     {
-      year: "1945–1954",
-      image: "images/gallery/hop_thu_lien_lac_1945_1954.webp",
+      year: "1948",
+      label: "Cuộc đột<br>kích lễ<br>Cầu Bông",
+      labelEn: "Cau Bong<br>festival raid",
+      image: "",
       vi: {
-        title: "Hộp thư liên lạc bí mật",
-        body: "Trong kháng chiến chống Pháp, đình là 'hộp thư bí mật' chuyển giao tin tức, công văn mật, và là nơi dừng chân an toàn của các cán bộ hoạt động bí mật vùng Sài Gòn."
+        title: "Tháng 8 năm 1948",
+        body: "nhằm gây thanh thế cách mạng trong lúc địch đang ra sức bình định, kìm kẹp, đồng chí Nguyễn Chánh Thôn - Bí thư Chi bộ xã Bình Chánh đã chỉ đạo cuộc đột kích nhân dịp đình Bình Trường cúng lễ cầu bông."
       },
       en: {
-        title: "Underground Communication Post",
-        body: "During the anti-French war, the communal house served as a secret liaison post and a safe shelter for intelligence agents and cadres operating in the Saigon region."
+        title: "August 1948",
+        body: "To build revolutionary prestige while the enemy was actively pacifying the region, Comrade Nguyen Chanh Thon - Secretary of the Binh Chanh Party Cell directed a raid during the Cau Bong festival at the temple."
       }
     },
     {
-      year: "1955–1975",
-      image: "images/gallery/khang_chien_chong_my_1955_1975.webp",
+      year: "1945 - 1975",
+      label: "Địa điểm<br>liên lạc<br>cách mạng",
+      labelEn: "Revolutionary<br>liaison post",
+      image: "",
       vi: {
-        title: "Liên lạc kháng chiến chống Mỹ",
-        body: "Đình tiếp tục duy trì vai trò trạm liên lạc liên quận, tiếp tế lương thực, nhu yếu phẩm cho các lực lượng bán vũ trang hoạt động trong lòng địch tại Gia Định."
+        title: "Năm 1945 - 1975",
+        body: "Đình Bình Trường là địa điểm liên lạc, hộp thư nhận tin tức của cách mạng"
       },
       en: {
-        title: "Resistance Support in the US War",
-        body: "The site continued to support local resistance efforts by serving as a hidden supply and contact depot for semi-armed forces operating behind enemy lines."
+        title: "Years 1945 - 1975",
+        body: "Binh Truong Communal House served as a liaison post and secret mailbox for the revolution"
       }
     },
     {
       year: "2005",
+      label: "[ẢNH QUYẾT<br>ĐỊNH]",
+      labelEn: "[DECISION<br>IMAGE]",
       image: "images/gallery/bang_xep_hang_di_tich.webp",
       vi: {
-        title: "Xếp hạng Di tích Cấp Thành phố",
-        body: "UBND TP.HCM chính thức công nhận Đình Bình Trường là Di tích Kiến trúc Nghệ thuật cấp Thành phố, bước ngoặt bảo tồn lâu dài các giá trị lịch sử độc đáo."
+        title: "Năm 2005",
+        body: "Với những nét đẹp lịch sử - văn hóa vốn có của đình làng Nam Bộ, đình Bình Trường đã được Ủy ban nhân dân Thành phố Hồ Chí Minh xếp hạng là di tích kiến trúc nghệ thuật cấp Thành phố theo Quyết định số 21/2005/QĐ-UB ngày 01 tháng 02 năm 2005"
       },
       en: {
-        title: "Designation as City Heritage Site",
-        body: "The HCMC People's Committee officially classified Binh Truong Communal House as a City-level Heritage Site, ensuring the legal and physical preservation of its assets."
+        title: "Year 2005",
+        body: "With its inherent historical and cultural values of Southern communal houses, Binh Truong was classified as a City-level Architectural Artistic Relic by the HCMC People's Committee under Decision No. 21/2005/QD-UB dated February 1, 2005"
       }
     }
   ]
