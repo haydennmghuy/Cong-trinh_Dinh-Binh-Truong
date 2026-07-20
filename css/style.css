@@ -934,7 +934,7 @@ html[lang="en"] .hero-title {
 
 .timeline-horizontal {
   position: relative;
-  margin: 3.5rem 0 5.5rem;
+  margin: 2.5rem 0 3.5rem;
   padding: 0 40px;
 }
 
@@ -942,7 +942,7 @@ html[lang="en"] .hero-title {
   position: absolute;
   left: 80px;
   right: 80px;
-  top: 41px; /* Align perfectly with center of node-dot (node-year ~20px + margin 8px + dot center 10px + border 3px) */
+  top: 36px; /* Center with node-dot (year height ~20px + margin 8px + dot radius 10px) */
   height: 4px;
   background: rgba(212, 175, 55, 0.2);
   z-index: 1;
@@ -952,7 +952,7 @@ html[lang="en"] .hero-title {
 .timeline-line-progress {
   position: absolute;
   left: 80px;
-  top: 41px;
+  top: 36px;
   height: 4px;
   background: var(--bronze);
   z-index: 1;
@@ -1001,7 +1001,6 @@ html[lang="en"] .hero-title {
   border-radius: 50%;
   background: var(--white);
   border: 3px solid rgba(212, 175, 55, 0.4);
-  margin-bottom: 12px;
   z-index: 3;
   transition: all 0.3s ease;
   box-shadow: var(--shadow-soft);
@@ -1021,38 +1020,6 @@ html[lang="en"] .hero-title {
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.node-label {
-  font-size: 0.8rem;
-  color: var(--ink-soft);
-  line-height: 1.4;
-  height: 52px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  transition: color 0.3s ease, font-weight 0.3s ease;
-}
-
-.node-label-text {
-  font-family: var(--font-body);
-  display: inline-block;
-}
-
-.node-label-thumb {
-  width: 52px;
-  height: 38px;
-  border-radius: 4px;
-  overflow: hidden;
-  border: 2px solid rgba(212, 175, 55, 0.4);
-  box-shadow: var(--shadow-soft);
-  transition: all 0.3s ease;
-}
-
-.node-label-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 /* Active milestone node */
 .timeline-node.active .node-year {
   color: var(--forest-dark);
@@ -1062,8 +1029,8 @@ html[lang="en"] .hero-title {
 .timeline-node.active .node-dot {
   background: var(--white);
   border-color: var(--bronze);
-  transform: scale(1.15);
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+  transform: scale(1.2);
+  box-shadow: 0 0 14px rgba(212, 175, 55, 0.7);
 }
 
 .timeline-node.active .node-dot::after {
@@ -1071,21 +1038,10 @@ html[lang="en"] .hero-title {
   transform: translate(-50%, -50%) scale(1);
 }
 
-.timeline-node.active .node-label-text {
-  color: var(--forest-dark);
-  font-weight: 600;
-}
-
-.timeline-node.active .node-label-thumb {
-  border-color: var(--bronze);
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-  transform: scale(1.08);
-}
-
 /* Details container */
 .timeline-details-container {
   position: relative;
-  min-height: 250px;
+  min-height: 280px;
 }
 
 .timeline-detail-card {
@@ -1094,7 +1050,7 @@ html[lang="en"] .hero-title {
   left: 0;
   width: 100%;
   display: none;
-  gap: 2.2rem;
+  gap: 2.5rem;
   background: var(--white);
   border: 1px solid rgba(201, 168, 76, 0.22);
   padding: 2.5rem;
@@ -1103,6 +1059,7 @@ html[lang="en"] .hero-title {
   opacity: 0;
   transform: translateY(15px);
   transition: opacity 0.4s ease, transform 0.4s ease;
+  align-items: center;
 }
 
 .timeline-detail-card.active {
@@ -1113,13 +1070,19 @@ html[lang="en"] .hero-title {
 }
 
 .detail-card-img {
-  flex: 0 0 280px;
-  max-width: 280px;
-  height: 180px;
-  border-radius: 8px;
+  flex: 0 0 420px;
+  max-width: 420px;
+  height: 300px;
+  border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  box-shadow: var(--shadow-soft);
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-card-img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 35px rgba(212, 175, 55, 0.25);
 }
 
 .detail-card-img img {

@@ -259,7 +259,7 @@ var MAP_DATA = {
       }
     },
     {
-      year: "1948",
+      year: "8/1948",
       label: "Cuộc đột<br>kích lễ<br>Cầu Bông",
       labelEn: "Cau Bong<br>festival raid",
       image: "",

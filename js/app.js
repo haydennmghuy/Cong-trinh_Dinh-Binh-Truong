@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.19';
+        mainImgEl.src = images[0] + '?v=3.47.20';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -342,25 +342,14 @@ const Timeline = {
     if (!container) return;
     const lang = i18n.current;
     
-    // Build the nodes HTML
+    // Build the nodes HTML (Year above dot, Dot on line, NO sub-label below)
     const nodesHtml = MAP_DATA.timeline.map((item, idx) => {
       const activeClass = idx === this.activeIdx ? 'active' : '';
-      const label = lang === 'vi' ? item.vi.title : item.en.title;
-      
-      // Determine what the label under the dot is.
-      let labelHtml = '';
-      if (item.image) {
-        labelHtml = `<div class="node-label-thumb"><img src="${item.image}" alt="${label}" loading="lazy"></div>`;
-      } else {
-        const textLabel = lang === 'vi' ? item.label : item.labelEn;
-        labelHtml = `<span class="node-label-text">${textLabel}</span>`;
-      }
       
       return `
         <div class="timeline-node ${activeClass}" data-index="${idx}" tabindex="0" role="button" aria-label="Milestone ${item.year}">
           <div class="node-year">${item.year}</div>
           <div class="node-dot"></div>
-          <div class="node-label">${labelHtml}</div>
         </div>
       `;
     }).join('');
@@ -444,18 +433,28 @@ const Timeline = {
       timelineSection.dataset.scrollBound = 'true';
       let isCoolingDown = false;
 
+      // Check if timeline section is properly in view before locking scroll
+      const isSectionInView = () => {
+        const rect = timelineSection.getBoundingClientRect();
+        // Section top should be comfortably inside or near top of viewport (e.g. <= 150px from top)
+        return rect.top <= 150 && rect.bottom >= window.innerHeight * 0.5;
+      };
+
       timelineSection.addEventListener('wheel', (e) => {
         const total = MAP_DATA.timeline.length;
         if (e.deltaY > 0) { // Scrolling DOWN
           if (this.activeIdx < total - 1) {
-            e.preventDefault();
-            if (!isCoolingDown) {
-              isCoolingDown = true;
-              updateActive(this.activeIdx + 1);
-              setTimeout(() => { isCoolingDown = false; }, 400);
+            // Only hijack scroll if section has scrolled into view completely!
+            if (isSectionInView()) {
+              e.preventDefault();
+              if (!isCoolingDown) {
+                isCoolingDown = true;
+                updateActive(this.activeIdx + 1);
+                setTimeout(() => { isCoolingDown = false; }, 400);
+              }
             }
           }
-          // If activeIdx === total - 1, allow natural downward page scroll
+          // If activeIdx === total - 1 or not yet in view, allow natural downward page scroll
         } else if (e.deltaY < 0) { // Scrolling UP
           if (this.activeIdx > 0) {
             updateActive(0); // Instantly return to initial milestone (1808)
@@ -481,12 +480,14 @@ const Timeline = {
         if (Math.abs(diffY) > 35) {
           if (diffY > 0) { // Swipe UP -> Scroll DOWN
             if (this.activeIdx < total - 1) {
-              if (e.cancelable) e.preventDefault();
-              if (!isCoolingDown) {
-                isCoolingDown = true;
-                updateActive(this.activeIdx + 1);
-                startY = currentY;
-                setTimeout(() => { isCoolingDown = false; }, 400);
+              if (isSectionInView()) {
+                if (e.cancelable) e.preventDefault();
+                if (!isCoolingDown) {
+                  isCoolingDown = true;
+                  updateActive(this.activeIdx + 1);
+                  startY = currentY;
+                  setTimeout(() => { isCoolingDown = false; }, 400);
+                }
               }
             }
           } else { // Swipe DOWN -> Scroll UP
@@ -648,7 +649,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.19';
+    const version = '3.47.20';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
