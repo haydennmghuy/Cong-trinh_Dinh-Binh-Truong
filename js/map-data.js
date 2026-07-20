@@ -234,8 +234,8 @@ var MAP_DATA = {
       year: "1818",
       image: "images/gallery/gia_dinh_thanh_thong_chi.webp",
       vi: {
-        title: "Ghi nhận trong sử sách",
-        body: "Đình được chính thức chép lại trong bộ sử 'Gia Định Thành Thông Chí' do học giả Trịnh Hoài Đức biên soạn, khẳng định vị trí lịch sử và vai trò tâm linh từ thời khẩn hoang."
+        title: "Ghi\xa0nhận trong\xa0sử\xa0sách",
+        body: "Đình được chính thức chép lại trong bộ sử 'Gia\xa0Định Thành\xa0Thông\xa0Chí' do học giả Trịnh\xa0Hoài\xa0Đức biên soạn, khẳng định vị trí lịch\xa0sử và vai trò tâm linh từ thời khẩn hoang."
       },
       en: {
         title: "Historical Record",
@@ -246,8 +246,8 @@ var MAP_DATA = {
       year: "1852",
       image: "images/gallery/gallery-8_new.webp",
       vi: {
-        title: "Nhận sắc phong Tự Đức",
-        body: "Vua Tự Đức triều Nguyễn ban sắc phong thần 'Thành Hoàng Bổn Cảnh', công nhận đình thuộc hệ thống thờ tự chính thống của quốc gia và khẳng định địa vị linh thiêng."
+        title: "Nhận\xa0sắc\xa0phong Tự\xa0Đức",
+        body: "Vua\xa0Tự\xa0Đức triều\xa0Nguyễn ban sắc phong thần 'Thành\xa0Hoàng Bổn\xa0Cảnh', công nhận đình thuộc hệ thống thờ tự chính thống của quốc gia và khẳng định địa vị linh thiêng."
       },
       en: {
         title: "Royal Decree of Emperor Tu Duc",
@@ -258,8 +258,8 @@ var MAP_DATA = {
       year: "1945–1954",
       image: "images/gallery/hop_thu_lien_lac_1945_1954.webp",
       vi: {
-        title: "Hộp thư liên lạc bí mật",
-        body: "Trong kháng chiến chống Pháp, đình là 'hộp thư bí mật' chuyển giao tin tức, công văn mật, và là nơi dừng chân an toàn của các cán bộ hoạt động bí mật vùng Sài Gòn."
+        title: "Hộp\xa0thư liên\xa0lạc bí\xa0mật",
+        body: "Trong kháng\xa0chiến chống\xa0Pháp, đình là 'hộp thư bí mật' chuyển giao tin tức, công văn mật, và là nơi dừng chân an toàn của các cán\xa0bộ hoạt động bí\xa0mật vùng Sài\xa0Gòn."
       },
       en: {
         title: "Underground Communication Post",
@@ -270,8 +270,8 @@ var MAP_DATA = {
       year: "1955–1975",
       image: "images/gallery/khang_chien_chong_my_1955_1975.webp",
       vi: {
-        title: "Liên lạc kháng chiến chống Mỹ",
-        body: "Đình tiếp tục duy trì vai trò trạm liên lạc liên quận, tiếp tế lương thực, nhu yếu phẩm cho các lực lượng bán vũ trang hoạt động trong lòng địch tại Gia Định."
+        title: "Liên\xa0lạc kháng\xa0chiến chống\xa0Mỹ",
+        body: "Đình tiếp tục duy trì vai trò trạm liên lạc liên quận, tiếp tế lương thực, nhu yếu phẩm cho các lực lượng bán vũ trang hoạt động trong lòng địch tại Gia\xa0Định."
       },
       en: {
         title: "Resistance Support in the US War",
@@ -282,8 +282,8 @@ var MAP_DATA = {
       year: "2005",
       image: "images/gallery/bang_xep_hang_di_tich.webp",
       vi: {
-        title: "Xếp hạng Di tích Cấp Thành phố",
-        body: "UBND TP.HCM chính thức công nhận Đình Bình Trường là Di tích Kiến trúc Nghệ thuật cấp Thành phố, bước ngoặt bảo tồn lâu dài các giá trị lịch sử độc đáo."
+        title: "Xếp\xa0hạng Di\xa0tích Cấp\xa0Thành\xa0phố",
+        body: "UBND TP.HCM chính thức công nhận Đình\xa0Bình\xa0Trường là Di\xa0tích Kiến\xa0trúc Nghệ\xa0thuật cấp\xa0Thành\xa0phố, bước ngoặt bảo tồn lâu dài các giá trị lịch\xa0sử độc đáo."
       },
       en: {
         title: "Designation as City Heritage Site",

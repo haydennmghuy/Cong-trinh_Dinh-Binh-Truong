@@ -13,9 +13,9 @@ var TRANSLATIONS = {
       contact: "Liên Hệ"
     },
     hero: {
-      eyebrow: "DI TÍCH KIẾN TRÚC NGHỆ THUẬT CẤP THÀNH PHỐ",
-      title: 'ĐÌNH BÌNH TRƯỜNG',
-      subtitle: "Dấu son văn hóa với thời gian hình thành và phát triển hơn 200 năm",
+      eyebrow: "DI\xa0TÍCH KIẾN\xa0TRÚC NGHỆ\xa0THUẬT CẤP\xa0THÀNH\xa0PHỐ",
+      title: "ĐÌNH\xa0BÌNH\xa0TRƯỜNG",
+      subtitle: "Dấu\xa0son văn\xa0hóa với thời\xa0gian hình\xa0thành và phát\xa0triển hơn\xa0200\xa0năm",
       lead: "Được khởi dựng từ đầu thế&nbsp;kỷ&nbsp;19, ngôi&nbsp;đình đã đồng hành cùng lịch&nbsp;sử thăng&nbsp;trầm của vùng đất Gia&nbsp;Định xưa. Đây là nơi tôn kính Thành&nbsp;Hoàng&nbsp;Bổn&nbsp;Cảnh, lưu giữ sắc&nbsp;phong quý giá triều đình Tự&nbsp;Đức ban tặng năm&nbsp;1852 và từng che chở cho các cán&nbsp;bộ liên&nbsp;lạc cách&nbsp;mạng trong hai cuộc kháng&nbsp;chiến.",
       cta: "Khám phá ngay",
       secondary: "Nghe thuyết minh",
@@ -30,20 +30,20 @@ var TRANSLATIONS = {
       rank_val: "TP.HCM"
     },
     quick_info_title: "THÔNG TIN NHANH",
-    info_location: "Huyện Bình Chánh, TP. Hồ Chí Minh",
+    info_location: "Xã\xa0Bình\xa0Chánh, TP.\xa0Hồ\xa0Chí\xa0Minh",
     info_type_label: "LOẠI HÌNH",
-    info_type: "Di tích kiến trúc nghệ thuật cấp Thành phố",
+    info_type: "Di\xa0tích kiến\xa0trúc nghệ\xa0thuật cấp\xa0Thành\xa0phố",
     info_year_label: "NĂM XÂY",
     info_highlight_label: "GIÁ TRỊ NỔI BẬT",
-    info_highlight: "Kiến trúc đình làng Nam Bộ cổ, lưu giữ sắc phong vua Tự Đức",
+    info_highlight: "Kiến\xa0trúc đình\xa0làng Nam\xa0Bộ cổ, lưu\xa0giữ sắc\xa0phong vua\xa0Tự\xa0Đức",
     info_atmosphere_label: "KHÔNG GIAN",
-    info_atmosphere: "Cổ kính, trang nghiêm, đậm nét văn hóa truyền thống Nam Bộ.",
+    info_atmosphere: "Cổ\xa0kính, trang\xa0nghiêm, đậm\xa0nét văn\xa0hóa truyền\xa0thống Nam\xa0Bộ.",
     festival_label: "Lễ Hội",
     festival_mini_text: "Lễ Lễ Kỳ Yên 16 – 17 tháng Giêng",
     drag_hint: "KÉO ĐỂ XOAY MÔ HÌNH 3D",
     history_title: "Câu chuyện",
-    history_body: "Đình Bình Trường tọa lạc tại xã Bình Chánh, huyện Bình Chánh, TP.HCM, là một trong những cơ sở tín ngưỡng dân gian tiêu biểu của cư dân vùng đất phương Nam. Có thể đoán thời gian đình Bình Trường hình thành và phát triển khoảng 200 năm.",
-    history_body2: "Trong hai cuộc kháng chiến chống Pháp và chống Mỹ, Đình Bình Trường là địa điểm liên lạc, hộp thư nhận tin tức của cách mạng. Tháng 8 năm 1948, chi bộ Đảng xã Bình Chánh chính thức được thành lập và đã chỉ đạo cuộc đột kích tiêu biểu nhân dịp đình cúng lễ Cầu Bông.",
+    history_body: "Đình\xa0Bình\xa0Trường tọa\xa0lạc tại xã\xa0Bình\xa0Chánh, TP.HCM, là một trong những cơ\xa0sở tín\xa0ngưỡng dân\xa0gian tiêu\xa0biểu của cư\xa0dân vùng\xa0đất phương\xa0Nam. Có\xa0thể đoán thời\xa0gian đình\xa0Bình\xa0Trường hình\xa0thành và phát\xa0triển khoảng 200\xa0năm.",
+    history_body2: "Trong hai cuộc kháng\xa0chiến chống\xa0Pháp và chống\xa0Mỹ, Đình\xa0Bình\xa0Trường là địa\xa0điểm liên\xa0lạc, hộp\xa0thư nhận tin\xa0tức của cách\xa0mạng. Tháng\xa08 năm\xa01948, chi\xa0bộ Đảng xã\xa0Bình\xa0Chánh chính\xa0thức được thành\xa0lập và đã chỉ\xa0đạo cuộc đột\xa0kích tiêu\xa0biểu nhân\xa0dịp đình cúng lễ Cầu\xa0Bông.",
     logo_title: "Đình Bình Trường",
     gallery_tag: "HÌNH ẢNH DI TÍCH",
     gallery_link: "Hình ảnh di tích",
@@ -55,7 +55,7 @@ var TRANSLATIONS = {
     detail_architecture: "CHI TIẾT KIẾN TRÚC",
     section_about: "Giới thiệu",
     about_title: "Kiến trúc cổ kính",
-    about_body: "Đến nay chưa có tài liệu ghi rõ năm xây dựng chính thức, nhưng có thể đoán đình được hình thành và phát triển khoảng 200 năm (từ khi có thôn Bình Trường năm 1818).",
+    about_body: "Đến\xa0nay chưa\xa0có tài\xa0liệu ghi\xa0rõ năm\xa0xây\xa0dựng chính\xa0thức, nhưng có\xa0thể đoán đình được hình\xa0thành và phát\xa0triển khoảng 200\xa0năm (từ\xa0khi có thôn Bình\xa0Trường năm\xa01818).",
     section_map: "Bản đồ di tích",
     map_title: "Bản Đồ 3D",
     map_desc: "Tương tác với bản đồ 3D để khám phá chi tiết kiến trúc từng khu vực trong khuôn viên đình.",
@@ -70,17 +70,17 @@ var TRANSLATIONS = {
       card1: {
         date: "Rằm tháng Giêng (15 - 17/01 Âm lịch)",
         title: "Lễ Kỳ Yên",
-        body: "Lễ Kỳ Yên là lễ hội lớn và quan trọng nhất của Đình Bình Trường, được tổ chức hằng năm từ ngày 15 đến ngày 17 tháng Giêng âm lịch. Đây là dịp để người dân địa phương dâng hương, tế lễ Thành Hoàng Bổn Cảnh, cầu mong quốc thái dân an, mưa thuận gió hòa, mùa màng bội thu và cuộc sống bình an, hạnh phúc. Trong thời gian diễn ra lễ hội, nhiều nghi thức tế lễ truyền thống được cử hành trang trọng theo nghi lễ đình làng Nam Bộ. Đặc biệt, đình tổ chức hát bội tại Võ Ca theo quan niệm dân gian \"hát cho Thần xem\", như một hình thức dâng lễ bằng nghệ thuật để bày tỏ lòng thành kính đối với Thành Hoàng, đồng thời góp phần gìn giữ và phát huy giá trị của nghệ thuật sân khấu truyền thống Việt Nam."
+        body: "Lễ Kỳ Yên là lễ hội lớn và quan trọng nhất của Đình\xa0Bình\xa0Trường, được tổ chức hằng năm từ ngày 15 đến ngày 17 tháng Giêng âm lịch. Đây là dịp để người dân địa phương dâng hương, tế lễ Thành\xa0Hoàng Bổn\xa0Cảnh, cầu mong quốc thái dân an, mưa thuận gió hòa, mùa màng bội thu và cuộc sống bình an, hạnh phúc. Trong thời gian diễn ra lễ hội, nhiều nghi thức tế lễ truyền thống được cử hành trang trọng theo nghi lễ đình\xa0làng Nam\xa0Bộ. Đặc biệt, đình tổ chức hát bội tại Võ\xa0Ca theo quan niệm dân gian \"hát cho Thần xem\", như một hình thức dâng lễ bằng nghệ thuật để bày tỏ lòng thành kính đối với Thành\xa0Hoàng, đồng thời góp phần gìn giữ và phát huy giá trị của nghệ thuật sân khấu truyền thống Việt Nam."
       },
       card2: {
         date: "Ngày 12 tháng Tư Âm lịch",
         title: "Lễ Hạ Điền",
-        body: "Lễ Hạ Điền được tổ chức vào ngày 12 tháng Tư âm lịch, là nghi lễ truyền thống đánh dấu sự khởi đầu của một vụ mùa mới. Trong ngày lễ, người dân dâng hương, cúng Thần Nông để bày tỏ lòng biết ơn đối với vị thần bảo hộ nông nghiệp, đồng thời cầu mong mưa thuận gió hòa, mùa màng bội thu, cây cối sinh trưởng tốt và cuộc sống ấm no, sung túc. Đây cũng là dịp thể hiện nét đẹp trong tín ngưỡng nông nghiệp và truyền thống gắn bó với nghề trồng lúa của cư dân Nam Bộ."
+        body: "Lễ Hạ Điền được tổ chức vào ngày 12 tháng Tư âm lịch, là nghi lễ truyền thống đánh dấu sự khởi đầu của một vụ mùa mới. Trong ngày lễ, người dân dâng hương, cúng Thần\xa0Nông để bày tỏ lòng biết ơn đối với vị thần bảo hộ nông nghiệp, đồng thời cầu mong mưa thuận gió hòa, mùa màng bội thu, cây cối sinh trưởng tốt và cuộc sống ấm no, sung túc. Đây cũng là dịp thể hiện nét đẹp trong tín ngưỡng nông nghiệp và truyền thống gắn bó với nghề trồng lúa của cư dân Nam\xa0Bộ."
       },
       card3: {
         date: "Ngày 12 tháng Mười Âm lịch",
         title: "Lễ Cầu Bông",
-        body: "Lễ Cầu Bông được tổ chức vào ngày 12 tháng Mười âm lịch, là nghi lễ truyền thống gắn liền với đời sống nông nghiệp của cư dân địa phương. Trong ngày lễ, người dân dâng hương và thực hiện các nghi thức cúng lễ để cầu mong cây lúa trổ bông, mùa màng tươi tốt, sản xuất thuận lợi, mưa thuận gió hòa và cuộc sống ấm no, hạnh phúc. Đây là dịp thể hiện niềm tin, ước vọng về một năm lao động bội thu, đồng thời góp phần gìn giữ những giá trị văn hóa và tín ngưỡng đặc sắc của đình làng Nam Bộ."
+        body: "Lễ Cầu Bông được tổ chức vào ngày 12 tháng Mười âm lịch, là nghi lễ truyền thống gắn liền với đời sống nông nghiệp của cư dân địa phương. Trong ngày lễ, người dân dâng hương và thực hiện các nghi thức cúng lễ để cầu mong cây lúa trổ bông, mùa màng tươi tốt, sản xuất thuận lợi, mưa thuận gió hòa và cuộc sống ấm no, hạnh phúc. Đây là dịp thể hiện niềm tin, ước vọng về một năm lao động bội thu, đồng thời góp phần gìn giữ những giá trị văn hóa và tín ngưỡng đặc sắc của đình\xa0làng Nam\xa0Bộ."
       }
     },
     footer_contact: "Liên Hệ & Vị Trí",
@@ -96,30 +96,30 @@ var TRANSLATIONS = {
     // Phước Thành layout compatible additions
     model3d: {
       title: "3D",
-      body: "Khám phá khuôn viên di tích Đình Bình Trường qua mô hình 3D tương tác. Sử dụng các điểm nổi bật hoặc xoay mô hình để tìm hiểu thông tin kiến trúc chi tiết từng khu vực.",
+      body: "Khám phá khuôn viên di tích Đình\xa0Bình\xa0Trường qua mô hình 3D tương tác. Sử dụng các điểm nổi bật hoặc xoay mô hình để tìm hiểu thông tin kiến trúc chi tiết từng khu vực.",
       touch_interact_title: "Chạm để xoay 3D (360°)",
       view_full: "Xem toàn cảnh",
       touch_interact_sub: "Tap to interact & rotate 3D",
       lock_scroll_btn: "Khóa xoay để cuộn trang"
     },
     narration: {
-      title: "CÂU CHUYỆN DI TÍCH",
-      body: "<p>Đình Bình Trường tọa lạc tại xã Bình Chánh, Thành phố Hồ Chí Minh. Căn cứ vào Sắc phong của vua Tự Đức năm 1852, có thể khẳng định ngôi đình đã được xây dựng trước thời điểm này và có lịch sử hơn hai thế kỷ. Trong hai cuộc kháng chiến chống Pháp và chống Mỹ, đình từng là địa điểm liên lạc và cơ sở hoạt động của cách mạng. Với những giá trị nổi bật về lịch sử, văn hóa và kiến trúc, ngày 01 tháng 02 năm 2005, đình được xếp hạng Di tích kiến trúc nghệ thuật cấp Thành phố.</p><p>Bước qua Cổng Tam Quan, du khách sẽ lần lượt tham quan Miếu Bạch Mã, Bàn thờ Thần Nông, Miếu Thần Hổ, Miếu Bà Ngũ Hành, Bia tưởng niệm liệt sĩ, Võ Ca, Võ Quy và Chánh điện là trung tâm linh thiêng nhất của đình, nơi thờ Thành Hoàng Bổn Cảnh. Chánh điện nổi bật với kiến trúc tứ trụ, hệ thống Bảo lãm, Hoành Phi, Liễn Đối cùng các cột gỗ chạm khắc. Phía sau là Hậu Sở, nơi thờ các vị thần, tiền nhân và lưu giữ 16 cây gươm giáo cổ, phản ánh nét văn hóa và nghi lễ truyền thống của đình làng Nam Bộ.</p><p>Đình Bình Trường hiện còn bảo tồn nhiều hiện vật quý như Sắc phong của vua Tự Đức, lư đồng, trống, mõ, chiêng, hai bộ lỗ bộ bằng đồng, hoành phi, liễn đối, bao lam, cửa võng cùng nhiều hiện vật thờ cúng có giá trị. Những di sản này góp phần khẳng định giá trị lịch sử, văn hóa và nghệ thuật đặc sắc của Đình Bình Trường, một trong những ngôi đình tiêu biểu của vùng đất Bình Chánh.</p>",
+      title: "CÂU\xa0CHUYỆN DI\xa0TÍCH",
+      body: "<p>Đình\xa0Bình\xa0Trường tọa lạc tại xã\xa0Bình\xa0Chánh, Thành\xa0phố Hồ\xa0Chí\xa0Minh. Căn cứ vào Sắc\xa0phong của vua\xa0Tự\xa0Đức năm 1852, có thể khẳng định ngôi\xa0đình đã được xây dựng trước thời điểm này và có lịch\xa0sử hơn hai thế\xa0kỷ. Trong hai cuộc kháng\xa0chiến chống\xa0Pháp và chống\xa0Mỹ, đình từng là địa\xa0điểm liên\xa0lạc và cơ sở hoạt động của cách\xa0mạng. Với những giá trị nổi bật về lịch\xa0sử, văn hóa và kiến\xa0trúc, ngày 01 tháng 02 năm 2005, đình được xếp hạng Di\xa0tích kiến\xa0trúc nghệ\xa0thuật cấp\xa0Thành\xa0phố.</p><p>Bước qua Cổng\xa0Tam\xa0Quan, du khách sẽ lần lượt tham quan Miếu\xa0Bạch\xa0Mã, Bàn\xa0thờ Thần\xa0Nông, Miếu\xa0Thần\xa0Hổ, Miếu\xa0Bà Ngũ\xa0Hành, Bia\xa0tưởng\xa0niệm liệt\xa0sĩ, Võ\xa0Ca, Võ\xa0Quy và Chánh\xa0điện là trung tâm linh thiêng nhất của đình, nơi thờ Thành\xa0Hoàng Bổn\xa0Cảnh. Chánh\xa0điện nổi bật với kiến\xa0trúc tứ trụ, hệ thống Bao\xa0lam, Hoành\xa0Phi, Liễn\xa0Đối cùng các cột gỗ chạm khắc. Phía sau là Hậu\xa0Sở, nơi thờ các vị thần, tiền nhân và lưu giữ 16 cây gươm giáo cổ, phản ánh nét văn hóa và nghi lễ truyền thống của đình\xa0làng Nam\xa0Bộ.</p><p>Đình\xa0Bình\xa0Trường hiện còn bảo tồn nhiều hiện vật quý như Sắc\xa0phong của vua\xa0Tự\xa0Đức, lư đồng, trống, mõ, chiêng, hai bộ lỗ bộ bằng đồng, hoành phi, liễn đối, bao lam, cửa võng cùng nhiều hiện vật thờ cúng có giá trị. Những di sản này góp phần khẳng định giá trị lịch\xa0sử, văn hóa và nghệ\xa0thuật đặc sắc của Đình\xa0Bình\xa0Trường, một trong những ngôi đình tiêu biểu của vùng đất Bình\xa0Chánh.</p>",
       button: "Bắt đầu nghe"
     },
     timeline: {
       eyebrow: "Dấu ấn",
-      heading: "HƠN 200 NĂM LƯU GIỮ NÉT ĐẸP VĂN HÓA",
-      lead: "Được hình thành từ đầu thế kỷ XIX và sắc phong dưới triều vua Tự Đức năm 1852, Đình Bình Trường đã đồng hành cùng sự phát triển của vùng đất Bình Chánh, trở thành chứng nhân của nhiều giai đoạn lịch sử và cách mạng."
+      heading: "HƠN\xa0200\xa0NĂM LƯU\xa0GIỮ NÉT\xa0ĐẸP VĂN\xa0HÓA",
+      lead: "Được hình\xa0thành từ đầu thế\xa0kỷ\xa0XIX và sắc\xa0phong dưới triều vua\xa0Tự\xa0Đức năm\xa01852, Đình\xa0Bình\xa0Trường đã đồng\xa0hành cùng sự phát\xa0triển của vùng\xa0đất Bình\xa0Chánh, trở\xa0thành chứng\xa0nhân của nhiều giai\xa0đoạn lịch\xa0sử và cách\xa0mạng."
     },
     values: {
-      heading: "GIÁ TRỊ DI TÍCH",
-      lead: "Đình Bình Trường là kết tinh của văn hóa dân gian Nam Bộ và tinh thần kiên cường bất khuất của nhân dân Sài Gòn - Gia Định qua nhiều thế hệ. Mãi mãi là niềm tự hào của địa phương.",
-      stat1: "Được xây dựng",
-      stat2: "Nhận Sắc phong vua Tự Đức ban tặng",
+      heading: "GIÁ\xa0TRỊ DI\xa0TÍCH",
+      lead: "Đình\xa0Bình\xa0Trường là kết\xa0tinh của văn\xa0hóa dân\xa0gian Nam\xa0Bộ và tinh\xa0thần kiên\xa0cường bất\xa0khuất của nhân\xa0dân Sài\xa0Gòn\xa0-\xa0Gia\xa0Định qua nhiều thế\xa0hệ. Mãi\xa0mãi là niềm tự\xa0hào của địa\xa0phương.",
+      stat1: "Được\xa0xây\xa0dựng",
+      stat2: "Nhận\xa0Sắc\xa0phong vua\xa0Tự\xa0Đức ban\xa0tặng",
       stat3_num: "<small style=\"margin-right: 4px; font-weight: 500;\">Hơn</small>200<small style=\"margin-left: 4px; font-weight: 500;\">năm</small>",
-      stat3: "Lưu giữ nét đẹp văn hóa Nam Bộ",
-      stat4: "Được xếp hạng Di tích cấp Thành phố",
+      stat3: "Lưu\xa0giữ nét\xa0đẹp văn\xa0hóa Nam\xa0Bộ",
+      stat4: "Được\xa0xếp\xa0hạng Di\xa0tích cấp\xa0Thành\xa0phố",
       card1: {
         title: "Ý nghĩa lịch sử",
         body: "Là địa điểm liên lạc, hộp thư nhận tin tức của cách mạng, gắn với hoạt động đột kích năm 1948 do Bí thư Chi bộ Nguyễn Chánh Thôn chỉ đạo."
@@ -138,7 +138,7 @@ var TRANSLATIONS = {
       }
     },
     footer: {
-      about: "Dự án số hóa địa chỉ đỏ Di tích kiến trúc nghệ thuật Đình&nbsp;Bình&nbsp;Trường tọa lạc tại xã&nbsp;Bình&nbsp;Chánh, Thành&nbsp;phố Hồ&nbsp;Chí&nbsp;Minh nhằm bảo tồn và phổ biến các giá trị văn hóa, kiến trúc truyền thống.",
+      about: "Dự\xa0án số\xa0hóa địa\xa0chỉ\xa0đỏ Di\xa0tích kiến\xa0trúc nghệ\xa0thuật Đình\xa0Bình\xa0Trường tọa\xa0lạc tại xã\xa0Bình\xa0Chánh, Thành\xa0phố Hồ\xa0Chí\xa0Minh nhằm bảo\xa0tồn và phổ\xa0biến các giá\xa0trị văn\xa0hóa, kiến\xa0trúc truyền\xa0thống.",
       explore: "Khám phá",
       info: "Thông tin",
       addressLabel: "Địa chỉ:",

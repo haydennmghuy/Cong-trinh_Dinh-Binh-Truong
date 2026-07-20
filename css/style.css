@@ -85,7 +85,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 p {
-  text-align: justify; /* Justify align all paragraph texts globally */
+  text-align: left; /* Left align all paragraph texts globally to keep word spaces even */
 }
 
 html {
@@ -375,7 +375,7 @@ html[lang="en"] .hero-title {
 .hero-copy .subtitle {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(0.85rem, 1.35vw, 0.95rem);
+  font-size: clamp(0.72rem, 1.05vw, 0.8rem);
   font-weight: 500;
   margin-bottom: 1.8rem;
   color: var(--bronze-light, #E8C96A);
@@ -388,8 +388,7 @@ html[lang="en"] .hero-title {
   font-size: 0.98rem;
   line-height: 1.8;
   margin: 0 auto;
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
   max-width: 52ch;
   color: rgba(255, 255, 255, 0.88);
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
@@ -703,7 +702,7 @@ html[lang="en"] .hero-title {
   max-width: 58ch;
   font-size: 0.98rem;
   line-height: 1.8;
-  text-align: justify;
+  text-align: left;
   margin-bottom: 1.25rem;
 }
 .narration-text p:last-child {
@@ -1032,13 +1031,14 @@ html[lang="en"] .hero-title {
   font-family: var(--font-display);
   font-size: clamp(1rem, 2.5vw, 1.4rem);
   margin-bottom: 0.8rem;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .timeline-content p {
   color: var(--ink-soft);
   font-size: 0.98rem;
   line-height: 1.7;
+  text-align: left;
 }
 
 /* =====================================================================
@@ -1081,6 +1081,9 @@ html[lang="en"] .hero-title {
   border-top: 1px solid rgba(173, 135, 72, 0.25);
   border-bottom: 1px solid rgba(173, 135, 72, 0.25);
   margin-bottom: 4rem;
+}
+.stat {
+  text-align: center;
 }
 
 .stat-number {
@@ -1233,8 +1236,7 @@ html[lang="en"] .hero-title {
   font-size: 0.88rem;
   line-height: 1.65;
   color: #B2A292;
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
   max-width: 340px;
 }
 
@@ -1449,7 +1451,7 @@ html[lang="en"] .hero-title {
   font-size: 0.98rem;
   color: var(--ink-soft);
   line-height: 1.8;
-  text-align: justify;
+  text-align: left;
 }
 
 .hotspot-section-subtitle {
@@ -1488,7 +1490,7 @@ html[lang="en"] .hero-title {
   padding-left: 20px;
   text-indent: 0;
   margin: 0;
-  text-align: justify;
+  text-align: left;
 }
 
 .hotspot-detail-item::before {
@@ -2154,10 +2156,10 @@ html[lang="en"] .hero-title {
 .model3d-copy h2,
 .narration-copy h2,
 .gallery-section-wrap .section-title {
-  font-family: var(--font-display), serif;
+  font-family: var(--font-heading), sans-serif;
   font-weight: 700;
-  white-space: nowrap !important;
-  font-size: clamp(0.85rem, 3.6vw, 2.2rem) !important;
+  white-space: normal !important;
+  font-size: clamp(1.2rem, 3.6vw, 2.2rem) !important;
   letter-spacing: 0.02em;
   overflow: visible !important;
 }
@@ -2252,7 +2254,7 @@ html[lang="en"] .narration-copy p,
 html[lang="en"] .model3d-copy p,
 html[lang="en"] .festival-card p,
 html[lang="en"] .timeline-content p {
-  text-align: justify !important;
+  text-align: left !important;
 }
 
 
