@@ -704,6 +704,7 @@ html[lang="en"] .hero-title {
   font-size: 0.98rem;
   line-height: 1.8;
   text-align: justify;
+  text-justify: inter-word;
   margin-bottom: 1.25rem;
 }
 .narration-text p:last-child {
