@@ -8,14 +8,14 @@ var MAP_DATA = {
         name: "Cổng Tam Quan",
         short: "Cổng chính",
         desc: "Cổng Tam Quan là lối vào chính của Đình Bình Trường, mang đậm phong cách kiến trúc đình làng Nam Bộ. Công trình gồm ba lối đi với mái ngói âm dương nhiều tầng, đầu đao uốn cong thanh thoát. Hai trụ chính được trang trí câu đối chữ Hán và các họa tiết truyền thống, trong khi bờ nóc nổi bật với mô típ Lưỡng Long Chầu Nhật, biểu tượng cho sự linh thiêng, thịnh vượng và bình an.",
-        details: "+ Vật liệu: Bê tông cốt thép kết hợp các chi tiết trang trí truyền thống, mái lợp ngói âm dương.\n+ Trang trí: Bờ nóc đắp nổi mô típ Lưỡng Long Chầu Nhật, đầu đao cong mềm mại, các họa tiết rồng - mây mang ý nghĩa cát tường.\n+ Câu đối: Hai trụ cổng đặt câu đối chữ Hán tôn vinh Thành Hoàng Bổn Cảnh, đồng thời thể hiện khát vọng về cuộc sống bình yên, quốc thái dân an của người dân địa phương.",
+        details: "+ Trang trí: Bờ nóc đắp nổi mô típ Lưỡng Long Chầu Nhật, đầu đao cong mềm mại, các họa tiết rồng - mây mang ý nghĩa cát tường.\n+ Câu đối: Hai trụ cổng đặt câu đối chữ Hán tôn vinh Thành Hoàng Bổn Cảnh, đồng thời thể hiện khát vọng về cuộc sống bình yên, quốc thái dân an của người dân địa phương.",
         audio: "audio/vi/cong-tam-quan.mp3"
       },
       en: {
         name: "Main Triple Gate",
         short: "Main entrance",
         desc: "The Triple Gate (Tam Quan) is the main entrance of Binh Truong Communal House, deeply reflecting the Southern Vietnamese village temple architectural style. The structure features three walkways with multi-layered yin-yang tile roofs and gracefully curved roof edges. The two main pillars are adorned with Chinese couplets and traditional motifs, while the roof ridge stands out with the Twin Dragons paying homage to the Sun motif, representing divinity, prosperity, and peace.",
-        details: "+ Material: Reinforced concrete combined with traditional decorative details and yin-yang tiled roofs.\n+ Decoration: Roof ridge features twin dragons paying homage to the sun, curved roof corners, and auspicious dragon-and-cloud patterns.\n+ Couplets: The two gate pillars carry Chinese couplets honoring the Tutelary Deity, reflecting the local aspiration for peace, safety, and national prosperity.",
+        details: "+ Decoration: Roof ridge features twin dragons paying homage to the sun, curved roof corners, and auspicious dragon-and-cloud patterns.\n+ Couplets: The two gate pillars carry Chinese couplets honoring the Tutelary Deity, reflecting the local aspiration for peace, safety, and national prosperity.",
         audio: "audio/en/main-gate.mp3"
       }
     },
@@ -27,14 +27,14 @@ var MAP_DATA = {
         name: "Miếu thờ Bạch Mã",
         short: "Thần Bạch Mã",
         desc: "Miếu Bạch Mã là công trình thờ Bạch Mã Thái Giám - vị thần hộ vệ được người dân tôn kính trong tín ngưỡng dân gian. Theo quan niệm truyền thống, ngài có nhiệm vụ trấn giữ đình làng, xua đuổi tà khí, bảo vệ không gian linh thiêng và mang đến sự bình an cho cộng đồng. Với quy mô nhỏ nhưng trang nghiêm, miếu góp phần hoàn thiện tổng thể kiến trúc và không gian tín ngưỡng của Đình Bình Trường.",
-        details: "+ Vật liệu: Tường xây gạch, trát vữa và sơn màu vàng kem. kết cấu bê tông cốt thép kết hợp mái lợp ngói đất nung.\n+ Trang trí: Hai bên cửa chính gắn liễn đối chữ Hán nền đỏ, khung viền trắng nổi bật trên tường vàng, góp phần tăng thêm vẻ trang nghiêm cho công trình.\n+ Không gian: Bên trong đặt bàn thờ Bạch Mã Thái Giám, cùng bát hương và các đồ thờ truyền thống, thể hiện tín ngưỡng thờ thần hộ vệ trong văn hóa đình làng Nam Bộ.",
+        details: "+ Vật liệu: Tường xây gạch, trát vữa, sơn màu truyền thống và kết hợp mái lợp ngói.\n+ Trang trí: Hai bên cửa chính gắn liễn đối chữ Hán nền đỏ, khung viền trắng nổi bật trên tường vàng, góp phần tăng thêm vẻ trang nghiêm cho công trình.\n+ Không gian: Bên trong đặt bàn thờ Bạch Mã Thái Giám, cùng bát hương và các đồ thờ truyền thống, thể hiện tín ngưỡng thờ thần hộ vệ trong văn hóa đình làng Nam Bộ.",
         audio: "audio/vi/mieu-bach-ma.mp3"
       },
       en: {
         name: "Bach Ma Shrine",
         short: "White Horse Shrine",
         desc: "Bach Ma Shrine is dedicated to Bach Ma Thai Giam (the White Horse Eunuch Deity) - a protective deity revered in Vietnamese folk beliefs. According to traditional views, his mission is to guard the communal house, ward off negative spirits, protect the sacred space, and bring peace to the community. Despite its small scale, the shrine is solemn and completes the architectural and spiritual landscape of Binh Truong Communal House.",
-        details: "+ Material: Brick walls, plastered and painted in warm cream yellow; reinforced concrete structure combined with clay tiled roofs.\n+ Decoration: Both sides of the main door are decorated with red Chinese couplets in white borders standing out on the yellow walls, enhancing the solemnity.\n+ Space: The altar of Bach Ma Thai Giam is located inside, equipped with incense burners and traditional ritual items, representing the tutelary god worship in Southern Vietnamese village culture.",
+        details: "+ Material: Brick walls, plastered and painted in traditional colors, and combined with tiled roofs.\n+ Decoration: Both sides of the main door are decorated with red Chinese couplets in white borders standing out on the yellow walls, enhancing the solemnity.\n+ Space: The altar of Bach Ma Thai Giam is located inside, equipped with incense burners and traditional ritual items, representing the tutelary god worship in Southern Vietnamese village culture.",
         audio: "audio/en/bach-ma-shrine.mp3"
       }
     },
@@ -84,14 +84,14 @@ var MAP_DATA = {
         name: "Miếu Bà Ngũ Hành",
         short: "Năm vị nữ thần",
         desc: "Miếu Bà Ngũ Hành là công trình thờ Ngũ Hành Nương Nương - năm vị nữ thần tượng trưng cho năm yếu tố Kim, Mộc, Thủy, Hỏa và Thổ trong triết lý Ngũ hành phương Đông. Theo tín ngưỡng dân gian Việt Nam, các vị thần cai quản sự vận hành của trời đất, bảo hộ cuộc sống con người và mang đến sự cân bằng giữa thiên nhiên với vạn vật. Người dân đến đây dâng hương, cầu mong bình an, sức khỏe, hạnh phúc, gia đình hòa thuận và cuộc sống thuận lợi.",
-        details: "+ Vật liệu: Tường xây gạch, trát vữa và sơn màu truyền thống. Kết cấu bê tông cốt thép kết hợp mái lợp ngói.\n+ Trang trí: Hai bên cửa chính gắn liễn đối chữ Hán nền đỏ, khung viền trắng nổi bật trên tường vàng, góp phần tăng thêm vẻ trang nghiêm cho công trình.\n+ Không gian: Bên trong đặt bàn thờ Ngũ Hành Nương Nương, cùng bát hương và các đồ thờ truyền thống, thể hiện tín ngưỡng thờ Mẫu và ước vọng về sự bình an, sức khỏe, hạnh phúc và cuộc sống sung túc.",
+        details: "+ Vật liệu: Tường xây gạch, trát vữa, sơn màu truyền thống và kết hợp mái lợp ngói.\n+ Trang trí: Hai bên cửa chính gắn liễn đối chữ Hán nền đỏ, khung viền trắng nổi bật trên tường vàng, góp phần tăng thêm vẻ trang nghiêm cho công trình.\n+ Không gian: Bên trong đặt bàn thờ Ngũ Hành Nương Nương, cùng bát hương và các đồ thờ truyền thống, thể hiện tín ngưỡng thờ Mẫu và ước vọng về sự bình an, sức khỏe, hạnh phúc và cuộc sống sung túc.",
         audio: "audio/vi/mieu-ngu-hanh.mp3"
       },
       en: {
         name: "Five Elements Goddesses Shrine",
         short: "Five Goddesses",
         desc: "The Five Elements Shrine is dedicated to Ngũ Hành Nương Nương - the five goddesses representing the elements of Metal, Wood, Water, Fire, and Earth in Eastern philosophy. In Vietnamese folk belief, they govern the operations of heaven and earth, protect human life, and maintain harmony between nature and all beings. Locals come here to pray for peace, health, happiness, family harmony, and smooth living.",
-        details: "+ Material: Brick walls, plastered and painted in traditional colors; reinforced concrete structure combined with tiled roofs.\n+ Decoration: Both sides of the main entrance are decorated with red Chinese couplets in white borders standing out on the yellow walls, enhancing the solemnity.\n+ Space: Houses the altar of the Five Elements Goddesses, incense burners, and traditional ritual items, representing Mother Goddess worship and local aspirations for health, happiness, and prosperity.",
+        details: "+ Material: Brick walls, plastered and painted in traditional colors, and combined with tiled roofs.\n+ Decoration: Both sides of the main entrance are decorated with red Chinese couplets in white borders standing out on the yellow walls, enhancing the solemnity.\n+ Space: Houses the altar of the Five Elements Goddesses, incense burners, and traditional ritual items, representing Mother Goddess worship and local aspirations for health, happiness, and prosperity.",
         audio: "audio/en/elements-shrine.mp3"
       }
     },
@@ -103,14 +103,14 @@ var MAP_DATA = {
         name: "Bia tưởng niệm liệt sĩ",
         short: "Bia tưởng niệm",
         desc: "Bia tưởng niệm liệt sĩ là công trình tưởng niệm nằm trong khuôn viên Đình Bình Trường, được xây dựng nhằm tri ân các anh hùng liệt sĩ đã anh dũng hy sinh vì sự nghiệp đấu tranh giành độc lập, tự do và bảo vệ Tổ quốc. Đây không chỉ là nơi thể hiện lòng biết ơn đối với các thế hệ đi trước mà còn góp phần giáo dục truyền thống yêu nước, tinh thần \"Uống nước nhớ nguồn\" và trách nhiệm gìn giữ những giá trị lịch sử của dân tộc.",
-        details: "+ Vật liệu: Kết cấu bê tông cốt thép kết hợp bệ ốp đá, lan can bao quanh và lư hương bằng vật liệu đúc truyền thống.\n+ Trang trí: Trung tâm công trình là lư hương lớn đặt trên bệ thờ, phía sau là bia ghi danh với dòng chữ \"TỔ QUỐC GHI CÔNG\" cùng biểu tượng ngôi sao, thể hiện sự ghi nhận và tri ân của Tổ quốc đối với những người đã hy sinh. Không gian được bố trí thêm cột trụ, lan can và các chi tiết trang trí mang tính trang nghiêm, tôn kính.\n+ Không gian: Khu vực bia được bố trí riêng biệt trong khuôn viên đình, là nơi diễn ra các nghi lễ dâng hương vào những dịp lễ lớn, ngày kỷ niệm và các hoạt động giáo dục truyền thống, góp phần gìn giữ đạo lý \"Uống nước nhớ nguồn\" của dân tộc Việt Nam.",
+        details: "+ Trang trí: Trung tâm công trình là lư hương lớn đặt trên bệ thờ, phía sau là bia ghi danh với dòng chữ \"TỔ QUỐC GHI CÔNG\" cùng biểu tượng ngôi sao, thể hiện sự ghi nhận và tri ân của Tổ quốc đối với những người đã hy sinh. Không gian được bố trí thêm cột trụ, lan can và các chi tiết trang trí mang tính trang nghiêm, tôn kính.\n+ Không gian: Khu vực bia được bố trí riêng biệt trong khuôn viên đình, là nơi diễn ra các nghi lễ dâng hương vào những dịp lễ lớn, ngày kỷ niệm và các hoạt động giáo dục truyền thống, góp phần gìn giữ đạo lý \"Uống nước nhớ nguồn\" của dân tộc Việt Nam.",
         audio: "audio/vi/bia-tuong-niem.mp3"
       },
       en: {
         name: "Martyrs Memorial Stele",
         short: "Memorial Stele",
         desc: "The Martyrs Memorial Stele is a commemorative monument located inside Binh Truong Communal House, built to express gratitude to the heroic martyrs who sacrificed their lives for national independence, freedom, and defense. It serves as a place of remembrance, promoting patriotism, the principle of 'gratitude to the source', and the responsibility to preserve national history.",
-        details: "+ Material: Reinforced concrete structure combined with stone pedestal, surrounding fences, and traditional cast bronze censer.\n+ Decoration: The center features a large censer on the altar, backed by the honor roll carrying 'THE FATHERLAND REMEMBERS YOUR SERVICE' and a star symbol. Pillars, railings, and solemn details create a respectful space.\n+ Space: Located in a dedicated area of the temple grounds, it hosts incense-offering ceremonies during major holidays, anniversaries, and patriotic education events.",
+        details: "+ Decoration: The center features a large censer on the altar, backed by the honor roll carrying 'THE FATHERLAND REMEMBERS YOUR SERVICE' and a star symbol. Pillars, railings, and solemn details create a respectful space.\n+ Space: Located in a dedicated area of the temple grounds, it hosts incense-offering ceremonies during major holidays, anniversaries, and patriotic education events.",
         audio: "audio/en/memorial.mp3"
       }
     },
@@ -217,14 +217,14 @@ var MAP_DATA = {
         name: "Không gian văn hóa Hồ Chí Minh",
         short: "Không gian văn hóa Hồ Chí Minh",
         desc: "Nhà tưởng niệm Chủ tịch Hồ Chí Minh được xây dựng trong khuôn viên Đình Bình Trường sau năm 1975 nhằm bày tỏ lòng biết ơn và sự kính trọng đối với Chủ tịch Hồ Chí Minh - vị lãnh tụ vĩ đại của dân tộc Việt Nam. Công trình là nơi để nhân dân và du khách dâng hương, tưởng nhớ công lao to lớn của Người đối với sự nghiệp đấu tranh giành độc lập dân tộc, thống nhất đất nước và xây dựng đất nước. Đồng thời, đây cũng là địa điểm giáo dục truyền thống yêu nước, tư tưởng, đạo đức và phong cách Hồ Chí Minh cho các thế hệ hôm nay và mai sau.",
-        details: "+ Vật liệu: Kết cấu bê tông cốt thép kết hợp tường xây gạch, hệ cửa và cột bằng gỗ, mái lợp ngói truyền thống, nền và bậc tam cấp lát gạch.\n+ Trang trí: Mặt tiền nổi bật với hệ thống cột gỗ sơn đỏ, cửa gỗ lớn và mái hiên lợp ngói. Kiến trúc được thiết kế giản dị nhưng trang nghiêm, mang đậm nét truyền thống của đình làng Nam Bộ.\n+ Không gian tưởng niệm: Bên trong đặt bàn thờ Chủ tịch Hồ Chí Minh cùng ảnh chân dung, lư hương và các đồ thờ cúng truyền thống. Đây là nơi diễn ra các hoạt động dâng hương, báo công và sinh hoạt truyền thống của địa phương vào các dịp lễ lớn, góp phần giáo dục lòng yêu nước và gìn giữ truyền thống cách mạng.",
+        details: "+ Trang trí: Mặt tiền nổi bật với hệ thống cột gỗ sơn đỏ, cửa gỗ lớn và mái hiên lợp ngói. Kiến trúc được thiết kế giản dị nhưng trang nghiêm, mang đậm nét truyền thống của đình làng Nam Bộ.\n+ Không gian tưởng niệm: Bên trong đặt bàn thờ Chủ tịch Hồ Chí Minh cùng ảnh chân dung, lư hương và các đồ thờ cúng truyền thống. Đây là nơi diễn ra các hoạt động dâng hương, báo công và sinh hoạt truyền thống của địa phương vào các dịp lễ lớn, góp phần giáo dục lòng yêu nước và gìn giữ truyền thống cách mạng.",
         audio: "audio/vi/nha-tho-bac-ho.mp3"
       },
       en: {
         name: "Ho Chi Minh Cultural Space",
         short: "Ho Chi Minh Cultural Space",
         desc: "The President Ho Chi Minh Memorial Shrine was built in Binh Truong Communal House after 1975 to express local gratitude to the national leader. It serves as a place for residents and visitors to pay respects and remember his great contributions to national independence, reunification, and construction. It is also a site for patriotic education and moral studies for current and future generations.",
-        details: "+ Material: Reinforced concrete frame with brick walls, wooden pillars and doors, traditional tiled roof, and brick-paved tam-cap steps.\n+ Decoration: The facade stands out with red-painted wooden pillars, large wooden doors, and tiled eaves, presenting a simple yet dignified design typical of Southern temples.\n+ Memorial Space: The interior houses Uncle Ho's altar with his portrait, incense censer, and traditional ritual items, hosting local ceremonies and educational meetings during national holidays.",
+        details: "+ Decoration: The facade stands out with red-painted wooden pillars, large wooden doors, and tiled eaves, presenting a simple yet dignified design typical of Southern temples.\n+ Memorial Space: The interior houses Uncle Ho's altar with his portrait, incense censer, and traditional ritual items, hosting local ceremonies and educational meetings during national holidays.",
         audio: "audio/en/uncle-ho-temple.mp3"
       }
     }
