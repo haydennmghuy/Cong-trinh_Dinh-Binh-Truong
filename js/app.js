@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.18';
+        mainImgEl.src = images[0] + '?v=3.47.19';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -437,6 +437,67 @@ const Timeline = {
     // Initialize progress bar
     const initialPct = (this.activeIdx / (MAP_DATA.timeline.length - 1)) * 100;
     if (progressEl) progressEl.style.width = `${initialPct}%`;
+
+    // ===== Scroll interaction logic for Timeline =====
+    const timelineSection = document.querySelector('.timeline-section');
+    if (timelineSection && !timelineSection.dataset.scrollBound) {
+      timelineSection.dataset.scrollBound = 'true';
+      let isCoolingDown = false;
+
+      timelineSection.addEventListener('wheel', (e) => {
+        const total = MAP_DATA.timeline.length;
+        if (e.deltaY > 0) { // Scrolling DOWN
+          if (this.activeIdx < total - 1) {
+            e.preventDefault();
+            if (!isCoolingDown) {
+              isCoolingDown = true;
+              updateActive(this.activeIdx + 1);
+              setTimeout(() => { isCoolingDown = false; }, 400);
+            }
+          }
+          // If activeIdx === total - 1, allow natural downward page scroll
+        } else if (e.deltaY < 0) { // Scrolling UP
+          if (this.activeIdx > 0) {
+            updateActive(0); // Instantly return to initial milestone (1808)
+            // Do NOT prevent default: page scrolls up smoothly to section above
+          }
+        }
+      }, { passive: false });
+
+      // Touch events support for mobile devices
+      let startY = 0;
+      timelineSection.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          startY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      timelineSection.addEventListener('touchmove', (e) => {
+        if (!startY || e.touches.length !== 1) return;
+        const currentY = e.touches[0].clientY;
+        const diffY = startY - currentY;
+        const total = MAP_DATA.timeline.length;
+
+        if (Math.abs(diffY) > 35) {
+          if (diffY > 0) { // Swipe UP -> Scroll DOWN
+            if (this.activeIdx < total - 1) {
+              if (e.cancelable) e.preventDefault();
+              if (!isCoolingDown) {
+                isCoolingDown = true;
+                updateActive(this.activeIdx + 1);
+                startY = currentY;
+                setTimeout(() => { isCoolingDown = false; }, 400);
+              }
+            }
+          } else { // Swipe DOWN -> Scroll UP
+            if (this.activeIdx > 0) {
+              updateActive(0);
+              startY = currentY;
+            }
+          }
+        }
+      }, { passive: false });
+    }
   }
 };
 
@@ -587,7 +648,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.18';
+    const version = '3.47.19';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
