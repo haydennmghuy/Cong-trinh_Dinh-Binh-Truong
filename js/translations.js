@@ -13,9 +13,9 @@ var TRANSLATIONS = {
       contact: "Liên Hệ"
     },
     hero: {
-      eyebrow: "DI TÍCH LỊCH SỬ CẤP THÀNH PHỐ",
+      eyebrow: "DI TÍCH KIẾN TRÚC NGHỆ THUẬT CẤP THÀNH PHỐ",
       title: 'ĐÌNH BÌNH TRƯỜNG',
-      subtitle: "Mốc son văn hóa - Lưu giữ sắc phong vua Tự Đức",
+      subtitle: "Dấu son văn hóa với thời gian hình thành và phát triển hơn 200 năm",
       lead: "Được khởi dựng từ đầu thế kỷ 19, ngôi đình đã đồng hành cùng lịch sử thăng trầm của vùng đất Gia Định xưa. Đây là nơi tôn kính Thành Hoàng Bổn Cảnh, lưu giữ sắc phong quý giá triều đình Tự Đức ban tặng năm 1852 và từng che chở cho các cán bộ liên lạc cách mạng trong hai cuộc kháng chiến.",
       cta: "Khám phá ngay",
       secondary: "Nghe thuyết minh",
@@ -104,22 +104,22 @@ var TRANSLATIONS = {
     },
     narration: {
       title: "CÂU CHUYỆN DI TÍCH",
-      body: "<p>Đình Bình Trường tọa lạc tại xã Bình Chánh, huyện Bình Chánh, Thành phố Hồ Chí Minh. Căn cứ vào Sắc phong của vua Tự Đức năm 1852, có thể khẳng định ngôi đình đã được xây dựng trước thời điểm này và có lịch sử hơn hai thế kỷ. Trong hai cuộc kháng chiến chống Pháp và chống Mỹ, đình từng là địa điểm liên lạc và cơ sở hoạt động của cách mạng. Với những giá trị nổi bật về lịch sử, văn hóa và kiến trúc, ngày 01 tháng 02 năm 2005, đình được xếp hạng Di tích kiến trúc nghệ thuật cấp Thành phố.</p><p>Bước qua Cổng Tam Quan, du khách sẽ lần lượt tham quan Miếu Bạch Mã, Bàn thờ Thần Nông, Miếu Thần Hổ, Miếu Bà Ngũ Hành, Bia tưởng niệm liệt sĩ, Võ Ca, Võ Quy và Chánh điện là trung tâm linh thiêng nhất của đình, nơi thờ Thành Hoàng Bổn Cảnh. Chánh điện nổi bật với kiến trúc tứ trụ, hệ thống Bảo lãm, Hoành Phi, Liễn Đối cùng các cột gỗ chạm khắc. Phía sau là Hậu Sở, nơi thờ các vị thần, tiền nhân và lưu giữ 16 cây gươm giáo cổ, phản ánh nét văn hóa và nghi lễ truyền thống của đình làng Nam Bộ.</p><p>Đình Bình Trường hiện còn bảo tồn nhiều hiện vật quý như Sắc phong của vua Tự Đức, lư đồng, trống, mõ, chiêng, hai bộ lỗ bộ bằng đồng, hoành phi, liễn đối, bao lam, cửa võng cùng nhiều hiện vật thờ cúng có giá trị. Những di sản này góp phần khẳng định giá trị lịch sử, văn hóa và nghệ thuật đặc sắc của Đình Bình Trường, một trong những ngôi đình tiêu biểu của vùng đất Bình Chánh.</p>",
+      body: "<p>Đình Bình Trường tọa lạc tại xã Bình Chánh, Thành phố Hồ Chí Minh. Căn cứ vào Sắc phong của vua Tự Đức năm 1852, có thể khẳng định ngôi đình đã được xây dựng trước thời điểm này và có lịch sử hơn hai thế kỷ. Trong hai cuộc kháng chiến chống Pháp và chống Mỹ, đình từng là địa điểm liên lạc và cơ sở hoạt động của cách mạng. Với những giá trị nổi bật về lịch sử, văn hóa và kiến trúc, ngày 01 tháng 02 năm 2005, đình được xếp hạng Di tích kiến trúc nghệ thuật cấp Thành phố.</p><p>Bước qua Cổng Tam Quan, du khách sẽ lần lượt tham quan Miếu Bạch Mã, Bàn thờ Thần Nông, Miếu Thần Hổ, Miếu Bà Ngũ Hành, Bia tưởng niệm liệt sĩ, Võ Ca, Võ Quy và Chánh điện là trung tâm linh thiêng nhất của đình, nơi thờ Thành Hoàng Bổn Cảnh. Chánh điện nổi bật với kiến trúc tứ trụ, hệ thống Bảo lãm, Hoành Phi, Liễn Đối cùng các cột gỗ chạm khắc. Phía sau là Hậu Sở, nơi thờ các vị thần, tiền nhân và lưu giữ 16 cây gươm giáo cổ, phản ánh nét văn hóa và nghi lễ truyền thống của đình làng Nam Bộ.</p><p>Đình Bình Trường hiện còn bảo tồn nhiều hiện vật quý như Sắc phong của vua Tự Đức, lư đồng, trống, mõ, chiêng, hai bộ lỗ bộ bằng đồng, hoành phi, liễn đối, bao lam, cửa võng cùng nhiều hiện vật thờ cúng có giá trị. Những di sản này góp phần khẳng định giá trị lịch sử, văn hóa và nghệ thuật đặc sắc của Đình Bình Trường, một trong những ngôi đình tiêu biểu của vùng đất Bình Chánh.</p>",
       button: "Bắt đầu nghe"
     },
     timeline: {
       eyebrow: "Dấu ấn",
-      heading: "HƠN 150 NĂM LƯU GIỮ HỒN QUÊ",
+      heading: "HƠN 200 NĂM LƯU GIỮ NÉT ĐẸP VĂN HÓA",
       lead: "Được hình thành từ đầu thế kỷ XIX và sắc phong dưới triều vua Tự Đức năm 1852, Đình Bình Trường đã đồng hành cùng sự phát triển của vùng đất Bình Chánh, trở thành chứng nhân của nhiều giai đoạn lịch sử và cách mạng."
     },
     values: {
       heading: "GIÁ TRỊ DI TÍCH",
       lead: "Đình Bình Trường là kết tinh của văn hóa dân gian Nam Bộ và tinh thần kiên cường bất khuất của nhân dân Sài Gòn - Gia Định qua nhiều thế hệ. Mãi mãi là niềm tự hào của địa phương.",
-      stat1: "Ghi danh sử sách triều Nguyễn",
-      stat2: "Sắc phong vua Tự Đức ban tặng",
-      stat3_num: "<small style=\"margin-right: 4px; font-weight: 500;\">Hơn</small>150<small style=\"margin-left: 4px; font-weight: 500;\">năm</small>",
-      stat3: "Lưu giữ hồn quê Việt",
-      stat4: "Xếp hạng Di tích cấp Thành phố",
+      stat1: "Được xây dựng",
+      stat2: "Nhận Sắc phong vua Tự Đức ban tặng",
+      stat3_num: "<small style=\"margin-right: 4px; font-weight: 500;\">Hơn</small>200<small style=\"margin-left: 4px; font-weight: 500;\">năm</small>",
+      stat3: "Lưu giữ nét đẹp văn hóa Nam Bộ",
+      stat4: "Được xếp hạng Di tích cấp Thành phố",
       card1: {
         title: "Ý nghĩa lịch sử",
         body: "Là địa điểm liên lạc, hộp thư nhận tin tức của cách mạng, gắn với hoạt động đột kích năm 1948 do Bí thư Chi bộ Nguyễn Chánh Thôn chỉ đạo."
@@ -138,7 +138,7 @@ var TRANSLATIONS = {
       }
     },
     footer: {
-      about: "Dự án số hóa địa chỉ đỏ Di tích kiến trúc nghệ thuật Đình Bình Trường tọa lạc tại xã Bình Chánh, huyện Bình Chánh, Thành phố Hồ Chí Minh nhằm bảo tồn và phổ biến các giá trị văn hóa, kiến trúc truyền thống.",
+      about: "Dự án số hóa địa chỉ đỏ Di tích kiến trúc nghệ thuật Đình Bình Trường tọa lạc tại xã Bình Chánh, Thành phố Hồ Chí Minh nhằm bảo tồn và phổ biến các giá trị văn hóa, kiến trúc truyền thống.",
       explore: "Khám phá",
       info: "Thông tin",
       addressLabel: "Địa chỉ:",
@@ -162,9 +162,9 @@ var TRANSLATIONS = {
       contact: "Contact"
     },
     hero: {
-      eyebrow: "CITY-LEVEL HISTORICAL RELIC",
+      eyebrow: "CITY-LEVEL ARTISTIC ARCHITECTURAL RELIC",
       title: 'BINH TRUONG COMMUNAL HOUSE',
-      subtitle: "A cultural landmark - Preserving Emperor Tu Duc's royal seal",
+      subtitle: "A cultural landmark with over 200 years of formation and development",
       lead: "Established in the early 19th century, this communal house has witnessed the historical and cultural ups and downs of old Gia Dinh. It worships the Guardian Spirit, preserves the precious imperial seal of Emperor Tu Duc from 1852, and shielded revolutionary cadres in past resistance struggles.",
       cta: "Explore now",
       secondary: "Listen to Narration",
@@ -185,7 +185,7 @@ var TRANSLATIONS = {
     info_year_label: "BUILT",
     narration: {
       title: "SITE NARRATION",
-      body: "<p>Binh Truong Communal House is located in Binh Chanh Commune, Binh Chanh District, Ho Chi Minh City. Based on the royal patent issued by Emperor Tu Duc in 1852, it can be confirmed that the communal house was built before this time and has a history of more than two centuries. During the anti-French and anti-American resistance wars, it served as a liaison post and secret base for revolutionary activities. With its outstanding historical, cultural, and architectural values, on February 1, 2005, the communal house was classified as a City-level artistic architectural relic.</p><p>Stepping through the Tam Quan gate, visitors will take turns visiting Bach Ma Temple, the Altar of Than Nong, Than Ho Temple, Mieu Ba Ngu Hanh, the Memorial Stele for heroic martyrs, Vo Ca, Vo Quy, and Chanh Dien which is the most sacred center of the temple, dedicated to the Guardian Spirit. Chanh Dien is prominent with the four-pillar architecture, horizontal boards, parallel sentences, and carved wooden columns. Behind is Hau So (Rear Hall), dedicated to the deities, ancestors, and preserving 16 ancient spears, reflecting the traditional culture and rituals of Southern communal houses.</p><p>Binh Truong Communal House currently preserves many valuable artifacts such as the Royal Patent of Emperor Tu Duc, bronze censers, drums, wooden bells, gongs, two sets of bronze weapons, horizontal boards, parallel sentences, bao lam, and door carvings. These heritages contribute to affirming the unique historical, cultural, and artistic values of Binh Truong Communal House, one of the typical communal houses of the Binh Chanh region.</p>",
+      body: "<p>Binh Truong Communal House is located in Binh Chanh Commune, Ho Chi Minh City. Based on the royal patent issued by Emperor Tu Duc in 1852, it can be confirmed that the communal house was built before this time and has a history of more than two centuries. During the anti-French and anti-American resistance wars, it served as a liaison post and secret base for revolutionary activities. With its outstanding historical, cultural, and architectural values, on February 1, 2005, the communal house was classified as a City-level artistic architectural relic.</p><p>Stepping through the Tam Quan gate, visitors will take turns visiting Bach Ma Temple, the Altar of Than Nong, Than Ho Temple, Mieu Ba Ngu Hanh, the Memorial Stele for heroic martyrs, Vo Ca, Vo Quy, and Chanh Dien which is the most sacred center of the temple, dedicated to the Guardian Spirit. Chanh Dien is prominent with the four-pillar architecture, horizontal boards, parallel sentences, and carved wooden columns. Behind is Hau So (Rear Hall), dedicated to the deities, ancestors, and preserving 16 ancient spears, reflecting the traditional culture and rituals of Southern communal houses.</p><p>Binh Truong Communal House currently preserves many valuable artifacts such as the Royal Patent of Emperor Tu Duc, bronze censers, drums, wooden bells, gongs, two sets of bronze weapons, horizontal boards, parallel sentences, bao lam, and door carvings. These heritages contribute to affirming the unique historical, cultural, and artistic values of Binh Truong Communal House, one of the typical communal houses of the Binh Chanh region.</p>",
       button: "Start listening"
     },
     info_highlight_label: "HIGHLIGHTS",
@@ -257,17 +257,17 @@ var TRANSLATIONS = {
     },
     timeline: {
       eyebrow: "Milestone",
-      heading: "OVER 150 YEARS OF PRESERVING SOUL OF HOME",
+      heading: "OVER 200 YEARS OF PRESERVING CULTURAL BEAUTY",
       lead: "Established in the early 19th century and officially sealed in 1852 under Emperor Tu Duc, Binh Truong Communal House has accompanied the growth of Binh Chanh land, witnessing many historical and revolutionary milestones."
     },
     values: {
       heading: "HERITAGE VALUES",
       lead: "Binh Truong Communal House represents the culmination of Southern folk culture and the indomitable spirit of the Saigon - Gia Dinh people over generations. It remains a timeless source of local pride.",
-      stat1: "Recorded in Nguyen Dynasty history",
-      stat2: "Royal Decree by Emperor Tu Duc",
-      stat3_num: "<small style=\"margin-right: 4px; font-weight: 500;\">Over</small>150<small style=\"margin-left: 4px; font-weight: 500;\">years</small>",
-      stat3: "Preserving the Vietnamese soul",
-      stat4: "Classified as HCMC City Heritage",
+      stat1: "Constructed",
+      stat2: "Received Royal Patent from Emperor Tu Duc",
+      stat3_num: "<small style=\"margin-right: 4px; font-weight: 500;\">Over</small>200<small style=\"margin-left: 4px; font-weight: 500;\">years</small>",
+      stat3: "Preserving Southern cultural beauty",
+      stat4: "Classified as City-level Relic",
       card1: {
         title: "Historical Significance",
         body: "Served as a crucial liaison post and secret mailbox for the revolution, linked to the historic 1948 raid directed by Secretary Nguyen Chanh Thon."
@@ -286,7 +286,7 @@ var TRANSLATIONS = {
       }
     },
     footer: {
-      about: "The Binh Truong digital red site project in Binh Chanh District, HCMC aims to preserve and promote cultural and architectural values.",
+      about: "The Binh Truong digital red site project in Binh Chanh Commune, HCMC aims to preserve and promote cultural and architectural values.",
       explore: "Explore",
       info: "Information",
       addressLabel: "Address:",
