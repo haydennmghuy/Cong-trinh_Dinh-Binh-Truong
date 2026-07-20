@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.23';
+        mainImgEl.src = images[0] + '?v=3.47.24';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -436,8 +436,8 @@ const Timeline = {
       // Check if timeline section is properly in view before locking scroll
       const isSectionInView = () => {
         const rect = timelineSection.getBoundingClientRect();
-        // Section top should be comfortably inside or near top of viewport (e.g. <= 150px from top)
-        return rect.top <= 150 && rect.bottom >= window.innerHeight * 0.5;
+        // Section top must be near top of viewport (under fixed header) so whole section card is in full view
+        return rect.top <= 100 && rect.top >= -100;
       };
 
       // Reset to milestone 0 as soon as scrolling above the timeline section
@@ -657,7 +657,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.23';
+    const version = '3.47.24';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
