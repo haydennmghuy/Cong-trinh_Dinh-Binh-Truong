@@ -84,7 +84,7 @@ var TRANSLATIONS = {
       }
     },
     footer_contact: "Liên Hệ & Vị Trí",
-    footer_address: "Ấp 1, Xã Bình Chánh, Huyện Bình Chánh, TP.HCM",
+    footer_address: "Ấp 1, Xã Bình Chánh, TP.HCM",
     footer_credits: "Dự án số hóa di tích Đình Bình Trường — nhằm bảo tồn và phát huy giá trị kiến trúc, lịch sử và văn hóa cho các thế hệ tương lai.",
     close: "Đóng",
     next_area: "Khu vực tiếp theo →",
@@ -142,7 +142,7 @@ var TRANSLATIONS = {
       explore: "Khám phá",
       info: "Thông tin",
       addressLabel: "Địa chỉ:",
-      address: "Ấp 1, Xã Bình Chánh, Huyện Bình Chánh, TP.HCM",
+      address: "Ấp 1, Xã Bình Chánh, TP.HCM",
       map: "Bản đồ",
       copyrightMarquee: "Công trình số hóa địa chỉ đỏ Di tích lịch sử Đình Bình Trường - Thực hiện bởi Đội hình Chuyên Nâng cao Kỹ năng số - Chiến dịch Tình nguyện Sinh viên Kinh tế 2026 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       copyright: "Công trình số hóa địa chỉ đỏ Di tích lịch sử Đình Bình Trường<br>Thực hiện bởi Đội hình Chuyên Nâng cao Kỹ năng số<br>Chiến dịch Tình nguyện Sinh viên Kinh tế 2026"
@@ -238,7 +238,7 @@ var TRANSLATIONS = {
       }
     },
     footer_contact: "Contact & Location",
-    footer_address: "Hamlet 1, Binh Chanh Commune, Binh Chanh District, Ho Chi Minh City",
+    footer_address: "Hamlet 1, Binh Chanh Commune, Ho Chi Minh City",
     footer_credits: "Digital preservation project for Binh Truong Communal House — preserving architectural, historical and cultural values for future generations.",
     close: "Close",
     next_area: "Next area →",
@@ -290,7 +290,7 @@ var TRANSLATIONS = {
       explore: "Explore",
       info: "Information",
       addressLabel: "Address:",
-      address: "Hamlet 1, Binh Chanh Commune, Binh Chanh District, Ho Chi Minh City",
+      address: "Hamlet 1, Binh Chanh Commune, Ho Chi Minh City",
       map: "Map",
       copyrightMarquee: "Digital Red Site Digitalization Project - Binh Truong Communal House - Carried out by the Digital Skills Enhancement Team - Student Economic Volunteer Campaign 2026 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       copyright: "Digital Red Site Digitalization Project - Binh Truong Communal House<br>Carried out by the Digital Skills Enhancement Team<br>Student Economic Volunteer Campaign 2026"
