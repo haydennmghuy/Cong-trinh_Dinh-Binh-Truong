@@ -375,7 +375,7 @@ html[lang="en"] .hero-title {
 .hero-copy .subtitle {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+  font-size: clamp(0.85rem, 1.35vw, 0.95rem);
   font-weight: 500;
   margin-bottom: 1.8rem;
   color: var(--bronze-light, #E8C96A);
@@ -1747,7 +1747,7 @@ html[lang="en"] .hero-title {
     width: 100%;
   }
   .hero-copy .subtitle {
-    font-size: clamp(0.68rem, 3vw, 0.9rem) !important;
+    font-size: clamp(0.65rem, 2.5vw, 0.8rem) !important;
     margin-bottom: 1.2rem !important;
     text-align: center !important;
     color: var(--bronze-light, #E8C96A) !important;
