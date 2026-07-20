@@ -138,7 +138,7 @@ var TRANSLATIONS = {
       }
     },
     footer: {
-      about: "Dự án số hóa địa chỉ đỏ Di tích kiến trúc nghệ thuật Đình Bình Trường tọa lạc tại xã Bình Chánh, Thành phố Hồ Chí Minh nhằm bảo tồn và phổ biến các giá trị văn hóa, kiến trúc truyền thống.",
+      about: "Dự án số hóa địa chỉ đỏ Di tích kiến trúc nghệ thuật Đình&nbsp;Bình&nbsp;Trường tọa lạc tại xã&nbsp;Bình&nbsp;Chánh, Thành&nbsp;phố Hồ&nbsp;Chí&nbsp;Minh nhằm bảo tồn và phổ biến các giá trị văn hóa, kiến trúc truyền thống.",
       explore: "Khám phá",
       info: "Thông tin",
       addressLabel: "Địa chỉ:",
@@ -286,7 +286,7 @@ var TRANSLATIONS = {
       }
     },
     footer: {
-      about: "The Binh Truong digital red site project in Binh Chanh Commune, HCMC aims to preserve and promote cultural and architectural values.",
+      about: "The Binh&nbsp;Truong digital red site project in Binh&nbsp;Chanh Commune, HCMC aims to preserve and promote cultural and architectural values.",
       explore: "Explore",
       info: "Information",
       addressLabel: "Address:",

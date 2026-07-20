@@ -1231,7 +1231,7 @@ html[lang="en"] .hero-title {
   font-size: 0.88rem;
   line-height: 1.65;
   color: #B2A292;
-  text-align: justify;
+  text-align: left;
   max-width: 340px;
 }
 
