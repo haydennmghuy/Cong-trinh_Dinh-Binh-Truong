@@ -122,19 +122,19 @@ var TRANSLATIONS = {
       stat4: "Được xếp hạng Di tích cấp Thành phố",
       card1: {
         title: "Ý nghĩa lịch sử",
-        body: "Là địa điểm liên lạc, hộp thư nhận tin tức<br>của cách mạng, gắn với hoạt động đột kích<br>năm 1948 do Bí thư Chi bộ Nguyễn Chánh Thôn<br>chỉ đạo."
+        body: "<span class=\"j-line\">Là địa điểm liên lạc, hộp thư nhận tin tức</span><span class=\"j-line\">của cách mạng, gắn với hoạt động đột kích</span><span class=\"j-line\">năm 1948 do Bí thư Chi bộ Nguyễn Chánh Thôn</span><span class=\"j-last\">chỉ đạo.</span>"
       },
       card2: {
         title: "Giá trị nghệ thuật",
-        body: "kiến&nbsp;trúc truyền&nbsp;thống đình&nbsp;làng Nam&nbsp;Bộ cùng hệ&nbsp;thống bao&nbsp;lam, hoành&nbsp;phi, liễn&nbsp;đối, cửa&nbsp;võng và các cột&nbsp;gỗ chạm&nbsp;khắc rồng,&nbsp;phượng tinh&nbsp;xảo. Những đường&nbsp;nét điêu&nbsp;khắc, hoa&nbsp;văn trang&nbsp;trí và bố&nbsp;cục không&nbsp;gian thờ&nbsp;tự phản&nbsp;ánh trình&nbsp;độ mỹ&nbsp;thuật, kỹ&nbsp;thuật chế&nbsp;tác và tư&nbsp;duy thẩm&nbsp;mỹ của các nghệ&nbsp;nhân Việt&nbsp;Nam qua nhiều thế&nbsp;hệ."
+        body: "kiến trúc truyền thống đình làng Nam Bộ cùng hệ thống bao lam, hoành phi, liễn đối, cửa võng và các cột gỗ chạm khắc rồng, phượng tinh xảo. Những đường nét điêu khắc, hoa văn trang trí và bố cục không gian thờ tự phản ánh trình độ mỹ thuật, kỹ thuật chế tác và tư duy thẩm mỹ của các nghệ nhân Việt Nam qua nhiều thế hệ."
       },
       card3: {
         title: "Hiện vật quý báu",
-        body: "Lưu giữ sắc phong vua Tự Đức ban tặng<br>năm 1852 cùng các hiện vật chạm khắc gỗ<br>tinh vi, lư đồng cổ và tượng rồng lân<br>bằng gốm sứ."
+        body: "<span class=\"j-line\">Lưu giữ sắc phong vua Tự Đức ban tặng</span><span class=\"j-line\">năm 1852 cùng các hiện vật chạm khắc gỗ</span><span class=\"j-line\">tinh vi, lư đồng cổ và tượng rồng lân</span><span class=\"j-last\">bằng gốm sứ.</span>"
       },
       card4: {
         title: "Lễ hội",
-        body: "Đình Bình Trường hiện còn duy trì ba lễ hội<br>truyền thống được lưu truyền qua nhiều thế hệ,<br>góp phần bảo tồn những giá trị văn hóa<br>và tín ngưỡng đặc sắc của đình làng Nam Bộ<br>gồm: Lễ Kỳ Yên (Lễ Cầu An), Lễ Hạ Điền, Lễ Cầu Bông."
+        body: "<span class=\"j-line\">Đình Bình Trường hiện còn duy trì ba lễ hội</span><span class=\"j-line\">truyền thống được lưu truyền qua nhiều thế hệ,</span><span class=\"j-line\">góp phần bảo tồn những giá trị văn hóa</span><span class=\"j-line\">và tín ngưỡng đặc sắc của đình làng Nam Bộ</span><span class=\"j-last\">gồm: Lễ Kỳ Yên (Lễ Cầu An), Lễ Hạ Điền, Lễ Cầu Bông.</span>"
       }
     },
     footer: {
