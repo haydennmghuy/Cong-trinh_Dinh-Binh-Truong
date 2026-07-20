@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.20';
+        mainImgEl.src = images[0] + '?v=3.47.21';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -440,6 +440,14 @@ const Timeline = {
         return rect.top <= 150 && rect.bottom >= window.innerHeight * 0.5;
       };
 
+      // Reset to milestone 0 as soon as scrolling above the timeline section
+      window.addEventListener('scroll', () => {
+        const rect = timelineSection.getBoundingClientRect();
+        if (rect.top > 120 && this.activeIdx !== 0) {
+          updateActive(0);
+        }
+      }, { passive: true });
+
       timelineSection.addEventListener('wheel', (e) => {
         const total = MAP_DATA.timeline.length;
         if (e.deltaY > 0) { // Scrolling DOWN
@@ -649,7 +657,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.20';
+    const version = '3.47.21';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
