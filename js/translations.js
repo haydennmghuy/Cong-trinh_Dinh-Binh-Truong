@@ -126,7 +126,7 @@ var TRANSLATIONS = {
       },
       card2: {
         title: "Giá trị nghệ thuật",
-        body: "kiến trúc truyền thống đình làng Nam Bộ cùng hệ thống bao lam, hoành phi, liễn đối, cửa võng và các cột gỗ chạm khắc rồng, phượng tinh xảo. Những đường nét điêu khắc, hoa văn trang trí và bố cục không gian thờ tự phản ánh trình độ mỹ thuật, kỹ thuật chế tác và tư duy thẩm mỹ của các nghệ nhân Việt Nam qua nhiều thế hệ."
+        body: "<span class=\"j-line\">kiến trúc truyền thống đình làng Nam Bộ cùng</span><span class=\"j-line\">hệ thống bao lam, hoành phi, liễn đối, cửa võng</span><span class=\"j-line\">và các cột gỗ chạm khắc rồng, phượng</span><span class=\"j-line\">tinh xảo. Những đường nét điêu khắc, hoa văn</span><span class=\"j-line\">trang trí và bố cục không gian thờ tự phản ánh</span><span class=\"j-line\">trình độ mỹ thuật, kỹ thuật chế tác và tư duy</span><span class=\"j-line\">thẩm mỹ của các nghệ nhân Việt Nam qua nhiều</span><span class=\"j-last\">thế hệ.</span>"
       },
       card3: {
         title: "Hiện vật quý báu",
@@ -134,7 +134,7 @@ var TRANSLATIONS = {
       },
       card4: {
         title: "Lễ hội",
-        body: "<span class=\"j-line\">Đình Bình Trường hiện còn duy trì ba lễ hội</span><span class=\"j-line\">truyền thống được lưu truyền qua nhiều thế hệ,</span><span class=\"j-line\">góp phần bảo tồn những giá trị văn hóa</span><span class=\"j-line\">và tín ngưỡng đặc sắc của đình làng Nam Bộ</span><span class=\"j-last\">gồm: Lễ Kỳ Yên (Lễ Cầu An), Lễ Hạ Điền, Lễ Cầu Bông.</span>"
+        body: "<span class=\"j-line\">Đình Bình Trường hiện còn duy trì ba lễ hội</span><span class=\"j-line\">truyền thống được lưu truyền qua nhiều thế hệ,</span><span class=\"j-line\">góp phần bảo tồn những giá trị văn hóa</span><span class=\"j-line\">và tín ngưỡng đặc sắc của đình làng Nam Bộ</span><span class=\"j-line\">gồm: Lễ Kỳ Yên (Lễ Cầu An), Lễ Hạ Điền,</span><span class=\"j-last\">Lễ Cầu Bông.</span>"
       }
     },
     footer: {
