@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.63';
+        mainImgEl.src = images[0] + '?v=3.47.64';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -431,132 +431,165 @@ const Timeline = {
     const initialPct = (this.activeIdx / (MAP_DATA.timeline.length - 1)) * 100;
     if (progressEl) progressEl.style.width = `${initialPct}%`;
 
-    // ===== Scroll interaction logic for Timeline =====
+    // ===== Timeline Scroll Interaction (Rewritten from Scratch) =====
     const timelineSection = document.querySelector('.timeline-section');
     if (timelineSection && !timelineSection.dataset.scrollBound) {
       timelineSection.dataset.scrollBound = 'true';
+
+      let activeIdx = 0;
+      let isStepping = false;
+      let hasSwiped = false;
+      let touchStartY = 0;
+
+      const total = MAP_DATA.timeline.length; // 5 milestones: 0 (~1808), 1 (1852), 2 (8/1948), 3 (1945-1975), 4 (2005)
       const eyebrowEl = timelineSection.querySelector('.eyebrow');
 
-      // Target element for scroll alignment: Timeline bar on Mobile, Eyebrow heading on Laptop/Desktop
-      const getAlignTargetEl = () => {
-        if (window.innerWidth <= 768) {
-          return timelineSection.querySelector('.timeline-horizontal') || eyebrowEl;
+      // Update active milestone UI (progress bar, year nodes, detail cards)
+      const setActiveMilestone = (newIdx) => {
+        activeIdx = newIdx;
+        this.activeIdx = newIdx;
+
+        // 1. Progress bar width
+        if (progressEl) {
+          const pct = (newIdx / (total - 1)) * 100;
+          progressEl.style.width = `${pct}%`;
         }
-        return eyebrowEl;
+
+        // 2. Year nodes
+        nodes.forEach((node, idx) => {
+          const isActive = idx === newIdx;
+          node.classList.toggle('active', isActive);
+          if (isActive && window.innerWidth <= 900) {
+            node.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          }
+        });
+
+        // 3. Detail cards
+        cards.forEach((card, idx) => {
+          card.classList.toggle('active', idx === newIdx);
+        });
       };
 
-      // Check if timeline section is active in the viewport
-      const isTimelineInViewport = () => {
-        if (!timelineSection) return false;
-        const sectionRect = timelineSection.getBoundingClientRect();
-        return sectionRect.top <= (window.innerHeight * 0.85) && sectionRect.bottom >= 50;
-      };
+      // Click / Keydown listeners on nodes
+      nodes.forEach((node, idx) => {
+        node.addEventListener('click', () => setActiveMilestone(idx));
+        node.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setActiveMilestone(idx);
+          }
+        });
+      });
 
-      // Align timeline section target instantly under fixed top bar
-      const alignSectionHeader = () => {
-        const targetEl = getAlignTargetEl();
-        if (!targetEl) return;
-        const rect = targetEl.getBoundingClientRect();
+      // Align header above timeline content
+      const pinHeader = () => {
         const header = document.querySelector('header') || document.querySelector('.site-header');
         const headerHeight = header ? header.offsetHeight : 65;
-        const offsetPadding = window.innerWidth <= 768 ? 8 : 20;
-        const targetY = window.pageYOffset + rect.top - (headerHeight + offsetPadding);
-        if (Math.abs(rect.top - (headerHeight + offsetPadding)) > 5) {
+        const targetEl = window.innerWidth <= 768 
+          ? (timelineSection.querySelector('.timeline-horizontal') || eyebrowEl)
+          : eyebrowEl;
+        if (!targetEl) return;
+
+        const rect = targetEl.getBoundingClientRect();
+        const offset = window.innerWidth <= 768 ? 8 : 20;
+        const targetY = window.pageYOffset + rect.top - (headerHeight + offset);
+
+        if (Math.abs(rect.top - (headerHeight + offset)) > 8) {
           window.scrollTo({ top: targetY, behavior: 'auto' });
         }
       };
 
-      // Unified Timeline Step Logic
-      const handleTimelineStep = (direction) => {
-        if (isCoolingDown) return false;
-        const total = MAP_DATA.timeline.length;
-
-        if (direction === 'down') { // Scrolling DOWN / Swiping UP
-          if (activeIdx < total - 1) { // Not at last milestone (2005) yet
-            if (isTimelineInViewport()) {
-              isCoolingDown = true;
-              alignSectionHeader();
-              updateActive(activeIdx + 1); // Step forward 1 milestone
-              setTimeout(() => { isCoolingDown = false; }, 220);
-              return true;
-            }
-          }
-        } else if (direction === 'up') { // Scrolling UP / Swiping DOWN
-          if (isTimelineInViewport()) {
-            if (activeIdx === total - 1) { // At the last milestone (2005)
-              isCoolingDown = true;
-              updateActive(0); // Reset to initial milestone (1808) to restart loop
-              alignSectionHeader();
-              setTimeout(() => { isCoolingDown = false; }, 220);
-              return true;
-            } else if (activeIdx > 0) { // At milestone 1, 2, or 3
-              isCoolingDown = true;
-              alignSectionHeader();
-              updateActive(activeIdx - 1); // Step backward 1 milestone
-              setTimeout(() => { isCoolingDown = false; }, 220);
-              return true;
-            }
-          }
-        }
-        return false;
+      // Check if timeline section is in active scroll lock zone
+      const isInLockZone = () => {
+        if (!timelineSection) return false;
+        const rect = timelineSection.getBoundingClientRect();
+        const header = document.querySelector('header') || document.querySelector('.site-header');
+        const headerHeight = header ? header.offsetHeight : 65;
+        return rect.top <= (headerHeight + 200) && rect.bottom >= (headerHeight + 80);
       };
 
-      // Global Wheel Event Listener on window
+      // Core Step Executer
+      const stepMilestone = (dir) => {
+        if (isStepping) return;
+
+        if (dir === 'down') {
+          if (activeIdx < total - 1) {
+            isStepping = true;
+            pinHeader();
+            setActiveMilestone(activeIdx + 1);
+            setTimeout(() => { isStepping = false; }, 180);
+          }
+        } else if (dir === 'up') {
+          if (activeIdx === total - 1) {
+            isStepping = true;
+            setActiveMilestone(0); // Reset to 1808
+            pinHeader();
+            setTimeout(() => { isStepping = false; }, 180);
+          } else if (activeIdx > 0) {
+            isStepping = true;
+            pinHeader();
+            setActiveMilestone(activeIdx - 1);
+            setTimeout(() => { isStepping = false; }, 180);
+          }
+        }
+      };
+
+      // 1. Mouse Wheel Listener (Desktop & Laptop)
       window.addEventListener('wheel', (e) => {
-        if (!isTimelineInViewport()) return;
-        const total = MAP_DATA.timeline.length;
-        if (e.deltaY > 0) {
+        if (!isInLockZone()) return;
+
+        if (e.deltaY > 0) { // Scrolling DOWN
           if (activeIdx < total - 1) {
             e.preventDefault();
-            handleTimelineStep('down');
+            stepMilestone('down');
           }
-        } else if (e.deltaY < 0) {
+        } else if (e.deltaY < 0) { // Scrolling UP
           if (activeIdx > 0 || activeIdx === total - 1) {
             e.preventDefault();
-            handleTimelineStep('up');
+            stepMilestone('up');
           }
         }
       }, { passive: false });
 
-      // Global Touch Event Listener on window
-      let startTouchY = 0;
-
+      // 2. Touch Listener (Mobile)
       window.addEventListener('touchstart', (e) => {
         if (e.touches.length === 1) {
-          startTouchY = e.touches[0].clientY;
-          hasSwipedInCurrentTouch = false;
+          touchStartY = e.touches[0].clientY;
+          hasSwiped = false;
         }
       }, { passive: true });
 
       window.addEventListener('touchmove', (e) => {
-        if (!startTouchY || e.touches.length !== 1 || !isTimelineInViewport()) return;
+        if (!touchStartY || e.touches.length !== 1 || !isInLockZone()) return;
         const currentY = e.touches[0].clientY;
-        const diffY = startTouchY - currentY;
-        const total = MAP_DATA.timeline.length;
+        const diffY = touchStartY - currentY;
 
-        // Immediately prevent native scroll jitter on every touchmove frame while locked
+        // Prevent native scroll jitter when trapped in milestone lock
         if (diffY > 0 && activeIdx < total - 1) {
           if (e.cancelable) e.preventDefault();
         } else if (diffY < 0 && (activeIdx > 0 || activeIdx === total - 1)) {
           if (e.cancelable) e.preventDefault();
         }
 
-        // Trigger 1-milestone step when touch threshold reached
-        if (Math.abs(diffY) > 18 && !hasSwipedInCurrentTouch) {
-          if (diffY > 0) {
-            const stepped = handleTimelineStep('down');
-            if (stepped) hasSwipedInCurrentTouch = true;
-          } else {
-            const stepped = handleTimelineStep('up');
-            if (stepped) hasSwipedInCurrentTouch = true;
+        if (Math.abs(diffY) > 16 && !hasSwiped) {
+          if (diffY > 0 && activeIdx < total - 1) {
+            hasSwiped = true;
+            stepMilestone('down');
+          } else if (diffY < 0 && (activeIdx > 0 || activeIdx === total - 1)) {
+            hasSwiped = true;
+            stepMilestone('up');
           }
         }
       }, { passive: false });
 
       window.addEventListener('touchend', () => {
-        startTouchY = 0;
-        hasSwipedInCurrentTouch = false;
+        touchStartY = 0;
+        hasSwiped = false;
       }, { passive: true });
+
+      // Initialize initial state
+      setActiveMilestone(this.activeIdx || 0);
+    }
     }
   }
 };
@@ -708,7 +741,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.63';
+    const version = '3.47.64';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
