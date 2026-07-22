@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.60';
+        mainImgEl.src = images[0] + '?v=3.47.61';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -471,57 +471,58 @@ const Timeline = {
       };
 
       // Unified Timeline Step Logic
-      const handleTimelineStep = (direction, preventFunc) => {
+      const handleTimelineStep = (direction) => {
+        if (isCoolingDown) return false;
         const total = MAP_DATA.timeline.length;
 
         if (direction === 'down') { // Scrolling DOWN / Swiping UP
           if (activeIdx < total - 1) { // Not at last milestone (2005) yet
             if (isHeaderNearEyebrow()) {
-              if (preventFunc) preventFunc();
-              if (!isCoolingDown) {
-                isCoolingDown = true;
-                alignSectionHeader();
-                updateActive(activeIdx + 1); // Step forward 1 milestone
-                setTimeout(() => { isCoolingDown = false; }, 360);
-              }
+              isCoolingDown = true;
+              alignSectionHeader();
+              updateActive(activeIdx + 1); // Step forward 1 milestone
+              setTimeout(() => { isCoolingDown = false; }, 220);
+              return true;
             }
           }
-          // If activeIdx === total - 1 (2005), preventFunc is NOT called -> allows scrolling down to next section!
         } else if (direction === 'up') { // Scrolling UP / Swiping DOWN
           if (isHeaderNearEyebrow()) {
             if (activeIdx === total - 1) { // At the last milestone (2005)
-              if (preventFunc) preventFunc();
-              if (!isCoolingDown) {
-                isCoolingDown = true;
-                updateActive(0); // Reset to initial milestone (1808) to restart loop
-                alignSectionHeader();
-                setTimeout(() => { isCoolingDown = false; }, 360);
-              }
+              isCoolingDown = true;
+              updateActive(0); // Reset to initial milestone (1808) to restart loop
+              alignSectionHeader();
+              setTimeout(() => { isCoolingDown = false; }, 220);
+              return true;
             } else if (activeIdx > 0) { // At milestone 1, 2, or 3
-              if (preventFunc) preventFunc();
-              if (!isCoolingDown) {
-                isCoolingDown = true;
-                alignSectionHeader();
-                updateActive(activeIdx - 1); // Step backward 1 milestone
-                setTimeout(() => { isCoolingDown = false; }, 360);
-              }
+              isCoolingDown = true;
+              alignSectionHeader();
+              updateActive(activeIdx - 1); // Step backward 1 milestone
+              setTimeout(() => { isCoolingDown = false; }, 220);
+              return true;
             }
-            // If activeIdx === 0, preventFunc is NOT called -> allows scrolling up to previous section!
           }
         }
+        return false;
       };
 
-      // Global Wheel Event Listener on window (triggers anywhere on screen when timeline is locked)
+      // Global Wheel Event Listener on window
       window.addEventListener('wheel', (e) => {
         if (!isHeaderNearEyebrow()) return;
+        const total = MAP_DATA.timeline.length;
         if (e.deltaY > 0) {
-          handleTimelineStep('down', () => e.preventDefault());
+          if (activeIdx < total - 1) {
+            e.preventDefault();
+            handleTimelineStep('down');
+          }
         } else if (e.deltaY < 0) {
-          handleTimelineStep('up', () => e.preventDefault());
+          if (activeIdx > 0 || activeIdx === total - 1) {
+            e.preventDefault();
+            handleTimelineStep('up');
+          }
         }
       }, { passive: false });
 
-      // Global Touch Event Listener on window (hard-locks page scroll without any jitter)
+      // Global Touch Event Listener on window
       let startTouchY = 0;
 
       window.addEventListener('touchstart', (e) => {
@@ -545,19 +546,13 @@ const Timeline = {
         }
 
         // Trigger 1-milestone step when touch threshold reached
-        if (Math.abs(diffY) > 18) {
-          if (!hasSwipedInCurrentTouch) {
-            if (diffY > 0) { // Swiping UP -> Stepping DOWN
-              handleTimelineStep('down', () => {
-                if (e.cancelable) e.preventDefault();
-                hasSwipedInCurrentTouch = true;
-              });
-            } else { // Swiping DOWN -> Stepping UP
-              handleTimelineStep('up', () => {
-                if (e.cancelable) e.preventDefault();
-                hasSwipedInCurrentTouch = true;
-              });
-            }
+        if (Math.abs(diffY) > 18 && !hasSwipedInCurrentTouch) {
+          if (diffY > 0) {
+            const stepped = handleTimelineStep('down');
+            if (stepped) hasSwipedInCurrentTouch = true;
+          } else {
+            const stepped = handleTimelineStep('up');
+            if (stepped) hasSwipedInCurrentTouch = true;
           }
         }
       }, { passive: false });
@@ -717,7 +712,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.60';
+    const version = '3.47.61';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
