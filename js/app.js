@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.56';
+        mainImgEl.src = images[0] + '?v=3.47.57';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -475,35 +475,35 @@ const Timeline = {
         const total = MAP_DATA.timeline.length;
 
         if (direction === 'down') { // Scrolling DOWN / Swiping UP
-          if (this.activeIdx < total - 1) { // Not at last milestone (2005) yet
+          if (activeIdx < total - 1) { // Not at last milestone (2005) yet
             if (isHeaderNearEyebrow()) {
               if (preventFunc) preventFunc();
               if (!isCoolingDown) {
                 isCoolingDown = true;
                 alignSectionHeader();
-                updateActive(this.activeIdx + 1); // Step forward EXACTLY 1 milestone
-                setTimeout(() => { isCoolingDown = false; }, 420);
+                updateActive(activeIdx + 1); // Step forward 1 milestone
+                setTimeout(() => { isCoolingDown = false; }, 360);
               }
             }
           }
           // If activeIdx === total - 1 (2005), preventFunc is NOT called -> allows scrolling down to next section!
         } else if (direction === 'up') { // Scrolling UP / Swiping DOWN
           if (isHeaderNearEyebrow()) {
-            if (this.activeIdx === total - 1) { // At the last milestone (2005)
+            if (activeIdx === total - 1) { // At the last milestone (2005)
               if (preventFunc) preventFunc();
               if (!isCoolingDown) {
                 isCoolingDown = true;
                 updateActive(0); // Reset to initial milestone (1808) to restart loop
                 alignSectionHeader();
-                setTimeout(() => { isCoolingDown = false; }, 420);
+                setTimeout(() => { isCoolingDown = false; }, 360);
               }
-            } else if (this.activeIdx > 0) { // At milestone 1, 2, or 3
+            } else if (activeIdx > 0) { // At milestone 1, 2, or 3
               if (preventFunc) preventFunc();
               if (!isCoolingDown) {
                 isCoolingDown = true;
                 alignSectionHeader();
-                updateActive(this.activeIdx - 1); // Step backward EXACTLY 1 milestone
-                setTimeout(() => { isCoolingDown = false; }, 420);
+                updateActive(activeIdx - 1); // Step backward 1 milestone
+                setTimeout(() => { isCoolingDown = false; }, 360);
               }
             }
             // If activeIdx === 0, preventFunc is NOT called -> allows scrolling up to previous section!
@@ -536,7 +536,7 @@ const Timeline = {
         const currentY = e.touches[0].clientY;
         const diffY = startTouchY - currentY;
 
-        if (Math.abs(diffY) > 20) {
+        if (Math.abs(diffY) > 18) {
           if (!hasSwipedInCurrentTouch) {
             if (diffY > 0) { // Swiping UP -> Stepping DOWN
               handleTimelineStep('down', () => {
@@ -551,7 +551,7 @@ const Timeline = {
             }
           } else {
             // Block continued page scrolling during the remainder of this single swipe drag
-            if (this.activeIdx < MAP_DATA.timeline.length - 1 && diffY > 0 && e.cancelable) {
+            if (activeIdx < MAP_DATA.timeline.length - 1 && diffY > 0 && e.cancelable) {
               e.preventDefault();
             }
           }
@@ -713,7 +713,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.56';
+    const version = '3.47.57';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
