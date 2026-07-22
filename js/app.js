@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.55';
+        mainImgEl.src = images[0] + '?v=3.47.56';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -448,12 +448,12 @@ const Timeline = {
       // Check if sticky header is close to the target element
       const isHeaderNearEyebrow = () => {
         const targetEl = getAlignTargetEl();
-        if (!targetEl) return true;
+        if (!targetEl) return false;
         const rect = targetEl.getBoundingClientRect();
         const header = document.querySelector('header') || document.querySelector('.site-header');
-        const headerHeight = header ? header.offsetHeight : 60;
-        const marginThreshold = window.innerWidth <= 768 ? 140 : 80;
-        return rect.top <= (headerHeight + marginThreshold) && rect.top >= -250;
+        const headerHeight = header ? header.offsetHeight : 70;
+        const marginThreshold = window.innerWidth <= 768 ? 160 : 180;
+        return rect.top <= (headerHeight + marginThreshold) && rect.top >= -350;
       };
 
       // Smoothly align timeline section target under fixed top bar
@@ -713,7 +713,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.55';
+    const version = '3.47.56';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
