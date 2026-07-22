@@ -1817,6 +1817,11 @@ html[lang="en"] .hero-title {
 
   body, p { font-size: 0.9rem; line-height: 1.65; }
 
+  .value-card p,
+  .festival-card p {
+    text-align: left !important;
+  }
+
   h2 { font-size: clamp(1.2rem, 4.5vw, 1.45rem); }
   h3 { font-size: clamp(1.1rem, 4vw, 1.3rem); }
 
@@ -2209,8 +2214,7 @@ html[lang="en"] .hero-title {
   color: var(--ink-soft);
   font-size: 0.9rem;
   line-height: 1.65;
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
   text-wrap: pretty;
 }
 
