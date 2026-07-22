@@ -886,7 +886,7 @@ html[lang="en"] .hero-title {
 .timeline-section {
   position: relative;
   width: 100%;
-  padding: 5rem 0 6rem;
+  padding: 3rem 0 3.5rem;
   background: linear-gradient(135deg, #FFF9F2 0%, #FFE9D6 50%, #FFD8B6 100%); /* Gorgeous warm sunset gradient background */
   color: var(--ink);
   overflow: hidden;
@@ -911,12 +911,12 @@ html[lang="en"] .hero-title {
 }
 
 .timeline-section .section-heading {
-  margin-bottom: 8rem; /* Increased spacing between Dấu Ấn heading and timeline milestones */
+  margin-bottom: 1.5rem; /* Compact spacing between Dấu Ấn heading and timeline milestones */
 }
 
 .timeline-section .section-lead {
   max-width: 72ch;
-  margin: 1rem auto 0;
+  margin: 0.8rem auto 0;
   font-size: 0.98rem;
   line-height: 1.75;
   color: var(--ink-soft);
@@ -938,7 +938,7 @@ html[lang="en"] .hero-title {
 
 .timeline-horizontal {
   position: relative;
-  margin: 2.5rem 0 3.5rem;
+  margin: 1.2rem 0 1.6rem;
   padding: 0 40px;
 }
 
@@ -1054,10 +1054,10 @@ html[lang="en"] .hero-title {
   left: 0;
   width: 100%;
   display: flex;
-  gap: 2.8rem;
+  gap: 2.2rem;
   background: var(--white);
   border: 1px solid rgba(201, 168, 76, 0.22);
-  padding: 2.5rem;
+  padding: 1.6rem 2rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
   opacity: 0;
@@ -1079,9 +1079,9 @@ html[lang="en"] .hero-title {
 }
 
 .detail-card-img {
-  flex: 0 0 520px;
-  max-width: 520px;
-  height: 350px;
+  flex: 0 0 450px;
+  max-width: 450px;
+  height: 270px;
   border-radius: 12px;
   overflow: hidden;
   border: 2px solid rgba(212, 175, 55, 0.4);
