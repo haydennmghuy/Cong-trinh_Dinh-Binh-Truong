@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.44';
+        mainImgEl.src = images[0] + '?v=3.47.45';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -453,7 +453,8 @@ const Timeline = {
         const rect = targetEl.getBoundingClientRect();
         const header = document.querySelector('header') || document.querySelector('.site-header');
         const headerHeight = header ? header.offsetHeight : 60;
-        return rect.top <= (headerHeight + 60) && rect.top >= -250;
+        const marginThreshold = window.innerWidth <= 768 ? 140 : 80;
+        return rect.top <= (headerHeight + marginThreshold) && rect.top >= -250;
       };
 
       // Smoothly align timeline section target under fixed top bar
@@ -470,9 +471,8 @@ const Timeline = {
         }
       };
 
-      // Wheel scroll step interaction for Desktop/Laptop
+      // Wheel scroll step interaction for Desktop / Mobile mouse
       timelineSection.addEventListener('wheel', (e) => {
-        if (window.innerWidth <= 768) return;
         const total = MAP_DATA.timeline.length;
         if (e.deltaY > 0) { // Scrolling DOWN
           if (this.activeIdx < total - 1) {
@@ -484,34 +484,38 @@ const Timeline = {
                   alignSectionHeader();
                 }
                 updateActive(this.activeIdx + 1);
-                setTimeout(() => { isCoolingDown = false; }, 300);
+                setTimeout(() => { isCoolingDown = false; }, 260);
               }
             }
           }
         } else if (e.deltaY < 0) { // Scrolling UP
-          if (this.activeIdx > 0) {
-            updateActive(0); // Return to initial milestone (1808)
+          if (this.activeIdx > 0 && isHeaderNearEyebrow()) {
+            e.preventDefault();
+            if (!isCoolingDown) {
+              isCoolingDown = true;
+              updateActive(0);
+              setTimeout(() => { isCoolingDown = false; }, 260);
+            }
           }
         }
       }, { passive: false });
 
-      // Mobile Touch Scroll Step Interaction (matching web stepping when header hits timeline bar)
+      // Mobile Touch Scroll Step Interaction
       let startTouchY = 0;
 
       timelineSection.addEventListener('touchstart', (e) => {
-        if (window.innerWidth > 768) return;
         if (e.touches.length === 1) {
           startTouchY = e.touches[0].clientY;
         }
       }, { passive: true });
 
       timelineSection.addEventListener('touchmove', (e) => {
-        if (window.innerWidth > 768 || !startTouchY || e.touches.length !== 1) return;
+        if (!startTouchY || e.touches.length !== 1) return;
         const currentY = e.touches[0].clientY;
         const diffY = startTouchY - currentY;
         const total = MAP_DATA.timeline.length;
 
-        if (Math.abs(diffY) > 25) {
+        if (Math.abs(diffY) > 18) {
           if (diffY > 0) { // Swiping UP -> Stepping DOWN through milestones
             if (this.activeIdx < total - 1) {
               if (isHeaderNearEyebrow()) {
@@ -523,7 +527,7 @@ const Timeline = {
                   }
                   updateActive(this.activeIdx + 1);
                   startTouchY = currentY;
-                  setTimeout(() => { isCoolingDown = false; }, 280);
+                  setTimeout(() => { isCoolingDown = false; }, 260);
                 }
               }
             }
@@ -534,7 +538,7 @@ const Timeline = {
                 isCoolingDown = true;
                 updateActive(0);
                 startTouchY = currentY;
-                setTimeout(() => { isCoolingDown = false; }, 280);
+                setTimeout(() => { isCoolingDown = false; }, 260);
               }
             }
           }
@@ -691,7 +695,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.44';
+    const version = '3.47.45';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
