@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.47';
+        mainImgEl.src = images[0] + '?v=3.47.48';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -471,8 +471,9 @@ const Timeline = {
         }
       };
 
-      // Wheel scroll step interaction for Desktop / Mobile mouse
+      // Wheel scroll step interaction for Desktop/Laptop (> 768px)
       timelineSection.addEventListener('wheel', (e) => {
+        if (window.innerWidth <= 768) return; // Allow 100% free, natural touch scrolling on mobile
         const total = MAP_DATA.timeline.length;
         if (e.deltaY > 0) { // Scrolling DOWN
           if (this.activeIdx < total - 1) {
@@ -495,51 +496,6 @@ const Timeline = {
               isCoolingDown = true;
               updateActive(0);
               setTimeout(() => { isCoolingDown = false; }, 260);
-            }
-          }
-        }
-      }, { passive: false });
-
-      // Mobile Touch Scroll Step Interaction
-      let startTouchY = 0;
-
-      timelineSection.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 1) {
-          startTouchY = e.touches[0].clientY;
-        }
-      }, { passive: true });
-
-      timelineSection.addEventListener('touchmove', (e) => {
-        if (!startTouchY || e.touches.length !== 1) return;
-        const currentY = e.touches[0].clientY;
-        const diffY = startTouchY - currentY;
-        const total = MAP_DATA.timeline.length;
-
-        if (Math.abs(diffY) > 18) {
-          if (diffY > 0) { // Swiping UP -> Stepping DOWN through milestones
-            if (this.activeIdx < total - 1) {
-              if (isHeaderNearEyebrow()) {
-                if (e.cancelable) e.preventDefault();
-                if (!isCoolingDown) {
-                  isCoolingDown = true;
-                  if (this.activeIdx === 0) {
-                    alignSectionHeader();
-                  }
-                  updateActive(this.activeIdx + 1);
-                  startTouchY = currentY;
-                  setTimeout(() => { isCoolingDown = false; }, 260);
-                }
-              }
-            }
-          } else { // Swiping DOWN -> Stepping UP
-            if (this.activeIdx > 0 && isHeaderNearEyebrow()) {
-              if (e.cancelable) e.preventDefault();
-              if (!isCoolingDown) {
-                isCoolingDown = true;
-                updateActive(0);
-                startTouchY = currentY;
-                setTimeout(() => { isCoolingDown = false; }, 260);
-              }
             }
           }
         }
@@ -695,7 +651,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.47';
+    const version = '3.47.48';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
