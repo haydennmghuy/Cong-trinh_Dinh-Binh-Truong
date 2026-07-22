@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.49';
+        mainImgEl.src = images[0] + '?v=3.47.50';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -485,17 +485,19 @@ const Timeline = {
                   alignSectionHeader();
                 }
                 updateActive(this.activeIdx + 1);
-                setTimeout(() => { isCoolingDown = false; }, 260);
+                setTimeout(() => { isCoolingDown = false; }, 280);
               }
             }
           }
         } else if (e.deltaY < 0) { // Scrolling UP
-          if (this.activeIdx > 0 && isHeaderNearEyebrow()) {
-            e.preventDefault();
-            if (!isCoolingDown) {
-              isCoolingDown = true;
-              updateActive(0);
-              setTimeout(() => { isCoolingDown = false; }, 260);
+          if (this.activeIdx > 0) {
+            if (isHeaderNearEyebrow()) {
+              e.preventDefault();
+              if (!isCoolingDown) {
+                isCoolingDown = true;
+                updateActive(this.activeIdx - 1); // Step backward one milestone at a time
+                setTimeout(() => { isCoolingDown = false; }, 280);
+              }
             }
           }
         }
@@ -651,7 +653,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.49';
+    const version = '3.47.50';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
