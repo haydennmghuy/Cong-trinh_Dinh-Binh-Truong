@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.54';
+        mainImgEl.src = images[0] + '?v=3.47.55';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -435,8 +435,40 @@ const Timeline = {
     const timelineSection = document.querySelector('.timeline-section');
     if (timelineSection && !timelineSection.dataset.scrollBound) {
       timelineSection.dataset.scrollBound = 'true';
-      let isCoolingDown = false;
-      let hasSwipedInCurrentTouch = false;
+      const eyebrowEl = timelineSection.querySelector('.eyebrow');
+
+      // Target element for scroll alignment: Timeline bar on Mobile, Eyebrow heading on Laptop/Desktop
+      const getAlignTargetEl = () => {
+        if (window.innerWidth <= 768) {
+          return timelineSection.querySelector('.timeline-horizontal') || eyebrowEl;
+        }
+        return eyebrowEl;
+      };
+
+      // Check if sticky header is close to the target element
+      const isHeaderNearEyebrow = () => {
+        const targetEl = getAlignTargetEl();
+        if (!targetEl) return true;
+        const rect = targetEl.getBoundingClientRect();
+        const header = document.querySelector('header') || document.querySelector('.site-header');
+        const headerHeight = header ? header.offsetHeight : 60;
+        const marginThreshold = window.innerWidth <= 768 ? 140 : 80;
+        return rect.top <= (headerHeight + marginThreshold) && rect.top >= -250;
+      };
+
+      // Smoothly align timeline section target under fixed top bar
+      const alignSectionHeader = () => {
+        const targetEl = getAlignTargetEl();
+        if (!targetEl) return;
+        const rect = targetEl.getBoundingClientRect();
+        const header = document.querySelector('header') || document.querySelector('.site-header');
+        const headerHeight = header ? header.offsetHeight : 60;
+        const offsetPadding = window.innerWidth <= 768 ? 8 : 20;
+        const targetY = window.pageYOffset + rect.top - (headerHeight + offsetPadding);
+        if (Math.abs(rect.top - (headerHeight + offsetPadding)) > 10) {
+          window.scrollTo({ top: targetY, behavior: 'smooth' });
+        }
+      };
 
       // Unified Timeline Step Logic
       const handleTimelineStep = (direction, preventFunc) => {
@@ -448,9 +480,7 @@ const Timeline = {
               if (preventFunc) preventFunc();
               if (!isCoolingDown) {
                 isCoolingDown = true;
-                if (this.activeIdx === 0) {
-                  alignSectionHeader();
-                }
+                alignSectionHeader();
                 updateActive(this.activeIdx + 1); // Step forward EXACTLY 1 milestone
                 setTimeout(() => { isCoolingDown = false; }, 420);
               }
@@ -471,6 +501,7 @@ const Timeline = {
               if (preventFunc) preventFunc();
               if (!isCoolingDown) {
                 isCoolingDown = true;
+                alignSectionHeader();
                 updateActive(this.activeIdx - 1); // Step backward EXACTLY 1 milestone
                 setTimeout(() => { isCoolingDown = false; }, 420);
               }
@@ -682,7 +713,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.54';
+    const version = '3.47.55';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
