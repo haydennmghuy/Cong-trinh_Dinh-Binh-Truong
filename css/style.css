@@ -705,17 +705,9 @@ html[lang="en"] .hero-title {
   font-size: 0.98rem;
   line-height: 1.8;
   margin-bottom: 1.25rem;
-}
-.narration-text .j-line {
-  display: block;
   text-align: justify;
-  text-align-last: justify;
-  width: 100%;
-}
-.narration-text .j-last {
-  display: block;
-  text-align: left;
-  width: 100%;
+  text-justify: inter-word;
+  text-wrap: pretty;
 }
 .narration-text p:last-child {
   margin-bottom: 0;
