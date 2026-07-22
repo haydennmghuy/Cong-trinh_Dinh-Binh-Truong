@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.53';
+        mainImgEl.src = images[0] + '?v=3.47.54';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -436,40 +436,7 @@ const Timeline = {
     if (timelineSection && !timelineSection.dataset.scrollBound) {
       timelineSection.dataset.scrollBound = 'true';
       let isCoolingDown = false;
-      const eyebrowEl = timelineSection.querySelector('.eyebrow');
-
-      // Target element for scroll alignment: Timeline bar on Mobile, Eyebrow heading on Laptop/Desktop
-      const getAlignTargetEl = () => {
-        if (window.innerWidth <= 768) {
-          return timelineSection.querySelector('.timeline-horizontal') || eyebrowEl;
-        }
-        return eyebrowEl;
-      };
-
-      // Check if sticky header is close to the target element
-      const isHeaderNearEyebrow = () => {
-        const targetEl = getAlignTargetEl();
-        if (!targetEl) return true;
-        const rect = targetEl.getBoundingClientRect();
-        const header = document.querySelector('header') || document.querySelector('.site-header');
-        const headerHeight = header ? header.offsetHeight : 60;
-        const marginThreshold = window.innerWidth <= 768 ? 140 : 80;
-        return rect.top <= (headerHeight + marginThreshold) && rect.top >= -250;
-      };
-
-      // Smoothly align timeline section target under fixed top bar
-      const alignSectionHeader = () => {
-        const targetEl = getAlignTargetEl();
-        if (!targetEl) return;
-        const rect = targetEl.getBoundingClientRect();
-        const header = document.querySelector('header') || document.querySelector('.site-header');
-        const headerHeight = header ? header.offsetHeight : 60;
-        const offsetPadding = window.innerWidth <= 768 ? 4 : 20;
-        const targetY = window.pageYOffset + rect.top - (headerHeight + offsetPadding);
-        if (Math.abs(rect.top - (headerHeight + offsetPadding)) > 10) {
-          window.scrollTo({ top: targetY, behavior: 'smooth' });
-        }
-      };
+      let hasSwipedInCurrentTouch = false;
 
       // Unified Timeline Step Logic
       const handleTimelineStep = (direction, preventFunc) => {
@@ -484,8 +451,8 @@ const Timeline = {
                 if (this.activeIdx === 0) {
                   alignSectionHeader();
                 }
-                updateActive(this.activeIdx + 1); // Step forward 1 milestone
-                setTimeout(() => { isCoolingDown = false; }, 260);
+                updateActive(this.activeIdx + 1); // Step forward EXACTLY 1 milestone
+                setTimeout(() => { isCoolingDown = false; }, 420);
               }
             }
           }
@@ -498,14 +465,14 @@ const Timeline = {
                 isCoolingDown = true;
                 updateActive(0); // Reset to initial milestone (1808) to restart loop
                 alignSectionHeader();
-                setTimeout(() => { isCoolingDown = false; }, 260);
+                setTimeout(() => { isCoolingDown = false; }, 420);
               }
             } else if (this.activeIdx > 0) { // At milestone 1, 2, or 3
               if (preventFunc) preventFunc();
               if (!isCoolingDown) {
                 isCoolingDown = true;
-                updateActive(this.activeIdx - 1); // Step backward 1 milestone
-                setTimeout(() => { isCoolingDown = false; }, 260);
+                updateActive(this.activeIdx - 1); // Step backward EXACTLY 1 milestone
+                setTimeout(() => { isCoolingDown = false; }, 420);
               }
             }
             // If activeIdx === 0, preventFunc is NOT called -> allows scrolling up to previous section!
@@ -523,12 +490,13 @@ const Timeline = {
         }
       }, { passive: false });
 
-      // Global Touch Event Listener on window (triggers anywhere on screen when timeline is locked)
+      // Global Touch Event Listener on window (guarantees strictly 1 milestone step per touch swipe drag)
       let startTouchY = 0;
 
       window.addEventListener('touchstart', (e) => {
         if (e.touches.length === 1) {
           startTouchY = e.touches[0].clientY;
+          hasSwipedInCurrentTouch = false;
         }
       }, { passive: true });
 
@@ -537,20 +505,32 @@ const Timeline = {
         const currentY = e.touches[0].clientY;
         const diffY = startTouchY - currentY;
 
-        if (Math.abs(diffY) > 16) {
-          if (diffY > 0) { // Swiping UP -> Stepping DOWN through milestones
-            handleTimelineStep('down', () => {
-              if (e.cancelable) e.preventDefault();
-              startTouchY = currentY;
-            });
-          } else { // Swiping DOWN -> Stepping UP
-            handleTimelineStep('up', () => {
-              if (e.cancelable) e.preventDefault();
-              startTouchY = currentY;
-            });
+        if (Math.abs(diffY) > 20) {
+          if (!hasSwipedInCurrentTouch) {
+            if (diffY > 0) { // Swiping UP -> Stepping DOWN
+              handleTimelineStep('down', () => {
+                if (e.cancelable) e.preventDefault();
+                hasSwipedInCurrentTouch = true;
+              });
+            } else { // Swiping DOWN -> Stepping UP
+              handleTimelineStep('up', () => {
+                if (e.cancelable) e.preventDefault();
+                hasSwipedInCurrentTouch = true;
+              });
+            }
+          } else {
+            // Block continued page scrolling during the remainder of this single swipe drag
+            if (this.activeIdx < MAP_DATA.timeline.length - 1 && diffY > 0 && e.cancelable) {
+              e.preventDefault();
+            }
           }
         }
       }, { passive: false });
+
+      window.addEventListener('touchend', () => {
+        startTouchY = 0;
+        hasSwipedInCurrentTouch = false;
+      }, { passive: true });
     }
   }
 };
@@ -702,7 +682,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.53';
+    const version = '3.47.54';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
