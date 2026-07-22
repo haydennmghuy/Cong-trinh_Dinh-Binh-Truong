@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.59';
+        mainImgEl.src = images[0] + '?v=3.47.60';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -445,21 +445,15 @@ const Timeline = {
         return eyebrowEl;
       };
 
-      // Check if timeline section is currently aligned / active in the top viewport area
+      // Check if timeline section is active in the viewport
       const isHeaderNearEyebrow = () => {
         if (!timelineSection) return false;
-        const targetEl = getAlignTargetEl();
-        if (!targetEl) return false;
-        const rect = targetEl.getBoundingClientRect();
         const sectionRect = timelineSection.getBoundingClientRect();
         const header = document.querySelector('header') || document.querySelector('.site-header');
         const headerHeight = header ? header.offsetHeight : 70;
 
-        if (window.innerWidth <= 768) {
-          return rect.top <= (headerHeight + 160) && rect.top >= -250;
-        }
-        // On Laptop/Desktop: Active when top of section enters near header until section bottom leaves
-        return sectionRect.top <= (headerHeight + 250) && sectionRect.bottom >= (headerHeight + 100);
+        // Active as soon as timeline section enters top 75% of viewport until section bottom leaves
+        return sectionRect.top <= (window.innerHeight * 0.75) && sectionRect.bottom >= (headerHeight + 80);
       };
 
       // Smoothly align timeline section target under fixed top bar
@@ -723,7 +717,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.59';
+    const version = '3.47.60';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
