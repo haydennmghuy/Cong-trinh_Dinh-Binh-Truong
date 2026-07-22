@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.38';
+        mainImgEl.src = images[0] + '?v=3.47.39';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -438,23 +438,34 @@ const Timeline = {
       let isCoolingDown = false;
       const eyebrowEl = timelineSection.querySelector('.eyebrow');
 
-      // Check if sticky header is close to the "Dấu Ấn" eyebrow element
-      const isHeaderNearEyebrow = () => {
-        if (!eyebrowEl) return true;
-        const rect = eyebrowEl.getBoundingClientRect();
-        const header = document.querySelector('header') || document.querySelector('.site-header');
-        const headerHeight = header ? header.offsetHeight : 70;
-        return rect.top <= (headerHeight + 60) && rect.top >= -250;
+      // Target element for scroll alignment: Timeline bar on Mobile, Eyebrow heading on Laptop/Desktop
+      const getAlignTargetEl = () => {
+        if (window.innerWidth <= 768) {
+          return timelineSection.querySelector('.timeline-horizontal') || eyebrowEl;
+        }
+        return eyebrowEl;
       };
 
-      // Smoothly align timeline section header under fixed top bar
-      const alignSectionHeader = () => {
-        if (!eyebrowEl) return;
-        const rect = eyebrowEl.getBoundingClientRect();
+      // Check if sticky header is close to the target element
+      const isHeaderNearEyebrow = () => {
+        const targetEl = getAlignTargetEl();
+        if (!targetEl) return true;
+        const rect = targetEl.getBoundingClientRect();
         const header = document.querySelector('header') || document.querySelector('.site-header');
         const headerHeight = header ? header.offsetHeight : 70;
-        const targetY = window.pageYOffset + rect.top - (headerHeight + 20);
-        if (Math.abs(rect.top - (headerHeight + 20)) > 15) {
+        return rect.top <= (headerHeight + 80) && rect.top >= -300;
+      };
+
+      // Smoothly align timeline section target under fixed top bar
+      const alignSectionHeader = () => {
+        const targetEl = getAlignTargetEl();
+        if (!targetEl) return;
+        const rect = targetEl.getBoundingClientRect();
+        const header = document.querySelector('header') || document.querySelector('.site-header');
+        const headerHeight = header ? header.offsetHeight : 70;
+        const offsetPadding = window.innerWidth <= 768 ? 8 : 20;
+        const targetY = window.pageYOffset + rect.top - (headerHeight + offsetPadding);
+        if (Math.abs(rect.top - (headerHeight + offsetPadding)) > 15) {
           window.scrollTo({ top: targetY, behavior: 'smooth' });
         }
       };
@@ -671,7 +682,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.38';
+    const version = '3.47.39';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }

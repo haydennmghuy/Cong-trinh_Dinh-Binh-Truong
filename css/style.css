@@ -1789,17 +1789,32 @@ html[lang="en"] .hero-title {
     display: block !important;
   }
 
+  .timeline-horizontal {
+    margin: 0.8rem 0 1.2rem;
+  }
+
   .timeline-detail-card {
     flex-direction: column;
-    padding: 1.5rem 1.2rem;
-    gap: 1.5rem;
+    padding: 1.1rem 1rem;
+    gap: 0.8rem;
   }
 
   .detail-card-img {
     max-width: 100%;
     width: 100%;
     flex: none;
-    height: 220px;
+    height: 175px;
+    border-radius: 10px;
+  }
+
+  .detail-card-title {
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .detail-card-text {
+    font-size: 0.88rem;
+    line-height: 1.6;
   }
 
   .stats { grid-template-columns: repeat(2, 1fr); }
