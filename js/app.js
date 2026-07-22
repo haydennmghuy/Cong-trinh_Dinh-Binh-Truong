@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.42';
+        mainImgEl.src = images[0] + '?v=3.47.43';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -495,52 +495,51 @@ const Timeline = {
         }
       }, { passive: false });
 
-      // Mobile Touch Swipe Step Interaction (Passive touchend for buttery smooth 60fps scrolling)
+      // Mobile Touch Scroll Step Interaction (matching web stepping when header hits timeline bar)
       let startTouchY = 0;
-      let startTouchX = 0;
 
       timelineSection.addEventListener('touchstart', (e) => {
         if (window.innerWidth > 768) return;
         if (e.touches.length === 1) {
           startTouchY = e.touches[0].clientY;
-          startTouchX = e.touches[0].clientX;
         }
       }, { passive: true });
 
-      timelineSection.addEventListener('touchend', (e) => {
-        if (window.innerWidth > 768 || !startTouchY || !e.changedTouches || e.changedTouches.length !== 1) return;
-        const endTouchY = e.changedTouches[0].clientY;
-        const endTouchX = e.changedTouches[0].clientX;
-        const diffY = startTouchY - endTouchY;
-        const diffX = startTouchX - endTouchX;
+      timelineSection.addEventListener('touchmove', (e) => {
+        if (window.innerWidth > 768 || !startTouchY || e.touches.length !== 1) return;
+        const currentY = e.touches[0].clientY;
+        const diffY = startTouchY - currentY;
+        const total = MAP_DATA.timeline.length;
 
-        startTouchY = 0;
-        startTouchX = 0;
-
-        if (Math.abs(diffY) > 45 && Math.abs(diffY) > Math.abs(diffX) * 1.3) {
-          const total = MAP_DATA.timeline.length;
+        if (Math.abs(diffY) > 25) {
           if (diffY > 0) { // Swiping UP -> Stepping DOWN through milestones
-            if (this.activeIdx < total - 1 && isHeaderNearEyebrow()) {
-              if (!isCoolingDown) {
-                isCoolingDown = true;
-                if (this.activeIdx === 0) {
-                  alignSectionHeader();
+            if (this.activeIdx < total - 1) {
+              if (isHeaderNearEyebrow()) {
+                if (e.cancelable) e.preventDefault();
+                if (!isCoolingDown) {
+                  isCoolingDown = true;
+                  if (this.activeIdx === 0) {
+                    alignSectionHeader();
+                  }
+                  updateActive(this.activeIdx + 1);
+                  startTouchY = currentY;
+                  setTimeout(() => { isCoolingDown = false; }, 280);
                 }
-                updateActive(this.activeIdx + 1);
-                setTimeout(() => { isCoolingDown = false; }, 300);
               }
             }
           } else { // Swiping DOWN -> Stepping UP
             if (this.activeIdx > 0 && isHeaderNearEyebrow()) {
+              if (e.cancelable) e.preventDefault();
               if (!isCoolingDown) {
                 isCoolingDown = true;
                 updateActive(0);
-                setTimeout(() => { isCoolingDown = false; }, 300);
+                startTouchY = currentY;
+                setTimeout(() => { isCoolingDown = false; }, 280);
               }
             }
           }
         }
-      }, { passive: true });
+      }, { passive: false });
     }
   }
 };
@@ -692,7 +691,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.42';
+    const version = '3.47.43';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
