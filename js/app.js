@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.65';
+        mainImgEl.src = images[0] + '?v=3.47.66';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -401,10 +401,6 @@ const Timeline = {
       if (targetIdx < 0 || targetIdx >= total) return;
       this.activeIdx = targetIdx;
 
-      const progressEl = container.querySelector('#timeline-progress');
-      const nodes = container.querySelectorAll('.timeline-node');
-      const cards = container.querySelectorAll('.timeline-detail-card');
-
       // 1. Update progress bar width
       if (progressEl) {
         const pct = (targetIdx / (total - 1)) * 100;
@@ -427,7 +423,6 @@ const Timeline = {
     };
 
     // Node click and keydown listeners
-    const nodes = container.querySelectorAll('.timeline-node');
     nodes.forEach((node, idx) => {
       node.addEventListener('click', () => this.updateActive(idx));
       node.addEventListener('keydown', (e) => {
@@ -505,7 +500,6 @@ const Timeline = {
           }
         }
       }, { passive: false });
-    }
     }
   }
 };
@@ -657,7 +651,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.65';
+    const version = '3.47.66';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
