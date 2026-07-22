@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.57';
+        mainImgEl.src = images[0] + '?v=3.47.58';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -521,7 +521,7 @@ const Timeline = {
         }
       }, { passive: false });
 
-      // Global Touch Event Listener on window (guarantees strictly 1 milestone step per touch swipe drag)
+      // Global Touch Event Listener on window (hard-locks page scroll without any jitter)
       let startTouchY = 0;
 
       window.addEventListener('touchstart', (e) => {
@@ -535,7 +535,16 @@ const Timeline = {
         if (!startTouchY || e.touches.length !== 1 || !isHeaderNearEyebrow()) return;
         const currentY = e.touches[0].clientY;
         const diffY = startTouchY - currentY;
+        const total = MAP_DATA.timeline.length;
 
+        // Immediately prevent native scroll jitter on every touchmove frame while locked
+        if (diffY > 0 && activeIdx < total - 1) {
+          if (e.cancelable) e.preventDefault();
+        } else if (diffY < 0 && (activeIdx > 0 || activeIdx === total - 1)) {
+          if (e.cancelable) e.preventDefault();
+        }
+
+        // Trigger 1-milestone step when touch threshold reached
         if (Math.abs(diffY) > 18) {
           if (!hasSwipedInCurrentTouch) {
             if (diffY > 0) { // Swiping UP -> Stepping DOWN
@@ -548,11 +557,6 @@ const Timeline = {
                 if (e.cancelable) e.preventDefault();
                 hasSwipedInCurrentTouch = true;
               });
-            }
-          } else {
-            // Block continued page scrolling during the remainder of this single swipe drag
-            if (activeIdx < MAP_DATA.timeline.length - 1 && diffY > 0 && e.cancelable) {
-              e.preventDefault();
             }
           }
         }
@@ -713,7 +717,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.57';
+    const version = '3.47.58';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
