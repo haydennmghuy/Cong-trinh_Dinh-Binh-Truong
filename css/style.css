@@ -1049,7 +1049,7 @@ html[lang="en"] .hero-title {
   top: 0;
   left: 0;
   width: 100%;
-  display: none;
+  display: flex;
   gap: 2.8rem;
   background: var(--white);
   border: 1px solid rgba(201, 168, 76, 0.22);
@@ -1057,16 +1057,21 @@ html[lang="en"] .hero-title {
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
   opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(12px) scale(0.985);
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
+              visibility 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   align-items: center;
 }
 
 .timeline-detail-card.active {
-  display: flex;
   position: relative;
   opacity: 1;
-  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
 }
 
 .detail-card-img {

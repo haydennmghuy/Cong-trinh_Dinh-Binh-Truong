@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.27';
+        mainImgEl.src = images[0] + '?v=3.47.28';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -440,29 +440,40 @@ const Timeline = {
         const rect = eyebrowEl.getBoundingClientRect();
         const header = document.querySelector('header') || document.querySelector('.site-header');
         const headerHeight = header ? header.offsetHeight : 70;
-        // Trigger only when "Dấu Ấn" heading has scrolled up close to top header
-        return rect.top <= (headerHeight + 50) && rect.top >= -200;
+        return rect.top <= (headerHeight + 60) && rect.top >= -250;
+      };
+
+      // Smoothly align timeline section header under fixed top bar
+      const alignSectionHeader = () => {
+        if (!eyebrowEl) return;
+        const rect = eyebrowEl.getBoundingClientRect();
+        const header = document.querySelector('header') || document.querySelector('.site-header');
+        const headerHeight = header ? header.offsetHeight : 70;
+        const targetY = window.pageYOffset + rect.top - (headerHeight + 20);
+        if (Math.abs(rect.top - (headerHeight + 20)) > 15) {
+          window.scrollTo({ top: targetY, behavior: 'smooth' });
+        }
       };
 
       timelineSection.addEventListener('wheel', (e) => {
         const total = MAP_DATA.timeline.length;
         if (e.deltaY > 0) { // Scrolling DOWN
           if (this.activeIdx < total - 1) {
-            // Only lock scroll to step milestones when header is near "Dấu Ấn"
             if (isHeaderNearEyebrow()) {
               e.preventDefault();
               if (!isCoolingDown) {
                 isCoolingDown = true;
+                if (this.activeIdx === 0) {
+                  alignSectionHeader();
+                }
                 updateActive(this.activeIdx + 1);
-                setTimeout(() => { isCoolingDown = false; }, 350);
+                setTimeout(() => { isCoolingDown = false; }, 300);
               }
             }
           }
-          // If activeIdx === total - 1 or header not yet near "Dấu Ấn", allow natural page scroll down
         } else if (e.deltaY < 0) { // Scrolling UP
           if (this.activeIdx > 0) {
-            updateActive(0); // Instantly return to initial milestone (1808)
-            // Allow natural page scroll up without preventDefault
+            updateActive(0); // Return to initial milestone (1808)
           }
         }
       }, { passive: false });
@@ -488,9 +499,12 @@ const Timeline = {
                 if (e.cancelable) e.preventDefault();
                 if (!isCoolingDown) {
                   isCoolingDown = true;
+                  if (this.activeIdx === 0) {
+                    alignSectionHeader();
+                  }
                   updateActive(this.activeIdx + 1);
                   startY = currentY;
-                  setTimeout(() => { isCoolingDown = false; }, 350);
+                  setTimeout(() => { isCoolingDown = false; }, 300);
                 }
               }
             }
@@ -653,7 +667,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.27';
+    const version = '3.47.28';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
