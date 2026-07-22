@@ -232,26 +232,26 @@ var MAP_DATA = {
   timeline: [
     {
       year: "1808",
-      label: "Đình được<br>xây dựng",
-      labelEn: "Communal house<br>constructed",
+      label: "Đình được xây dựng",
+      labelEn: "Communal house constructed",
       image: "",
       vi: {
         title: "Khoảng năm 1808",
-        body: "Đình Bình Trường được&nbsp;xây&nbsp;dựng"
+        body: "Đình Bình Trường được xây dựng với kiến trúc truyền thống đình làng Nam Bộ."
       },
       en: {
         title: "Around 1808",
-        body: "Binh Truong Communal House was constructed"
+        body: "Binh Truong Communal House was constructed with traditional Southern Vietnamese communal house architecture."
       }
     },
     {
       year: "1852",
-      label: "[ẢNH SẮC]",
-      labelEn: "[DECREE IMAGE]",
+      label: "Sắc phong Vua Tự Đức",
+      labelEn: "Imperial Decree",
       image: "images/real/sac_than_khung_go.webp",
       vi: {
         title: "Năm 1852",
-        body: "Năm thứ 5 đời Vua Tự Đức đã ban sắc phong cho Thần Thành Hoàng thôn (làng) Bình Trường và được thờ&nbsp;cúng&nbsp;tại&nbsp;Đình."
+        body: "Năm thứ 5 đời Vua Tự Đức đã ban sắc phong cho Thần Thành Hoàng thôn (làng) Bình Trường và được thờ cúng trang trọng tại Đình."
       },
       en: {
         title: "Year 1852",
@@ -260,12 +260,12 @@ var MAP_DATA = {
     },
     {
       year: "8/1948",
-      label: "Cuộc đột<br>kích lễ<br>Cầu Bông",
-      labelEn: "Cau Bong<br>festival raid",
+      label: "Đột kích Lễ Cầu Bông",
+      labelEn: "Cau Bong festival raid",
       image: "",
       vi: {
         title: "Tháng 8 năm 1948",
-        body: "Nhằm gây thanh thế cách mạng trong lúc địch đang ra sức bình định, kìm kẹp, đồng chí Nguyễn Chánh Thôn - Bí thư Chi bộ xã Bình Chánh đã chỉ đạo cuộc đột kích nhân dịp đình Bình Trường cúng&nbsp;lễ&nbsp;cầu&nbsp;bông."
+        body: "Nhằm gây thanh thế cách mạng trong lúc địch đang ra sức bình định, kìm kẹp, đồng chí Nguyễn Chánh Thôn - Bí thư Chi bộ xã Bình Chánh đã chỉ đạo cuộc đột kích nhân dịp đình Bình Trường cúng lễ cầu bông."
       },
       en: {
         title: "August 1948",
@@ -274,30 +274,30 @@ var MAP_DATA = {
     },
     {
       year: "1945 - 1975",
-      label: "Địa điểm<br>liên lạc<br>cách mạng",
-      labelEn: "Revolutionary<br>liaison post",
+      label: "Địa điểm liên lạc cách mạng",
+      labelEn: "Revolutionary liaison post",
       image: "",
       vi: {
         title: "Năm 1945 - 1975",
-        body: "Đình Bình Trường là địa điểm liên lạc, hộp thư nhận tin tức của&nbsp;cách&nbsp;mạng"
+        body: "Đình Bình Trường là địa điểm liên lạc, hộp thư nhận tin tức bí mật của cách mạng trong hai cuộc kháng chiến chống Pháp và chống Mỹ."
       },
       en: {
         title: "Years 1945 - 1975",
-        body: "Binh Truong Communal House served as a liaison post and secret mailbox for the revolution"
+        body: "Binh Truong Communal House served as a liaison post and secret mailbox for the revolution during resistance wars."
       }
     },
     {
       year: "2005",
-      label: "[ẢNH QUYẾT<br>ĐỊNH]",
-      labelEn: "[DECISION<br>IMAGE]",
+      label: "Bằng xếp hạng Di tích",
+      labelEn: "Relic Classification",
       image: "images/gallery/bang_xep_hang_di_tich.webp",
       vi: {
         title: "Năm 2005",
-        body: "Với những nét đẹp lịch sử - văn hóa vốn có của đình làng Nam Bộ, đình Bình Trường đã được Ủy ban nhân dân Thành phố Hồ Chí Minh xếp hạng là di tích kiến trúc nghệ thuật cấp Thành phố theo Quyết&nbsp;định&nbsp;số&nbsp;21/2005/QĐ-UB&nbsp;ngày&nbsp;01&nbsp;tháng&nbsp;02&nbsp;năm&nbsp;2005"
+        body: "Với những nét đẹp lịch sử - văn hóa vốn có của đình làng Nam Bộ, đình Bình Trường đã được Ủy ban nhân dân Thành phố Hồ Chí Minh xếp hạng là di tích kiến trúc nghệ thuật cấp Thành phố theo Quyết định số 21/2005/QĐ-UB ngày 01 tháng 02 năm 2005."
       },
       en: {
         title: "Year 2005",
-        body: "With its inherent historical and cultural values of Southern communal houses, Binh Truong was classified as a City-level Architectural Artistic Relic by the HCMC People's Committee under Decision No. 21/2005/QD-UB dated February 1, 2005"
+        body: "With its inherent historical and cultural values of Southern communal houses, Binh Truong was classified as a City-level Architectural Artistic Relic by the HCMC People's Committee under Decision No. 21/2005/QD-UB dated February 1, 2005."
       }
     }
   ]
