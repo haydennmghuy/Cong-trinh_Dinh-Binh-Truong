@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.40';
+        mainImgEl.src = images[0] + '?v=3.47.41';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -452,8 +452,8 @@ const Timeline = {
         if (!targetEl) return true;
         const rect = targetEl.getBoundingClientRect();
         const header = document.querySelector('header') || document.querySelector('.site-header');
-        const headerHeight = header ? header.offsetHeight : 70;
-        return rect.top <= (headerHeight + 80) && rect.top >= -300;
+        const headerHeight = header ? header.offsetHeight : 60;
+        return rect.top <= (headerHeight + 60) && rect.top >= -250;
       };
 
       // Smoothly align timeline section target under fixed top bar
@@ -462,16 +462,17 @@ const Timeline = {
         if (!targetEl) return;
         const rect = targetEl.getBoundingClientRect();
         const header = document.querySelector('header') || document.querySelector('.site-header');
-        const headerHeight = header ? header.offsetHeight : 70;
-        const offsetPadding = window.innerWidth <= 768 ? 8 : 20;
+        const headerHeight = header ? header.offsetHeight : 60;
+        const offsetPadding = window.innerWidth <= 768 ? 4 : 20;
         const targetY = window.pageYOffset + rect.top - (headerHeight + offsetPadding);
-        if (Math.abs(rect.top - (headerHeight + offsetPadding)) > 15) {
+        if (Math.abs(rect.top - (headerHeight + offsetPadding)) > 10) {
           window.scrollTo({ top: targetY, behavior: 'smooth' });
         }
       };
 
+      // Wheel scroll step interaction for Desktop/Laptop
       timelineSection.addEventListener('wheel', (e) => {
-        if (window.innerWidth <= 768) return; // Allow buttery smooth native scrolling on mobile
+        if (window.innerWidth <= 768) return;
         const total = MAP_DATA.timeline.length;
         if (e.deltaY > 0) { // Scrolling DOWN
           if (this.activeIdx < total - 1) {
@@ -490,6 +491,56 @@ const Timeline = {
         } else if (e.deltaY < 0) { // Scrolling UP
           if (this.activeIdx > 0) {
             updateActive(0); // Return to initial milestone (1808)
+          }
+        }
+      }, { passive: false });
+
+      // Mobile Touch Swipe Step Interaction
+      let startTouchY = 0;
+      let startTouchX = 0;
+
+      timelineSection.addEventListener('touchstart', (e) => {
+        if (window.innerWidth > 768) return;
+        if (e.touches.length === 1) {
+          startTouchY = e.touches[0].clientY;
+          startTouchX = e.touches[0].clientX;
+        }
+      }, { passive: true });
+
+      timelineSection.addEventListener('touchmove', (e) => {
+        if (window.innerWidth > 768 || !startTouchY || e.touches.length !== 1) return;
+        const currentY = e.touches[0].clientY;
+        const currentX = e.touches[0].clientX;
+        const diffY = startTouchY - currentY;
+        const diffX = startTouchX - currentX;
+
+        if (Math.abs(diffY) > 35 && Math.abs(diffY) > Math.abs(diffX) * 1.4) {
+          const total = MAP_DATA.timeline.length;
+          if (diffY > 0) { // Swiping UP -> Stepping DOWN through milestones
+            if (this.activeIdx < total - 1) {
+              if (isHeaderNearEyebrow()) {
+                if (e.cancelable) e.preventDefault();
+                if (!isCoolingDown) {
+                  isCoolingDown = true;
+                  if (this.activeIdx === 0) {
+                    alignSectionHeader();
+                  }
+                  updateActive(this.activeIdx + 1);
+                  startTouchY = currentY;
+                  setTimeout(() => { isCoolingDown = false; }, 300);
+                }
+              }
+            }
+          } else { // Swiping DOWN -> Stepping UP
+            if (this.activeIdx > 0 && isHeaderNearEyebrow()) {
+              if (e.cancelable) e.preventDefault();
+              if (!isCoolingDown) {
+                isCoolingDown = true;
+                updateActive(0);
+                startTouchY = currentY;
+                setTimeout(() => { isCoolingDown = false; }, 300);
+              }
+            }
           }
         }
       }, { passive: false });
@@ -644,7 +695,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.40';
+    const version = '3.47.41';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }

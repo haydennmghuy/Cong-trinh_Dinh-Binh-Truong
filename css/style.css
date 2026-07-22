@@ -1789,8 +1789,36 @@ html[lang="en"] .hero-title {
     display: block !important;
   }
 
+  .timeline-section {
+    padding: 2rem 0 2.2rem !important;
+  }
+
   .timeline-horizontal {
-    margin: 0.8rem 0 1.2rem;
+    margin: 0.4rem 0 0.8rem !important;
+    padding: 0 10px !important;
+  }
+
+  .timeline-nodes {
+    justify-content: space-between !important;
+    min-width: 440px !important;
+    padding: 0 20px !important;
+  }
+
+  .timeline-node {
+    flex: 0 0 75px !important;
+    width: 75px !important;
+  }
+
+  .node-year {
+    font-size: 0.86rem !important;
+    margin-bottom: 3px !important;
+  }
+
+  .timeline-line,
+  .timeline-line-progress {
+    top: 28px !important;
+    left: 38px !important;
+    right: 38px !important;
   }
 
   .timeline-details-container {
@@ -1806,10 +1834,11 @@ html[lang="en"] .hero-title {
     visibility: visible !important;
     transform: none !important;
     flex-direction: column !important;
-    padding: 0.95rem 0.9rem !important;
-    gap: 0.75rem !important;
+    padding: 0.75rem 0.85rem !important;
+    gap: 0.55rem !important;
     box-sizing: border-box !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08) !important;
   }
 
   .timeline-detail-card.active {
@@ -1820,20 +1849,22 @@ html[lang="en"] .hero-title {
     max-width: 100% !important;
     width: 100% !important;
     flex: none !important;
-    height: 165px !important;
-    border-radius: 8px !important;
+    height: 135px !important;
+    border-radius: 6px !important;
   }
 
   .detail-card-title {
-    font-size: 1.08rem !important;
-    margin-bottom: 0.35rem !important;
+    font-size: 1.02rem !important;
+    margin-bottom: 0.25rem !important;
+    font-weight: 700 !important;
   }
 
   .detail-card-text {
-    font-size: 0.86rem !important;
-    line-height: 1.58 !important;
+    font-size: 0.82rem !important;
+    line-height: 1.5 !important;
     text-align: justify !important;
     text-justify: inter-word !important;
+    text-wrap: pretty !important;
   }
 
   .stats { grid-template-columns: repeat(2, 1fr); }
