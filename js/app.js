@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.61';
+        mainImgEl.src = images[0] + '?v=3.47.62';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -445,28 +445,29 @@ const Timeline = {
         return eyebrowEl;
       };
 
-      // Check if timeline section is active in the viewport
+      // Check if timeline section target is near the top header area
       const isHeaderNearEyebrow = () => {
         if (!timelineSection) return false;
-        const sectionRect = timelineSection.getBoundingClientRect();
+        const targetEl = getAlignTargetEl();
+        if (!targetEl) return false;
+        const rect = targetEl.getBoundingClientRect();
         const header = document.querySelector('header') || document.querySelector('.site-header');
-        const headerHeight = header ? header.offsetHeight : 70;
+        const headerHeight = header ? header.offsetHeight : 65;
 
-        // Active as soon as timeline section enters top 75% of viewport until section bottom leaves
-        return sectionRect.top <= (window.innerHeight * 0.75) && sectionRect.bottom >= (headerHeight + 80);
+        return rect.top <= (headerHeight + 220) && rect.top >= -350;
       };
 
-      // Smoothly align timeline section target under fixed top bar
+      // Align timeline section target instantly under fixed top bar
       const alignSectionHeader = () => {
         const targetEl = getAlignTargetEl();
         if (!targetEl) return;
         const rect = targetEl.getBoundingClientRect();
         const header = document.querySelector('header') || document.querySelector('.site-header');
-        const headerHeight = header ? header.offsetHeight : 60;
+        const headerHeight = header ? header.offsetHeight : 65;
         const offsetPadding = window.innerWidth <= 768 ? 8 : 20;
         const targetY = window.pageYOffset + rect.top - (headerHeight + offsetPadding);
-        if (Math.abs(rect.top - (headerHeight + offsetPadding)) > 10) {
-          window.scrollTo({ top: targetY, behavior: 'smooth' });
+        if (Math.abs(rect.top - (headerHeight + offsetPadding)) > 5) {
+          window.scrollTo({ top: targetY, behavior: 'auto' });
         }
       };
 
@@ -712,7 +713,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.61';
+    const version = '3.47.62';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
