@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.52';
+        mainImgEl.src = images[0] + '?v=3.47.53';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -513,8 +513,9 @@ const Timeline = {
         }
       };
 
-      // Wheel scroll step interaction for Desktop / Laptop
-      timelineSection.addEventListener('wheel', (e) => {
+      // Global Wheel Event Listener on window (triggers anywhere on screen when timeline is locked)
+      window.addEventListener('wheel', (e) => {
+        if (!isHeaderNearEyebrow()) return;
         if (e.deltaY > 0) {
           handleTimelineStep('down', () => e.preventDefault());
         } else if (e.deltaY < 0) {
@@ -522,17 +523,17 @@ const Timeline = {
         }
       }, { passive: false });
 
-      // Mobile Touch Scroll Step Interaction
+      // Global Touch Event Listener on window (triggers anywhere on screen when timeline is locked)
       let startTouchY = 0;
 
-      timelineSection.addEventListener('touchstart', (e) => {
+      window.addEventListener('touchstart', (e) => {
         if (e.touches.length === 1) {
           startTouchY = e.touches[0].clientY;
         }
       }, { passive: true });
 
-      timelineSection.addEventListener('touchmove', (e) => {
-        if (!startTouchY || e.touches.length !== 1) return;
+      window.addEventListener('touchmove', (e) => {
+        if (!startTouchY || e.touches.length !== 1 || !isHeaderNearEyebrow()) return;
         const currentY = e.touches[0].clientY;
         const diffY = startTouchY - currentY;
 
@@ -701,7 +702,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.52';
+    const version = '3.47.53';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
