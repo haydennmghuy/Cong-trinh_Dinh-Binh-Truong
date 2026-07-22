@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.51';
+        mainImgEl.src = images[0] + '?v=3.47.52';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -471,32 +471,54 @@ const Timeline = {
         }
       };
 
-      // Wheel scroll step interaction for Desktop / Laptop
-      timelineSection.addEventListener('wheel', (e) => {
+      // Unified Timeline Step Logic
+      const handleTimelineStep = (direction, preventFunc) => {
         const total = MAP_DATA.timeline.length;
-        if (e.deltaY > 0) { // Scrolling DOWN
-          if (this.activeIdx < total - 1) {
+
+        if (direction === 'down') { // Scrolling DOWN / Swiping UP
+          if (this.activeIdx < total - 1) { // Not at last milestone (2005) yet
             if (isHeaderNearEyebrow()) {
-              e.preventDefault();
+              if (preventFunc) preventFunc();
               if (!isCoolingDown) {
                 isCoolingDown = true;
                 if (this.activeIdx === 0) {
                   alignSectionHeader();
                 }
-                updateActive(this.activeIdx + 1);
+                updateActive(this.activeIdx + 1); // Step forward 1 milestone
                 setTimeout(() => { isCoolingDown = false; }, 260);
               }
             }
           }
-        } else if (e.deltaY < 0) { // Scrolling UP
-          if (this.activeIdx > 0 && isHeaderNearEyebrow()) {
-            e.preventDefault();
-            if (!isCoolingDown) {
-              isCoolingDown = true;
-              updateActive(0); // Jump back to initial milestone (1808) as intended
-              setTimeout(() => { isCoolingDown = false; }, 260);
+          // If activeIdx === total - 1 (2005), preventFunc is NOT called -> allows scrolling down to next section!
+        } else if (direction === 'up') { // Scrolling UP / Swiping DOWN
+          if (isHeaderNearEyebrow()) {
+            if (this.activeIdx === total - 1) { // At the last milestone (2005)
+              if (preventFunc) preventFunc();
+              if (!isCoolingDown) {
+                isCoolingDown = true;
+                updateActive(0); // Reset to initial milestone (1808) to restart loop
+                alignSectionHeader();
+                setTimeout(() => { isCoolingDown = false; }, 260);
+              }
+            } else if (this.activeIdx > 0) { // At milestone 1, 2, or 3
+              if (preventFunc) preventFunc();
+              if (!isCoolingDown) {
+                isCoolingDown = true;
+                updateActive(this.activeIdx - 1); // Step backward 1 milestone
+                setTimeout(() => { isCoolingDown = false; }, 260);
+              }
             }
+            // If activeIdx === 0, preventFunc is NOT called -> allows scrolling up to previous section!
           }
+        }
+      };
+
+      // Wheel scroll step interaction for Desktop / Laptop
+      timelineSection.addEventListener('wheel', (e) => {
+        if (e.deltaY > 0) {
+          handleTimelineStep('down', () => e.preventDefault());
+        } else if (e.deltaY < 0) {
+          handleTimelineStep('up', () => e.preventDefault());
         }
       }, { passive: false });
 
@@ -513,34 +535,18 @@ const Timeline = {
         if (!startTouchY || e.touches.length !== 1) return;
         const currentY = e.touches[0].clientY;
         const diffY = startTouchY - currentY;
-        const total = MAP_DATA.timeline.length;
 
         if (Math.abs(diffY) > 16) {
           if (diffY > 0) { // Swiping UP -> Stepping DOWN through milestones
-            if (this.activeIdx < total - 1) {
-              if (isHeaderNearEyebrow()) {
-                if (e.cancelable) e.preventDefault();
-                if (!isCoolingDown) {
-                  isCoolingDown = true;
-                  if (this.activeIdx === 0) {
-                    alignSectionHeader();
-                  }
-                  updateActive(this.activeIdx + 1);
-                  startTouchY = currentY;
-                  setTimeout(() => { isCoolingDown = false; }, 260);
-                }
-              }
-            }
-          } else { // Swiping DOWN -> Stepping UP
-            if (this.activeIdx > 0 && isHeaderNearEyebrow()) {
+            handleTimelineStep('down', () => {
               if (e.cancelable) e.preventDefault();
-              if (!isCoolingDown) {
-                isCoolingDown = true;
-                updateActive(0); // Jump back to initial milestone (1808)
-                startTouchY = currentY;
-                setTimeout(() => { isCoolingDown = false; }, 260);
-              }
-            }
+              startTouchY = currentY;
+            });
+          } else { // Swiping DOWN -> Stepping UP
+            handleTimelineStep('up', () => {
+              if (e.cancelable) e.preventDefault();
+              startTouchY = currentY;
+            });
           }
         }
       }, { passive: false });
@@ -695,7 +701,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.51';
+    const version = '3.47.52';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
