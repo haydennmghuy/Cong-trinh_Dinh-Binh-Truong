@@ -320,7 +320,8 @@ html[lang="en"] .hero-title {
 .hero {
   position: relative;
   overflow: hidden;
-  height: 550px; /* Moderate and perfectly balanced height on desktop */
+  min-height: 100vh; /* Full viewport height on landing */
+  height: 100vh;
   width: 100%; /* Full bleed screen width */
   background: linear-gradient(to right, rgba(34, 34, 34, 0.88) 0%, rgba(34, 34, 34, 0.5) 45%, rgba(34, 34, 34, 0) 85%),
               url('../images/hero_background.webp?v=3.45.0') no-repeat right center / cover;
@@ -1833,8 +1834,8 @@ html[lang="en"] .hero-title {
   }
 
   .hero {
-    min-height: 480px !important;
-    height: auto !important;
+    min-height: 100vh !important;
+    height: 100vh !important;
     max-width: none !important;
     margin: 0 !important;
     border-radius: 0 !important;
