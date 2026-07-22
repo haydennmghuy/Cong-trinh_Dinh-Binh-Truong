@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.66';
+        mainImgEl.src = images[0] + '?v=3.47.67';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -436,70 +436,134 @@ const Timeline = {
     // Initialize UI for current active index
     this.updateActive(this.activeIdx || 0);
 
-    // ===== Scroll Stepping Interaction =====
+    // ===== Scroll Lock + Stepping Interaction =====
     const timelineSection = document.querySelector('.timeline-section');
     if (timelineSection && !timelineSection.dataset.scrollBound) {
       timelineSection.dataset.scrollBound = 'true';
 
       let isStepping = false;
       let touchStartY = 0;
+      let hasSwiped = false;
 
+      // Get the element to pin under the header
+      const getPinTarget = () => {
+        if (window.innerWidth <= 768) {
+          return timelineSection.querySelector('.timeline-horizontal') || timelineSection.querySelector('.eyebrow');
+        }
+        return timelineSection.querySelector('.eyebrow');
+      };
+
+      // Pin the timeline section so pin target sits right below the fixed header
+      const pinSection = () => {
+        const target = getPinTarget();
+        if (!target) return;
+        const rect = target.getBoundingClientRect();
+        const header = document.querySelector('header') || document.querySelector('.site-header');
+        const headerH = header ? header.offsetHeight : 65;
+        const gap = window.innerWidth <= 768 ? 8 : 20;
+        const diff = rect.top - (headerH + gap);
+        if (Math.abs(diff) > 3) {
+          window.scrollTo({ top: window.pageYOffset + diff, behavior: 'auto' });
+        }
+      };
+
+      // Check if the timeline section is in the lock zone (near the header)
+      const isInLockZone = () => {
+        const rect = timelineSection.getBoundingClientRect();
+        const header = document.querySelector('header') || document.querySelector('.site-header');
+        const headerH = header ? header.offsetHeight : 65;
+        // Section top is near or above header bottom, and section bottom is still below header
+        return rect.top <= (headerH + 250) && rect.bottom >= (headerH + 80);
+      };
+
+      // Step to next/previous milestone
       const step = (dir) => {
-        if (isStepping) return;
+        if (isStepping) return false;
         const total = MAP_DATA.timeline.length;
         const current = this.activeIdx || 0;
 
         if (dir === 'down' && current < total - 1) {
           isStepping = true;
+          pinSection();
           this.updateActive(current + 1);
-          setTimeout(() => { isStepping = false; }, 250);
-        } else if (dir === 'up' && current > 0) {
-          isStepping = true;
-          this.updateActive(current - 1);
-          setTimeout(() => { isStepping = false; }, 250);
+          setTimeout(() => { isStepping = false; }, 220);
+          return true;
+        } else if (dir === 'up') {
+          if (current === total - 1) {
+            // At last milestone → reset to first
+            isStepping = true;
+            this.updateActive(0);
+            pinSection();
+            setTimeout(() => { isStepping = false; }, 220);
+            return true;
+          } else if (current > 0) {
+            isStepping = true;
+            pinSection();
+            this.updateActive(current - 1);
+            setTimeout(() => { isStepping = false; }, 220);
+            return true;
+          }
         }
+        return false;
       };
 
-      // Mouse Wheel Stepping inside Timeline Section
-      timelineSection.addEventListener('wheel', (e) => {
+      // --- WHEEL (Laptop/Desktop) ---
+      window.addEventListener('wheel', (e) => {
+        if (!isInLockZone()) return;
         const current = this.activeIdx || 0;
         const total = MAP_DATA.timeline.length;
 
         if (e.deltaY > 0 && current < total - 1) {
+          // Scrolling DOWN and not at last milestone → lock & step
           e.preventDefault();
           step('down');
-        } else if (e.deltaY < 0 && current > 0) {
+        } else if (e.deltaY < 0 && (current > 0 || current === total - 1)) {
+          // Scrolling UP and not at first milestone → lock & step
           e.preventDefault();
           step('up');
         }
+        // At last milestone scrolling down → don't block, page scrolls naturally to next section
+        // At first milestone scrolling up → don't block, page scrolls naturally to previous section
       }, { passive: false });
 
-      // Touch Stepping inside Timeline Section
-      timelineSection.addEventListener('touchstart', (e) => {
+      // --- TOUCH (Mobile) ---
+      window.addEventListener('touchstart', (e) => {
         if (e.touches.length === 1) {
           touchStartY = e.touches[0].clientY;
+          hasSwiped = false;
         }
       }, { passive: true });
 
-      timelineSection.addEventListener('touchmove', (e) => {
-        if (!touchStartY || e.touches.length !== 1) return;
+      window.addEventListener('touchmove', (e) => {
+        if (!touchStartY || e.touches.length !== 1 || !isInLockZone()) return;
         const currentY = e.touches[0].clientY;
-        const diffY = touchStartY - currentY;
+        const diffY = touchStartY - currentY; // positive = swipe up = scroll down
         const current = this.activeIdx || 0;
         const total = MAP_DATA.timeline.length;
 
-        if (Math.abs(diffY) > 25) {
+        // Lock native scroll while in milestone stepping zone
+        if (diffY > 0 && current < total - 1) {
+          if (e.cancelable) e.preventDefault();
+        } else if (diffY < 0 && (current > 0 || current === total - 1)) {
+          if (e.cancelable) e.preventDefault();
+        }
+
+        // Step milestone on sufficient swipe
+        if (Math.abs(diffY) > 20 && !hasSwiped) {
           if (diffY > 0 && current < total - 1) {
-            if (e.cancelable) e.preventDefault();
+            hasSwiped = true;
             step('down');
-            touchStartY = currentY;
-          } else if (diffY < 0 && current > 0) {
-            if (e.cancelable) e.preventDefault();
+          } else if (diffY < 0 && (current > 0 || current === total - 1)) {
+            hasSwiped = true;
             step('up');
-            touchStartY = currentY;
           }
         }
       }, { passive: false });
+
+      window.addEventListener('touchend', () => {
+        touchStartY = 0;
+        hasSwiped = false;
+      }, { passive: true });
     }
   }
 };
@@ -651,7 +715,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.66';
+    const version = '3.47.67';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
