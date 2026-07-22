@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.62';
+        mainImgEl.src = images[0] + '?v=3.47.63';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -445,16 +445,11 @@ const Timeline = {
         return eyebrowEl;
       };
 
-      // Check if timeline section target is near the top header area
-      const isHeaderNearEyebrow = () => {
+      // Check if timeline section is active in the viewport
+      const isTimelineInViewport = () => {
         if (!timelineSection) return false;
-        const targetEl = getAlignTargetEl();
-        if (!targetEl) return false;
-        const rect = targetEl.getBoundingClientRect();
-        const header = document.querySelector('header') || document.querySelector('.site-header');
-        const headerHeight = header ? header.offsetHeight : 65;
-
-        return rect.top <= (headerHeight + 220) && rect.top >= -350;
+        const sectionRect = timelineSection.getBoundingClientRect();
+        return sectionRect.top <= (window.innerHeight * 0.85) && sectionRect.bottom >= 50;
       };
 
       // Align timeline section target instantly under fixed top bar
@@ -478,7 +473,7 @@ const Timeline = {
 
         if (direction === 'down') { // Scrolling DOWN / Swiping UP
           if (activeIdx < total - 1) { // Not at last milestone (2005) yet
-            if (isHeaderNearEyebrow()) {
+            if (isTimelineInViewport()) {
               isCoolingDown = true;
               alignSectionHeader();
               updateActive(activeIdx + 1); // Step forward 1 milestone
@@ -487,7 +482,7 @@ const Timeline = {
             }
           }
         } else if (direction === 'up') { // Scrolling UP / Swiping DOWN
-          if (isHeaderNearEyebrow()) {
+          if (isTimelineInViewport()) {
             if (activeIdx === total - 1) { // At the last milestone (2005)
               isCoolingDown = true;
               updateActive(0); // Reset to initial milestone (1808) to restart loop
@@ -508,7 +503,7 @@ const Timeline = {
 
       // Global Wheel Event Listener on window
       window.addEventListener('wheel', (e) => {
-        if (!isHeaderNearEyebrow()) return;
+        if (!isTimelineInViewport()) return;
         const total = MAP_DATA.timeline.length;
         if (e.deltaY > 0) {
           if (activeIdx < total - 1) {
@@ -534,7 +529,7 @@ const Timeline = {
       }, { passive: true });
 
       window.addEventListener('touchmove', (e) => {
-        if (!startTouchY || e.touches.length !== 1 || !isHeaderNearEyebrow()) return;
+        if (!startTouchY || e.touches.length !== 1 || !isTimelineInViewport()) return;
         const currentY = e.touches[0].clientY;
         const diffY = startTouchY - currentY;
         const total = MAP_DATA.timeline.length;
@@ -713,7 +708,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.62';
+    const version = '3.47.63';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
