@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.64';
+        mainImgEl.src = images[0] + '?v=3.47.65';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -395,14 +395,23 @@ const Timeline = {
     const nodes = container.querySelectorAll('.timeline-node');
     const cards = container.querySelectorAll('.timeline-detail-card');
 
-    const updateActive = (targetIdx) => {
+    // Method to update active milestone UI
+    this.updateActive = (targetIdx) => {
+      const total = MAP_DATA.timeline.length;
+      if (targetIdx < 0 || targetIdx >= total) return;
       this.activeIdx = targetIdx;
-      
-      // Update progress bar width
-      const pct = (targetIdx / (MAP_DATA.timeline.length - 1)) * 100;
-      if (progressEl) progressEl.style.width = `${pct}%`;
 
-      // Update nodes
+      const progressEl = container.querySelector('#timeline-progress');
+      const nodes = container.querySelectorAll('.timeline-node');
+      const cards = container.querySelectorAll('.timeline-detail-card');
+
+      // 1. Update progress bar width
+      if (progressEl) {
+        const pct = (targetIdx / (total - 1)) * 100;
+        progressEl.style.width = `${pct}%`;
+      }
+
+      // 2. Update year nodes
       nodes.forEach((node, idx) => {
         const isActive = idx === targetIdx;
         node.classList.toggle('active', isActive);
@@ -411,184 +420,91 @@ const Timeline = {
         }
       });
 
-      // Update cards
+      // 3. Update detail cards
       cards.forEach((card, idx) => {
         card.classList.toggle('active', idx === targetIdx);
       });
     };
 
+    // Node click and keydown listeners
+    const nodes = container.querySelectorAll('.timeline-node');
     nodes.forEach((node, idx) => {
-      node.addEventListener('click', () => updateActive(idx));
+      node.addEventListener('click', () => this.updateActive(idx));
       node.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          updateActive(idx);
+          this.updateActive(idx);
         }
       });
     });
 
-    // Initialize progress bar
-    const initialPct = (this.activeIdx / (MAP_DATA.timeline.length - 1)) * 100;
-    if (progressEl) progressEl.style.width = `${initialPct}%`;
+    // Initialize UI for current active index
+    this.updateActive(this.activeIdx || 0);
 
-    // ===== Timeline Scroll Interaction (Rewritten from Scratch) =====
+    // ===== Scroll Stepping Interaction =====
     const timelineSection = document.querySelector('.timeline-section');
     if (timelineSection && !timelineSection.dataset.scrollBound) {
       timelineSection.dataset.scrollBound = 'true';
 
-      let activeIdx = 0;
       let isStepping = false;
-      let hasSwiped = false;
       let touchStartY = 0;
 
-      const total = MAP_DATA.timeline.length; // 5 milestones: 0 (~1808), 1 (1852), 2 (8/1948), 3 (1945-1975), 4 (2005)
-      const eyebrowEl = timelineSection.querySelector('.eyebrow');
-
-      // Update active milestone UI (progress bar, year nodes, detail cards)
-      const setActiveMilestone = (newIdx) => {
-        activeIdx = newIdx;
-        this.activeIdx = newIdx;
-
-        // 1. Progress bar width
-        if (progressEl) {
-          const pct = (newIdx / (total - 1)) * 100;
-          progressEl.style.width = `${pct}%`;
-        }
-
-        // 2. Year nodes
-        nodes.forEach((node, idx) => {
-          const isActive = idx === newIdx;
-          node.classList.toggle('active', isActive);
-          if (isActive && window.innerWidth <= 900) {
-            node.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-          }
-        });
-
-        // 3. Detail cards
-        cards.forEach((card, idx) => {
-          card.classList.toggle('active', idx === newIdx);
-        });
-      };
-
-      // Click / Keydown listeners on nodes
-      nodes.forEach((node, idx) => {
-        node.addEventListener('click', () => setActiveMilestone(idx));
-        node.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            setActiveMilestone(idx);
-          }
-        });
-      });
-
-      // Align header above timeline content
-      const pinHeader = () => {
-        const header = document.querySelector('header') || document.querySelector('.site-header');
-        const headerHeight = header ? header.offsetHeight : 65;
-        const targetEl = window.innerWidth <= 768 
-          ? (timelineSection.querySelector('.timeline-horizontal') || eyebrowEl)
-          : eyebrowEl;
-        if (!targetEl) return;
-
-        const rect = targetEl.getBoundingClientRect();
-        const offset = window.innerWidth <= 768 ? 8 : 20;
-        const targetY = window.pageYOffset + rect.top - (headerHeight + offset);
-
-        if (Math.abs(rect.top - (headerHeight + offset)) > 8) {
-          window.scrollTo({ top: targetY, behavior: 'auto' });
-        }
-      };
-
-      // Check if timeline section is in active scroll lock zone
-      const isInLockZone = () => {
-        if (!timelineSection) return false;
-        const rect = timelineSection.getBoundingClientRect();
-        const header = document.querySelector('header') || document.querySelector('.site-header');
-        const headerHeight = header ? header.offsetHeight : 65;
-        return rect.top <= (headerHeight + 200) && rect.bottom >= (headerHeight + 80);
-      };
-
-      // Core Step Executer
-      const stepMilestone = (dir) => {
+      const step = (dir) => {
         if (isStepping) return;
+        const total = MAP_DATA.timeline.length;
+        const current = this.activeIdx || 0;
 
-        if (dir === 'down') {
-          if (activeIdx < total - 1) {
-            isStepping = true;
-            pinHeader();
-            setActiveMilestone(activeIdx + 1);
-            setTimeout(() => { isStepping = false; }, 180);
-          }
-        } else if (dir === 'up') {
-          if (activeIdx === total - 1) {
-            isStepping = true;
-            setActiveMilestone(0); // Reset to 1808
-            pinHeader();
-            setTimeout(() => { isStepping = false; }, 180);
-          } else if (activeIdx > 0) {
-            isStepping = true;
-            pinHeader();
-            setActiveMilestone(activeIdx - 1);
-            setTimeout(() => { isStepping = false; }, 180);
-          }
+        if (dir === 'down' && current < total - 1) {
+          isStepping = true;
+          this.updateActive(current + 1);
+          setTimeout(() => { isStepping = false; }, 250);
+        } else if (dir === 'up' && current > 0) {
+          isStepping = true;
+          this.updateActive(current - 1);
+          setTimeout(() => { isStepping = false; }, 250);
         }
       };
 
-      // 1. Mouse Wheel Listener (Desktop & Laptop)
-      window.addEventListener('wheel', (e) => {
-        if (!isInLockZone()) return;
+      // Mouse Wheel Stepping inside Timeline Section
+      timelineSection.addEventListener('wheel', (e) => {
+        const current = this.activeIdx || 0;
+        const total = MAP_DATA.timeline.length;
 
-        if (e.deltaY > 0) { // Scrolling DOWN
-          if (activeIdx < total - 1) {
-            e.preventDefault();
-            stepMilestone('down');
-          }
-        } else if (e.deltaY < 0) { // Scrolling UP
-          if (activeIdx > 0 || activeIdx === total - 1) {
-            e.preventDefault();
-            stepMilestone('up');
-          }
+        if (e.deltaY > 0 && current < total - 1) {
+          e.preventDefault();
+          step('down');
+        } else if (e.deltaY < 0 && current > 0) {
+          e.preventDefault();
+          step('up');
         }
       }, { passive: false });
 
-      // 2. Touch Listener (Mobile)
-      window.addEventListener('touchstart', (e) => {
+      // Touch Stepping inside Timeline Section
+      timelineSection.addEventListener('touchstart', (e) => {
         if (e.touches.length === 1) {
           touchStartY = e.touches[0].clientY;
-          hasSwiped = false;
         }
       }, { passive: true });
 
-      window.addEventListener('touchmove', (e) => {
-        if (!touchStartY || e.touches.length !== 1 || !isInLockZone()) return;
+      timelineSection.addEventListener('touchmove', (e) => {
+        if (!touchStartY || e.touches.length !== 1) return;
         const currentY = e.touches[0].clientY;
         const diffY = touchStartY - currentY;
+        const current = this.activeIdx || 0;
+        const total = MAP_DATA.timeline.length;
 
-        // Prevent native scroll jitter when trapped in milestone lock
-        if (diffY > 0 && activeIdx < total - 1) {
-          if (e.cancelable) e.preventDefault();
-        } else if (diffY < 0 && (activeIdx > 0 || activeIdx === total - 1)) {
-          if (e.cancelable) e.preventDefault();
-        }
-
-        if (Math.abs(diffY) > 16 && !hasSwiped) {
-          if (diffY > 0 && activeIdx < total - 1) {
-            hasSwiped = true;
-            stepMilestone('down');
-          } else if (diffY < 0 && (activeIdx > 0 || activeIdx === total - 1)) {
-            hasSwiped = true;
-            stepMilestone('up');
+        if (Math.abs(diffY) > 25) {
+          if (diffY > 0 && current < total - 1) {
+            if (e.cancelable) e.preventDefault();
+            step('down');
+            touchStartY = currentY;
+          } else if (diffY < 0 && current > 0) {
+            if (e.cancelable) e.preventDefault();
+            step('up');
+            touchStartY = currentY;
           }
         }
       }, { passive: false });
-
-      window.addEventListener('touchend', () => {
-        touchStartY = 0;
-        hasSwiped = false;
-      }, { passive: true });
-
-      // Initialize initial state
-      setActiveMilestone(this.activeIdx || 0);
     }
     }
   }
@@ -741,7 +657,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.64';
+    const version = '3.47.65';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }
