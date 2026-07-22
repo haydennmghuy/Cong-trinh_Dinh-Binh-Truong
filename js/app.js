@@ -167,7 +167,7 @@ const HotspotModal = {
 
     if (images.length > 0) {
       if (mainImgEl) {
-        mainImgEl.src = images[0] + '?v=3.47.33';
+        mainImgEl.src = images[0] + '?v=3.47.34';
         mainImgEl.alt = data.name;
         mainImgEl.classList.remove('hidden');
         
@@ -404,7 +404,11 @@ const Timeline = {
 
       // Update nodes
       nodes.forEach((node, idx) => {
-        node.classList.toggle('active', idx === targetIdx);
+        const isActive = idx === targetIdx;
+        node.classList.toggle('active', isActive);
+        if (isActive && window.innerWidth <= 900) {
+          node.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
       });
 
       // Update cards
@@ -667,7 +671,7 @@ const NarrationAudio = {
 
   _getSource() {
     const lang = (typeof i18n !== 'undefined' && i18n?.current) || 'vi';
-    const version = '3.47.33';
+    const version = '3.47.34';
     if (lang === 'en') {
       return `audio/en/thuyet-minh.mp3?v=${version}`;
     }

@@ -110,7 +110,7 @@ var TRANSLATIONS = {
     timeline: {
       eyebrow: "Dấu ấn",
       heading: "HƠN 200 NĂM LƯU GIỮ NÉT ĐẸP VĂN HÓA",
-      lead: "Được hình thành từ đầu thế kỷ XIX và sắc phong dưới triều vua Tự Đức năm 1852,<br>Đình Bình Trường đã đồng hành cùng sự phát triển của vùng đất Bình Chánh,<br>trở thành chứng nhân của nhiều giai đoạn lịch sử và cách mạng."
+      lead: "Được hình thành từ đầu thế kỷ XIX và sắc phong dưới triều vua Tự Đức năm 1852, Đình Bình Trường đã đồng hành cùng sự phát triển của vùng đất Bình Chánh, trở thành chứng nhân của nhiều giai đoạn lịch sử và cách&nbsp;mạng."
     },
     values: {
       heading: "GIÁ TRỊ DI TÍCH",

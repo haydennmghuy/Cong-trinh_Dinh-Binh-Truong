@@ -914,6 +914,17 @@ html[lang="en"] .hero-title {
   margin-bottom: 8rem; /* Increased spacing between Dấu Ấn heading and timeline milestones */
 }
 
+.timeline-section .section-lead {
+  max-width: 72ch;
+  margin: 1rem auto 0;
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  text-align: justify;
+  text-justify: inter-word;
+  text-wrap: pretty;
+}
+
 .timeline {
   position: relative;
   width: 100%;
@@ -1755,20 +1766,27 @@ html[lang="en"] .hero-title {
   }
 
   .timeline-nodes {
-    justify-content: flex-start;
-    gap: 2.2rem;
-    width: max-content;
-    padding: 0 10px;
+    justify-content: space-between;
+    min-width: 480px;
+    padding: 0 25px;
   }
 
   .timeline-node {
-    flex: 0 0 105px;
-    width: 105px;
+    flex: 0 0 85px;
+    width: 85px;
   }
 
-  .timeline-line,
+  .timeline-line {
+    left: 45px;
+    right: 45px;
+    top: 36px;
+    display: block !important;
+  }
+
   .timeline-line-progress {
-    display: none;
+    left: 45px;
+    top: 36px;
+    display: block !important;
   }
 
   .timeline-detail-card {
@@ -1781,7 +1799,7 @@ html[lang="en"] .hero-title {
     max-width: 100%;
     width: 100%;
     flex: none;
-    height: 260px;
+    height: 220px;
   }
 
   .stats { grid-template-columns: repeat(2, 1fr); }
@@ -1861,13 +1879,15 @@ html[lang="en"] .hero-title {
     text-align: center !important;
   }
   .hero-copy .eyebrow {
-    font-size: 0.68rem !important;
+    font-size: clamp(0.5rem, 2.7vw, 0.72rem) !important;
     margin-bottom: 0.4rem !important;
     text-align: center !important;
     width: 100% !important;
+    white-space: nowrap !important;
+    letter-spacing: 0.05em !important;
   }
   .hero-copy .subtitle {
-    font-size: clamp(0.65rem, 2.5vw, 0.82rem) !important;
+    font-size: clamp(0.55rem, 2.5vw, 0.78rem) !important;
     margin-bottom: 1.2rem !important;
     text-align: center !important;
     color: var(--bronze-light, #E8C96A) !important;
@@ -1877,7 +1897,9 @@ html[lang="en"] .hero-title {
     letter-spacing: 0.02em !important;
   }
   .hero-copy .lead {
-    text-align: center !important;
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    text-wrap: pretty !important;
     max-width: none !important;
     font-size: 0.88rem !important;
     line-height: 1.7 !important;
@@ -2187,6 +2209,9 @@ html[lang="en"] .hero-title {
   color: var(--ink-soft);
   font-size: 0.9rem;
   line-height: 1.65;
+  text-align: justify;
+  text-justify: inter-word;
+  text-wrap: pretty;
 }
 
 @media (max-width: 992px) {
